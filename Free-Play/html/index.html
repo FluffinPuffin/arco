@@ -13,34 +13,46 @@
     <div></div>
 
     <!--container div-->
-    <div>
+    <div class="frame">
         <!--home and back buttons div-->
-        <div>
-            <!--back button here-->
+        <div class="buttons">
+            <!--back button-->
+            <img src="../../frame/images/arrow.png" alt="Back" class="arrow" onclick="goBack()"
+                style="cursor: pointer;">
+
             <!--freeplay header-->
             <h1>Free Play</h1>
-            <!--Home button here-->
+
+            <!--home button-->
+            <a href="../../Home/html/index.html">
+                <img src="../../frame/images/home.png" alt="home" class="home">
+            </a>
         </div>
 
         <!--interactive windows div-->
-        <div>
-            <!--violin fingerboard section div-->
-            <div>
-                <!--violin fingerboard image div-->
+        <div class="container">
+            <div class="rectangle">
+                <!--violin fingerboard section div-->
                 <div>
-                    <!--violin fingerboard image-->
-                    <img src="Free-Play\images\musicalStaffNotes\violinUnmarkedFingerboard.svg"
-                        alt="An image of a violin fingerboard from top view, showing three tapes.">
+                    <!--violin fingerboard image div-->
+                    <div>
+                        <!--violin fingerboard image-->
+                        <img src="../images/musicalStaffNotes/violinUnmarkedFingerboard.svg"
+                            alt="An image of a violin fingerboard from top view, showing three tapes.">
+                    </div>
                 </div>
-            </div>
 
-            <!--note display and note information div-->
-            <div>
-                <!--note displayed image-->
-                <img src="Free-Play\images\musicalStaffNotes\blankMusicalStaff.svg"
-                    alt="An image of the musical staff, blank with no note displayed">
-                <!--paragraph to put the related explanation into-->
-                <p></p>
+                <!--note displayed section div-->
+                <div>
+                    <!--note displayed image and note description div-->
+                    <div>
+                        <!--note displayed image-->
+                        <img src="../images/musicalStaffNotes/blankMusicalStaff.svg"
+                            alt="An image of the musical staff, blank with no note displayed">
+                        <!--paragraph to put the related explanation into-->
+                        <p></p>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
