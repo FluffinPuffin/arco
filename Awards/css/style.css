@@ -1,0 +1,37 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 32px;
+    background-color: #ffffff;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.logo {
+    height: 32px;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+}
+
+.nav-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 500;
+    color: #000;
+    text-decoration: none;
+}
+
+.nav-item:hover {
+    text-decoration: underline;
+}
+
+.profile-icon img {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+}
