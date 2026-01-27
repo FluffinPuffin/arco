@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Account: Login </title>
+    <link rel="stylesheet" href="arco/Login/css/style.css">
+    <script src="arco/Login/js/js.js"></script>
+</head>
+
+<body>
+
+    <!--Left Column: Login Stuff-->
+    <div>
+
+        <!--Top Section: Title & Mode Switch-->
+        <div>
+            <h1>Login</h1>
+
+            <!--Switch to Sign Up/Register without opening new page-->
+            <a href="#">New to Arco?</a>
+        </div>
+
+        <br>
+
+        <!--Middle Section: Account Forms-->
+        <form action="">
+
+            <!--Email Address-->
+            <label for="email">Email Address</label><br>
+            <input type="text" name="email" id="email" placeholder="ex: abc@gmail.com" autocomplete="email"
+                aria-required="true" required>
+            <br><br>
+
+            <!--Password-->
+            <label for="accPass">Password</label><br>
+            <input type="password" name="accPass" id="accPass" placeholder="ex: abc123!" autocomplete="current-password"
+                aria-required="true" required>
+
+            <!--(BUGGED) Hide/Show Password Details-->
+            <img src="arco/Login/images/icon-EyeClosed.svg"
+                alt="A closed eye icon. Means that the typed password is currently being visibily obscured" width="25"
+                height="25">
+            <img src="arco/Login/images/icon-EyeOpen.svg"
+                alt="An open eye icon. Means that the typed password is clearly visible to everyone">
+            <br>
+
+            <!--Remember Me Toggle-->
+            <input type="checkbox" id="remember" name="remember" value="rememberYes">
+            <label for="remember">Remember Me</label>
+
+            <!--Forgot Password Hyperlink-->
+            <a href="#">Forgot Password?</a>
+            <br><br>
+
+            <!--Login Button-->
+            <input type="submit" value="Login">
+
+        </form>
+
+        <br>
+
+        <!--Alternate Logins-->
+        <div>
+
+            <!--Text divider-->
+            <div>
+                <h4>- or sign in with -</h4>
+            </div>
+
+            <!--(BUGGED) Login with Google-->
+            <div>
+                <button type="button"><img src="arco/Login/images/icon-Google.svg" alt="Google Icon">Google</button>
+            </div>
+
+            <!--(BUGGED) Login with Apple ID-->
+            <div>
+                <button type="button"><img src="arco/Login/images/icon-Apple.svg" alt="Apple Icon">Apple ID</button>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <!--Right Side: Color/Footer Stuff-->
+    <div>
+
+        <!--(BUGGED) Arco Logo-->
+        <div>
+            <img src="arco/Login/images/icon-ArcoLogo.svg" alt="Arco logo that ends with a musical note">
+        </div>
+
+        <!--Copyright Years-->
+        <div>
+            <p>&copy;2025 - 2026</p>
+        </div>
+
+        <!--Hyperlinks to misc. pages-->
+        <div>
+            <a href="#">FAQ</a>
+            <a href="#">Contact</a>
+            <a href="#">Policy</a>
+        </div>
+    </div>
+
+
+</body>
+
+</html>

@@ -2,18 +2,15 @@ body {
     background-color: rgb(146, 21, 21);
 }
 
+/* Frame */
 .rectangle {
     width: 80%;
-    height: 70%;
-
     background-color: #b4b4b4;
     border: 2px solid #333;
     border-radius: 25px;
-
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    height: 100%;
+    padding: 24px;
+    margin: 140px auto 140px auto;
 }
 
 .home {
@@ -25,9 +22,66 @@ body {
 }
 
 .buttons {
-    width: 85%;
-    position: absolute;
-    top: 10%;
+    position: fixed;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translateX(-50%);
+    width: 85%;
+
+    top: 10%;
+}
+
+/* Footer */
+.footer {
+    bottom: 0;
+    left: 0;
+    position: fixed;
+    width: 100%;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    background-color: #e5e5e5;
+}
+
+.footer-left {
+    display: flex;
+    gap: 10%;
+}
+
+.footer-left a {
+    color: #000;
+    text-decoration: none;
+}
+
+.footer-left a:hover {
+    text-decoration: underline;
+}
+
+.footer-right {
+    color: #555;
+}
+
+/* Header */
+
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    background-color: #e5e5e5;
+}
+
+.header-left {
+    display: flex;
+    gap: 10%;
+}
+
+.header-right {
+    color: #555;
 }
