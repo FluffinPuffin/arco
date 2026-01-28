@@ -25,6 +25,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    position: relative;
 }
 
 .buttons {
@@ -37,18 +38,25 @@ body {
     align-items: center;
 }
 
+/* title */
+.title-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
 .title {
-    position: fixed;
-    top: 15%;
-    /* 15% for laptop then 18% for ipad */
+    position: absolute;
+    /* taken out of flow */
+    top: 7%;
+    /* adjust this to move it higher/lower */
     left: 50%;
     transform: translateX(-50%);
     font-size: 24px;
     font-weight: bold;
     color: white;
-    z-index: 1000;
+    z-index: 10;
 }
-
 
 /* Footer */
 .footer {
