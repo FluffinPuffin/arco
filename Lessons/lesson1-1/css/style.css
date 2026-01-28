@@ -22,3 +22,13 @@
     align-items: center;
     gap: 10px;
 }
+
+.lesson-content>div {
+    display: none;
+    /* hide all parts */
+}
+
+.lesson-content>div.active {
+    display: block;
+    /* show only the active part */
+}

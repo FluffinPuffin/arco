@@ -9,6 +9,7 @@ fetch("/frame/html/index.html")
     document.body.insertAdjacentHTML("afterbegin", html);
 
     document.dispatchEvent(new Event("frame:ready"));
+
   })
   .catch(err => console.error("Frame load failed:", err));
 
