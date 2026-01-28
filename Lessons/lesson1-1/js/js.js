@@ -26,6 +26,8 @@ document.addEventListener("frame:ready", () => {
       document
         .getElementById("content")
         .insertAdjacentHTML("beforeend", content);
+        initLessonParts();
+        initVideoControls();
     })
     .catch(err => console.error("CONTENT LOAD FAILED:", err));
 });
@@ -57,24 +59,28 @@ function initVideoControls() {
   });
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-    const parts = document.querySelectorAll('.lesson-content > div');
-    const nextBtn = document.getElementById('nextBtn');
-    let current = 0;
+function initLessonParts() {
+  const parts = document.querySelectorAll('.lesson-content > div');
+  const nextBtn = document.getElementById('nextBtn');
 
-    // Show the first part
+  if (!parts.length || !nextBtn) {
+    console.warn("Lesson parts or next button not found");
+    return;
+  }
+
+  let current = 0;
+  parts[current].classList.add('active');
+
+  nextBtn.addEventListener('click', () => {
+    parts[current].classList.remove('active');
+    current++;
+
+    if (current >= parts.length) {
+      nextBtn.style.display = 'none';
+      return;
+    }
+
     parts[current].classList.add('active');
-
-    nextBtn.addEventListener('click', () => {
-        parts[current].classList.remove('active');
-        current++;
-
-        if (current >= parts.length) {
-            nextBtn.style.display = 'none';
-            return;
-        }
-
-        parts[current].classList.add('active');
-    });
-});
+  });
+}
 
