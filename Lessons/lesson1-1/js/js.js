@@ -56,3 +56,25 @@ function initVideoControls() {
     isBig = !isBig;
   });
 }
+
+document.addEventListener('DOMContentLoaded', () => {
+    const parts = document.querySelectorAll('.lesson-content > div');
+    const nextBtn = document.getElementById('nextBtn');
+    let current = 0;
+
+    // Show the first part
+    parts[current].classList.add('active');
+
+    nextBtn.addEventListener('click', () => {
+        parts[current].classList.remove('active');
+        current++;
+
+        if (current >= parts.length) {
+            nextBtn.style.display = 'none';
+            return;
+        }
+
+        parts[current].classList.add('active');
+    });
+});
+
