@@ -25,16 +25,37 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    position: relative;
 }
 
 .buttons {
     position: relative;
-    /* let it flow naturally */
     width: 85%;
-    margin: 100px auto auto auto;
+    margin: 100px auto 0 auto;
     display: flex;
     justify-content: space-between;
+    /* keeps buttons at edges */
     align-items: center;
+}
+
+/* title */
+.title-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.title {
+    position: absolute;
+    /* taken out of flow */
+    top: 7%;
+    /* adjust this to move it higher/lower */
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 24px;
+    font-weight: bold;
+    color: white;
+    z-index: 10;
 }
 
 /* Footer */
