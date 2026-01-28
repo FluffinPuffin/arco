@@ -12,3 +12,10 @@ document.addEventListener("frame:ready", () => {
     })
     .catch(err => console.error("CONTENT LOAD FAILED:", err));
 });
+
+history.replaceState(
+  { url: "./content.html" },
+  "",
+  "#./content.html"
+);
+
