@@ -1,6 +1,6 @@
 document.addEventListener("frame:ready", () => {
   // Inject title.html before the rectangle
-  const container = document.querySelector('.container'); // or '#container' if it's an ID
+  const container = document.querySelector('.container');
   if (container) {
     fetch("./title.html")
       .then(res => {
@@ -69,18 +69,40 @@ function initLessonParts() {
   }
 
   let current = 0;
-  parts[current].classList.add('active');
 
-  nextBtn.addEventListener('click', () => {
-    parts[current].classList.remove('active');
-    current++;
+  function showPart(index, push = true) {
+    parts.forEach(p => p.classList.remove('active'));
+    parts[index].classList.add('active');
 
-    if (current >= parts.length) {
-      nextBtn.style.display = 'none';
-      return;
+    current = index;
+
+    if (push) {
+      history.pushState(
+        { lessonIndex: index },
+        "",
+        `#lesson-${index + 1}`
+      );
     }
 
-    parts[current].classList.add('active');
+    nextBtn.style.display = index >= parts.length - 1 ? "none" : "block";
+  }
+
+  // Initial state
+  showPart(0, false);
+  history.replaceState({ lessonIndex: 0 }, "", "#lesson-1");
+
+  nextBtn.addEventListener('click', () => {
+    if (current + 1 < parts.length) {
+      showPart(current + 1);
+    }
+  });
+
+  // Handle back/forward
+  window.addEventListener('popstate', event => {
+    if (event.state && typeof event.state.lessonIndex === "number") {
+      showPart(event.state.lessonIndex, false);
+    }
   });
 }
+
 
