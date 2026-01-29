@@ -1,5 +1,5 @@
 
-fetch("../../frame/html/index.html")
+fetch("/frame/html/index.html")
     .then(response => {
         if (!response.ok) {
             throw new Error("HTTP error " + response.status);

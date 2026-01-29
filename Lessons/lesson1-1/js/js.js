@@ -2,7 +2,7 @@ document.addEventListener("frame:ready", () => {
   // Inject title.html before the rectangle
   const container = document.querySelector('.container');
   if (container) {
-    fetch("./title.html")
+    fetch("../html/title.html")
       .then(res => {
         if (!res.ok) throw new Error("Failed to load title.html");
         return res.text();
@@ -16,7 +16,7 @@ document.addEventListener("frame:ready", () => {
   }
 
   // Then load content.html normally
- fetch("./content.html")
+  fetch("../html/content.html")
     .then(res => {
       console.log("Fetch response:", res);
       if (!res.ok) throw new Error("Not OK");
@@ -26,11 +26,12 @@ document.addEventListener("frame:ready", () => {
       document
         .getElementById("content")
         .insertAdjacentHTML("beforeend", content);
-        initLessonParts();
-        initVideoControls();
+      initLessonParts();
+      initVideoControls();
     })
     .catch(err => console.error("CONTENT LOAD FAILED:", err));
 });
+
 
 
 function initVideoControls() {
@@ -86,23 +87,6 @@ function initLessonParts() {
 
     nextBtn.style.display = index >= parts.length - 1 ? "none" : "block";
   }
-
-  // Initial state
-  showPart(0, false);
-  history.replaceState({ lessonIndex: 0 }, "", "#lesson-1");
-
-  nextBtn.addEventListener('click', () => {
-    if (current + 1 < parts.length) {
-      showPart(current + 1);
-    }
-  });
-
-  // Handle back/forward
-  window.addEventListener('popstate', event => {
-    if (event.state && typeof event.state.lessonIndex === "number") {
-      showPart(event.state.lessonIndex, false);
-    }
-  });
 }
 
 
