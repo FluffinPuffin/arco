@@ -63,9 +63,10 @@ function initVideoControls() {
 function initLessonParts() {
   const parts = document.querySelectorAll('.lesson-content > div');
   const nextBtn = document.getElementById('nextBtn');
+  const backBtn = document.getElementById('backBtn');
 
-  if (!parts.length || !nextBtn) {
-    console.warn("Lesson parts or next button not found");
+  if (!parts.length || !nextBtn || !backBtn) {
+    console.warn("Lesson parts or navigation buttons not found");
     return;
   }
 
@@ -85,8 +86,27 @@ function initLessonParts() {
       );
     }
 
+    // Hide back button on first part, hide next button on last part
+    backBtn.style.display = index <= 0 ? "none" : "block";
     nextBtn.style.display = index >= parts.length - 1 ? "none" : "block";
   }
+
+  // Show the first part initially
+  showPart(0, false);
+
+  // Handle back button click
+  backBtn.addEventListener('click', () => {
+    if (current > 0) {
+      showPart(current - 1);
+    }
+  });
+
+  // Handle next button click
+  nextBtn.addEventListener('click', () => {
+    if (current < parts.length - 1) {
+      showPart(current + 1);
+    }
+  });
 }
 
 
