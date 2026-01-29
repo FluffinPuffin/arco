@@ -13,32 +13,7 @@ fetch("/frame/html/index.html")
   })
   .catch(err => console.error("Frame load failed:", err));
 
-function loadContent(url, push = true) {
-  fetch(url)
-    .then(res => {
-      if (!res.ok) throw new Error("Failed to load content");
-      return res.text();
-    })
-    .then(html => {
-      document.getElementById("content").innerHTML = html;
-
-      if (push) {
-        history.pushState({ url }, "", "#"+url);
-      }
-    })
-    .catch(err => console.error(err));
-}
-
-window.addEventListener("popstate", event => {
-  if (event.state && event.state.url) {
-    loadContent(event.state.url, false);
-  }
-});
-
-
 function goBack() {
-  if (window.history.length > 1) {
-    window.history.back();
-  }
+  window.history.back();
 }
 
