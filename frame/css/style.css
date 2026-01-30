@@ -48,23 +48,22 @@ body {
 }
 
 /* title */
-.title-wrapper {
-    width: 100%;
-    display: flex;
-    justify-content: center;
+#lesson-title {
+    flex: 1;
+    text-align: center;
 }
 
-.title {
-    position: absolute;
-    /* taken out of flow */
-    top: 120px;
-    /* fixed position - won't move when window resizes */
-    left: 50%;
-    transform: translateX(-50%);
+#lesson-title .title-wrapper {
+    display: inline-block;
+}
+
+#lesson-title .title {
+    position: static;
+    transform: none;
     font-size: 24px;
     font-weight: bold;
     color: white;
-    z-index: 10;
+    margin: 0;
 }
 
 /* Footer */

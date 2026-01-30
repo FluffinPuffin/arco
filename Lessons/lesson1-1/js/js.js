@@ -1,18 +1,18 @@
 document.addEventListener("frame:ready", () => {
-  // Inject title.html before the rectangle
-  const container = document.querySelector('.container');
-  if (container) {
+  // Inject title.html into the frame's title placeholder
+  const titleContainer = document.getElementById('lesson-title');
+  if (titleContainer) {
     fetch("../html/title.html")
       .then(res => {
         if (!res.ok) throw new Error("Failed to load title.html");
         return res.text();
       })
       .then(titleContent => {
-        container.insertAdjacentHTML("beforebegin", titleContent);
+        titleContainer.innerHTML = titleContent;
       })
       .catch(err => console.error("TITLE LOAD FAILED:", err));
   } else {
-    console.warn("container element not found");
+    console.warn("lesson-title element not found");
   }
 
   // Then load content.html normally
@@ -28,6 +28,7 @@ document.addEventListener("frame:ready", () => {
         .insertAdjacentHTML("beforeend", content);
       initLessonParts();
       initVideoControls();
+      initInfoTabs();
     })
     .catch(err => console.error("CONTENT LOAD FAILED:", err));
 });
@@ -37,6 +38,7 @@ document.addEventListener("frame:ready", () => {
 function initVideoControls() {
   const video = document.querySelector('.lesson-video');
   const sizeBtn = document.querySelector('#sizeBtn');
+  const container = document.querySelector('.video-recap-container');
 
   if (!sizeBtn) {
     console.warn("Video controls not found");
@@ -49,34 +51,41 @@ function initVideoControls() {
   sizeBtn.addEventListener('click', () => {
     if (!isBig) {
       video.style.width = '640px';
-      video.style.height = '480px';
-      sizeBtn.textContent = 'Smaller';
+      sizeBtn.src = '../../images/shrink.svg';
+      sizeBtn.alt = 'Shrink Video';
+      container.classList.add('expanded');
     } else {
       video.style.width = '320px';
-      video.style.height = '240px';
-      sizeBtn.textContent = 'Bigger';
+      sizeBtn.src = '../../images/enlarge.svg';
+      sizeBtn.alt = 'Enlarge Video';
+      container.classList.remove('expanded');
     }
     isBig = !isBig;
   });
 }
 
 function initLessonParts() {
-  const parts = document.querySelectorAll('.lesson-content > div');
-  const nextBtn = document.getElementById('nextBtn');
-  const backBtn = document.getElementById('backBtn');
+  const parts = document.querySelectorAll('.lesson-content > div[id^="part"]');
+  const partNav = document.querySelector('.part-nav');
+  const navBtns = document.querySelectorAll('.part-nav .nav-btn');
 
-  if (!parts.length || !nextBtn || !backBtn) {
+  if (!parts.length || !navBtns.length) {
     console.warn("Lesson parts or navigation buttons not found");
     return;
   }
-
-  let current = 0;
 
   function showPart(index, push = true) {
     parts.forEach(p => p.classList.remove('active'));
     parts[index].classList.add('active');
 
-    current = index;
+    // Move part-nav into the active part, after video area and before info-box
+    const activePart = parts[index];
+    const infoBox = activePart.querySelector('.info-box');
+    if (infoBox) {
+      activePart.insertBefore(partNav, infoBox);
+    } else {
+      activePart.appendChild(partNav);
+    }
 
     if (push) {
       history.pushState(
@@ -85,28 +94,44 @@ function initLessonParts() {
         `#lesson-${index + 1}`
       );
     }
-
-    // Hide back button on first part, hide next button on last part
-    backBtn.style.display = index <= 0 ? "none" : "block";
-    nextBtn.style.display = index >= parts.length - 1 ? "none" : "block";
   }
 
   // Show the first part initially
   showPart(0, false);
 
-  // Handle back button click
-  backBtn.addEventListener('click', () => {
-    if (current > 0) {
-      showPart(current - 1);
-    }
-  });
-
-  // Handle next button click
-  nextBtn.addEventListener('click', () => {
-    if (current < parts.length - 1) {
-      showPart(current + 1);
-    }
+  // Handle nav button clicks
+  navBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const partIndex = parseInt(btn.dataset.part, 10);
+      showPart(partIndex);
+    });
   });
 }
 
+function initInfoTabs() {
+  const infoBoxes = document.querySelectorAll('.info-box');
 
+  infoBoxes.forEach(box => {
+    const tabs = box.querySelectorAll('.info-tab');
+    const panels = box.querySelectorAll('.tab-panel');
+
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        const targetTab = tab.dataset.tab;
+
+        // Update active tab
+        tabs.forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+
+        // Update active panel
+        panels.forEach(panel => {
+          if (panel.dataset.panel === targetTab) {
+            panel.classList.add('active');
+          } else {
+            panel.classList.remove('active');
+          }
+        });
+      });
+    });
+  });
+}

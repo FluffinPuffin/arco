@@ -1,58 +1,83 @@
 <div class="lesson-content">
-    <div class="part1">
-        <div class="video-frame">
-            <div class="video">
-                <video width="320" height="240" class="lesson-video" controls controlslist="nodownload nofullscreen">
-                    <source src="../../video/test.mp4" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
+    <div id="part1">
+        <div class="video-recap-container">
+            <div class="video-frame">
+                <div class="video">
+                    <video width="320" height="240" class="lesson-video" controls
+                        controlslist="nodownload nofullscreen">
+                        <source src="../../video/test.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+                <div class="frame-bar">
+                    <img src="../../images/enlarge.svg" alt="Enlarge Video" id="sizeBtn" class="icon-btn">
+                </div>
             </div>
-            <div class="controls">
-                <button id="sizeBtn">Bigger</button>
-            </div>
+            <div class="recap"></div>
         </div>
-        <div class="transcript">
-            <p>
-                <strong>Video Transcript:</strong> Image of violin with parts: scroll, pegs, strings,
-                fingerboard,
-                bridge, tail piece, fine tuners, chin rest
-                The pegs are used for tuning the strings. We can turn them forward and backward to change the
-                note
-                up and down!
-                There are four strings. From lowest to highest, and left to right, the strings are G, D, A, E.
-                The bridge holds our strings up, it also allows vibrations from the strings to travel down into
-                the
-                body of the violin, which comes out of the acoustic holes as sound!
-                The fingerboard is where you place your fingers to change the notes.
-                The chin rest is where you place your chin to help hold the violin.
-
-            </p>
+        <div class="info-box">
+            <div class="info-tabs">
+                <button class="info-tab active" data-tab="description">Description</button>
+                <button class="info-tab" data-tab="transcript">Transcript</button>
+            </div>
+            <div class="info-content">
+                <div class="tab-panel active" data-panel="description">
+                    <p>Learn about the parts of the violin including the scroll, pegs, strings, fingerboard, bridge, tail piece, fine tuners, and chin rest.</p>
+                </div>
+                <div class="tab-panel" data-panel="transcript">
+                    <p>
+                        Image of violin with parts: scroll, pegs, strings,
+                        fingerboard,
+                        bridge, tail piece, fine tuners, chin rest
+                        The pegs are used for tuning the strings. We can turn them forward and backward to change the
+                        note
+                        up and down!
+                        There are four strings. From lowest to highest, and left to right, the strings are G, D, A, E.
+                        The bridge holds our strings up, it also allows vibrations from the strings to travel down into
+                        the
+                        body of the violin, which comes out of the acoustic holes as sound!
+                        The fingerboard is where you place your fingers to change the notes.
+                        The chin rest is where you place your chin to help hold the violin.
+                    </p>
+                </div>
+            </div>
         </div>
     </div>
-    <div class="part2">
+    <div id="part2">
         <div class="video">
             <video width="320" height="240">
                 <source src="../../video/test.mp4" type="video/mp4">
                 Your browser does not support the video tag.
             </video>
         </div>
-        <div class="transcript">
-            <p>
-                <strong>Video Transcript:</strong> Image of the bow with parts labelled: Stick, horse hair, tip,
-                frog, eye, screw, winding, grip.
-                The stick is made out of wood and slightly curved to absorb weight and pressure.
-                The bow hair is traditionally made out of horse hair!
-                The tip of the bow is curved and comes to a little point.
-                The frog is at the base of the bow, this is what most violinists hold onto when they play!
-                The eye is a little dot, commonly made out of mother of pearl.
-                The metal piece at the bottom end of the bow is a secret screw! When turned right, the bow hair
-                is tightened. When turned left, the hair is loosened.
-                The metal winding protects the bow from the violinist's hand.
-                The soft grip provides a place for the violinist's finger to rest while playing
-            </p>
+        <div class="info-box">
+            <div class="info-tabs">
+                <button class="info-tab active" data-tab="description">Description</button>
+                <button class="info-tab" data-tab="transcript">Transcript</button>
+            </div>
+            <div class="info-content">
+                <div class="tab-panel active" data-panel="description">
+                    <p>Learn about the parts of the bow including the stick, horse hair, tip, frog, eye, screw, winding, and grip.</p>
+                </div>
+                <div class="tab-panel" data-panel="transcript">
+                    <p>
+                        Image of the bow with parts labelled: Stick, horse hair, tip,
+                        frog, eye, screw, winding, grip.
+                        The stick is made out of wood and slightly curved to absorb weight and pressure.
+                        The bow hair is traditionally made out of horse hair!
+                        The tip of the bow is curved and comes to a little point.
+                        The frog is at the base of the bow, this is what most violinists hold onto when they play!
+                        The eye is a little dot, commonly made out of mother of pearl.
+                        The metal piece at the bottom end of the bow is a secret screw! When turned right, the bow hair
+                        is tightened. When turned left, the hair is loosened.
+                        The metal winding protects the bow from the violinist's hand.
+                        The soft grip provides a place for the violinist's finger to rest while playing
+                    </p>
+                </div>
+            </div>
         </div>
     </div>
-    <div class="part3">
+    <div id="part3">
         <div class="quiz">
             <p>
                 <strong>Title:</strong> Pop Quiz
@@ -73,7 +98,7 @@
             </p>
         </div>
     </div>
-    <div class="part4">
+    <div id="part4">
         <p>
             <strong>Title:</strong> Results
         </p>
@@ -88,6 +113,10 @@
             Matching Parts
         </p>
     </div>
+    <div class="part-nav">
+        <img src="../../images/videoButton.svg" alt="Part 1" class="nav-btn" data-part="0">
+        <img src="../../images/videoButton.svg" alt="Part 2" class="nav-btn" data-part="1">
+        <img src="../../images/quizButton.svg" alt="Part 3" class="nav-btn" data-part="2">
+        <img src="../../images/gameButton.svg" alt="Part 4" class="nav-btn" data-part="3">
+    </div>
 </div>
-<button id="backBtn">Back</button>
-<button id="nextBtn">Next</button>

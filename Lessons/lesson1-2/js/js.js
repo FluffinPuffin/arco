@@ -1,18 +1,18 @@
 document.addEventListener("frame:ready", () => {
-  // Inject title.html before the rectangle
-  const container = document.querySelector('.container');
-  if (container) {
+  // Inject title.html into the frame's title placeholder
+  const titleContainer = document.getElementById('lesson-title');
+  if (titleContainer) {
     fetch("../html/title.html")
       .then(res => {
         if (!res.ok) throw new Error("Failed to load title.html");
         return res.text();
       })
       .then(titleContent => {
-        container.insertAdjacentHTML("beforebegin", titleContent);
+        titleContainer.innerHTML = titleContent;
       })
       .catch(err => console.error("TITLE LOAD FAILED:", err));
   } else {
-    console.warn("container element not found");
+    console.warn("lesson-title element not found");
   }
 
   // Then load content.html normally
