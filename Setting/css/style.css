@@ -37,6 +37,9 @@ body {
 }
 
 .header-right .nav-item {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
     color: #1C1C1C;
     text-decoration: none;
     font-size: 1rem;
@@ -46,10 +49,21 @@ body {
     text-decoration: underline;
 }
 
-.header-right .profile-icon img {
-    width: 2rem;
-    height: 2rem;
+.header-nav-icon {
+    width: 1.25rem;
+    height: 1.25rem;
     object-fit: contain;
+}
+
+.header-right .profile-icon {
+    display: block;
+}
+
+.profile-avatar {
+    width: 2.25rem;
+    height: 2.25rem;
+    object-fit: cover;
+    border-radius: 50%;
 }
 
 /* Nav bar: back | Settings | home */
