@@ -15,7 +15,7 @@ document.addEventListener("frame:ready", () => {
     console.warn("lesson-title element not found");
   }
 
-  // Then load content.html normally
+  // Load content.html
   fetch("../html/content.html")
     .then(res => {
       console.log("Fetch response:", res);
@@ -26,8 +26,8 @@ document.addEventListener("frame:ready", () => {
       document
         .getElementById("content")
         .insertAdjacentHTML("beforeend", content);
-      initLessonParts();
-      initVideoControls();
     })
     .catch(err => console.error("CONTENT LOAD FAILED:", err));
 });
+
+

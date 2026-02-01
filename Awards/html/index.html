@@ -1,21 +1,217 @@
-<header class="header">
-    <div class="header-left">
-        <img src="arco-logo.png" alt="Arco Logo" class="logo">
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Awards</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+
+    <header class="header">
+        <div class="header-left">
+            <img src="arco-logo.png" alt="Arco Logo" class="logo">
+        </div>
+
+        <nav class="header-right">
+            <a href="#" class="nav-item">
+                <span class="icon">💎</span>
+                Premier Club
+            </a>
+
+            <a href="#" class="nav-item">
+                <span class="icon">⚙️</span>
+                Settings
+            </a>
+
+            <a href="#" class="profile-icon">
+                <img src="profile-icon.png" alt="Profile">
+            </a>
+        </nav>
+    </header>
+
+
+    <div>
+        <a href="../../Home/html/index.html">
+            <img src="../../frame/images/arrow.svg" alt="Go back">
+        </a>
+        <h1>Awards</h1>
+        <a href="../../Home/html/index.html">
+            <img src="../../frame/images/home.svg" alt="Go to home">
+        </a>
     </div>
 
-    <nav class="header-right">
-        <a href="#" class="nav-item">
-            <span class="icon">💎</span>
-            Premier Club
-        </a>
+    <!-- content -->
+    <main>
 
-        <a href="#" class="nav-item">
-            <span class="icon">⚙️</span>
-            Settings
-        </a>
+        <div class="awardsCard">
 
-        <a href="#" class="profile-icon">
-            <img src="profile-icon.png" alt="Profile">
-        </a>
-    </nav>
-</header>
+            <!-- each award -->
+            <div class="awardTypes">
+                <button>Medals</button>
+                <button>Stickers</button>
+                <button>Events</button>
+            </div>
+
+            <!-- MEDALS
+          this section can be hidden and shown -->
+            <section class="awardsSection medalsSection" data-award="medals">
+
+                <!-- medals grid -->
+                <div class="medalsSectionGrid">
+                    <ul class="medalsList">
+                        <!--
+                    medal items are rendered here dynamically.
+                    Each medal item:
+                     <li class="medal" data-state="">
+                        <button type="button" class="medalButton">
+                        <img src="" alt="">
+                        </button>
+                    </li>
+                     -->
+                    </ul>
+                </div>
+
+                <!-- details for selected medals -->
+                <!-- clicking medal updates THIS -->
+                <div class="medalDetails">
+                    <article>
+
+                        <!-- badge image on left -->
+                        <div class="medalImage">
+                            <img src="" alt="" id="medalImage">
+                        </div>
+
+                        <!-- TEXT DESCRIPTION BOX -->
+                        <div class="medalText">
+
+                            <!-- *Lesson 2:* Complete -->
+                            <h3 id="lessonNumber"></h3>
+
+                            <!-- Lesson 2: *Complete* -->
+                            <p id="completionStatus" data-state=""></p>
+
+                            <!-- Lesson Name "Intro to Violin" -->
+                            <p> Earned by completing all the lessons in
+                                <span id="courseName"></span>
+                            </p>
+
+                            <!-- Time of Completion 11/23/2025-->
+                            <time id="completionDate" datetime=""></time>
+
+                        </div>
+                    </article>
+                </div>
+            </section>
+
+            <!-- STICKERS -->
+            <section class="awardsSection stickersSection" data-award="stickers">
+
+                <!-- stickers carousel -->
+                <div class="stickersGallery">
+                    <!-- left navigation (replace with image)-->
+                    <button type="button" class="galleryNav galleryNavPrev" aria-label="Previous stickers">
+                        ‹
+                    </button>
+
+                    <ul class="stickersList">
+                        <!-- ONLY unlocked stickers-->
+                    </ul>
+
+                    <!-- right navigation (replace with image)-->
+                    <button type="button" class="galleryNav galleryNavNext" aria-label="Next stickers">
+                        ›
+                    </button>
+                </div>
+
+                <!-- sticker preview-->
+                <article class="awardPreviewCard">
+                    <!-- larger sticker preview-->
+                    <div class="awardPreviewImage">
+                        <img src="" alt="" id="previewImage">
+                    </div>
+
+                    <!-- text and description-->
+                    <div class="awardPreviewText">
+                        <h3 id="previewTitle"></h3>
+                        <p id="previewDescription"></p>
+                    </div>
+
+                    <!-- time and all stickers (might split up later)-->
+                    <div class="awardPreviewMeta">
+                        <time id="previewDate" datetime=""></time>
+                        <button type="button" class="allAwardsButton">
+                            All Stickers
+                        </button>
+                    </div>
+                </article>
+            </section>
+
+            <section class="awardsSection eventsSection" data-award="events">
+
+                <div class="eventLayout">
+
+                    <!-- event cover -->
+                    <div class="eventImage">
+                        <img src="" alt="" id="eventImage">
+                    </div>
+
+                    <!-- event details -->
+                    <article class="eventDetails">
+
+                        <h2 id="eventTitle"></h2>
+
+                        <p id="eventDescription"></p>
+
+                        <h3 class="eventRewardsHeading">Rewards</h3>
+
+                        <ul class="eventRewardsGrid">
+                            <!--
+                Each reward:
+                <li class="eventReward" data-state="earned|locked|bonus">
+                    <button type="button" class="eventRewardButton">
+                    <img src="" alt="">
+                    </button>
+                </li>
+                -->
+                        </ul>
+
+                    </article>
+
+                </div>
+
+            </section>
+
+        </div>
+    </main>
+
+    <!-- when you click all stickers, originally hidden -->
+    <div class="modal allStickersModal" hidden>
+        <div class="modalBackdrop"></div>
+
+        <div class="modalContent">
+            <button class="modalClose" aria-label="Close">×</button>
+
+            <nav class="modalTabs">
+                <button class="is-active">All</button>
+                <button>Unlocked</button>
+                <button>Locked</button>
+            </nav>
+
+            <ul class="stickersGrid">
+                <!-- all stickers go here -->
+            </ul>
+
+            <article class="awardPreviewCard">
+                <!-- preview content -->
+            </article>
+        </div>
+    </div>
+
+    <!-- footer here -->
+
+</body>
+
+</html>
