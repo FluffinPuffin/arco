@@ -1,0 +1,164 @@
+/* Setting page - standalone (header, nav bar, main, footer) */
+
+@import url("https://fonts.googleapis.com/css2?family=Lexend:wght@400;600&display=swap");
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(146, 21, 21);
+    font-family: 'Lexend', sans-serif;
+}
+
+/* Header */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1.5rem;
+    background-color: #e5e5e5;
+}
+
+.header-left .logo {
+    height: 2rem;
+    width: auto;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.header-right .nav-item {
+    color: #1C1C1C;
+    text-decoration: none;
+    font-size: 1rem;
+}
+
+.header-right .nav-item:hover {
+    text-decoration: underline;
+}
+
+.header-right .profile-icon img {
+    width: 2rem;
+    height: 2rem;
+    object-fit: contain;
+}
+
+/* Nav bar: back | Settings | home */
+.settings-nav-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 1.5rem;
+    background-color: #4B4B4B;
+}
+
+.settings-nav-bar h1 {
+    font-family: 'Lexend', sans-serif;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #fff;
+    margin: 0;
+}
+
+.settings-nav-icon-img {
+    width: 28px;
+    height: 28px;
+    object-fit: contain;
+}
+
+/* Main */
+main {
+    flex: 1;
+    padding: 1.5rem;
+}
+
+.settings-panels {
+    display: flex;
+    gap: 1.5rem;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    min-height: 400px;
+}
+
+.settings-sidebar {
+    flex: 0 0 240px;
+    background: #fff;
+    border-radius: 16px;
+    padding: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.settings-sidebar .settings-nav-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem 1rem;
+    color: #1C1C1C;
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 8px;
+    transition: background-color 0.2s;
+}
+
+.settings-sidebar .settings-nav-item:hover {
+    background-color: #F0F0F0;
+}
+
+.settings-sidebar .settings-nav-item.active {
+    background-color: #F0F0F0;
+}
+
+.settings-nav-icon {
+    width: 30px;
+    height: 30px;
+    object-fit: contain;
+}
+
+.settings-content {
+    flex: 1;
+    background: #fff;
+    border-radius: 16px;
+    padding: 1.5rem;
+    min-height: 400px;
+}
+
+/* Footer */
+.settings-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1.5rem;
+    background-color: #4B4B4B;
+    color: #fff;
+}
+
+.settings-footer-left {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.settings-footer-left a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.settings-footer-left a:hover {
+    text-decoration: underline;
+}
+
+.settings-footer-right {
+    font-size: 0.9rem;
+}
