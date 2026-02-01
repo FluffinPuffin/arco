@@ -2,16 +2,78 @@
 <html lang="en">
 
 <head>
-    <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
-    <title> Lesson 1-1 Test </title>
-    <link rel="stylesheet" href="../../frame/css/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings</title>
     <link rel="stylesheet" href="../css/style.css">
-    <script src="../../frame/js/js.js"></script>
-    <script src="../js/js.js"></script>
 </head>
 
 <body>
 
+    <header class="header">
+        <div class="header-left">
+            <img src="../../frame/images/arco.svg" alt="Arco Logo" class="logo">
+        </div>
+
+        <nav class="header-right">
+            <a href="#" class="nav-item">
+                <img src="../../frame/images/diamondIcon.svg" alt="" class="header-nav-icon">
+                Premier Club
+            </a>
+            <a href="#" class="nav-item">
+                <img src="../../frame/images/settings.svg" alt="" class="header-nav-icon">
+                Settings
+            </a>
+            <a href="#" class="profile-icon">
+                <img src="../images/profileAvatar.png" alt="Profile" class="profile-avatar">
+            </a>
+        </nav>
+    </header>
+
+    <div class="settings-nav-bar">
+        <a href="#" onclick="goBack(); return false;">
+            <img src="../images/backArrow.png" alt="Go back" class="settings-nav-icon-img">
+        </a>
+        <h1>Settings</h1>
+        <a href="../../Home/html/index.html">
+            <img src="../images/homeIcon.png" alt="Go to home" class="settings-nav-icon-img">
+        </a>
+    </div>
+
+    <main>
+        <div class="settings-panels">
+            <div class="settings-sidebar">
+                <a href="#" class="settings-nav-item" data-section="profile">
+                    <img src="../images/profileIcon.png" alt="Profile" class="settings-nav-icon">
+                    <span>Profile</span>
+                </a>
+                <a href="#" class="settings-nav-item" data-section="accessibility">
+                    <img src="../images/accessibilityIcon.png" alt="Accessibility" class="settings-nav-icon">
+                    <span>Accessibility</span>
+                </a>
+                <a href="#" class="settings-nav-item" data-section="grown-ups">
+                    <img src="../images/grownUpsIcon.png" alt="Grown-Ups" class="settings-nav-icon">
+                    <span>Grown-Ups</span>
+                </a>
+            </div>
+            <div class="settings-content">
+                <!-- Content loads here when a sidebar item is selected -->
+            </div>
+        </div>
+    </main>
+
+    <footer class="settings-footer">
+        <div class="settings-footer-left">
+            <a href="#">FAQ</a>
+            <a href="#">Policy</a>
+            <a href="#">Contact Us</a>
+        </div>
+        <div class="settings-footer-right">
+            © 2025-2026
+        </div>
+    </footer>
+
+    <script src="../js/js.js"></script>
 </body>
 
 </html>
