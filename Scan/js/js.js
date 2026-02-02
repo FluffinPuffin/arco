@@ -1,16 +1,30 @@
+document.addEventListener("frame:ready", () => {
+  // Load title into the frame's title placeholder
+  const titleContainer = document.getElementById('lesson-title');
+  if (titleContainer) {
+    fetch("./title.html")
+      .then(res => {
+        if (!res.ok) throw new Error("Failed to load title.html");
+        return res.text();
+      })
+      .then(titleContent => {
+        titleContainer.innerHTML = titleContent;
+      })
+      .catch(err => console.error("Title load failed:", err));
+  }
 
-fetch("/frame/html/index.html")
-    .then(response => {
-        if (!response.ok) {
-            throw new Error("HTTP error " + response.status);
-        }
-        return response.text();
+  // Load content
+  fetch("./content.html")
+    .then(res => {
+      if (!res.ok) throw new Error("Failed to load content");
+      return res.text();
     })
-    .then(html => {
-        document.body.insertAdjacentHTML("afterbegin", html)
-        startQrScanner();
+    .then(content => {
+      document.getElementById("content").insertAdjacentHTML("beforeend", content);
+      startQrScanner();
     })
-    .catch(err => console.error("Frame load failed:", err));
+    .catch(err => console.error("Content load failed:", err));
+});
 
 function startQrScanner() {
     const result = document.getElementById("result");
