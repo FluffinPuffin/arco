@@ -1,11 +1,15 @@
-html,
-body {
-    height: 100%;
-    margin: 0;
+html {
+    min-height: 100%;
 }
 
 body {
-    background-color: rgb(146, 21, 21);
+    min-height: 100%;
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background-color: var(--frame-color, rgb(146, 21, 21));
     display: flex;
     flex-direction: column;
     min-height: 100vh;
@@ -70,22 +74,27 @@ body {
 .footer {
     margin-top: auto;
     width: 100%;
+    padding: 20px 40px;
+    box-sizing: border-box;
 
     display: flex;
     justify-content: space-between;
     align-items: center;
 
-    background-color: #e5e5e5;
+    background-color: #ffffff;
+    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .footer-left {
     display: flex;
-    gap: 10%;
+    gap: 40px;
 }
 
 .footer-left a {
-    color: #000;
+    color: #000000;
     text-decoration: none;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400;
 }
 
 .footer-left a:hover {
@@ -93,7 +102,9 @@ body {
 }
 
 .footer-right {
-    color: #555;
+    color: #000000;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400;
 }
 
 /* Header */
@@ -103,19 +114,80 @@ body {
     top: 0;
     left: 0;
     width: 100%;
+    padding: 10px 40px;
+    box-sizing: border-box;
     z-index: 1000;
     display: flex;
     justify-content: space-between;
     align-items: center;
 
-    background-color: #e5e5e5;
+    background-color: #ffffff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .header-left {
+    flex: 1;
     display: flex;
-    gap: 10%;
+    align-items: center;
+}
+
+.header-left .logo {
+    height: 30px;
+}
+
+.header-center {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.header-center a {
+    color: #000000;
+    text-decoration: none;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.header-center a:hover {
+    opacity: 0.8;
 }
 
 .header-right {
-    color: #555;
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 30px;
+}
+
+.header-right a {
+    color: #000000;
+    text-decoration: none;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.header-right a:hover {
+    opacity: 0.8;
+}
+
+.premium-icon,
+.settings-icon {
+    width: 24px;
+    height: 24px;
+}
+
+.profile-icon {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
 }

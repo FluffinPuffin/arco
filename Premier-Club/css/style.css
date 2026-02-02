@@ -1,0 +1,94 @@
+/* Premier Club page - dark green theme */
+
+@import url("https://fonts.googleapis.com/css2?family=Lexend:wght@400;600&display=swap");
+
+/* Dark green content area (matches screenshot) */
+body:has(.premier-club-card) {
+    background-color: #1a4d3e;
+}
+
+.rectangle:has(.premier-club-card) {
+    background-color: #1a4d3e;
+    border-color: #1a4d3e;
+}
+
+/* White rounded card */
+.premier-club-card {
+    background: #ffffff;
+    border-radius: 24px;
+    padding: 2.5rem 2rem;
+    max-width: 600px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    box-sizing: border-box;
+}
+
+/* Diamond + plant decorations */
+.card-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.card-header .plant {
+    height: 48px;
+    width: auto;
+    object-fit: contain;
+}
+
+.card-header .plant-left {
+    transform: scaleX(-1);
+}
+
+.card-header .plant-right {
+    transform: scaleX(-1);
+}
+
+.card-header .diamond-icon {
+    height: 64px;
+    width: auto;
+    object-fit: contain;
+}
+
+/* Feature labels row */
+.feature-labels {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+}
+
+.feature-labels .feature-label {
+    height: 18px;
+    width: auto;
+    object-fit: contain;
+}
+
+/* Description text */
+.card-description {
+    color: #333333;
+    font-family: "Lexend", sans-serif;
+    font-size: 1rem;
+    line-height: 1.6;
+    text-align: center;
+    margin: 0;
+}
+
+/* Sign Up button */
+.sign-up-btn {
+    display: inline-block;
+}
+
+.sign-up-btn img {
+    height: 48px;
+    width: auto;
+    display: block;
+}
+
+.sign-up-btn:hover img {
+    opacity: 0.9;
+}
