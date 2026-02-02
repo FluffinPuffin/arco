@@ -101,6 +101,10 @@ body {
     text-decoration: underline;
 }
 
+.footer-link.footer-active {
+    font-weight: 600;
+}
+
 .footer-right {
     color: #000000;
     font-family: 'Poppins', sans-serif;

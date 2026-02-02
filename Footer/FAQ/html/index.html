@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ</title>
+    <link rel="stylesheet" href="../../../frame/css/style.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="../../../frame/js/js.js"></script>
+    <script src="../js/js.js"></script>
+</head>
+
+<body>
+    <div id="file-protocol-warning" style="display: none; padding: 2rem; text-align: center; color: white; font-family: sans-serif; background: rgb(146, 21, 21); min-height: 100vh;">
+        <h2>Page won't load when opened directly</h2>
+        <p>Open this project with a local server so the frame and content can load.</p>
+    </div>
+    <script>
+        (function() {
+            if (window.location.protocol === "file:") {
+                setTimeout(function() {
+                    if (!document.querySelector(".header")) {
+                        document.getElementById("file-protocol-warning").style.display = "block";
+                    }
+                }, 1500);
+            }
+        })();
+    </script>
+</body>
+
+</html>
