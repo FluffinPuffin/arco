@@ -1,0 +1,127 @@
+<div class="faq-panels">
+    <div class="faq-sidebar">
+        <a href="#" class="faq-nav-item active" data-category="general">General</a>
+        <a href="#" class="faq-nav-item" data-category="privacy">Privacy</a>
+        <a href="#" class="faq-nav-item" data-category="troubleshooting">Troubleshooting</a>
+        <a href="#" class="faq-nav-item" data-category="accessibility">Accessibility</a>
+    </div>
+    <div class="faq-content">
+        <div class="faq-search-wrapper">
+            <input type="text" class="faq-search" placeholder="Search" aria-label="Search FAQ">
+            <svg class="faq-search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="11" cy="11" r="8"/>
+                <path d="m21 21-4.35-4.35"/>
+            </svg>
+        </div>
+        <div class="faq-category-content" data-category="general">
+            <h3 class="faq-category-title">General</h3>
+            <div class="faq-accordion">
+                <div class="faq-item" data-question="login">
+                    <button type="button" class="faq-question" aria-expanded="false" aria-controls="faq-answer-login" id="faq-question-login">
+                        <span class="faq-icon faq-icon-plus">+</span>
+                        <span class="faq-icon faq-icon-minus">−</span>
+                        How to login?
+                    </button>
+                    <div class="faq-answer" id="faq-answer-login" role="region" aria-labelledby="faq-question-login" hidden>
+                        <p>To login, click on the "Settings" tab in the header, or use the login option from the home screen. Enter your email and password to access your account.</p>
+                    </div>
+                </div>
+                <div class="faq-item" data-question="payment">
+                    <button type="button" class="faq-question" aria-expanded="false" aria-controls="faq-answer-payment" id="faq-question-payment">
+                        <span class="faq-icon faq-icon-plus">+</span>
+                        <span class="faq-icon faq-icon-minus">−</span>
+                        How to change payment?
+                    </button>
+                    <div class="faq-answer" id="faq-answer-payment" role="region" aria-labelledby="faq-question-payment" hidden>
+                        <p>To change your payment method, go to Settings and navigate to the Grown-Ups section. Click on "Payment" and select "Edit" to update your payment information.</p>
+                    </div>
+                </div>
+                <div class="faq-item faq-item-expanded" data-question="username">
+                    <button type="button" class="faq-question" aria-expanded="true" aria-controls="faq-answer-username" id="faq-question-username">
+                        <span class="faq-icon faq-icon-plus">+</span>
+                        <span class="faq-icon faq-icon-minus">−</span>
+                        How to change my username?
+                    </button>
+                    <div class="faq-answer" id="faq-answer-username" role="region" aria-labelledby="faq-question-username">
+                        <p>To change your username, first click on the 'Settings' tab located inside the header. Next, navigate to the 'Profile' section and click on the 'Edit' button that corresponds with 'Name'.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="faq-category-content" data-category="privacy" hidden>
+            <h3 class="faq-category-title">Privacy</h3>
+            <div class="faq-accordion">
+                <div class="faq-item" data-question="data">
+                    <button type="button" class="faq-question" aria-expanded="false" aria-controls="faq-answer-data" id="faq-question-data">
+                        <span class="faq-icon faq-icon-plus">+</span>
+                        <span class="faq-icon faq-icon-minus">−</span>
+                        How is my data protected?
+                    </button>
+                    <div class="faq-answer" id="faq-answer-data" role="region" aria-labelledby="faq-question-data" hidden>
+                        <p>We use industry-standard encryption to protect your personal data. Your information is never shared with third parties without your consent.</p>
+                    </div>
+                </div>
+                <div class="faq-item" data-question="delete">
+                    <button type="button" class="faq-question" aria-expanded="false" aria-controls="faq-answer-delete" id="faq-question-delete">
+                        <span class="faq-icon faq-icon-plus">+</span>
+                        <span class="faq-icon faq-icon-minus">−</span>
+                        How do I delete my account?
+                    </button>
+                    <div class="faq-answer" id="faq-answer-delete" role="region" aria-labelledby="faq-question-delete" hidden>
+                        <p>Go to Settings, then the Grown-Ups section. Click on "Account" and select "Manage Account" to access account deletion options.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="faq-category-content" data-category="troubleshooting" hidden>
+            <h3 class="faq-category-title">Troubleshooting</h3>
+            <div class="faq-accordion">
+                <div class="faq-item" data-question="loading">
+                    <button type="button" class="faq-question" aria-expanded="false" aria-controls="faq-answer-loading" id="faq-question-loading">
+                        <span class="faq-icon faq-icon-plus">+</span>
+                        <span class="faq-icon faq-icon-minus">−</span>
+                        The page won't load. What should I do?
+                    </button>
+                    <div class="faq-answer" id="faq-answer-loading" role="region" aria-labelledby="faq-question-loading" hidden>
+                        <p>Ensure you have an internet connection and try refreshing the page. If the issue persists, try clearing your browser cache or contact support.</p>
+                    </div>
+                </div>
+                <div class="faq-item" data-question="scan">
+                    <button type="button" class="faq-question" aria-expanded="false" aria-controls="faq-answer-scan" id="faq-question-scan">
+                        <span class="faq-icon faq-icon-plus">+</span>
+                        <span class="faq-icon faq-icon-minus">−</span>
+                        QR code scan not working?
+                    </button>
+                    <div class="faq-answer" id="faq-answer-scan" role="region" aria-labelledby="faq-question-scan" hidden>
+                        <p>Grant camera permissions when prompted. Ensure adequate lighting and hold the QR code steady in front of the camera. If it still fails, try a different browser.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="faq-category-content" data-category="accessibility" hidden>
+            <h3 class="faq-category-title">Accessibility</h3>
+            <div class="faq-accordion">
+                <div class="faq-item" data-question="screenreader">
+                    <button type="button" class="faq-question" aria-expanded="false" aria-controls="faq-answer-screenreader" id="faq-question-screenreader">
+                        <span class="faq-icon faq-icon-plus">+</span>
+                        <span class="faq-icon faq-icon-minus">−</span>
+                        Is the app compatible with screen readers?
+                    </button>
+                    <div class="faq-answer" id="faq-answer-screenreader" role="region" aria-labelledby="faq-question-screenreader" hidden>
+                        <p>Yes, we strive to ensure our app works well with major screen readers. If you encounter issues, please contact us so we can improve.</p>
+                    </div>
+                </div>
+                <div class="faq-item" data-question="fontsize">
+                    <button type="button" class="faq-question" aria-expanded="false" aria-controls="faq-answer-fontsize" id="faq-question-fontsize">
+                        <span class="faq-icon faq-icon-plus">+</span>
+                        <span class="faq-icon faq-icon-minus">−</span>
+                        Can I change the font size?
+                    </button>
+                    <div class="faq-answer" id="faq-answer-fontsize" role="region" aria-labelledby="faq-question-fontsize" hidden>
+                        <p>You can adjust text size through your device or browser settings. We are working on built-in accessibility controls for future updates.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
