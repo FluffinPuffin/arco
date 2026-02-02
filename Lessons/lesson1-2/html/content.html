@@ -1,123 +1,227 @@
-<!-- <div class="lesson-content">
-    <div class="title">
-        <p>
-            <strong>Title:</strong> How to Hold a Violin
-        </p>
-    </div>
-    <div class="video">
-        <video width="320" height="240" autoplay muted>
-
-            Your browser does not support the video tag.
-        </video>
-    </div>
-    <div class="transcript">
-        <p>
-            <strong>Video Transcript:</strong> The violin is most commonly held with the left hand.
-            The violin should rest solidly on the player's left shoulder, settled where the chin rest is
-            right
-            under the player's jaw.
-            The violin should be held level with the floor, not pointing down, and not pointing up.
-            In the beginning, we have three tapes that are played with the fingers of our left hand: Our
-            pointer
-            finger is considered the first finger, it presses on the first tape! Our middle finger is our
-            second
-            finger, it presses on the second tape. Our ring finger is our third finger, it presses on the
-            third
-            tape! Eventually you may have four tapes, but for these lessons, we'll focus on the first three.
-        </p>
-    </div>
-</div> -->
-
 <div class="lesson-content">
-    <div class="part1">
-        <div class="video-frame">
-            <div class="video">
-                <video width="320" height="240" class="lesson-video" controls controlslist="nodownload nofullscreen">
-                    <source src="../../video/test.mp4" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
+    <div id="part1">
+        <div class="video-recap-container">
+            <div class="video-frame">
+                <div class="video-wrapper">
+                    <video class="lesson-video">
+                        <source src="../../video/test.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <button class="play-btn" aria-label="Play video"></button>
+                </div>
+                <div class="frame-bar">
+                    <img src="../../images/enlarge.svg" alt="Enlarge Video" id="sizeBtn" class="icon-btn">
+                </div>
+            </div>
+            <div class="recap">
+                <h3 class="recap-title">Recap</h3>
+                <ul class="recap-list">
+                    <li>Hold the violin with your left hand</li>
+                    <li>Rest the violin on your left shoulder</li>
+                    <li>Place the chin rest under your jaw</li>
+                    <li>Keep the violin level with the floor</li>
+                </ul>
+            </div>
+        </div>
+        <div class="info-box">
+            <div class="info-content">
+                <div class="info-tabs">
+                    <button class="info-tab active" data-tab="description">
+                        <span>Description</span>
+                        <span class="info-icon">&#9432;</span>
+                    </button>
+                    <button class="info-tab" data-tab="transcript">
+                        <span>Transcript</span>
+                        <span class="info-icon">&#128196;</span>
+                    </button>
+                </div>
+                <div class="tab-panel active" data-panel="description">
+                    <p>Learn the proper way to hold a violin, including hand placement and posture for comfortable
+                        playing.</p>
+                </div>
+                <div class="tab-panel" data-panel="transcript">
+                    <div class="transcript-entry">
+                        The violin is most commonly held with the left hand. The violin should rest solidly on the
+                        player's left shoulder, settled where the chin rest is
+                        right under the player's jaw. The violin should be held level with the floor, not pointing down,
+                        and not pointing up.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="part2">
+        <div class="video-recap-container">
+            <div class="video-frame">
+                <div class="video-wrapper">
+                    <video class="lesson-video">
+                        <source src="../../video/test.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <button class="play-btn" aria-label="Play video"></button>
+                </div>
+                <div class="frame-bar">
+                    <img src="../../images/enlarge.svg" alt="Enlarge Video" class="icon-btn size-btn">
+                </div>
+            </div>
+            <div class="recap">
+                <h3 class="recap-title">Recap</h3>
+                <ul class="recap-list">
+                    <li>Three finger tapes on the fingerboard</li>
+                    <li>Pointer finger = first finger (first tape)</li>
+                    <li>Middle finger = second finger (second tape)</li>
+                    <li>Ring finger = third finger (third tape)</li>
+                </ul>
+            </div>
+        </div>
+        <div class="info-box">
+            <div class="info-content">
+                <div class="info-tabs">
+                    <button class="info-tab active" data-tab="description">
+                        <span>Description</span>
+                        <span class="info-icon">&#9432;</span>
+                    </button>
+                    <button class="info-tab" data-tab="transcript">
+                        <span>Transcript</span>
+                        <span class="info-icon">&#128196;</span>
+                    </button>
+                </div>
+                <div class="tab-panel active" data-panel="description">
+                    <p>Learn about finger placement using tapes on the fingerboard to help guide your fingers to the
+                        correct positions.</p>
+                </div>
+                <div class="tab-panel" data-panel="transcript">
+                    <div class="transcript-entry">
+                        In the beginning, we have three tapes that are played with the fingers of our left hand. Our
+                        pointer finger is considered the first finger, it presses on the first tape! Our middle finger
+                        is our second finger, it presses on the second tape. Our ring finger is our third finger, it
+                        presses on the third tape! Eventually you may have four tapes, but for these lessons, we'll
+                        focus on the first three.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="part3">
+        <div class="quiz" data-current="1" data-total="2">
+            <div class="quiz-question" data-question="1" data-answer="1">
+                <p class="quiz-subtitle">Question 01 of 02</p>
+                <p class="quiz-prompt">Fill in the blank with the correct answer:</p>
+                <p class="quiz-text">"The violin is most commonly held with the ___ hand."</p>
+                <hr class="quiz-divider">
+                <div class="quiz-options">
+                    <button class="quiz-option" data-option="1"><span class="option-number">1</span>Left</button>
+                    <button class="quiz-option" data-option="2"><span class="option-number">2</span>Right</button>
+                    <button class="quiz-option" data-option="3"><span class="option-number">3</span>Both</button>
+                    <button class="quiz-option" data-option="4"><span class="option-number">4</span>Neither</button>
+                </div>
+            </div>
+            <div class="quiz-question" data-question="2" data-answer="3" style="display: none;">
+                <p class="quiz-subtitle">Question 02 of 02</p>
+                <p class="quiz-prompt">Which finger presses on the third tape?</p>
+                <p class="quiz-text">Select the correct answer below.</p>
+                <hr class="quiz-divider">
+                <div class="quiz-options">
+                    <button class="quiz-option" data-option="1"><span class="option-number">1</span>Pointer
+                        finger</button>
+                    <button class="quiz-option" data-option="2"><span class="option-number">2</span>Middle
+                        finger</button>
+                    <button class="quiz-option" data-option="3"><span class="option-number">3</span>Ring finger</button>
+                    <button class="quiz-option" data-option="4"><span class="option-number">4</span>Pinky
+                        finger</button>
+                </div>
+            </div>
+            <div class="quiz-result" style="display: none;">
+                <p class="quiz-score"></p>
+                <button class="quiz-retry">Try Again</button>
+                <button class="quiz-continue">Continue</button>
+            </div>
+        </div>
+    </div>
+    <div id="part4">
+        <div class="game-container">
+            <div class="game-frame">
+                <div class="game-wrapper">
+                    <div class="game-placeholder" id="gameArea">
+                        <p>Game Loading...</p>
+                    </div>
+                </div>
+                <div class="frame-bar">
+                    <img src="../../images/enlarge.svg" alt="Enlarge Game" class="icon-btn game-size-btn">
+                </div>
             </div>
             <div class="controls">
-                <button id="sizeBtn">Bigger</button>
+                <h3 class="controls-title">Controls</h3>
+                <p class="controls-text">Practice holding the violin correctly.</p>
+                <p class="controls-text">Match the correct posture shown on screen.</p>
             </div>
         </div>
-        <div class="transcript">
-            <p>
-                <strong>Video Transcript:</strong> Image of violin with parts: scroll, pegs, strings,
-                fingerboard,
-                bridge, tail piece, fine tuners, chin rest
-                The pegs are used for tuning the strings. We can turn them forward and backward to change the
-                note
-                up and down!
-                There are four strings. From lowest to highest, and left to right, the strings are G, D, A, E.
-                The bridge holds our strings up, it also allows vibrations from the strings to travel down into
-                the
-                body of the violin, which comes out of the acoustic holes as sound!
-                The fingerboard is where you place your fingers to change the notes.
-                The chin rest is where you place your chin to help hold the violin.
-
-            </p>
+        <div class="info-box">
+            <div class="info-content">
+                <div class="info-tabs">
+                    <button class="info-tab active" data-tab="description">
+                        <span>Description</span>
+                        <span class="info-icon">&#9432;</span>
+                    </button>
+                    <button class="info-tab" data-tab="accessibility">
+                        <span>Accessibility</span>
+                        <span class="info-icon">&#9855;</span>
+                    </button>
+                </div>
+                <div class="tab-panel active" data-panel="description">
+                    <p>Practice identifying the correct violin holding posture in this interactive exercise.</p>
+                </div>
+                <div class="tab-panel" data-panel="accessibility">
+                    <p>Use keyboard arrows to navigate. Press Enter or Space to select.</p>
+                </div>
+            </div>
         </div>
     </div>
-    <div class="part2">
-        <div class="video">
-            <video width="320" height="240">
-                <source src="../../video/test.mp4" type="video/mp4">
-                Your browser does not support the video tag.
-            </video>
-        </div>
-        <div class="transcript">
-            <p>
-                <strong>Video Transcript:</strong> Image of the bow with parts labelled: Stick, horse hair, tip,
-                frog, eye, screw, winding, grip.
-                The stick is made out of wood and slightly curved to absorb weight and pressure.
-                The bow hair is traditionally made out of horse hair!
-                The tip of the bow is curved and comes to a little point.
-                The frog is at the base of the bow, this is what most violinists hold onto when they play!
-                The eye is a little dot, commonly made out of mother of pearl.
-                The metal piece at the bottom end of the bow is a secret screw! When turned right, the bow hair
-                is tightened. When turned left, the hair is loosened.
-                The metal winding protects the bow from the violinist's hand.
-                The soft grip provides a place for the violinist's finger to rest while playing
-            </p>
-        </div>
-    </div>
-    <div class="part3">
-        <div class="quiz">
-            <p>
-                <strong>Title:</strong> Pop Quiz
-            </p>
-            <p>
-                Sub-title: Question 01 of 02
-                Question: Fill in the blank with the correct corresponding option: “The Violin is made up of the
-                following parts: The ___, pegs, strings, fingerboard, bridge, tail piece, fine tuners, and chin
-                rest.”
-                Options: 1. Scroll, 2. Frog, 3. Tail Piece, 4. Troll
-
-
-                Sub-title: Question 02 of 02
-                Question: Is the following True or False: “The Bow has a part called the Scorpion. The Scorpion
-                is what most violinists hold onto when they play the instrument.”
-                Options: 1. True, 2. False
-
-            </p>
+    <div id="part5">
+        <div class="finish-container">
+            <div class="finish-left">
+                <h2 class="finish-title">Lesson Complete</h2>
+                <div class="finish-illustration">
+                    <div class="illustration-placeholder">
+                        <span>🎻</span>
+                    </div>
+                </div>
+                <div class="next-lesson-info">
+                    <p class="next-lesson-label">Next Lesson:</p>
+                    <p class="next-lesson-title">1.3 Parts of the Violin</p>
+                </div>
+            </div>
+            <div class="finish-right">
+                <ul class="completion-list">
+                    <li class="completion-item completed">
+                        <span class="check-icon">✓</span>
+                        <span>Holding the Violin</span>
+                    </li>
+                    <li class="completion-item completed">
+                        <span class="check-icon">✓</span>
+                        <span>Finger Placement</span>
+                    </li>
+                    <li class="completion-item completed">
+                        <span class="check-icon">✓</span>
+                        <span>Pop Quiz</span>
+                    </li>
+                    <li class="completion-item completed">
+                        <span class="check-icon">✓</span>
+                        <span>Posture Practice</span>
+                    </li>
+                </ul>
+                <div class="finish-actions">
+                    <button class="btn-exit">Exit <span class="btn-icon">↗</span></button>
+                    <button class="btn-next-lesson">Next Lesson <span class="btn-icon">▶</span></button>
+                </div>
+            </div>
         </div>
     </div>
-    <div class="part4">
-        <p>
-            <strong>Title:</strong> Results
-        </p>
-        <p>
-            Left Half:
-            Lesson Complete
-            Next Lesson: 1.2 How to Hold a Violin
-            Right Half:
-            Parts of the Violin
-            Parts of the Bow
-            Pop Quiz
-            Matching Parts
-        </p>
+    <div class="part-nav">
+        <img src="../../images/videoButton.svg" alt="Part 1" class="nav-btn" data-part="0">
+        <img src="../../images/videoButton.svg" alt="Part 2" class="nav-btn" data-part="1">
+        <img src="../../images/quizButton.svg" alt="Part 3" class="nav-btn" data-part="2">
+        <img src="../../images/gameButton.svg" alt="Part 4" class="nav-btn" data-part="3">
+        <img src="../../images/finishButton.svg" alt="Part 5" class="nav-btn" data-part="4">
     </div>
 </div>
-<button id="backBtn">Back</button>
-<button id="nextBtn">Next</button>

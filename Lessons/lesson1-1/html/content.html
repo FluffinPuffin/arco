@@ -2,121 +2,236 @@
     <div id="part1">
         <div class="video-recap-container">
             <div class="video-frame">
-                <div class="video">
-                    <video width="320" height="240" class="lesson-video" controls
-                        controlslist="nodownload nofullscreen">
+                <div class="video-wrapper">
+                    <video class="lesson-video">
                         <source src="../../video/test.mp4" type="video/mp4">
                         Your browser does not support the video tag.
                     </video>
+                    <button class="play-btn" aria-label="Play video"></button>
                 </div>
                 <div class="frame-bar">
                     <img src="../../images/enlarge.svg" alt="Enlarge Video" id="sizeBtn" class="icon-btn">
                 </div>
             </div>
-            <div class="recap"></div>
+            <div class="recap">
+                <h3 class="recap-title">Recap</h3>
+                <ul class="recap-list">
+                    <li>Violin Parts: The scroll, pegs, strings, fingerboard, bridge, tail piece, fine tuners, chin rest
+                    </li>
+                    <li>Strings from lowest to highest, left to right: G, D, A, E</li>
+                    <li>The pegs tune strings, while the bridge holds the strings up</li>
+                    <li>Place fingers on fingerboard to play, place chin on chin rest to balance violin</li>
+                </ul>
+            </div>
         </div>
         <div class="info-box">
-            <div class="info-tabs">
-                <button class="info-tab active" data-tab="description">Description</button>
-                <button class="info-tab" data-tab="transcript">Transcript</button>
-            </div>
             <div class="info-content">
+                <div class="info-tabs">
+                    <button class="info-tab active" data-tab="description">
+                        <span>Description</span>
+                        <span class="info-icon">&#9432;</span>
+                    </button>
+                    <button class="info-tab" data-tab="transcript">
+                        <span>Transcript</span>
+                        <span class="info-icon">&#128196;</span>
+                    </button>
+                </div>
                 <div class="tab-panel active" data-panel="description">
-                    <p>Learn about the parts of the violin including the scroll, pegs, strings, fingerboard, bridge, tail piece, fine tuners, and chin rest.</p>
+                    <p>Learn about the parts of the violin including the scroll, pegs, strings, fingerboard, bridge,
+                        tail piece, fine tuners, and chin rest.</p>
                 </div>
                 <div class="tab-panel" data-panel="transcript">
-                    <p>
-                        Image of violin with parts: scroll, pegs, strings,
-                        fingerboard,
-                        bridge, tail piece, fine tuners, chin rest
-                        The pegs are used for tuning the strings. We can turn them forward and backward to change the
-                        note
-                        up and down!
-                        There are four strings. From lowest to highest, and left to right, the strings are G, D, A, E.
-                        The bridge holds our strings up, it also allows vibrations from the strings to travel down into
-                        the
-                        body of the violin, which comes out of the acoustic holes as sound!
-                        The fingerboard is where you place your fingers to change the notes.
-                        The chin rest is where you place your chin to help hold the violin.
-                    </p>
+                    <div class="transcript-entry">
+                        [Image of Violin with the following visually labeled: scroll,
+                        pegs, strings, fingerboard, bridge, tail piece, fine tuners, chin rest]. The pegs are used for
+                        tuning the strings. We can turn
+                        them forward and backward to change the note up and down! There are four strings. From lowest to
+                        highest, and
+                        left to right, the strings are G, D, A, E. The bridge holds our strings up, it also allows
+                        vibrations from the strings to travel down into the body of the violin, which comes out of the
+                        acoustic holes as sound! The fingerboard is where you place your fingers to
+                        change the notes. The chin rest is where you place your chin to help hold
+                        the violin.
+                    </div>
                 </div>
             </div>
         </div>
     </div>
     <div id="part2">
-        <div class="video">
-            <video width="320" height="240">
-                <source src="../../video/test.mp4" type="video/mp4">
-                Your browser does not support the video tag.
-            </video>
+        <div class="video-recap-container">
+            <div class="video-frame">
+                <div class="video-wrapper">
+                    <video class="lesson-video">
+                        <source src="../../video/test.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <button class="play-btn" aria-label="Play video"></button>
+                </div>
+                <div class="frame-bar">
+                    <img src="../../images/enlarge.svg" alt="Enlarge Video" class="icon-btn size-btn">
+                </div>
+            </div>
+            <div class="recap">
+                <h3 class="recap-title">Recap</h3>
+                <ul class="recap-list">
+                    <li>Bow Parts: Stick, horse hair, tip, frog, eye, screw, winding, grip</li>
+                    <li>The stick is made of wood and slightly curved</li>
+                    <li>The frog is what most violinists hold onto when they play</li>
+                    <li>The screw tightens (right) or loosens (left) the bow hair</li>
+                </ul>
+            </div>
         </div>
         <div class="info-box">
-            <div class="info-tabs">
-                <button class="info-tab active" data-tab="description">Description</button>
-                <button class="info-tab" data-tab="transcript">Transcript</button>
-            </div>
             <div class="info-content">
+                <div class="info-tabs">
+                    <button class="info-tab active" data-tab="description">
+                        <span>Description</span>
+                        <span class="info-icon">&#9432;</span>
+                    </button>
+                    <button class="info-tab" data-tab="transcript">
+                        <span>Transcript</span>
+                        <span class="info-icon">&#128196;</span>
+                    </button>
+                </div>
                 <div class="tab-panel active" data-panel="description">
-                    <p>Learn about the parts of the bow including the stick, horse hair, tip, frog, eye, screw, winding, and grip.</p>
+                    <p>Learn about the parts of the bow including the stick, horse hair, tip, frog, eye, screw, winding,
+                        and grip.</p>
                 </div>
                 <div class="tab-panel" data-panel="transcript">
-                    <p>
-                        Image of the bow with parts labelled: Stick, horse hair, tip,
-                        frog, eye, screw, winding, grip.
-                        The stick is made out of wood and slightly curved to absorb weight and pressure.
-                        The bow hair is traditionally made out of horse hair!
-                        The tip of the bow is curved and comes to a little point.
-                        The frog is at the base of the bow, this is what most violinists hold onto when they play!
-                        The eye is a little dot, commonly made out of mother of pearl.
-                        The metal piece at the bottom end of the bow is a secret screw! When turned right, the bow hair
-                        is tightened. When turned left, the hair is loosened.
-                        The metal winding protects the bow from the violinist's hand.
-                        The soft grip provides a place for the violinist's finger to rest while playing
-                    </p>
+                    <div class="transcript-entry">
+                        [Image of the bow with parts labelled: Stick, horse hair, tip, frog, eye, screw, winding, grip]
+                        The stick is made out of wood and slightly curved to absorb weight and pressure. The bow hair
+                        is traditionally made out of horse hair! The tip of the bow is curved and comes to a little
+                        point. The frog is at the base of the bow, this is what most violinists hold onto when they
+                        play! The eye is a little dot, commonly made out of mother of pearl. The metal piece at the
+                        bottom end of the bow is a secret screw! When turned right, the bow hair is tightened. When
+                        turned left, the hair is loosened. The metal winding protects the bow from the violinist's
+                        hand. The soft grip provides a place for the violinist's finger to rest while playing.
+                    </div>
                 </div>
             </div>
         </div>
     </div>
     <div id="part3">
-        <div class="quiz">
-            <p>
-                <strong>Title:</strong> Pop Quiz
-            </p>
-            <p>
-                Sub-title: Question 01 of 02
-                Question: Fill in the blank with the correct corresponding option: “The Violin is made up of the
-                following parts: The ___, pegs, strings, fingerboard, bridge, tail piece, fine tuners, and chin
-                rest.”
-                Options: 1. Scroll, 2. Frog, 3. Tail Piece, 4. Troll
-
-
-                Sub-title: Question 02 of 02
-                Question: Is the following True or False: “The Bow has a part called the Scorpion. The Scorpion
-                is what most violinists hold onto when they play the instrument.”
-                Options: 1. True, 2. False
-
-            </p>
+        <div class="quiz" data-current="1" data-total="2">
+            <div class="quiz-question" data-question="1" data-answer="1">
+                <p class="quiz-subtitle">Question 01 of 02</p>
+                <p class="quiz-prompt">Fill in the blank with the correct corresponding option:</p>
+                <p class="quiz-text">"The Violin is made up of the following parts: The ___, pegs, strings, fingerboard,
+                    bridge, tail piece, fine tuners, and chin rest."</p>
+                <hr class="quiz-divider">
+                <div class="quiz-options">
+                    <button class="quiz-option" data-option="1"><span class="option-number">1</span>Scroll</button>
+                    <button class="quiz-option" data-option="2"><span class="option-number">2</span>Frog</button>
+                    <button class="quiz-option" data-option="3"><span class="option-number">3</span>Tail Piece</button>
+                    <button class="quiz-option" data-option="4"><span class="option-number">4</span>Troll</button>
+                </div>
+            </div>
+            <div class="quiz-question" data-question="2" data-answer="2" style="display: none;">
+                <p class="quiz-subtitle">Question 02 of 02</p>
+                <p class="quiz-prompt">Is the following True or False:</p>
+                <p class="quiz-text">"The Bow has a part called the Scorpion. The Scorpion is what most violinists hold
+                    onto when they play the instrument."</p>
+                <hr class="quiz-divider">
+                <div class="quiz-options">
+                    <button class="quiz-option" data-option="1"><span class="option-number">1</span>True</button>
+                    <button class="quiz-option" data-option="2"><span class="option-number">2</span>False</button>
+                </div>
+            </div>
+            <div class="quiz-result" style="display: none;">
+                <p class="quiz-score"></p>
+                <button class="quiz-retry">Try Again</button>
+                <button class="quiz-continue">Continue</button>
+            </div>
         </div>
     </div>
     <div id="part4">
-        <p>
-            <strong>Title:</strong> Results
-        </p>
-        <p>
-            Left Half:
-            Lesson Complete
-            Next Lesson: 1.2 How to Hold a Violin
-            Right Half:
-            Parts of the Violin
-            Parts of the Bow
-            Pop Quiz
-            Matching Parts
-        </p>
+        <div class="game-container">
+            <div class="game-frame">
+                <div class="game-wrapper">
+                    <!-- Game content will be loaded here -->
+                    <div class="game-placeholder" id="gameArea">
+                        <p>Game Loading...</p>
+                    </div>
+                </div>
+                <div class="frame-bar">
+                    <img src="../../images/enlarge.svg" alt="Enlarge Game" class="icon-btn game-size-btn">
+                </div>
+            </div>
+            <div class="controls">
+                <h3 class="controls-title">Controls</h3>
+                <p class="controls-text">Tap or click the parts on the violin.</p>
+                <p class="controls-text">Click on the correct part of the violin when its name is shown on the screen.
+                </p>
+            </div>
+        </div>
+        <div class="info-box">
+            <div class="info-content">
+                <div class="info-tabs">
+                    <button class="info-tab active" data-tab="description">
+                        <span>Description</span>
+                        <span class="info-icon">&#9432;</span>
+                    </button>
+                    <button class="info-tab" data-tab="accessibility">
+                        <span>Accessibility</span>
+                        <span class="info-icon">&#9855;</span>
+                    </button>
+                </div>
+                <div class="tab-panel active" data-panel="description">
+                    <p>So far, we have learned about the parts of the violin. Now let's practice identifying them!</p>
+                </div>
+                <div class="tab-panel" data-panel="accessibility">
+                    <p>Use keyboard arrows to navigate between parts. Press Enter or Space to select.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="part5">
+        <div class="finish-container">
+            <div class="finish-left">
+                <h2 class="finish-title">Lesson Complete</h2>
+                <div class="finish-illustration">
+                    <!-- Placeholder for celebration illustration -->
+                    <div class="illustration-placeholder">
+                        <span>🎉</span>
+                    </div>
+                </div>
+                <div class="next-lesson-info">
+                    <p class="next-lesson-label">Next Lesson:</p>
+                    <p class="next-lesson-title">1.2 How to Hold a Violin</p>
+                </div>
+            </div>
+            <div class="finish-right">
+                <ul class="completion-list">
+                    <li class="completion-item completed">
+                        <span class="check-icon">✓</span>
+                        <span>Parts of the Violin</span>
+                    </li>
+                    <li class="completion-item completed">
+                        <span class="check-icon">✓</span>
+                        <span>Parts of the Bow</span>
+                    </li>
+                    <li class="completion-item completed">
+                        <span class="check-icon">✓</span>
+                        <span>Pop Quiz</span>
+                    </li>
+                    <li class="completion-item completed">
+                        <span class="check-icon">✓</span>
+                        <span>Matching Parts</span>
+                    </li>
+                </ul>
+                <div class="finish-actions">
+                    <button class="btn-exit">Exit <span class="btn-icon">↗</span></button>
+                    <button class="btn-next-lesson">Next Lesson <span class="btn-icon">▶</span></button>
+                </div>
+            </div>
+        </div>
     </div>
     <div class="part-nav">
         <img src="../../images/videoButton.svg" alt="Part 1" class="nav-btn" data-part="0">
         <img src="../../images/videoButton.svg" alt="Part 2" class="nav-btn" data-part="1">
         <img src="../../images/quizButton.svg" alt="Part 3" class="nav-btn" data-part="2">
         <img src="../../images/gameButton.svg" alt="Part 4" class="nav-btn" data-part="3">
+        <img src="../../images/finishButton.svg" alt="Part 5" class="nav-btn" data-part="4">
     </div>
 </div>
