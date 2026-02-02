@@ -72,8 +72,8 @@ function initSettings() {
   const form = content.querySelector("#settings-edit-form");
   const editFieldInput = content.querySelector("#edit-field");
   const editValueInput = content.querySelector("#edit-value");
-  const cancelBtn = content.querySelector(".settings-modal-cancel");
-  const backdrop = content.querySelector(".settings-modal-backdrop");
+  const cancelBtn = modal?.querySelector(".settings-modal-cancel");
+  const backdrop = modal?.querySelector(".settings-modal-backdrop");
 
   if (form) {
     form.addEventListener("submit", (e) => {
