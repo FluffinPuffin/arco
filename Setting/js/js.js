@@ -104,11 +104,8 @@ function initSettings() {
         opt.classList.add("active");
         closeAvatarModal(avatarModal);
 
-        // Save avatar and update frame header (top right)
         const path = src.startsWith("http") ? new URL(src).pathname : src;
         localStorage.setItem("arco-avatar", path);
-        const profileIcon = document.querySelector(".profile-icon");
-        if (profileIcon) profileIcon.src = path.startsWith("/") ? path : "/" + path;
       }
     });
   });
