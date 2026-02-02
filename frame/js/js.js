@@ -15,6 +15,13 @@ document.addEventListener("DOMContentLoaded", () => {
       html = html.replace(/\{\{FRAME_PATH\}\}/g, framePath);
       document.body.insertAdjacentHTML("afterbegin", html);
 
+      // Apply saved avatar to frame header
+      const savedAvatar = localStorage.getItem("arco-avatar");
+      const profileIcon = document.querySelector(".profile-icon");
+      if (savedAvatar && profileIcon) {
+        profileIcon.src = savedAvatar.startsWith("/") ? savedAvatar : "/" + savedAvatar;
+      }
+
       document.dispatchEvent(new Event("frame:ready"));
     })
     .catch(err => console.error("Frame load failed:", err));
