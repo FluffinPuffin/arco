@@ -1,7 +1,256 @@
-#violinFingerboard {
-    padding: 40px;
+html {
+    min-height: 100%;
 }
 
-#musicalStaff {
-    padding: 40px;
+body {
+    background-color: var(--frame-color, #B30000);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    height: 100%;
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Frame */
+.rectangle {
+    width: 80vw;
+    background-color: #fffefd;
+    border-radius: 25px;
+    padding: 24px;
+    margin: 20px auto 40px auto;
+}
+
+.home {
+    float: right;
+}
+
+.arrow {
+    float: left;
+}
+
+.frame {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    flex: 1;
+}
+
+.buttons {
+    position: relative;
+    width: 85%;
+    margin: 100px auto 0 auto;
+    display: flex;
+    justify-content: space-between;
+    /* keeps buttons at edges */
+    align-items: center;
+}
+
+/* title */
+#lesson-title {
+    flex: 1;
+    text-align: center;
+}
+
+#lesson-title .title-wrapper {
+    display: inline-block;
+}
+
+#lesson-title .title {
+    position: static;
+    transform: none;
+    font-size: 24px;
+    font-weight: bold;
+    color: #fffefd;
+    margin: 0;
+}
+
+/* Footer */
+.footer {
+    margin-top: auto;
+    width: 100%;
+    padding: 20px 40px;
+    box-sizing: border-box;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    background-color: #fffefd;
+    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.footer-left {
+    display: flex;
+    gap: 40px;
+}
+
+.footer-left a {
+    color: #1c1c1c;
+    text-decoration: none;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400;
+}
+
+.footer-left a:hover {
+    text-decoration: underline;
+}
+
+.footer-link.footer-active {
+    font-weight: 600;
+}
+
+.footer-right {
+    color: #1c1c1c;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400;
+}
+
+/* Header */
+
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 10px 40px;
+    box-sizing: border-box;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    background-color: #fffefd;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.header-left {
+    flex: 1;
+    display: flex;
+    align-items: center;
+}
+
+.header-left .logo {
+    height: 30px;
+}
+
+.header-center {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.header-center a {
+    color: #1c1c1c;
+    text-decoration: none;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.header-center a:hover {
+    opacity: 0.8;
+}
+
+.header-right {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 30px;
+}
+
+.header-right a {
+    color: #1c1c1c;
+    text-decoration: none;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.header-right a:hover {
+    opacity: 0.8;
+}
+
+.premium-icon,
+.settings-icon {
+    width: 24px;
+    height: 24px;
+}
+
+.profile-icon {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+}
+
+/* Wrap violin and staff side by side */
+.main-container {
+    display: flex;
+    gap: 40px;
+    /* space between violin and staff */
+    flex-wrap: wrap;
+    /* wraps on smaller screens */
+    background-color: #fffefd;
+    margin: 2rem;
+}
+
+/* Violin container */
+.violin-container {
+    position: relative;
+    width: 100%;
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.violin-container img {
+    width: 100%;
+    height: auto;
+}
+
+/* Ghost touch point */
+.violin-container .touch-point {
+    position: absolute;
+    width: 10%;
+    height: 10%;
+    border-radius: 50%;
+    background: rgba(170, 167, 167, 0.2);
+    /* temporary to see placement */
+    border: none;
+    cursor: pointer;
+    transform: translate(-50%, -50%);
+}
+
+/* Staff and description layout */
+.staff-and-description {
+    display: flex;
+    flex-direction: column;
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+#staffImage {
+    width: auto;
+    height: auto;
+}
+
+#noteDescription {
+    font-size: 16px;
+    line-height: 1.4;
+    max-width: 12rem;
+    margin-left: auto;
+    margin-right: auto;
 }
