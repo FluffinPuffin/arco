@@ -15,6 +15,17 @@ document.addEventListener("DOMContentLoaded", () => {
       html = html.replace(/\{\{FRAME_PATH\}\}/g, framePath);
       document.body.insertAdjacentHTML("afterbegin", html);
 
+      // Set active footer link based on current page
+      const path = window.location.pathname || "";
+      document.querySelectorAll(".footer-link[data-footer]").forEach((link) => {
+        const key = link.dataset.footer;
+        const isActive =
+          (key === "faq" && path.includes("/Footer/FAQ/")) ||
+          (key === "legal" && path.includes("/Footer/Legalpolicies/")) ||
+          (key === "contact" && path.includes("/Footer/Contactus/"));
+        link.classList.toggle("footer-active", isActive);
+      });
+
       document.dispatchEvent(new Event("frame:ready"));
     })
     .catch(err => console.error("Frame load failed:", err));

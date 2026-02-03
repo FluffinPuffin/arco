@@ -4,108 +4,117 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> Account: Login </title>
-    <link rel="stylesheet" href="arco/Login/css/style.css">
-    <script src="arco/Login/js/js.js"></script>
+    <title>Account: Login</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Lexend:wght@400;600;700&display=swap"
+        rel="stylesheet">
 </head>
 
 <body>
+    <div class="login-container">
+        <!-- Left Column: Login Form -->
+        <div class="login-form-section">
+            <div class="form-wrapper">
+                <!-- Header Section -->
+                <div class="header-section">
+                    <h1 class="login-title">Login</h1>
+                    <a href="signup.html" class="link-text">New to Arco</a>
+                </div>
 
-    <!--Left Column: Login Stuff-->
-    <div>
+                <!-- Form Section -->
+                <div class="form-content">
+                    <form id="loginForm">
+                        <!-- Email Input -->
+                        <div class="form-group">
+                            <label for="email" class="form-label">Email Address</label>
+                            <input type="email" id="email" name="email" class="form-input" placeholder="you@example.com"
+                                autocomplete="email" required>
+                        </div>
 
-        <!--Top Section: Title & Mode Switch-->
-        <div>
-            <h1>Login</h1>
+                        <!-- Password Input -->
+                        <div class="form-group">
+                            <label for="password" class="form-label">Password</label>
+                            <div class="password-input-wrapper">
+                                <input type="password" id="password" name="password" class="form-input"
+                                    placeholder="ex123#@!" autocomplete="current-password" required>
+                                <button type="button" class="password-toggle" id="passwordToggle"
+                                    aria-label="Toggle password visibility">
+                                    <svg class="eye-icon" width="20" height="20" viewBox="0 0 20 20" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <g transform="translate(0.25, 5.5)">
+                                            <path
+                                                d="M9.50011 3.99985C10.8808 3.99985 12.0001 5.11914 12.0001 6.49985C12 7.8805 10.8808 8.99985 9.50011 8.99985C8.11953 8.99975 7.00018 7.88044 7.00011 6.49985C7.00011 5.1192 8.11948 3.99995 9.50011 3.99985ZM5.69738 0.985203C7.66654 -0.102834 9.63242 -0.215738 11.4425 0.286961C14.9626 1.26478 17.811 4.53362 19.3575 7.11118C19.6415 7.58469 19.4882 8.1991 19.0148 8.48325C18.5413 8.76708 17.9269 8.61369 17.6427 8.14048C16.1892 5.71806 13.6871 2.98686 10.9073 2.2147C9.56762 1.84258 8.14571 1.91722 6.66515 2.7352C5.15658 3.56884 3.51583 5.21499 1.87023 8.11899C1.59782 8.59915 0.987297 8.76813 0.506945 8.49595C0.026624 8.22371 -0.141985 7.61308 0.129992 7.13266C1.88406 4.03727 3.75629 2.05795 5.69738 0.985203Z"
+                                                fill="#1C1C1C" />
+                                        </g>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
 
-            <!--Switch to Sign Up/Register without opening new page-->
-            <a href="#">New to Arco?</a>
+                        <!-- Remember Me & Forgot Password -->
+                        <div class="form-options">
+                            <div class="remember-me">
+                                <button type="button" class="toggle-switch" id="rememberToggle" role="switch"
+                                    aria-checked="true">
+                                    <span class="toggle-slider"></span>
+                                </button>
+                                <label for="rememberToggle" class="toggle-label">Remember Me?</label>
+                            </div>
+                            <a href="forgot-password.html" class="link-text">Forgot Password</a>
+                        </div>
+
+                        <!-- Login Button -->
+                        <button type="submit" class="btn-primary">Login</button>
+                    </form>
+
+                    <!-- Divider -->
+                    <div class="divider-section">
+                        <p class="divider-text">- or sign in with -</p>
+                    </div>
+
+                    <!-- Social Login Buttons -->
+                    <div class="social-buttons">
+                        <button type="button" class="btn-social" id="googleLogin">
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                <path
+                                    d="M18.17 8.37H10v3.45h4.62c-.4 2.02-2.16 3.45-4.62 3.45-2.83 0-5.12-2.29-5.12-5.12s2.29-5.12 5.12-5.12c1.27 0 2.42.46 3.32 1.23l2.59-2.59C14.46 2.24 12.35 1.33 10 1.33 5.4 1.33 1.67 5.06 1.67 9.67s3.73 8.33 8.33 8.33c4.8 0 8-3.37 8-8.13 0-.55-.05-1.08-.13-1.5z"
+                                    fill="#1C1C1C" />
+                            </svg>
+                            <span>Google</span>
+                        </button>
+                        <button type="button" class="btn-social" id="appleLogin">
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                <path
+                                    d="M13.42 3.67c.79-.95 1.32-2.27 1.17-3.59-1.13.05-2.51.76-3.32 1.71-.73.84-1.37 2.19-1.2 3.48 1.27.1 2.57-.65 3.35-1.6zm1.11 1.74c-1.85-.1-3.42 1.05-4.3 1.05-.87 0-2.22-1-3.65-.97-1.88.03-3.61 1.09-4.58 2.77-1.95 3.38-.5 8.4 1.4 11.15.93 1.35 2.04 2.86 3.5 2.8 1.42-.06 1.96-.92 3.68-.92 1.71 0 2.19.92 3.68.89 1.52-.03 2.47-1.35 3.4-2.7 1.07-1.56 1.51-3.07 1.54-3.15-.03-.02-2.96-1.13-2.99-4.49-.03-2.8 2.29-4.14 2.39-4.2-1.3-1.91-3.32-2.13-4.04-2.18z"
+                                    fill="#1C1C1C" />
+                            </svg>
+                            <span>Apple ID</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
         </div>
 
-        <br>
-
-        <!--Middle Section: Account Forms-->
-        <form action="">
-
-            <!--Email Address-->
-            <label for="email">Email Address</label><br>
-            <input type="text" name="email" id="email" placeholder="ex: abc@gmail.com" autocomplete="email"
-                aria-required="true" required>
-            <br><br>
-
-            <!--Password-->
-            <label for="accPass">Password</label><br>
-            <input type="password" name="accPass" id="accPass" placeholder="ex: abc123!" autocomplete="current-password"
-                aria-required="true" required>
-
-            <!--(BUGGED) Hide/Show Password Details-->
-            <img src="arco/Login/images/icon-EyeClosed.svg"
-                alt="A closed eye icon. Means that the typed password is currently being visibily obscured" width="25"
-                height="25">
-            <img src="arco/Login/images/icon-EyeOpen.svg"
-                alt="An open eye icon. Means that the typed password is clearly visible to everyone">
-            <br>
-
-            <!--Remember Me Toggle-->
-            <input type="checkbox" id="remember" name="remember" value="rememberYes">
-            <label for="remember">Remember Me</label>
-
-            <!--Forgot Password Hyperlink-->
-            <a href="#">Forgot Password?</a>
-            <br><br>
-
-            <!--Login Button-->
-            <input type="submit" value="Login">
-
-        </form>
-
-        <br>
-
-        <!--Alternate Logins-->
-        <div>
-
-            <!--Text divider-->
-            <div>
-                <h4>- or sign in with -</h4>
-            </div>
-
-            <!--(BUGGED) Login with Google-->
-            <div>
-                <button type="button"><img src="arco/Login/images/icon-Google.svg" alt="Google Icon">Google</button>
-            </div>
-
-            <!--(BUGGED) Login with Apple ID-->
-            <div>
-                <button type="button"><img src="arco/Login/images/icon-Apple.svg" alt="Apple Icon">Apple ID</button>
+        <!-- Right Column: Splash Art -->
+        <div class="splash-section">
+            <div class="splash-content">
+                <div class="logo-container">
+                    <img src="/arco/Login/images/icon-ArcoLogo.svg" alt="Arco Logo">
+                </div>
+                <div class="footer-links">
+                    <p class="copyright">© 2025-2026</p>
+                    <a href="#" class="footer-link">FAQ</a>
+                    <a href="#" class="footer-link">Contact</a>
+                    <a href="#" class="footer-link">Policy</a>
+                </div>
             </div>
         </div>
     </div>
 
-
-
-
-    <!--Right Side: Color/Footer Stuff-->
-    <div>
-
-        <!--(BUGGED) Arco Logo-->
-        <div>
-            <img src="arco/Login/images/icon-ArcoLogo.svg" alt="Arco logo that ends with a musical note">
-        </div>
-
-        <!--Copyright Years-->
-        <div>
-            <p>&copy;2025 - 2026</p>
-        </div>
-
-        <!--Hyperlinks to misc. pages-->
-        <div>
-            <a href="#">FAQ</a>
-            <a href="#">Contact</a>
-            <a href="#">Policy</a>
-        </div>
-    </div>
-
-
+    <script src="../js/js.js"></script>
 </body>
 
 </html>
