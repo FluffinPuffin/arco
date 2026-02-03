@@ -32,7 +32,7 @@ document.addEventListener("frame:ready", () => {
 });
 function notesFunction() {
 
-    // Notes object
+    // these are the note images and messages that pop up when a note is selected
     var notes = {
 
 
@@ -116,12 +116,12 @@ function notesFunction() {
 
     };
 
-    // Elements
+    // variables, getting the images and note description from "notes"
     var staffImage = document.getElementById("staffImage");
     var noteDescription = document.getElementById("noteDescription");
     var points = document.querySelectorAll(".touch-point");
 
-    // Event listener
+    //listening for click
     for (var i = 0; i < points.length; i++) {
         points[i].addEventListener("click", function () {
             var noteKey = this.getAttribute("data-note");
