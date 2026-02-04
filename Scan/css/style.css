@@ -1,5 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Lexend:wght@400;500;600&display=swap');
+
 :root {
   --frame-color: #1c1c1c;
+}
+
+.scan-container {
+  font-family: 'Lexend', sans-serif;
+}
+
+.state-title {
+  font-family: 'Poppins', sans-serif;
 }
 
 /* Scan Container */

@@ -1,5 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Lexend:wght@400;500;600&display=swap');
+
 :root {
     --frame-color: #3F39C2;
+}
+
+.lesson-content {
+    font-family: 'Lexend', sans-serif;
+}
+
+.lesson-content h1, .lesson-content h2, .lesson-content h3, .lesson-content h4, .lesson-content h5, .lesson-content h6,
+.recap-title, .controls-title, .quiz-subtitle, .finish-title {
+    font-family: 'Poppins', sans-serif;
 }
 
 /* Override frame rectangle background for lesson pages */

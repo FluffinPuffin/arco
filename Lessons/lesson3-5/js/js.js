@@ -36,6 +36,8 @@ document.addEventListener("frame:ready", () => {
             initButtonStates();
             initQuiz();
             initFinishButtons();
+            initGameControls();
+            initGame();
         })
         .catch(err => console.error("CONTENT LOAD FAILED:", err));
 });
@@ -249,11 +251,6 @@ function initQuiz() {
                     score++;
                 } else {
                     option.classList.add('incorrect');
-                    options.forEach(opt => {
-                        if (opt.dataset.option === correctAnswer) {
-                            opt.classList.add('correct');
-                        }
-                    });
                 }
 
                 setTimeout(() => {
@@ -354,3 +351,103 @@ document.addEventListener('keydown', (e) => {
 
 window.devGoToFinish = devGoToFinish;
 window.devGoToPart = devGoToPart;
+
+function initGameControls() {
+    const gameContainer = document.querySelector('.game-container');
+    const sizeBtn = document.querySelector('.game-size-btn');
+
+    if (!sizeBtn || !gameContainer) return;
+
+    let isExpanded = false;
+
+    sizeBtn.addEventListener('click', () => {
+        if (!isExpanded) {
+            sizeBtn.src = '../../images/shrink.svg';
+            sizeBtn.alt = 'Shrink Game';
+            gameContainer.classList.add('expanded');
+        } else {
+            sizeBtn.src = '../../images/enlarge.svg';
+            sizeBtn.alt = 'Enlarge Game';
+            gameContainer.classList.remove('expanded');
+        }
+        isExpanded = !isExpanded;
+    });
+}
+
+function initGame() {
+    const game = document.querySelector('.game');
+    if (!game) return;
+
+    const questions = game.querySelectorAll('.game-question');
+    const result = game.querySelector('.game-result');
+    const scoreDisplay = game.querySelector('.game-score');
+    const retryBtn = game.querySelector('.game-retry');
+    const continueBtn = game.querySelector('.game-continue');
+
+    let currentQuestion = 1;
+    let score = 0;
+    const totalQuestions = questions.length;
+
+    questions.forEach(question => {
+        const options = question.querySelectorAll('.game-option');
+        const correctAnswer = question.dataset.answer;
+
+        options.forEach(option => {
+            option.addEventListener('click', () => {
+                options.forEach(opt => opt.disabled = true);
+
+                const selectedAnswer = option.dataset.option;
+                if (selectedAnswer === correctAnswer) {
+                    option.classList.add('correct');
+                    score++;
+                } else {
+                    option.classList.add('incorrect');
+                }
+
+                setTimeout(() => {
+                    if (currentQuestion < totalQuestions) {
+                        question.style.display = 'none';
+                        currentQuestion++;
+                        const nextQuestion = game.querySelector(`[data-question="${currentQuestion}"]`);
+                        if (nextQuestion) {
+                            nextQuestion.style.display = 'block';
+                        }
+                    } else {
+                        question.style.display = 'none';
+                        result.style.display = 'block';
+                        scoreDisplay.textContent = `You got ${score} out of ${totalQuestions} correct!`;
+                        markPartCompleted(3);
+                    }
+                }, 1000);
+            });
+        });
+    });
+
+    if (retryBtn) {
+        retryBtn.addEventListener('click', () => {
+            currentQuestion = 1;
+            score = 0;
+            result.style.display = 'none';
+
+            questions.forEach((question, index) => {
+                const options = question.querySelectorAll('.game-option');
+                options.forEach(opt => {
+                    opt.disabled = false;
+                    opt.classList.remove('correct', 'incorrect');
+                });
+                question.style.display = index === 0 ? 'block' : 'none';
+            });
+        });
+    }
+
+    if (continueBtn) {
+        continueBtn.addEventListener('click', () => {
+            const navBtns = document.querySelectorAll('.part-nav .nav-btn');
+            const nextBtn = navBtns[3];
+            if (nextBtn && !nextBtn.classList.contains('locked')) {
+                nextBtn.click();
+            }
+        });
+    }
+}
+

@@ -149,9 +149,37 @@
         <div class="game-container">
             <div class="game-frame">
                 <div class="game-wrapper">
-                    <!-- Game content will be loaded here -->
-                    <div class="game-placeholder" id="gameArea">
-                        <p>Game Loading...</p>
+                    <div class="game" id="gameArea">
+                        <!-- Question 1 -->
+                        <div class="game-question" data-question="1" data-answer="pegs">
+                            <div class="game-image-placeholder"><img src="../../images/lesson1.1/violinPart1.svg"
+                                    alt="Violin Part 1"></div>
+                            <div class="game-options">
+                                <button class="game-option" data-option="scroll">Scroll</button>
+                                <button class="game-option" data-option="pegs">Pegs</button>
+                                <button class="game-option" data-option="bridge">Bridge</button>
+                                <button class="game-option" data-option="chin-rest">Chin Rest</button>
+                            </div>
+                        </div>
+
+                        <!-- Question 2 -->
+                        <div class="game-question" data-question="2" data-answer="chin-rest" style="display: none;">
+                            <div class="game-image-placeholder"><img src="../../images/lesson1.1/violinPart2.svg"
+                                    alt="Violin Part 2"></div>
+                            <div class="game-options">
+                                <button class="game-option" data-option="scroll">Scroll</button>
+                                <button class="game-option" data-option="pegs">Pegs</button>
+                                <button class="game-option" data-option="bridge">Bridge</button>
+                                <button class="game-option" data-option="chin-rest">Chin Rest</button>
+                            </div>
+                        </div>
+
+                        <!-- Results -->
+                        <div class="game-result" style="display: none;">
+                            <p class="game-score"></p>
+                            <button class="game-retry">Try Again</button>
+                            <button class="game-continue">Continue</button>
+                        </div>
                     </div>
                 </div>
                 <div class="frame-bar">
@@ -191,7 +219,6 @@
             <div class="finish-left">
                 <h2 class="finish-title">Lesson Complete</h2>
                 <div class="finish-illustration">
-                    <!-- Placeholder for celebration illustration -->
                     <div class="illustration-placeholder">
                         <span>🎉</span>
                     </div>

@@ -86,8 +86,58 @@
         <div class="game-container">
             <div class="game-frame">
                 <div class="game-wrapper">
-                    <div class="game-placeholder" id="gameArea">
-                        <p>Game Loading...</p>
+                    <div class="game" id="gameArea">
+                        <!-- Question 1 -->
+                        <div class="game-question" data-question="1" data-answer="f">
+                            <div class="game-image-placeholder"><img src="../../images/lesson3.5/whatComesNext1.svg"
+                                    alt="Violin Part 1"></div>
+                            <div class="game-options">
+                                <button class="game-option" data-option="a">A</button>
+                                <button class="game-option" data-option="b">B</button>
+                                <button class="game-option" data-option="c">C#</button>
+                                <button class="game-option" data-option="d">D</button>
+                                <button class="game-option" data-option="e">E</button>
+                                <button class="game-option" data-option="f">F#</button>
+                                <button class="game-option" data-option="g">G</button>
+                            </div>
+                        </div>
+
+                        <!-- Question 2 -->
+                        <div class="game-question" data-question="2" data-answer="b" style="display: none;">
+                            <div class="game-image-placeholder"><img src="../../images/lesson3.5/whatComesNext2.svg"
+                                    alt="Scale Image 2"></div>
+                            <div class="game-options">
+                                <button class="game-option" data-option="a">A</button>
+                                <button class="game-option" data-option="b">B</button>
+                                <button class="game-option" data-option="c">C#</button>
+                                <button class="game-option" data-option="d">D</button>
+                                <button class="game-option" data-option="e">E</button>
+                                <button class="game-option" data-option="f">F#</button>
+                                <button class="game-option" data-option="g">G</button>
+                            </div>
+                        </div>
+
+                        <!-- Question 3 -->
+                        <div class="game-question" data-question="3" data-answer="e" style="display: none;">
+                            <div class="game-image-placeholder"><img src="../../images/lesson3.5/whatComesNext3.svg"
+                                    alt="Scale Image 3"></div>
+                            <div class="game-options">
+                                <button class="game-option" data-option="a">A</button>
+                                <button class="game-option" data-option="b">B</button>
+                                <button class="game-option" data-option="c">C#</button>
+                                <button class="game-option" data-option="d">D</button>
+                                <button class="game-option" data-option="e">E</button>
+                                <button class="game-option" data-option="f">F#</button>
+                                <button class="game-option" data-option="g">G</button>
+                            </div>
+                        </div>
+
+                        <!-- Results -->
+                        <div class="game-result" style="display: none;">
+                            <p class="game-score"></p>
+                            <button class="game-retry">Try Again</button>
+                            <button class="game-continue">Continue</button>
+                        </div>
                     </div>
                 </div>
                 <div class="frame-bar">
