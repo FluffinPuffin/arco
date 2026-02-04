@@ -3,45 +3,40 @@
         <div class="game-frame">
             <div class="game-wrapper">
                 <!-- Game content will be loaded here -->
-                <div class="quiz" id="gameArea">
+                <div class="game" id="gameArea">
                     <!-- Question 1 -->
-                    <div class="quiz-question" data-question="1" data-answer="half">
-                        <!-- Your note math image goes here -->
-                        <div class="quiz-image-placeholder">Note Math Image 1</div>
-                        <div class="quiz-options">
-                            <button class="quiz-option" data-option="whole">Whole Note</button>
-                            <button class="quiz-option" data-option="half">Half Note</button>
-                            <button class="quiz-option" data-option="quarter">Quarter Note</button>
-                            <button class="quiz-option" data-option="eighth">Eighth Note</button>
+                    <div class="game-question" data-question="1" data-answer="three">
+
+                        <div class="game-image-placeholder"><img src="../../images/lesson2.2/addNotes1.svg"
+                                alt="Violin Part 1"></div>
+                        <div class="game-options">
+                            <button class="game-option" data-option="one">One Beat</button>
+                            <button class="game-option" data-option="two">Two Beats</button>
+                            <button class="game-option" data-option="three">Three Beats</button>
+                            <button class="game-option" data-option="four">Four Beats</button>
+                            <button class="game-option" data-option="five">Five Beats</button>
+                            <button class="game-option" data-option="six">Six Beats</button>
                         </div>
                     </div>
 
                     <!-- Question 2 -->
-                    <div class="quiz-question" data-question="2" data-answer="quarter" style="display: none;">
-                        <div class="quiz-image-placeholder">Note Math Image 2</div>
-                        <div class="quiz-options">
-                            <button class="quiz-option" data-option="whole">Whole Note</button>
-                            <button class="quiz-option" data-option="half">Half Note</button>
-                            <button class="quiz-option" data-option="quarter">Quarter Note</button>
-                            <button class="quiz-option" data-option="eighth">Eighth Note</button>
-                        </div>
-                    </div>
-
-                    <!-- Question 3 -->
-                    <div class="quiz-question" data-question="3" data-answer="whole" style="display: none;">
-                        <div class="quiz-image-placeholder">Note Math Image 3</div>
-                        <div class="quiz-options">
-                            <button class="quiz-option" data-option="whole">Whole Note</button>
-                            <button class="quiz-option" data-option="half">Half Note</button>
-                            <button class="quiz-option" data-option="quarter">Quarter Note</button>
-                            <button class="quiz-option" data-option="eighth">Eighth Note</button>
+                    <div class="game-question" data-question="2" data-answer="six" style="display: none;">
+                        <div class="game-image-placeholder"><img src="../../images/lesson2.2/addNotes2.svg"
+                                alt="Violin Part 1"></div>
+                        <div class="game-options">
+                            <button class="game-option" data-option="one">One Beat</button>
+                            <button class="game-option" data-option="two">Two Beats</button>
+                            <button class="game-option" data-option="three">Three Beats</button>
+                            <button class="game-option" data-option="four">Four Beats</button>
+                            <button class="game-option" data-option="five">Five Beats</button>
+                            <button class="game-option" data-option="six">Six Beats</button>
                         </div>
                     </div>
 
                     <!-- Results -->
-                    <div class="quiz-result" style="display: none;">
-                        <p class="quiz-score"></p>
-                        <button class="quiz-retry">Try Again</button>
+                    <div class="game-result" style="display: none;">
+                        <p class="game-score"></p>
+                        <button class="game-retry">Try Again</button>
                     </div>
                 </div>
             </div>
@@ -52,7 +47,8 @@
         <div class="controls">
             <h3 class="controls-title">Controls</h3>
             <p class="controls-text">Tap or click to select your answer.</p>
-            <p class="controls-text">Two notes will pop up on the screen. Add their total time together, then tap the resulting note.</p>
+            <p class="controls-text">Two notes will pop up on the screen. Add their total time together, then tap the
+                resulting note.</p>
         </div>
     </div>
     <div class="info-box">
@@ -68,7 +64,8 @@
                 </button>
             </div>
             <div class="tab-panel active" data-panel="description">
-                <p><strong>Topics:</strong> Note values, Rhythm, Whole notes, Half notes, Quarter notes, Eighth notes</p>
+                <p><strong>Topics:</strong> Note values, Rhythm, Whole notes, Half notes, Quarter notes, Eighth notes
+                </p>
                 <p>In this mini-game, let's practice adding note values together. Can you figure out the math?</p>
             </div>
             <div class="tab-panel" data-panel="accessibility">

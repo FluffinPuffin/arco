@@ -1,7 +1,8 @@
 /* Lessons Page Styles */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Lexend:wght@400;500;600&display=swap');
 
 :root {
-    --frame-color: #5046E5;
+    --frame-color: #3F39C2;
 }
 
 /* Override frame for lessons listing page */
@@ -28,7 +29,18 @@
 
 .lessons-page {
     padding: 0;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Lexend', sans-serif;
+}
+
+.lessons-page h1,
+.lessons-page h2,
+.lessons-page h3,
+.lessons-page h4,
+.lessons-page h5,
+.lessons-page h6,
+.lessons-title,
+.section-title {
+    font-family: 'Poppins', sans-serif;
 }
 
 /* Page Header */
@@ -129,6 +141,18 @@
     height: 24px;
     background-color: #E0E0E0;
     border-radius: 2px;
+}
+
+.progress-bar.active-green {
+    background-color: #4CAF50;
+}
+
+.progress-bar.active-yellow {
+    background-color: #FFC107;
+}
+
+.progress-bar.active-red {
+    background-color: #F44336;
 }
 
 
@@ -346,7 +370,7 @@
 .lesson-name {
     display: block;
     font-size: 12px;
-    color: #666;
+    color: #1C1C1C;
     margin-top: 2px;
 }
 

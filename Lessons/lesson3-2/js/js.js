@@ -295,7 +295,7 @@ function initQuiz() {
   if (continueBtn) {
     continueBtn.addEventListener('click', () => {
       const navBtns = document.querySelectorAll('.part-nav .nav-btn');
-      const nextBtn = navBtns[3];
+      const nextBtn = navBtns[2];
       if (nextBtn && !nextBtn.classList.contains('locked')) {
         nextBtn.click();
       }

@@ -231,6 +231,16 @@ function startQrScanner() {
   // Show scanning state
   showState('scanning');
 
+  // Show reader element BEFORE starting scanner so it has dimensions
+  readerElement.classList.add('active');
+
+  // Wait for browser to calculate layout before starting scanner
+  requestAnimationFrame(() => {
+    startScannerInternal(readerElement, qrPlaceholder);
+  });
+}
+
+function startScannerInternal(readerElement, qrPlaceholder) {
   // Initialize QR Code scanner
   html5QrCode = new Html5Qrcode("reader");
 
@@ -246,7 +256,17 @@ function startQrScanner() {
     { facingMode: "environment" },
     {
       fps: 10,
-      qrbox: 250
+      qrbox: (viewfinderWidth, viewfinderHeight) => {
+        // Get actual reader element dimensions (the root HTML element)
+        const reader = document.getElementById('reader');
+        const readerWidth = reader ? reader.offsetWidth : viewfinderWidth;
+        const readerHeight = reader ? reader.offsetHeight : viewfinderHeight;
+
+        // Use the smaller of viewfinder and reader dimensions
+        const minDimension = Math.min(viewfinderWidth, viewfinderHeight, readerWidth, readerHeight);
+        const qrboxSize = Math.max(50, Math.floor(minDimension * 0.7));
+        return { width: qrboxSize, height: qrboxSize };
+      }
     },
     (decodedText) => {
       scanAttempts++;
@@ -292,12 +312,17 @@ function startQrScanner() {
     }
   }).catch(err => {
     console.error("Failed to start scanner:", err);
+    // Clear timeout since scanner failed to start
+    if (scanTimeout) {
+      clearTimeout(scanTimeout);
+      scanTimeout = null;
+    }
     showError();
   });
 }
 
 function stopScanning() {
-  if (html5QrCode) {
+  if (html5QrCode && html5QrCode.isScanning) {
     html5QrCode.stop()
       .then(() => {
         console.log("Scanner stopped");
