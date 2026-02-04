@@ -14,11 +14,10 @@ body {
 
 /* Frame */
 .rectangle {
-    width: 80vw;
-    background-color: #fffefd;
+    background-color: #B30000;
     border-radius: 25px;
-    padding: 24px;
-    margin: 20px auto 40px auto;
+    padding: 10px;
+    margin: 0px auto 40px auto;
 }
 
 .home {
@@ -193,64 +192,76 @@ body {
     border-radius: 50%;
 }
 
-/* Wrap violin and staff side by side */
+/* this holds the violin fingerboard and the musical staff */
 .main-container {
     display: flex;
-    gap: 40px;
-    /* space between violin and staff */
     flex-wrap: wrap;
-    /* wraps on smaller screens */
-    background-color: #fffefd;
-    margin: 2rem;
+    margin: 1rem 2rem 1rem 2rem;
+    align-items: stretch;
+    gap: 1rem;
 }
 
-/* Violin container */
+/* this holds the violin fingerboard */
 .violin-container {
+    background-color: #fffefd;
+    border-radius: 50px;
+    padding: 2rem 4rem 4rem 4rem;
+    display: flex;
+    justify-content: center;
+}
+
+/*here to keep the touch points relative to the image and not the container div*/
+.violinOverlay {
     position: relative;
     width: 100%;
-    max-width: 400px;
-    margin-left: auto;
-    margin-right: auto;
 }
 
-.violin-container img {
+#violinFingerboard {
     width: 100%;
     height: auto;
+    display: block;
 }
 
-/* Ghost touch point */
-.violin-container .touch-point {
+
+/*touch points */
+.touch-point {
     position: absolute;
     width: 10%;
     height: 10%;
     border-radius: 50%;
     background: rgba(170, 167, 167, 0.2);
-    /* temporary to see placement */
     border: none;
     cursor: pointer;
     transform: translate(-50%, -50%);
 }
 
-/* Staff and description layout */
+/*musical staff overview area layout */
 .staff-and-description {
     display: flex;
     flex-direction: column;
-    max-width: 400px;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: auto;
-    margin-bottom: auto;
+    background-color: #fffefd;
+    border-radius: 50px;
+    padding: 2rem;
 }
 
 #staffImage {
-    width: auto;
+    padding-top: 4rem;
+    width: 100%;
     height: auto;
+    display: block;
 }
 
+/*formatting for the note description and overview*/
 #noteDescription {
     font-size: 16px;
     line-height: 1.4;
     max-width: 12rem;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#overview {
+    font-weight: 700;
     margin-left: auto;
     margin-right: auto;
 }
