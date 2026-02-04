@@ -91,8 +91,41 @@
         <div class="game-container">
             <div class="game-frame">
                 <div class="game-wrapper">
-                    <div class="game-placeholder" id="gameArea">
-                        <p>Game Loading...</p>
+                    <div class="game" id="gameArea">
+                        <!-- Question 1 -->
+                        <div class="game-question" data-question="1" data-answer="two">
+                            <div class="game-image-placeholder"><img src="../../images/lesson2.3/addRests1.svg"
+                                    alt="Violin Part 1"></div>
+                            <div class="game-options">
+                                <button class="game-option" data-option="one">One Beat</button>
+                                <button class="game-option" data-option="two">Two Beats</button>
+                                <button class="game-option" data-option="three">Three Beats</button>
+                                <button class="game-option" data-option="four">Four Beats</button>
+                                <button class="game-option" data-option="five">Five Beats</button>
+                                <button class="game-option" data-option="six">Six Beats</button>
+                            </div>
+                        </div>
+
+                        <!-- Question 2 -->
+                        <div class="game-question" data-question="2" data-answer="one" style="display: none;">
+                            <div class="game-image-placeholder"><img src="../../images/lesson2.3/addRests2.svg"
+                                    alt="Violin Part 2"></div>
+                            <div class="game-options">
+                                <button class="game-option" data-option="one">One Beat</button>
+                                <button class="game-option" data-option="two">Two Beats</button>
+                                <button class="game-option" data-option="three">Three Beats</button>
+                                <button class="game-option" data-option="four">Four Beats</button>
+                                <button class="game-option" data-option="five">Five Beats</button>
+                                <button class="game-option" data-option="six">Six Beats</button>
+                            </div>
+                        </div>
+
+                        <!-- Results -->
+                        <div class="game-result" style="display: none;">
+                            <p class="game-score"></p>
+                            <button class="game-retry">Try Again</button>
+                            <button class="game-continue">Continue</button>
+                        </div>
                     </div>
                 </div>
                 <div class="frame-bar">
@@ -138,7 +171,7 @@
                 </div>
                 <div class="next-lesson-info">
                     <p class="next-lesson-label">Next Lesson:</p>
-                    <p class="next-lesson-title">2.4 Time Signatures</p>
+                    <p class="next-lesson-title">3.1 Sharps and Flats</p>
                 </div>
             </div>
             <div class="finish-right">

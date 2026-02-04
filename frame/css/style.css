@@ -5,6 +5,15 @@ html {
 body {
     min-height: 100%;
     margin: 0;
+    font-family: 'Lexend', sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
     font-family: 'Poppins', sans-serif;
 }
 
@@ -93,7 +102,7 @@ body {
 .footer-left a {
     color: #000000;
     text-decoration: none;
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Lexend', sans-serif;
     font-weight: 400;
 }
 
@@ -103,7 +112,7 @@ body {
 
 .footer-right {
     color: #000000;
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Lexend', sans-serif;
     font-weight: 400;
 }
 
