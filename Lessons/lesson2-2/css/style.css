@@ -8,8 +8,16 @@
     font-family: 'Lexend', sans-serif;
 }
 
-.lesson-content h1, .lesson-content h2, .lesson-content h3, .lesson-content h4, .lesson-content h5, .lesson-content h6,
-.recap-title, .controls-title, .quiz-subtitle, .finish-title {
+.lesson-content h1,
+.lesson-content h2,
+.lesson-content h3,
+.lesson-content h4,
+.lesson-content h5,
+.lesson-content h6,
+.recap-title,
+.controls-title,
+.quiz-subtitle,
+.finish-title {
     font-family: 'Poppins', sans-serif;
 }
 
@@ -798,6 +806,24 @@
 
 .game-option.incorrect::before {
     opacity: 0;
+}
+
+@keyframes shake {
+
+    0%,
+    100% {
+        transform: translateX(0);
+    }
+
+    20%,
+    60% {
+        transform: translateX(-4px);
+    }
+
+    40%,
+    80% {
+        transform: translateX(4px);
+    }
 }
 
 /* Game Results */

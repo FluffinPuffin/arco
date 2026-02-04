@@ -265,7 +265,7 @@ function initQuiz() {
                         question.style.display = 'none';
                         result.style.display = 'block';
                         scoreDisplay.textContent = `You got ${score} out of ${totalQuestions} correct!`;
-                        markPartCompleted(2);
+                        markPartCompleted(1);
                     }
                 }, 1000);
             });
@@ -416,7 +416,7 @@ function initGame() {
                         question.style.display = 'none';
                         result.style.display = 'block';
                         scoreDisplay.textContent = `You got ${score} out of ${totalQuestions} correct!`;
-                        markPartCompleted(3);
+                        markPartCompleted(2);
                     }
                 }, 1000);
             });
