@@ -1,0 +1,157 @@
+<div class="awardsCard">
+
+    <!-- tabs -->
+    <div class="awardTypes">
+        <button class="tabButton is-active" data-tab="medals">Medals</button>
+        <button class="tabButton" data-tab="stickers">Stickers</button>
+        <button class="tabButton" data-tab="events">Events</button>
+    </div>
+
+    <!-- MEDALS -->
+    <section class="awardsSection medalsSection is-active" data-award="medals">
+
+        <div class="medalsSectionGrid">
+            <ul class="medalsList"></ul>
+        </div>
+
+        <div class="medalDetails">
+            <article>
+
+                <!-- placeholder -->
+                <div class="previewCover medalCover">
+                    Select a medal to preview
+                </div>
+
+                <div class="medalImage">
+                    <img src="" alt="" id="medalImage">
+                </div>
+
+                <div class="medalText">
+                    <h3 id="lessonNumber"></h3>
+                    <p id="completionStatus" data-state=""></p>
+
+                    <p id="earnedMessage">
+                        Earned by completing
+                        <span id="courseName"></span>
+                    </p>
+                    <p id="unlockMessage" hidden></p>
+
+                    <time id="completionDate" datetime=""></time>
+                </div>
+
+            </article>
+        </div>
+
+    </section>
+
+    <!-- STICKERS -->
+    <section class="awardsSection stickersSection" data-award="stickers">
+
+        <div class="stickersGallery">
+
+            <button type="button" class="galleryNav galleryNavPrev">
+                <span>‹</span>
+            </button>
+
+            <div class="stickersBook">
+                <ul class="stickersList stickersLeft"></ul>
+
+                <img src="../../frame/images/binderComponent.svg" alt="Binder" class="binderImg">
+
+                <ul class="stickersList stickersRight"></ul>
+            </div>
+
+            <button type="button" class="galleryNav galleryNavNext">
+                <span>›</span>
+            </button>
+
+        </div>
+
+        <!-- sticker preview card -->
+        <article class="awardPreviewCard">
+
+            <!-- placeholder -->
+            <div class="previewCover stickerCover">
+                Select a sticker to preview
+            </div>
+
+            <div class="stickerPreviewImage">
+                <img src="" alt="" id="stickerPreviewImage">
+            </div>
+
+            <div class="awardPreviewText">
+                <h3 id="stickerPreviewTitle"></h3>
+                <p id="stickerPreviewDescription"></p>
+            </div>
+
+            <div class="awardPreviewMeta">
+                <time id="stickerPreviewDate"></time>
+
+                <button type="button" class="allStickersButton">
+                    All Stickers
+                </button>
+            </div>
+
+        </article>
+
+    </section>
+
+    <!-- EVENTS -->
+    <section class="awardsSection eventsSection" data-award="events">
+
+        <div class="eventLayout">
+
+            <div class="eventImage">
+                <img src="" alt="" id="eventImage">
+            </div>
+
+            <article class="eventDetails">
+
+                <h2 id="eventTitle"></h2>
+                <p id="eventDescription"></p>
+
+                <h3 class="eventRewardsHeading">Rewards</h3>
+
+                <ul class="eventRewardsGrid" id="eventRewardsGrid"></ul>
+
+
+            </article>
+
+        </div>
+
+    </section>
+
+</div>
+
+<!-- modal -->
+<div class="modal allStickersModal" hidden>
+
+    <div class="modalBackdrop"></div>
+
+    <div class="modalContent">
+
+        <button class="modalClose">×</button>
+
+        <nav class="modalTabs">
+            <button class="is-active">All</button>
+            <button>Unlocked</button>
+            <button>Locked</button>
+        </nav>
+
+        <ul class="stickersGrid"></ul>
+
+        <!-- modal sticker detail box -->
+        <div class="modalStickerPreviewCard">
+
+            <div class="modalStickerPreviewImage">
+                <img src="" alt="" id="modalStickerPreviewImage">
+            </div>
+
+            <div class="modalStickerPreviewText">
+                <h3 id="modalStickerPreviewTitle"></h3>
+                <p id="modalStickerPreviewDescription"></p>
+                <time id="modalStickerPreviewDate"></time>
+            </div>
+
+        </div>
+    </div>
