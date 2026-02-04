@@ -1,16 +1,26 @@
-/* Base Layout */
-html, body {
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Lexend:wght@400;500;600&display=swap');
+
+*, *::before, *::after {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
+}
+
+/* Base Layout */
+html {
+    overflow-y: scroll;
+}
+
+html,
+body {
     height: 100vh;
-    overflow: hidden;
 }
 
 body {
     display: flex;
     flex-direction: column;
     padding-top: 65px;
-    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
 }
 
 #lesson-title {
