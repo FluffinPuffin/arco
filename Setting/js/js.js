@@ -125,8 +125,8 @@ function initSettings() {
   content.querySelector("[data-avatar-cancel]")?.addEventListener("click", () => closeAvatarModal(avatarModal));
   content.querySelector("[data-avatar-backdrop]")?.addEventListener("click", () => closeAvatarModal(avatarModal));
 
-  // Manage Account button
-  const manageBtn = content.querySelector(".settings-primary-btn");
+  // Manage Account button (only in the Account panel)
+  const manageBtn = content.querySelector('.settings-panel[data-sub="account"] .settings-primary-btn');
   if (manageBtn) {
     manageBtn.addEventListener("click", () => {
       manageBtn.textContent = "Account management coming soon.";

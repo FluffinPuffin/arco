@@ -22,7 +22,7 @@ h6,
 
 .title-wrapper .title {
     font-size: 28px;
-    color: #4B4B4B;
+    color: #1C1C1C;
     margin: 0;
 }
 
@@ -46,18 +46,11 @@ h6,
     transform: translateX(75px);
 }
 
-.button-grid .btn:nth-child(4):hover,
-.button-grid .btn:nth-child(5):hover {
-    transform: translateX(75px) scale(1.05);
-}
-
 .btn {
     text-decoration: none;
-    transition: transform 0.2s ease;
-}
-
-.btn:hover {
-    transform: scale(1.05);
+    display: block;
+    width: 120px;
+    height: 120px;
 }
 
 .btn img {
@@ -84,26 +77,26 @@ h6,
     width: 36px;
     height: 36px;
     border-radius: 50%;
-    border: 2px solid #4B4B4B;
+    border: 2px solid #1C1C1C;
     font-weight: bold;
     font-size: 14px;
-    color: #4B4B4B;
+    color: #1C1C1C;
     background-color: #FFFEFD;
 }
 
 .day.filled {
-    background-color: #4B4B4B;
+    background-color: #1C1C1C;
     color: #FFFEFD;
 }
 
 .streak-divider {
     width: 2px;
     height: 30px;
-    background-color: #4B4B4B;
+    background-color: #1C1C1C;
 }
 
 .streak-count {
     font-weight: bold;
     font-size: 18px;
-    color: #4B4B4B;
+    color: #1C1C1C;
 }

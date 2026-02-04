@@ -275,6 +275,19 @@
     font-size: 16px;
 }
 
+.info-icon img {
+    width: 20px;
+    height: 20px;
+    filter: brightness(0);
+    /* Makes icons black */
+    transition: filter 0.2s;
+}
+
+.info-tab.active .info-icon img {
+    filter: brightness(0) invert(1);
+    /* Makes icons white when tab is active */
+}
+
 .info-content p {
     margin: 0;
     font-size: 14px;

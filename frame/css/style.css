@@ -46,10 +46,21 @@ body {
 
 .home {
     float: right;
+    transition: filter 0.2s ease;
+    cursor: pointer;
+}
+
+.home:hover {
+    filter: brightness(0.7);
 }
 
 .arrow {
     float: left;
+    transition: filter 0.2s ease;
+}
+
+.arrow:hover {
+    filter: brightness(0.7);
 }
 
 .frame {

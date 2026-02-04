@@ -8,8 +8,16 @@
     font-family: 'Lexend', sans-serif;
 }
 
-.lesson-content h1, .lesson-content h2, .lesson-content h3, .lesson-content h4, .lesson-content h5, .lesson-content h6,
-.recap-title, .controls-title, .quiz-subtitle, .finish-title {
+.lesson-content h1,
+.lesson-content h2,
+.lesson-content h3,
+.lesson-content h4,
+.lesson-content h5,
+.lesson-content h6,
+.recap-title,
+.controls-title,
+.quiz-subtitle,
+.finish-title {
     font-family: 'Poppins', sans-serif;
 }
 
@@ -254,6 +262,19 @@
 
 .info-icon {
     font-size: 16px;
+}
+
+.info-icon img {
+    width: 20px;
+    height: 20px;
+    filter: brightness(0);
+    /* Makes icons black */
+    transition: filter 0.2s;
+}
+
+.info-tab.active .info-icon img {
+    filter: brightness(0) invert(1);
+    /* Makes icons white when tab is active */
 }
 
 .info-content p {

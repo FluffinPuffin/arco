@@ -21,6 +21,21 @@ document.addEventListener("frame:ready", () => {
         })
         .then(content => {
             document.getElementById("content").insertAdjacentHTML("beforeend", content);
+
+            // Add hover effects to swap images
+            const buttons = document.querySelectorAll('.btn img');
+            buttons.forEach(img => {
+                const originalSrc = img.src;
+                const hoverSrc = originalSrc.replace('.svg', '-hover.svg');
+
+                img.parentElement.addEventListener('mouseenter', () => {
+                    img.src = hoverSrc;
+                });
+
+                img.parentElement.addEventListener('mouseleave', () => {
+                    img.src = originalSrc;
+                });
+            });
         })
         .catch(err => console.error("Content load failed:", err));
 })
