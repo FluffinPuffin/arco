@@ -312,7 +312,7 @@ function initFinishButtons() {
 
   if (nextLessonBtn) {
     nextLessonBtn.addEventListener('click', () => {
-      window.location.href = '../../lesson1-3/html/index.html';
+      window.location.href = '../../lesson3-4/html/index.html';
     });
   }
 }

@@ -122,6 +122,7 @@ body {
 
 .header-center a:hover {
     opacity: 0.8;
+    text-decoration: underline;
 }
 
 .header-right {
@@ -145,6 +146,7 @@ body {
 
 .header-right a:hover {
     opacity: 0.8;
+    text-decoration: underline;
 }
 
 .premium-icon,

@@ -451,3 +451,6 @@ function initGame() {
   }
 }
 
+function cookie() {
+
+}

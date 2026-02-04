@@ -309,12 +309,6 @@ function initFinishButtons() {
             window.location.href = '../../html/index.html';
         });
     }
-
-    if (nextLessonBtn) {
-        nextLessonBtn.addEventListener('click', () => {
-            window.location.href = '../../lesson1-3/html/index.html';
-        });
-    }
 }
 
 // Dev testing functions
