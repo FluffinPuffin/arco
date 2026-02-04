@@ -16,6 +16,41 @@ body {
     font-family: 'Poppins', sans-serif;
 }
 
+/* Frame */
+.rectangle {
+    background-color: #B30000;
+    border-radius: 25px;
+    padding: 10px;
+    margin: 0px auto 40px auto;
+}
+
+.home {
+    float: right;
+}
+
+.arrow {
+    float: left;
+}
+
+.frame {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    flex: 1;
+}
+
+.buttons {
+    position: relative;
+    width: 85%;
+    margin: 100px auto 0 auto;
+    display: flex;
+    justify-content: space-between;
+    /* keeps buttons at edges */
+    align-items: center;
+}
+
 /* title */
 #lesson-title {
     flex: 1;
@@ -35,64 +70,202 @@ body {
     margin: 0;
 }
 
-/* Wrap violin and staff side by side */
-.main-container {
+/* Footer */
+.footer {
+    margin-top: auto;
+    width: 100%;
+    padding: 20px 40px;
+    box-sizing: border-box;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    background-color: #fffefd;
+    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.footer-left {
     display: flex;
     gap: 40px;
-    /* space between violin and staff */
-    flex-wrap: wrap;
-    /* wraps on smaller screens */
-    background-color: #fffefd;
-    margin: 2rem;
 }
 
-/* Violin container */
+.footer-left a {
+    color: #1c1c1c;
+    text-decoration: none;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400;
+}
+
+.footer-left a:hover {
+    text-decoration: underline;
+}
+
+.footer-link.footer-active {
+    font-weight: 600;
+}
+
+.footer-right {
+    color: #1c1c1c;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400;
+}
+
+/* Header */
+
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 10px 40px;
+    box-sizing: border-box;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    background-color: #fffefd;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.header-left {
+    flex: 1;
+    display: flex;
+    align-items: center;
+}
+
+.header-left .logo {
+    height: 30px;
+}
+
+.header-center {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.header-center a {
+    color: #1c1c1c;
+    text-decoration: none;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.header-center a:hover {
+    opacity: 0.8;
+}
+
+.header-right {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 30px;
+}
+
+.header-right a {
+    color: #1c1c1c;
+    text-decoration: none;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.header-right a:hover {
+    opacity: 0.8;
+}
+
+.premium-icon,
+.settings-icon {
+    width: 24px;
+    height: 24px;
+}
+
+.profile-icon {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+}
+
+/* this holds the violin fingerboard and the musical staff */
+.main-container {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 1rem 2rem 1rem 2rem;
+    align-items: stretch;
+    gap: 1rem;
+}
+
+/* this holds the violin fingerboard */
 .violin-container {
+    background-color: #fffefd;
+    border-radius: 50px;
+    padding: 2rem 4rem 4rem 4rem;
+    display: flex;
+    justify-content: center;
+}
+
+/*here to keep the touch points relative to the image and not the container div*/
+.violinOverlay {
     position: relative;
     width: 100%;
-    max-width: 400px;
-    margin-left: auto;
-    margin-right: auto;
 }
 
-.violin-container img {
+#violinFingerboard {
     width: 100%;
     height: auto;
+    display: block;
 }
 
-/* Ghost touch point */
-.violin-container .touch-point {
+
+/*touch points */
+.touch-point {
     position: absolute;
     width: 10%;
     height: 10%;
     border-radius: 50%;
     background: rgba(170, 167, 167, 0.2);
-    /* temporary to see placement */
     border: none;
     cursor: pointer;
     transform: translate(-50%, -50%);
 }
 
-/* Staff and description layout */
+/*musical staff overview area layout */
 .staff-and-description {
     display: flex;
     flex-direction: column;
-    max-width: 400px;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: auto;
-    margin-bottom: auto;
+    background-color: #fffefd;
+    border-radius: 50px;
+    padding: 2rem;
 }
 
 #staffImage {
-    width: auto;
+    padding-top: 4rem;
+    width: 100%;
     height: auto;
+    display: block;
 }
 
+/*formatting for the note description and overview*/
 #noteDescription {
     font-size: 16px;
     line-height: 1.4;
     max-width: 12rem;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#overview {
+    font-weight: 700;
     margin-left: auto;
     margin-right: auto;
 }
