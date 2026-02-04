@@ -1,11 +1,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Lexend:wght@400;500;600&display=swap');
 
 .body {
-    background-color: white;
+    background-color: #FFFEFD;
     font-family: 'Lexend', sans-serif;
 }
 
-h1, h2, h3, h4, h5, h6, .title {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.title {
     font-family: 'Poppins', sans-serif;
 }
 
@@ -16,7 +22,7 @@ h1, h2, h3, h4, h5, h6, .title {
 
 .title-wrapper .title {
     font-size: 28px;
-    color: #333;
+    color: #4B4B4B;
     margin: 0;
 }
 
@@ -78,26 +84,26 @@ h1, h2, h3, h4, h5, h6, .title {
     width: 36px;
     height: 36px;
     border-radius: 50%;
-    border: 2px solid #333;
+    border: 2px solid #4B4B4B;
     font-weight: bold;
     font-size: 14px;
-    color: #333;
-    background-color: white;
+    color: #4B4B4B;
+    background-color: #FFFEFD;
 }
 
 .day.filled {
-    background-color: #333;
-    color: white;
+    background-color: #4B4B4B;
+    color: #FFFEFD;
 }
 
 .streak-divider {
     width: 2px;
     height: 30px;
-    background-color: #333;
+    background-color: #4B4B4B;
 }
 
 .streak-count {
     font-weight: bold;
     font-size: 18px;
-    color: #333;
+    color: #4B4B4B;
 }

@@ -1,5 +1,4 @@
 /* Contact us page - form + contact info */
-
 .rectangle:has(.contact-panel) {
     background-color: transparent;
     border-color: transparent;
@@ -11,7 +10,7 @@
     gap: 2rem;
     width: 100%;
     min-height: 400px;
-    background: #fff;
+    background: #FFFEFD;
     border-radius: 16px;
     padding: 2rem;
     box-sizing: border-box;
@@ -44,7 +43,7 @@
 .contact-input,
 .contact-textarea {
     padding: 0.75rem 1rem;
-    border: 1px solid #ddd;
+    border: 1px solid #F0F0F0;
     border-radius: 8px;
     font-family: 'Poppins', sans-serif;
     font-size: 1rem;
@@ -53,7 +52,7 @@
 
 .contact-input::placeholder,
 .contact-textarea::placeholder {
-    color: #999;
+    color: #BFBFBF;
 }
 
 .contact-textarea {
@@ -63,8 +62,8 @@
 
 .contact-submit {
     padding: 0.875rem 1.5rem;
-    background: #2a2a2a;
-    color: #fff;
+    background: #1C1C1C;
+    color: #FFFEFD;
     border: none;
     border-radius: 8px;
     font-family: 'Poppins', sans-serif;
@@ -76,7 +75,7 @@
 }
 
 .contact-submit:hover {
-    background: #444;
+    background: #BFBFBF;
 }
 
 .contact-info-section {
@@ -85,10 +84,10 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background: #2a2a2a;
+    background: #4B4B4B;
     border-radius: 12px;
     padding: 2rem;
-    color: #fff;
+    color: #FFFEFD;
 }
 
 .contact-illustration {
@@ -96,7 +95,7 @@
 }
 
 .contact-illustration svg {
-    color: #888;
+    color: #BFBFBF;
 }
 
 .contact-details {
@@ -109,7 +108,7 @@
     display: flex;
     align-items: center;
     gap: 0.75rem;
-    color: #fff;
+    color: #FFFEFD;
     text-decoration: none;
     font-family: 'Poppins', sans-serif;
     font-size: 0.95rem;

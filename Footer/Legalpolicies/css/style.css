@@ -16,7 +16,7 @@
 
 .legal-sidebar {
     flex: 0 0 220px;
-    background: #fff;
+    background: #FFFEFD;
     border-radius: 16px;
     padding: 1.25rem;
     display: flex;
@@ -46,7 +46,7 @@
 
 .legal-content {
     flex: 1;
-    background: #fff;
+    background: #FFFEFD;
     border-radius: 16px;
     padding: 1.5rem;
     overflow-y: auto;
@@ -80,7 +80,7 @@
     padding: 1.25rem;
     border: 1px solid #333;
     border-radius: 8px;
-    background: #fff;
+    background: #FFFEFD;
 }
 
 .legal-clarification-title {

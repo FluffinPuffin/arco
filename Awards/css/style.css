@@ -9,12 +9,16 @@
 /* ============================= */
 :root {
     --bg-main: #8F4300;
-    --white: #ffffff;
-    --muted: rgba(0, 0, 0, 0.6);
+    --white: #FFFEFD;
+    --muted: #1C1C1C;
 
     --radius-pill: 50em;
     --radius-lg: 1.25rem;
     --stroke-thick: 0.25rem;
+}
+
+.rectangle {
+    background-color: #FFFEFD;
 }
 
 /* ============================= */
@@ -84,7 +88,7 @@ body {
 
 .awardTypes button.is-active {
     background-color: #8F4300;
-    color: #ffffff;
+    color: #FFFEFD;
     border-color: #8F4300;
 }
 
@@ -95,8 +99,8 @@ body {
 
 /* scrolling medals */
 .medalsSectionGrid {
-    max-height: 16rem;
-    overflow-y: auto;
+    /* max-height: 16rem; */
+    /* overflow-y: auto; */
     margin-bottom: 2rem;
     padding-top: 0.75rem;
     padding-bottom: 0.75rem;
@@ -115,7 +119,7 @@ body {
 /* MEDAL DETAILS PANEL */
 /* ============================= */
 .medalDetails {
-    border: 0.1rem solid #E0E0E0;
+    border: 0.1rem solid #F0F0F0;
     border-radius: var(--radius-lg);
     padding: 1.5rem;
     min-height: 11rem;
@@ -213,7 +217,7 @@ body {
     height: clamp(2rem, 5vw, 3.5rem);
     border-radius: 50%;
     border: 2px solid rgba(0, 0, 0, 0.2);
-    background: white;
+    background: #FFFEFD;
 
     display: flex;
     align-items: center;
@@ -232,7 +236,7 @@ body {
 }
 
 .galleryNav:hover {
-    color: white;
+    color: #FFFEFD;
     border-color: #8F4300;
     background: #8F4300;
 }
@@ -322,7 +326,7 @@ body {
     content: "";
     width: 14px;
     height: 14px;
-    background: rgba(0, 0, 0, 0.25);
+    background: #1C1C1C;
     border-radius: 50%;
 
     position: absolute;
@@ -340,12 +344,12 @@ body {
 /* sticker details panel */
 /* ============================= */
 .awardPreviewCard {
-    border: 0.1rem solid #e0e0e0;
+    border: 0.1rem solid #F0F0F0;
     border-radius: 1.25rem;
     padding: 1.5rem;
     max-width: 50rem;
     margin: 0 auto;
-    box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.09);
+    box-shadow: 0 0.25rem 0.5rem #1C1C1C;
 
     display: flex;
     align-items: center;
@@ -379,7 +383,7 @@ body {
 /* all stickers button */
 .allStickersButton {
     background-color: #8F4300;
-    color: white;
+    color: #FFFEFD;
     border: none;
     padding: 0.6rem 1.2rem;
     border-radius: 2rem;
@@ -408,12 +412,12 @@ body {
 .modalBackdrop {
     position: absolute;
     inset: 0;
-    background: rgba(0, 0, 0, 0.65);
+    background: #1C1C1C;
 }
 
 .modalContent {
     position: relative;
-    background: white;
+    background: #FFFEFD;
 
     width: 90%;
     max-width: 900px;
@@ -421,7 +425,7 @@ body {
     padding: 2rem;
 
     border-radius: 1.5rem;
-    box-shadow: 0px 8px 25px rgba(0, 0, 0, 0.25);
+    box-shadow: 0px 8px 25px #1C1C1C;
 
     display: flex;
     flex-direction: column;
@@ -462,14 +466,14 @@ body {
 
 .modalTabs button.is-active {
     text-decoration-line: underline;
-    text-decoration-color: black;
+    text-decoration-color: #1C1C1C;
     text-underline-offset: 5px;
     text-decoration-thickness: 3px;
 }
 
 .modalTabs button:hover {
     text-decoration-line: underline;
-    text-decoration-color: black;
+    text-decoration-color: #1C1C1C;
     text-underline-offset: 5px;
     text-decoration-thickness: 2px;
 }
@@ -553,7 +557,7 @@ body {
     font-weight: 700;
     font-family: "Poppins", sans-serif;
 
-    color: rgba(0, 0, 0, 0.6);
+    color: #1C1C1C;
 
     pointer-events: none;
 }
@@ -572,7 +576,7 @@ body {
     font-weight: 700;
     font-family: "Poppins", sans-serif;
 
-    color: rgba(0, 0, 0, 0.6);
+    color: #1C1C1C;
 }
 
 .modalStickerPreviewCard.empty .modalStickerPreviewImage::after {
@@ -589,14 +593,14 @@ body {
     gap: 2rem;
     align-items: center;
 
-    border: 0.1rem solid #e0e0e0;
+    border: 0.1rem solid #F0F0F0;
     border-radius: 1.5rem;
     padding: 2rem;
 
     max-width: 55rem;
     margin: 0 auto;
 
-    background: white;
+    background: #FFFEFD;
     box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1);
 }
 
@@ -688,8 +692,8 @@ body {
     width: 18px;
     height: 18px;
 
-    background: #22c55e;
-    color: white;
+    background: #2c4a3b;
+    color: #FFFEFD;
 
     font-size: 12px;
     font-weight: bold;
@@ -704,7 +708,7 @@ body {
 
 .modalStickerPreviewCard.empty {
     opacity: 0.6;
-    border: 2px dashed #ccc;
+    border: 2px dashed #F0F0F0;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -723,7 +727,7 @@ body {
 .previewCover {
     position: absolute;
     inset: 0;
-    background: white;
+    background: #FFFEFD;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -894,4 +898,11 @@ body {
         height: 34px;
     }
 
+}
+
+.title-icon {
+    width: 20px;
+    height: 20px;
+    vertical-align: middle;
+    margin-left: 10px;
 }

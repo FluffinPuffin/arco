@@ -16,7 +16,7 @@
 }
 
 .rectangle {
-    background-color: #fff !important;
+    background-color: #FFFEFD !important;
     border: none !important;
     overflow: visible !important;
     height: auto !important;
@@ -55,62 +55,8 @@
 .lessons-title {
     font-size: 32px;
     font-weight: 700;
-    color: #5046E5;
+    color: #3F39C2;
     margin: 0;
-}
-
-.filter-btn {
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 8px;
-    color: #5046E5;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 8px;
-    transition: background-color 0.2s;
-}
-
-.filter-btn:hover {
-    background-color: rgba(80, 70, 229, 0.1);
-}
-
-.filter-icon {
-    display: block;
-    width: 20px;
-    height: 14px;
-    position: relative;
-}
-
-.filter-icon::before,
-.filter-icon::after {
-    content: '';
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    height: 2px;
-    background-color: currentColor;
-    border-radius: 1px;
-}
-
-.filter-icon::before {
-    width: 20px;
-    top: 0;
-}
-
-.filter-icon::after {
-    width: 12px;
-    bottom: 0;
-}
-
-.filter-btn::after {
-    content: '';
-    position: absolute;
-    width: 16px;
-    height: 2px;
-    background-color: currentColor;
-    border-radius: 1px;
 }
 
 /* Section Styles */
@@ -144,22 +90,22 @@
 }
 
 .progress-bar.active-green {
-    background-color: #4CAF50;
+    background-color: #357d58;
 }
 
 .progress-bar.active-yellow {
-    background-color: #FFC107;
+    background-color: #ef9651;
 }
 
 .progress-bar.active-red {
-    background-color: #F44336;
+    background-color: #b30000;
 }
 
 
 .section-title {
     font-size: 20px;
     font-weight: 600;
-    color: #333;
+    color: #4B4B4B;
     margin: 0;
 }
 
@@ -177,7 +123,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #666;
+    color: #BFBFBF;
     border-radius: 50%;
     transition: all 0.2s;
     position: relative;
@@ -203,7 +149,7 @@
 
 .nav-arrow:hover:not(:disabled) {
     background-color: rgba(0, 0, 0, 0.05);
-    color: #333;
+    color: #4B4B4B;
 }
 
 .nav-arrow:disabled {
@@ -237,9 +183,9 @@
 .lesson-card {
     flex: 0 0 180px;
     min-width: 180px;
-    background: #fff;
+    background: #FFFEFD;
     border-radius: 16px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 8px #F0F0F0;
     overflow: hidden;
     position: relative;
     transition: transform 0.2s, box-shadow 0.2s;
@@ -247,7 +193,7 @@
 
 .lesson-card:hover {
     transform: translateY(-4px);
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 8px 24px #F0F0F0;
 }
 
 .lesson-card.premium-locked {
@@ -277,14 +223,14 @@
 
 .card-progress .progress-fill {
     height: 100%;
-    background-color: #5046E5;
+    background-color: #3F39C2;
     border-radius: 3px;
     transition: width 0.3s ease;
 }
 
 .progress-text {
     font-size: 12px;
-    color: #666;
+    color: #BFBFBF;
     min-width: 32px;
     text-align: right;
 }
@@ -299,6 +245,7 @@
     justify-content: center;
     position: relative;
     overflow: hidden;
+    background: linear-gradient(135deg, #A19DE6 0%, #3F39C2 100%);
 }
 
 .card-thumbnail.locked {
@@ -364,7 +311,7 @@
     display: block;
     font-size: 14px;
     font-weight: 600;
-    color: #333;
+    color: #4B4B4B;
 }
 
 .lesson-name {
@@ -379,8 +326,8 @@
     display: block;
     margin: 0 12px 12px 12px;
     padding: 10px 16px;
-    background-color: #5046E5;
-    color: #fff;
+    background-color: #3F39C2;
+    color: #FFFEFD;
     text-align: center;
     text-decoration: none;
     font-size: 14px;
@@ -390,11 +337,11 @@
 }
 
 .card-btn:hover {
-    background-color: #3F39C2;
+    background-color: #A19DE6;
 }
 
 .card-btn.continue {
-    background-color: #5046E5;
+    background-color: #A19DE6;
 }
 
 .card-btn.locked {
@@ -427,7 +374,7 @@
 }
 
 .overlay-text {
-    color: #fff;
+    color: #FFFEFD;
     font-size: 14px;
     font-weight: 600;
     text-align: center;

@@ -2,7 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Lexend:wght@400;500;600&display=swap');
 
 :root {
-    --frame-color: #347D58;
+    --frame-color: #29613F;
 }
 
 /* Override frame for games listing page */
@@ -16,7 +16,7 @@
 }
 
 .rectangle {
-    background-color: #fff !important;
+    background-color: #FFFEFD !important;
     border: none !important;
     overflow: visible !important;
     height: auto !important;
@@ -55,7 +55,7 @@
 .games-title {
     font-size: 32px;
     font-weight: 700;
-    color: #347D58;
+    color: #29613F;
     margin: 0;
 }
 
@@ -80,7 +80,7 @@
 .section-title {
     font-size: 20px;
     font-weight: 600;
-    color: #333;
+    color: #4B4B4B;
     margin: 0;
 }
 
@@ -98,7 +98,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #666;
+    color: #BFBFBF;
     border-radius: 50%;
     transition: all 0.2s;
     position: relative;
@@ -123,8 +123,8 @@
 }
 
 .nav-arrow:hover:not(:disabled) {
-    background-color: rgba(0, 0, 0, 0.05);
-    color: #333;
+    background-color: #1C1C1C;
+    color: #4B4B4B;
 }
 
 .nav-arrow:disabled {
@@ -160,14 +160,14 @@
     min-width: 180px;
     background: #fff;
     border-radius: 16px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 8px #F0F0F0;
     overflow: hidden;
     position: relative;
     transition: transform 0.2s, box-shadow 0.2s;
 }
 
 .game-card:hover {
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 8px 24px #F0F0F0;
 }
 
 /* Card Thumbnail */
@@ -180,6 +180,7 @@
     justify-content: center;
     position: relative;
     overflow: hidden;
+    background: linear-gradient(135deg, #9FC6B2 0%, #29613F 100%);
 }
 
 /* Card Info */
@@ -192,7 +193,7 @@
     display: block;
     font-size: 14px;
     font-weight: 600;
-    color: #333;
+    color: #4B4B4B;
 }
 
 .game-name {
@@ -207,8 +208,8 @@
     display: block;
     margin: 0 12px 12px 12px;
     padding: 10px 16px;
-    background-color: #5046E5;
-    color: #fff;
+    background-color: #1C1C1C;
+    color: #FFFEFD;
     text-align: center;
     text-decoration: none;
     font-size: 14px;
@@ -218,7 +219,7 @@
 }
 
 .card-btn:hover {
-    background-color: #3F39C2;
+    background-color: #4B4B4B;
 }
 
 /* Responsive adjustments */
