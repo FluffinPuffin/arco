@@ -22,9 +22,68 @@ document.addEventListener("frame:ready", () => {
     .then(content => {
       document.getElementById("content").insertAdjacentHTML("beforeend", content);
       initCarousels();
+      loadLessonProgress();
     })
     .catch(err => console.error("Content load failed:", err));
 });
+
+// Load and display lesson progress from localStorage
+function loadLessonProgress() {
+  const allProgress = JSON.parse(localStorage.getItem('arco_lessons_progress') || '{}');
+
+  const lessonCards = document.querySelectorAll('.lesson-card');
+  lessonCards.forEach(card => {
+    const lessonId = card.dataset.lesson;
+    const lessonKey = `lesson${lessonId}`;
+
+    const progress = allProgress[lessonKey];
+    if (progress) {
+      const progressFill = card.querySelector('.progress-fill');
+      const progressText = card.querySelector('.progress-text');
+      const cardBtn = card.querySelector('.card-btn');
+
+      if (progressFill) {
+        progressFill.style.width = `${progress.percentage}%`;
+      }
+      if (progressText) {
+        progressText.textContent = `${String(progress.percentage).padStart(2, '0')}%`;
+      }
+
+      // Update button text based on progress
+      if (cardBtn) {
+        if (progress.completed) {
+          cardBtn.textContent = 'Review';
+        } else if (progress.percentage > 0) {
+          cardBtn.textContent = 'Continue';
+        }
+      }
+    }
+  });
+
+  // Update section progress bars
+  updateSectionProgress(allProgress);
+}
+
+// Update section header progress bars based on lesson completion
+function updateSectionProgress(allProgress) {
+  const sections = document.querySelectorAll('.lesson-section');
+
+  sections.forEach(section => {
+    const sectionNum = section.dataset.section;
+    const progressBars = section.querySelectorAll('.progress-bar');
+    const lessonCards = section.querySelectorAll('.lesson-card');
+
+    let completedLessons = 0;
+    lessonCards.forEach(card => {
+      const lessonId = card.dataset.lesson;
+      const lessonKey = `lesson${lessonId}`;
+      if (allProgress[lessonKey] && allProgress[lessonKey].completed) {
+        completedLessons++;
+      }
+    });
+
+  });
+}
 
 function initCarousels() {
   const sections = document.querySelectorAll(".lesson-section");

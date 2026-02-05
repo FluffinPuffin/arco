@@ -43,6 +43,21 @@
     font-family: 'Poppins', sans-serif;
 }
 
+.progress-bar.active-green {
+    background-color: #2c4a3b;
+    /* example */
+}
+
+.progress-bar.active-yellow {
+    background-color: #ef9651;
+    /* example */
+}
+
+.progress-bar.active-red {
+    background-color: #b30000;
+    /* example */
+}
+
 /* Page Header */
 .lessons-header {
     display: flex;
