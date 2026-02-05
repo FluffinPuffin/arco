@@ -1,6 +1,46 @@
 // Track which parts have been completed
-const partCompleted = [false, false, false, false, false];
+const LESSON_ID = 'lesson2-1';
+let partCompleted = [false, false, false];
 let currentPartIndex = 0;
+
+// Load saved progress from localStorage
+function loadProgress() {
+  const saved = localStorage.getItem(`arco_progress_${LESSON_ID}`);
+  if (saved) {
+    const data = JSON.parse(saved);
+    partCompleted = data.partCompleted || [false, false, false];
+    currentPartIndex = data.currentPartIndex || 0;
+  }
+}
+
+// Save progress to localStorage
+function saveProgress() {
+  const data = {
+    partCompleted: partCompleted,
+    currentPartIndex: currentPartIndex,
+    lastUpdated: Date.now()
+  };
+  localStorage.setItem(`arco_progress_${LESSON_ID}`, JSON.stringify(data));
+  updateOverallProgress();
+}
+
+// Update overall progress that the lessons page can read
+function updateOverallProgress() {
+  const completedCount = partCompleted.filter(p => p).length;
+  const percentage = Math.round((completedCount / partCompleted.length) * 100);
+
+  let allProgress = JSON.parse(localStorage.getItem('arco_lessons_progress') || '{}');
+  allProgress[LESSON_ID] = {
+    percentage: percentage,
+    completedParts: completedCount,
+    totalParts: partCompleted.length,
+    completed: completedCount === partCompleted.length
+  };
+  localStorage.setItem('arco_lessons_progress', JSON.stringify(allProgress));
+}
+
+// Initialize progress on load
+loadProgress();
 
 document.addEventListener("frame:ready", () => {
   // Inject title.html into the frame's title placeholder
@@ -38,6 +78,7 @@ document.addEventListener("frame:ready", () => {
       initFinishButtons();
       initGameControls();
       initGame();
+      initButtonEffects();
     })
     .catch(err => console.error("CONTENT LOAD FAILED:", err));
 });
@@ -134,6 +175,7 @@ function initLessonParts() {
 
     showTitle(index);
     updateButtonStates();
+    saveProgress();
 
     const activePart = parts[index];
     const infoBox = activePart.querySelector('.info-box');
@@ -152,7 +194,8 @@ function initLessonParts() {
     }
   }
 
-  showPart(0, false);
+  // Start at saved position or 0
+  showPart(currentPartIndex, false);
 
   navBtns.forEach(btn => {
     btn.addEventListener('click', () => {
@@ -195,6 +238,7 @@ function updateButtonStates() {
 function markPartCompleted(partIndex) {
   partCompleted[partIndex] = true;
   updateButtonStates();
+  saveProgress();
 }
 
 function initInfoTabs() {
@@ -351,6 +395,48 @@ document.addEventListener('keydown', (e) => {
 
 window.devGoToFinish = devGoToFinish;
 window.devGoToPart = devGoToPart;
+
+// Button press effects for all interactive buttons
+function initButtonEffects() {
+  const buttons = document.querySelectorAll('.quiz-option, .game-option, .quiz-retry, .quiz-continue, .game-retry, .game-continue, .btn-exit, .btn-next-lesson, .info-tab');
+
+  buttons.forEach(btn => {
+    btn.addEventListener('mousedown', () => {
+      btn.style.transform = 'scale(0.95)';
+    });
+
+    btn.addEventListener('mouseup', () => {
+      btn.style.transform = '';
+    });
+
+    btn.addEventListener('mouseleave', () => {
+      btn.style.transform = '';
+    });
+  });
+
+  // Nav button hover effects - swap to pressed image
+  initNavButtonHover();
+}
+
+// Initialize hover effects for nav buttons (swap to pressed image)
+function initNavButtonHover() {
+  const navBtns = document.querySelectorAll('.part-nav .nav-btn');
+
+  navBtns.forEach(btn => {
+    const originalSrc = btn.src;
+    const pressedSrc = originalSrc.replace('.svg', 'Pressed.svg');
+
+    btn.addEventListener('mouseenter', () => {
+      if (!btn.classList.contains('locked')) {
+        btn.src = pressedSrc;
+      }
+    });
+
+    btn.addEventListener('mouseleave', () => {
+      btn.src = originalSrc;
+    });
+  });
+}
 
 function initGameControls() {
   const gameContainer = document.querySelector('.game-container');

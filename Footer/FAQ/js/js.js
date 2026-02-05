@@ -45,7 +45,9 @@ function initFAQ() {
   content.querySelectorAll(".faq-question").forEach((btn) => {
     btn.addEventListener("click", () => {
       const item = btn.closest(".faq-item");
-      const answer = content.querySelector(btn.getAttribute("aria-controls"));
+      const answer = content.querySelector(
+        `#${btn.getAttribute("aria-controls")}`
+      );
       const isExpanded = item.classList.contains("faq-item-expanded");
 
       if (isExpanded) {
