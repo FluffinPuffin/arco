@@ -56,6 +56,20 @@ function initSettings() {
     avatarImg.src = savedAvatar.startsWith("/") ? savedAvatar : "/" + savedAvatar;
   }
 
+  // Restore saved name
+  const savedName = localStorage.getItem("arco-name");
+  if (savedName) {
+    const nameEl = content.querySelector('[data-value="name"]');
+    if (nameEl) nameEl.textContent = savedName;
+  }
+
+  // Restore saved grade
+  const savedGrade = localStorage.getItem("arco-grade");
+  if (savedGrade) {
+    const gradeEl = content.querySelector('[data-value="grade"]');
+    if (gradeEl) gradeEl.textContent = savedGrade;
+  }
+
   // Edit buttons
   content.querySelectorAll(".settings-edit-btn").forEach((btn) => {
     btn.addEventListener("click", () => {
@@ -96,6 +110,14 @@ function initSettings() {
       if (field && value !== undefined) {
         const valueEl = content.querySelector(`[data-value="${field}"]`);
         if (valueEl) valueEl.textContent = value;
+
+        // Save to localStorage
+        if (field === "name") {
+          localStorage.setItem("arco-name", value);
+        } else if (field === "grade") {
+          localStorage.setItem("arco-grade", value);
+        }
+
         closeEditModal(modal);
       }
     });

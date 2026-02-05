@@ -40,6 +40,31 @@ document.addEventListener("frame:ready", () => {
   const profileIcon = document.querySelector(".profile-icon");
   const logoutOverlay = document.getElementById("logoutOverlay");
 
+  // Load profile data from localStorage
+  const savedAvatar = localStorage.getItem("arco-avatar");
+  const savedName = localStorage.getItem("arco-name");
+  const savedGrade = localStorage.getItem("arco-grade");
+
+  // Update header profile icon
+  if (savedAvatar && profileIcon) {
+    profileIcon.src = savedAvatar.startsWith("/") ? savedAvatar : "/" + savedAvatar;
+  }
+
+  // Update logout overlay
+  const logoutAvatar = document.querySelector(".logout-avatar");
+  const logoutName = document.querySelector(".logout-name");
+  const logoutGrade = document.querySelector(".logout-grade");
+
+  if (savedAvatar && logoutAvatar) {
+    logoutAvatar.src = savedAvatar.startsWith("/") ? savedAvatar : "/" + savedAvatar;
+  }
+  if (savedName && logoutName) {
+    logoutName.textContent = savedName;
+  }
+  if (savedGrade && logoutGrade) {
+    logoutGrade.textContent = "Grade Level : " + savedGrade;
+  }
+
   if (profileIcon && logoutOverlay) {
     // Toggle logout overlay when clicking profile icon
     profileIcon.addEventListener("click", (e) => {
