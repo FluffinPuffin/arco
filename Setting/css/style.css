@@ -1,0 +1,510 @@
+/* Setting page - nested nav + content panels */
+
+@import url("https://fonts.googleapis.com/css2?family=Lexend:wght@400;600&display=swap");
+
+/* Dark red content area */
+.rectangle:has(.settings-panels) {
+    background-color: #4B4B4B;
+}
+
+/* Settings panels - sidebar + content */
+.settings-panels {
+    display: flex;
+    gap: 1.5rem;
+    width: 100%;
+    min-height: 400px;
+    padding: 1.5rem;
+    box-sizing: border-box;
+}
+
+.settings-sidebar {
+    flex: 0 0 240px;
+    background: #FFFEFD;
+    border-radius: 16px;
+    padding: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+.settings-nav-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.settings-nav-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.5rem 1rem;
+    font-family: "Lexend", sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #1C1C1C;
+}
+
+.settings-nav-divider {
+    height: 1px;
+    background: #F0F0F0;
+    margin: 0.5rem 0;
+}
+
+.settings-nav-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.5rem 1rem 0.5rem 2.5rem;
+    color: #1C1C1C;
+    text-decoration: none;
+    font-family: "Lexend", sans-serif;
+    font-size: 0.95rem;
+    font-weight: 400;
+    border-radius: 8px;
+    transition: background-color 0.2s;
+}
+
+.settings-nav-item:hover {
+    background-color: #F0F0F0;
+}
+
+.settings-nav-item.active {
+    background-color: #F0F0F0;
+    font-weight: 600;
+}
+
+.settings-nav-sub .settings-nav-icon {
+    display: none;
+}
+
+.settings-nav-icon {
+    width: 30px;
+    height: 30px;
+    object-fit: contain;
+}
+
+.settings-content {
+    flex: 1;
+    background: #FFFEFD;
+    border-radius: 16px;
+    padding: 1.5rem;
+    min-height: 400px;
+    position: relative;
+}
+
+/* Content panels - show/hide by active class */
+.settings-panel {
+    display: none;
+}
+
+.settings-panel.active {
+    display: block;
+}
+
+.settings-panel-title {
+    font-family: "Lexend", sans-serif;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #1C1C1C;
+    margin: 0 0 1.25rem 0;
+}
+
+/* Field layout */
+.settings-field {
+    margin-bottom: 1.5rem;
+}
+
+.settings-field:last-child {
+    margin-bottom: 0;
+}
+
+.settings-field-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 0.35rem;
+}
+
+.settings-field-label {
+    font-family: "Lexend", sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #1C1C1C;
+    display: block;
+}
+
+.settings-field-value {
+    font-family: "Lexend", sans-serif;
+    font-size: 0.9rem;
+    color: #4B4B4B;
+    margin: 0;
+}
+
+.settings-field-hint {
+    font-family: "Lexend", sans-serif;
+    font-size: 0.85rem;
+    color: #4B4B4B;
+    margin: 0.25rem 0 0 0;
+}
+
+/* Edit button */
+.settings-edit-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    transition: opacity 0.2s;
+}
+
+.settings-edit-btn:hover {
+    opacity: 0.8;
+}
+
+.settings-edit-btn img {
+    display: block;
+    height: auto;
+}
+
+/* Avatar preview */
+.settings-avatar-preview {
+    margin-top: 0.5rem;
+}
+
+.settings-avatar-img {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+/* Avatar select page */
+.settings-avatar-select {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.settings-avatar-current {
+    width: 80px;
+    height: 80px;
+}
+
+.settings-avatar-grid {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.settings-avatar-modal-grid {
+    max-width: 320px;
+}
+
+.settings-avatar-option {
+    width: 56px;
+    height: 56px;
+    padding: 0;
+    border: 2px solid transparent;
+    border-radius: 50%;
+    cursor: pointer;
+    overflow: hidden;
+    transition: border-color 0.2s, transform 0.2s;
+}
+
+.settings-avatar-option:hover {
+    transform: scale(1.05);
+}
+
+.settings-avatar-option.active {
+    border-color: #4B4B4B;
+}
+
+.settings-avatar-option img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Theme options */
+.settings-theme-options {
+    display: flex;
+    gap: 0.75rem;
+    margin-top: 0.5rem;
+}
+
+.settings-theme-option {
+    padding: 0.5rem 1rem;
+    font-family: "Lexend", sans-serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #1C1C1C;
+    background: #FFFEFD;
+    border: 2px solid transparent;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s, border-color 0.2s;
+}
+
+.settings-theme-option:hover {
+    background-color: #EBEBEB;
+}
+
+.settings-theme-option.active {
+    border-color: #4B4B4B;
+    background-color: #FFFEFD;
+}
+
+/* Toggle switch */
+.settings-field-toggle .settings-field-header {
+    align-items: center;
+}
+
+.settings-toggle {
+    position: relative;
+    display: inline-block;
+    width: 44px;
+    height: 24px;
+    flex-shrink: 0;
+}
+
+.settings-toggle-input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.settings-toggle-slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #F0F0F0;
+    border-radius: 24px;
+    transition: background-color 0.2s;
+}
+
+.settings-toggle-slider::before {
+    position: absolute;
+    content: "";
+    height: 18px;
+    width: 18px;
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    border-radius: 50%;
+    transition: transform 0.2s;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.settings-toggle-input:checked+.settings-toggle-slider {
+    background-color: #4B4B4B;
+}
+
+.settings-toggle-input:checked+.settings-toggle-slider::before {
+    transform: translateX(20px);
+}
+
+.settings-toggle-input:focus-visible+.settings-toggle-slider {
+    outline: 2px solid #4B4B4B;
+    outline-offset: 2px;
+}
+
+/* Chevron / link button */
+.settings-field-link .settings-field-header {
+    align-items: center;
+}
+
+.settings-chevron-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    color: #1C1C1C;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: background-color 0.2s;
+    flex-shrink: 0;
+}
+
+.settings-chevron-btn:hover {
+    background-color: #F0F0F0;
+}
+
+/* Statistics cards */
+.settings-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 1.25rem;
+}
+
+.settings-stat-card {
+    background: #F8F8F8;
+    border-radius: 12px;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.settings-stat-label {
+    font-family: "Lexend", sans-serif;
+    font-size: 0.85rem;
+    color: #4B4B4B;
+}
+
+.settings-stat-value {
+    font-family: "Lexend", sans-serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #1C1C1C;
+}
+
+.settings-stat-chart {
+    display: flex;
+    align-items: flex-end;
+    gap: 4px;
+    height: 32px;
+    margin-top: 0.25rem;
+}
+
+.settings-stat-bar {
+    flex: 1;
+    min-width: 8px;
+    background: #1C1C1C;
+    border-radius: 4px 4px 0 0;
+    opacity: 0.8;
+}
+
+/* Primary button */
+.settings-primary-btn {
+    margin-top: 0.75rem;
+    padding: 0.5rem 1.25rem;
+    font-family: "Lexend", sans-serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #FFFEFD;
+    background: #4B4B4B;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s, opacity 0.2s;
+}
+
+.settings-primary-btn:hover {
+    background: #BFBFBF;
+}
+
+/* Edit modal */
+.settings-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+}
+
+.settings-modal[hidden] {
+    display: none;
+}
+
+.settings-modal-backdrop {
+    position: absolute;
+    inset: 0;
+    background: #F0F0F0;
+}
+
+.settings-modal-content {
+    position: relative;
+    background: #FFFEFD;
+    border-radius: 16px;
+    padding: 1.5rem;
+    width: 100%;
+    max-width: 400px;
+    box-shadow: 0 8px 32px #F0F0F0;
+}
+
+.settings-modal-title {
+    font-family: "Lexend", sans-serif;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #1C1C1C;
+    margin: 0 0 1rem 0;
+}
+
+.settings-modal-field {
+    margin-bottom: 1rem;
+}
+
+.settings-modal-input {
+    width: 100%;
+    padding: 0.6rem 0.75rem;
+    font-family: "Lexend", sans-serif;
+    font-size: 1rem;
+    border: 1px solid #F0F0F0;
+    border-radius: 8px;
+    box-sizing: border-box;
+}
+
+.settings-modal-input:focus {
+    outline: none;
+    border-color: #4B4B4B;
+}
+
+.settings-modal-select {
+    background-color: #FFFEFD;
+    cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg width='16' height='16' viewBox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M4 6L8 10L12 6' stroke='%231C1C1C' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.75rem center;
+    padding-right: 2.5rem;
+}
+
+.settings-modal-select:hover {
+    border-color: #BFBFBF;
+}
+
+.settings-modal-actions {
+    display: flex;
+    gap: 0.75rem;
+    justify-content: flex-end;
+    margin-top: 1.25rem;
+}
+
+.settings-modal-btn {
+    padding: 0.5rem 1.25rem;
+    font-family: "Lexend", sans-serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s, border-color 0.2s;
+}
+
+.settings-modal-cancel {
+    background: transparent;
+    border: 1px solid #F0F0F0;
+    color: #1C1C1C;
+}
+
+.settings-modal-cancel:hover {
+    background: #FFFEFD;
+}
+
+.settings-modal-save {
+    background: #4B4B4B;
+    border: none;
+    color: #FFFEFD;
+}
+
+.settings-modal-save:hover {
+    background: #BFBFBF;
+}

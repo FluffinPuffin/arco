@@ -1,0 +1,76 @@
+<div class="game-content">
+    <div class="game-container">
+        <div class="game-frame">
+            <div class="game-wrapper">
+                <!-- Game content will be loaded here -->
+                <div class="game" id="gameArea">
+                    <!-- Question 1 -->
+                    <div class="game-question" data-question="1" data-answer="three">
+
+                        <div class="game-image-placeholder"><img src="../../images/lesson2.2/addNotes1.svg"
+                                alt="Violin Part 1"></div>
+                        <div class="game-options">
+                            <button class="game-option" data-option="one">One Beat</button>
+                            <button class="game-option" data-option="two">Two Beats</button>
+                            <button class="game-option" data-option="three">Three Beats</button>
+                            <button class="game-option" data-option="four">Four Beats</button>
+                            <button class="game-option" data-option="five">Five Beats</button>
+                            <button class="game-option" data-option="six">Six Beats</button>
+                        </div>
+                    </div>
+
+                    <!-- Question 2 -->
+                    <div class="game-question" data-question="2" data-answer="six" style="display: none;">
+                        <div class="game-image-placeholder"><img src="../../images/lesson2.2/addNotes2.svg"
+                                alt="Violin Part 1"></div>
+                        <div class="game-options">
+                            <button class="game-option" data-option="one">One Beat</button>
+                            <button class="game-option" data-option="two">Two Beats</button>
+                            <button class="game-option" data-option="three">Three Beats</button>
+                            <button class="game-option" data-option="four">Four Beats</button>
+                            <button class="game-option" data-option="five">Five Beats</button>
+                            <button class="game-option" data-option="six">Six Beats</button>
+                        </div>
+                    </div>
+
+                    <!-- Results -->
+                    <div class="game-result" style="display: none;">
+                        <p class="game-score"></p>
+                        <button class="game-retry">Try Again</button>
+                    </div>
+                </div>
+            </div>
+            <div class="frame-bar">
+                <img src="../../images/enlarge.svg" alt="Enlarge Game" class="icon-btn game-size-btn">
+            </div>
+        </div>
+        <div class="controls">
+            <h3 class="controls-title">Controls</h3>
+            <p class="controls-text">Tap or click to select your answer.</p>
+            <p class="controls-text">Two notes will pop up on the screen. Add their total time together, then tap the
+                resulting note.</p>
+        </div>
+    </div>
+    <div class="info-box">
+        <div class="info-content">
+            <div class="info-tabs">
+                <button class="info-tab active" data-tab="description">
+                    <span>Description</span>
+                    <span class="info-icon"><img src="../../images/info.svg" alt="Info"></span>
+                </button>
+                <button class="info-tab" data-tab="accessibility">
+                    <span>Accessibility</span>
+                    <span class="info-icon"><img src="../../images/accessibility.svg" alt="Accessibility"></span>
+                </button>
+            </div>
+            <div class="tab-panel active" data-panel="description">
+                <p><strong>Topics:</strong> Note values, Rhythm, Whole notes, Half notes, Quarter notes, Eighth notes
+                </p>
+                <p>In this mini-game, let's practice adding note values together. Can you figure out the math?</p>
+            </div>
+            <div class="tab-panel" data-panel="accessibility">
+                <p>Use keyboard arrows to navigate between options. Press Enter or Space to select your answer.</p>
+            </div>
+        </div>
+    </div>
+</div>

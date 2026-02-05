@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account: Sign Up</title>
+    <link rel="stylesheet" href="../css/signup.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Lexend:wght@400;600;700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <div class="signup-container">
+        <!-- Left Column: Splash Art -->
+        <div class="splash-section">
+            <div class="splash-content">
+                <div class="logo-container">
+                    <img src="../images/icon-ArcoLogo.svg" alt="Arco Logo">
+                </div>
+                <div class="footer-links">
+                    <p class="copyright">© 2025-2026</p>
+                    <a href="#" class="footer-link">FAQ</a>
+                    <a href="#" class="footer-link">Contact</a>
+                    <a href="#" class="footer-link">Policy</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Column: Sign Up Form -->
+        <div class="signup-form-section">
+            <div class="form-wrapper">
+                <!-- Header Section -->
+                <div class="header-section">
+                    <h1 class="signup-title">Sign Up</h1>
+                    <a href="index.html" class="link-text">Already a member?</a>
+                </div>
+
+                <!-- Form Section -->
+                <div class="form-content">
+                    <form id="signupForm">
+                        <!-- Email Input -->
+                        <div class="form-group">
+                            <label for="email" class="form-label">Email Address</label>
+                            <input type="email" id="email" name="email" class="form-input" placeholder="you@example.com"
+                                autocomplete="email" required>
+                        </div>
+
+                        <!-- Password Input -->
+                        <div class="form-group">
+                            <label for="password" class="form-label">Password</label>
+                            <div class="password-input-wrapper">
+                                <input type="password" id="password" name="password" class="form-input" placeholder=""
+                                    autocomplete="new-password" required>
+                                <button type="button" class="password-toggle" id="passwordToggle"
+                                    aria-label="Toggle password visibility">
+                                    <svg class="eye-icon" width="20" height="20" viewBox="0 0 20 20" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <g transform="translate(0.25, 4.138)">
+                                            <path
+                                                d="M17.6299 0.506979C17.9021 0.0266516 18.5127 -0.142025 18.9931 0.130026C19.4736 0.402323 19.6423 1.01284 19.3701 1.49331C18.6203 2.81653 17.8477 3.9347 17.0586 4.86635L18.6787 6.15542C19.1108 6.49923 19.1825 7.12853 18.8388 7.56069C18.495 7.99278 17.8657 8.06453 17.4336 7.72085L15.6591 6.30971C15.0483 6.85227 14.4296 7.29435 13.8027 7.64077C13.684 7.70637 13.5649 7.76773 13.4463 7.82632L14.2675 10.422C14.4339 10.9483 14.1424 11.5102 13.6162 11.6769C13.0897 11.8435 12.527 11.552 12.3603 11.0255L11.5547 8.47964C10.3878 8.71678 9.24385 8.65203 8.15427 8.36342L7.24509 11.0187C7.06601 11.5411 6.49601 11.8198 5.9736 11.6408C5.45156 11.4615 5.17273 10.8925 5.35153 10.3703L6.28805 7.63686C5.36786 7.16271 4.50973 6.54826 3.72751 5.85952L2.12985 7.73354C1.77138 8.15348 1.13978 8.20319 0.719695 7.84487C0.299985 7.48649 0.249448 6.85573 0.60739 6.43569L2.30661 4.4435C1.43521 3.47054 0.702524 2.44807 0.142546 1.51479C-0.141354 1.04133 0.0120099 0.426885 0.48532 0.142722C0.958771 -0.141349 1.57314 0.0122189 1.85739 0.485495C3.31079 2.90783 5.81306 5.63901 8.59274 6.41128C9.93244 6.78341 11.3544 6.70871 12.8349 5.89077C14.3436 5.05719 15.9841 3.41118 17.6299 0.506979Z"
+                                                fill="#1C1C1C" />
+                                        </g>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Confirm Password Input -->
+                        <div class="form-group">
+                            <label for="confirmPassword" class="form-label">Confirm Password</label>
+                            <div class="password-input-wrapper">
+                                <input type="password" id="confirmPassword" name="confirmPassword" class="form-input"
+                                    placeholder="" autocomplete="new-password" required>
+                                <button type="button" class="password-toggle" id="confirmPasswordToggle"
+                                    aria-label="Toggle password visibility">
+                                    <svg class="eye-icon" width="20" height="20" viewBox="0 0 20 20" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <g transform="translate(0.25, 4.138)">
+                                            <path
+                                                d="M17.6299 0.506979C17.9021 0.0266516 18.5127 -0.142025 18.9931 0.130026C19.4736 0.402323 19.6423 1.01284 19.3701 1.49331C18.6203 2.81653 17.8477 3.9347 17.0586 4.86635L18.6787 6.15542C19.1108 6.49923 19.1825 7.12853 18.8388 7.56069C18.495 7.99278 17.8657 8.06453 17.4336 7.72085L15.6591 6.30971C15.0483 6.85227 14.4296 7.29435 13.8027 7.64077C13.684 7.70637 13.5649 7.76773 13.4463 7.82632L14.2675 10.422C14.4339 10.9483 14.1424 11.5102 13.6162 11.6769C13.0897 11.8435 12.527 11.552 12.3603 11.0255L11.5547 8.47964C10.3878 8.71678 9.24385 8.65203 8.15427 8.36342L7.24509 11.0187C7.06601 11.5411 6.49601 11.8198 5.9736 11.6408C5.45156 11.4615 5.17273 10.8925 5.35153 10.3703L6.28805 7.63686C5.36786 7.16271 4.50973 6.54826 3.72751 5.85952L2.12985 7.73354C1.77138 8.15348 1.13978 8.20319 0.719695 7.84487C0.299985 7.48649 0.249448 6.85573 0.60739 6.43569L2.30661 4.4435C1.43521 3.47054 0.702524 2.44807 0.142546 1.51479C-0.141354 1.04133 0.0120099 0.426885 0.48532 0.142722C0.958771 -0.141349 1.57314 0.0122189 1.85739 0.485495C3.31079 2.90783 5.81306 5.63901 8.59274 6.41128C9.93244 6.78341 11.3544 6.70871 12.8349 5.89077C14.3436 5.05719 15.9841 3.41118 17.6299 0.506979Z"
+                                                fill="#1C1C1C" />
+                                        </g>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Password Requirements -->
+                        <div class="requirements-list">
+                            <div class="requirement-item" id="lengthRequirement">
+                                <svg class="check-icon" width="20" height="20" viewBox="0 0 20 20" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <circle cx="10" cy="10" r="9" stroke="#8d8d8d" stroke-width="2" fill="none" />
+                                    <path d="M6 10L9 13L14 7" stroke="#8d8d8d" stroke-width="2" fill="none"
+                                        stroke-linecap="round" stroke-linejoin="round" class="checkmark" />
+                                </svg>
+                                <p class="requirement-text">At least 8 characters long</p>
+                            </div>
+                            <div class="requirement-item" id="specialCharRequirement">
+                                <svg class="check-icon" width="20" height="20" viewBox="0 0 20 20" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <circle cx="10" cy="10" r="9" stroke="#8d8d8d" stroke-width="2" fill="none" />
+                                    <path d="M6 10L9 13L14 7" stroke="#8d8d8d" stroke-width="2" fill="none"
+                                        stroke-linecap="round" stroke-linejoin="round" class="checkmark" />
+                                </svg>
+                                <p class="requirement-text">At least one special character (ex: !@#$%^&*)</p>
+                            </div>
+                        </div>
+
+                        <!-- Continue Button -->
+                        <button type="submit" class="btn-primary" id="continueBtn" disabled>Continue</button>
+                    </form>
+
+                    <!-- Divider -->
+                    <div class="divider-section">
+                        <p class="divider-text">- or register with -</p>
+                    </div>
+
+                    <!-- Social Login Buttons -->
+                    <div class="social-buttons">
+                        <button type="button" class="btn-social" id="googleSignup">
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                <path
+                                    d="M18.17 8.37H10v3.45h4.62c-.4 2.02-2.16 3.45-4.62 3.45-2.83 0-5.12-2.29-5.12-5.12s2.29-5.12 5.12-5.12c1.27 0 2.42.46 3.32 1.23l2.59-2.59C14.46 2.24 12.35 1.33 10 1.33 5.4 1.33 1.67 5.06 1.67 9.67s3.73 8.33 8.33 8.33c4.8 0 8-3.37 8-8.13 0-.55-.05-1.08-.13-1.5z"
+                                    fill="#1C1C1C" />
+                            </svg>
+                            <span>Google</span>
+                        </button>
+                        <button type="button" class="btn-social" id="appleSignup">
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                <path
+                                    d="M13.42 3.67c.79-.95 1.32-2.27 1.17-3.59-1.13.05-2.51.76-3.32 1.71-.73.84-1.37 2.19-1.2 3.48 1.27.1 2.57-.65 3.35-1.6zm1.11 1.74c-1.85-.1-3.42 1.05-4.3 1.05-.87 0-2.22-1-3.65-.97-1.88.03-3.61 1.09-4.58 2.77-1.95 3.38-.5 8.4 1.4 11.15.93 1.35 2.04 2.86 3.5 2.8 1.42-.06 1.96-.92 3.68-.92 1.71 0 2.19.92 3.68.89 1.52-.03 2.47-1.35 3.4-2.7 1.07-1.56 1.51-3.07 1.54-3.15-.03-.02-2.96-1.13-2.99-4.49-.03-2.8 2.29-4.14 2.39-4.2-1.3-1.91-3.32-2.13-4.04-2.18z"
+                                    fill="#1C1C1C" />
+                            </svg>
+                            <span>Apple ID</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../js/signup.js"></script>
+</body>
+
+</html>

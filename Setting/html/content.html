@@ -1,0 +1,217 @@
+<div class="settings-panels">
+    <div class="settings-sidebar">
+        <div class="settings-nav-group">
+            <div class="settings-nav-header">
+                <img src="../images/profileIcon.png" alt="" class="settings-nav-icon">
+                <span>Profile</span>
+            </div>
+            <a href="#" class="settings-nav-item settings-nav-sub" data-section="profile" data-sub="general">General</a>
+        </div>
+        <div class="settings-nav-divider"></div>
+        <div class="settings-nav-group">
+            <div class="settings-nav-header">
+                <img src="../images/grownUpsIcon.png" alt="" class="settings-nav-icon">
+                <span>Grown-Ups</span>
+            </div>
+            <a href="#" class="settings-nav-item settings-nav-sub" data-section="grown-ups"
+                data-sub="statistics">Statistics</a>
+            <a href="#" class="settings-nav-item settings-nav-sub" data-section="grown-ups"
+                data-sub="payment">Payment</a>
+            <a href="#" class="settings-nav-item settings-nav-sub" data-section="grown-ups"
+                data-sub="account">Account</a>
+        </div>
+    </div>
+    <div class="settings-content">
+        <!-- Profile > General -->
+        <div class="settings-panel active" data-section="profile" data-sub="general">
+            <h2 class="settings-panel-title">General</h2>
+            <div class="settings-field">
+                <div class="settings-field-header">
+                    <label class="settings-field-label">Name</label>
+                    <button type="button" class="settings-edit-btn" data-edit="name" aria-label="Edit name">
+                        <img src="../images/edit.svg" alt="Edit" width="100" height="42">
+                    </button>
+                </div>
+                <p class="settings-field-value" data-value="name">First Name, Last Name</p>
+            </div>
+            <div class="settings-field">
+                <div class="settings-field-header">
+                    <label class="settings-field-label">Grade Level</label>
+                    <button type="button" class="settings-edit-btn" data-edit="grade" aria-label="Edit grade level">
+                        <img src="../images/edit.svg" alt="Edit" width="100" height="42">
+                    </button>
+                </div>
+                <p class="settings-field-value" data-value="grade">5th</p>
+            </div>
+            <div class="settings-field">
+                <div class="settings-field-header">
+                    <label class="settings-field-label">Avatar</label>
+                    <button type="button" class="settings-edit-btn settings-edit-avatar" data-edit="avatar"
+                        aria-label="Edit avatar">
+                        <img src="../images/edit.svg" alt="Edit" width="100" height="42">
+                    </button>
+                </div>
+                <div class="settings-avatar-preview">
+                    <img src="../images/avatars/profile/alvaro-montoro-9NGHFQSR1MI-unsplash.jpg" alt="Avatar"
+                        class="settings-avatar-img" data-avatar-img>
+                </div>
+            </div>
+        </div>
+
+        <!-- Grown-Ups > Statistics -->
+        <div class="settings-panel" data-section="grown-ups" data-sub="statistics">
+            <h2 class="settings-panel-title">Statistics</h2>
+            <div class="settings-stats-grid">
+                <div class="settings-stat-card">
+                    <span class="settings-stat-label">Today</span>
+                    <span class="settings-stat-value" data-stat="today">3 hr 30 min</span>
+                    <div class="settings-stat-chart">
+                        <span class="settings-stat-bar" style="height: 40%"></span>
+                        <span class="settings-stat-bar" style="height: 70%"></span>
+                        <span class="settings-stat-bar" style="height: 55%"></span>
+                    </div>
+                </div>
+                <div class="settings-stat-card">
+                    <span class="settings-stat-label">This week</span>
+                    <span class="settings-stat-value" data-stat="week">10 hr 12 min</span>
+                    <div class="settings-stat-chart">
+                        <span class="settings-stat-bar" style="height: 50%"></span>
+                        <span class="settings-stat-bar" style="height: 80%"></span>
+                        <span class="settings-stat-bar" style="height: 65%"></span>
+                        <span class="settings-stat-bar" style="height: 90%"></span>
+                        <span class="settings-stat-bar" style="height: 75%"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Grown-Ups > Payment -->
+        <div class="settings-panel" data-section="grown-ups" data-sub="payment">
+            <h2 class="settings-panel-title">Subscription</h2>
+            <div class="settings-field">
+                <label class="settings-field-label">Plan</label>
+                <p class="settings-field-value" data-value="plan">Free</p>
+            </div>
+            <div class="settings-field">
+                <label class="settings-field-label">Payment</label>
+                <p class="settings-field-value" data-value="payment">Monthly</p>
+            </div>
+            <div class="settings-field">
+                <a href="../../checkout/html/index.html" class="settings-primary-btn">Edit Subscription</a>
+            </div>
+        </div>
+
+        <!-- Grown-Ups > Account -->
+        <div class="settings-panel" data-section="grown-ups" data-sub="account">
+            <h2 class="settings-panel-title">Account</h2>
+            <div class="settings-field">
+                <label class="settings-field-label">Account Management</label>
+                <p class="settings-field-hint">Manage your account settings, password, and security.</p>
+                <button type="button" class="settings-primary-btn">Manage Account</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Avatar edit modal -->
+<div class="settings-modal" id="settings-avatar-modal" role="dialog" aria-labelledby="avatar-modal-title"
+    aria-modal="true" hidden>
+    <div class="settings-modal-backdrop" data-avatar-backdrop></div>
+    <div class="settings-modal-content">
+        <h3 class="settings-modal-title" id="avatar-modal-title">Choose Avatar</h3>
+        <p class="settings-field-hint" style="margin-bottom: 1rem;">Select an avatar from the options below.</p>
+        <div class="settings-avatar-grid settings-avatar-modal-grid">
+            <button type="button" class="settings-avatar-option active"
+                data-avatar-src="../images/avatars/profile/alvaro-montoro-9NGHFQSR1MI-unsplash.jpg"
+                aria-label="Select avatar 1">
+                <img src="../images/avatars/profile/alvaro-montoro-9NGHFQSR1MI-unsplash.jpg" alt="Avatar 1">
+            </button>
+            <button type="button" class="settings-avatar-option"
+                data-avatar-src="../images/avatars/profile/alvaro-montoro-BKgnt9N3Xo4-unsplash.jpg"
+                aria-label="Select avatar 2">
+                <img src="../images/avatars/profile/alvaro-montoro-BKgnt9N3Xo4-unsplash.jpg" alt="Avatar 2">
+            </button>
+            <button type="button" class="settings-avatar-option"
+                data-avatar-src="../images/avatars/profile/alvaro-montoro-e40RPcyQS2U-unsplash.jpg"
+                aria-label="Select avatar 3">
+                <img src="../images/avatars/profile/alvaro-montoro-e40RPcyQS2U-unsplash.jpg" alt="Avatar 3">
+            </button>
+            <button type="button" class="settings-avatar-option"
+                data-avatar-src="../images/avatars/profile/alvaro-montoro-xnTbQQZ9UrQ-unsplash.jpg"
+                aria-label="Select avatar 4">
+                <img src="../images/avatars/profile/alvaro-montoro-xnTbQQZ9UrQ-unsplash.jpg" alt="Avatar 4">
+            </button>
+            <button type="button" class="settings-avatar-option"
+                data-avatar-src="../images/avatars/profile/alvaro-montoro-ZK0y1lw71T4-unsplash.jpg"
+                aria-label="Select avatar 5">
+                <img src="../images/avatars/profile/alvaro-montoro-ZK0y1lw71T4-unsplash.jpg" alt="Avatar 5">
+            </button>
+            <button type="button" class="settings-avatar-option"
+                data-avatar-src="../images/avatars/profile/mila-okta-safitri-dUAjHkGeUjA-unsplash.jpg"
+                aria-label="Select avatar 6">
+                <img src="../images/avatars/profile/mila-okta-safitri-dUAjHkGeUjA-unsplash.jpg" alt="Avatar 6">
+            </button>
+            <button type="button" class="settings-avatar-option"
+                data-avatar-src="../images/avatars/profile/mila-okta-safitri-msQuvch9JsM-unsplash.jpg"
+                aria-label="Select avatar 7">
+                <img src="../images/avatars/profile/mila-okta-safitri-msQuvch9JsM-unsplash.jpg" alt="Avatar 7">
+            </button>
+            <button type="button" class="settings-avatar-option"
+                data-avatar-src="../images/avatars/profile/mila-okta-safitri-Rx7oHe_pt-U-unsplash.jpg"
+                aria-label="Select avatar 8">
+                <img src="../images/avatars/profile/mila-okta-safitri-Rx7oHe_pt-U-unsplash.jpg" alt="Avatar 8">
+            </button>
+            <button type="button" class="settings-avatar-option"
+                data-avatar-src="../images/avatars/profile/mila-okta-safitri-XdBnwaAXCgU-unsplash.jpg"
+                aria-label="Select avatar 9">
+                <img src="../images/avatars/profile/mila-okta-safitri-XdBnwaAXCgU-unsplash.jpg" alt="Avatar 9">
+            </button>
+            <button type="button" class="settings-avatar-option"
+                data-avatar-src="../images/avatars/profile/ogie-GdcZelJrPkI-unsplash.jpg" aria-label="Select avatar 10">
+                <img src="../images/avatars/profile/ogie-GdcZelJrPkI-unsplash.jpg" alt="Avatar 10">
+            </button>
+            <button type="button" class="settings-avatar-option"
+                data-avatar-src="../images/avatars/profile/pauline-loroy-4rw_bw5oUNQ-unsplash.jpg"
+                aria-label="Select avatar 11">
+                <img src="../images/avatars/profile/pauline-loroy-4rw_bw5oUNQ-unsplash.jpg" alt="Avatar 11">
+            </button>
+            <button type="button" class="settings-avatar-option"
+                data-avatar-src="../images/avatars/profile/william-drakus-m9QHsUrysVg-unsplash.jpg"
+                aria-label="Select avatar 12">
+                <img src="../images/avatars/profile/william-drakus-m9QHsUrysVg-unsplash.jpg" alt="Avatar 12">
+            </button>
+        </div>
+        <div class="settings-modal-actions" style="margin-top: 1rem;">
+            <button type="button" class="settings-modal-btn settings-modal-cancel" data-avatar-cancel>Cancel</button>
+        </div>
+    </div>
+</div>
+
+<!-- Edit modal -->
+<div class="settings-modal" id="settings-edit-modal" role="dialog" aria-labelledby="edit-modal-title" aria-modal="true"
+    hidden>
+    <div class="settings-modal-backdrop"></div>
+    <div class="settings-modal-content">
+        <h3 class="settings-modal-title" id="edit-modal-title">Edit</h3>
+        <form class="settings-edit-form" id="settings-edit-form">
+            <input type="hidden" id="edit-field" name="field">
+            <div class="settings-modal-field" id="name-fields" hidden>
+                <label for="edit-first-name" class="settings-field-label">First Name</label>
+                <input type="text" id="edit-first-name" name="first-name" class="settings-modal-input">
+                <label for="edit-last-name" class="settings-field-label" style="margin-top: 1rem;">Last Name</label>
+                <input type="text" id="edit-last-name" name="last-name" class="settings-modal-input">
+            </div>
+            <div class="settings-modal-field" id="single-field">
+                <label for="edit-value" class="settings-field-label">Value</label>
+                <input type="text" id="edit-value" name="value" class="settings-modal-input" required>
+                <select id="edit-select" name="select-value" class="settings-modal-input settings-modal-select" hidden>
+                    <!-- Options populated dynamically -->
+                </select>
+            </div>
+            <div class="settings-modal-actions">
+                <button type="button" class="settings-modal-btn settings-modal-cancel">Cancel</button>
+                <button type="submit" class="settings-modal-btn settings-modal-save">Save</button>
+            </div>
+        </form>
+    </div>
+</div>

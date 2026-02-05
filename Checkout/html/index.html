@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout - Premier Club</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="../js/js.js" defer></script>
+</head>
+
+<body>
+    <div class="checkout-container">
+        <!-- Left Section: Premier Club Plans -->
+        <div class="plans-section">
+            <div class="plans-content">
+                <div class="section-header">
+                    <h1 class="section-title">Premier Club Plans</h1>
+                    <p class="section-description">
+                        Choose the option that works best for you. You can upgrade, switch, or cancel your plan at
+                        anytime...
+                    </p>
+                </div>
+
+                <div class="subscription-options">
+                    <p class="subsection-title">Pick an Option</p>
+
+                    <!-- Subscription Card 1 -->
+                    <div class="subscription-card">
+                        <div class="card-container">
+                            <button class="radio-button" data-plan="1-month" aria-label="Select 1 Month Plan">
+                                <div class="radio-outer">
+                                    <div class="radio-inner"></div>
+                                </div>
+                            </button>
+                            <div class="card-info">
+                                <p class="card-title">1 Month • $4.99 USD</p>
+                                <p class="card-subtitle">From Jan 01 - Feb 01</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Subscription Card 2 -->
+                    <div class="subscription-card">
+                        <div class="card-container">
+                            <button class="radio-button" data-plan="3-month" aria-label="Select 3 Month Plan">
+                                <div class="radio-outer">
+                                    <div class="radio-inner"></div>
+                                </div>
+                            </button>
+                            <div class="card-info">
+                                <p class="card-title">3 Months • $11.25 USD</p>
+                                <p class="card-subtitle">From Jan 01 - Apr 01</p>
+                            </div>
+                            <div class="card-badge">
+                                <span>Save 25%</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Subscription Card 3 - Most Popular -->
+                    <div class="subscription-card">
+                        <div class="popular-tag">
+                            <span>Most Popular</span>
+                        </div>
+                        <div class="card-container">
+                            <button class="radio-button active" data-plan="12-month" aria-label="Select 12 Month Plan">
+                                <div class="radio-outer">
+                                    <div class="radio-inner"></div>
+                                </div>
+                            </button>
+                            <div class="card-info">
+                                <p class="card-title">12 Months • $29.99 USD</p>
+                                <p class="card-subtitle">From Jan '25 - Jan '26</p>
+                            </div>
+                            <div class="card-badge">
+                                <span>Save 50%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Auto Renewal Toggle -->
+                <div class="toggle-container">
+                    <button class="toggle-switch active" id="autoRenewalToggle" aria-label="Toggle Auto Renewal">
+                        <div class="toggle-track">
+                            <div class="toggle-thumb"></div>
+                        </div>
+                    </button>
+                    <p class="toggle-label">Auto Renewal</p>
+                </div>
+
+                <!-- Exit Button -->
+                <button class="btn btn-outline" id="exitButton">
+                    <svg class="btn-icon" width="15" height="13" viewBox="0 0 15 13" fill="none">
+                        <path d="M6.5 1L1 6.5L6.5 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                    </svg>
+                    <span>Exit/Cancel</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Right Section: Payment Details -->
+        <div class="payment-section">
+            <div class="payment-content">
+                <div class="section-header">
+                    <h1 class="section-title">Payment Details</h1>
+                    <p class="section-description">
+                        Complete your purchase by providing your payment details.
+                    </p>
+                </div>
+
+                <form class="payment-form">
+                    <!-- Email Address -->
+                    <div class="form-group">
+                        <label for="email" class="form-label">Email Address</label>
+                        <input type="email" id="email" name="email" class="form-input" placeholder="you@example.com"
+                            required>
+                    </div>
+
+                    <!-- Card Details -->
+                    <div class="form-section">
+                        <p class="subsection-title">Card Details</p>
+                        <div class="card-inputs">
+                            <input type="text" name="cardName" class="form-input" placeholder="Name on Card" required>
+
+                            <div class="card-row">
+                                <input type="text" name="cardNumber" class="form-input card-number"
+                                    placeholder="Card Number" maxlength="19" required>
+                                <input type="text" name="expiry" class="form-input expiry" placeholder="MM/YY"
+                                    maxlength="5" required>
+                                <input type="text" name="cvc" class="form-input cvc" placeholder="CVC" maxlength="3"
+                                    required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Billing Address -->
+                    <div class="form-section">
+                        <p class="subsection-title">Billing Address</p>
+                        <div class="address-inputs">
+                            <input type="text" name="address" class="form-input address-street"
+                                placeholder="Street Address, (Optional Apt. #)" required>
+                            <div class="address-row">
+                                <input type="text" name="state" class="form-input state" placeholder="State" required>
+                                <input type="text" name="zipCode" class="form-input zip" placeholder="Zip Code"
+                                    required>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+
+                <!-- Order Summary -->
+                <div class="order-summary">
+                    <div class="summary-row">
+                        <div class="summary-left">
+                            <p class="summary-title">12 Months</p>
+                            <p class="summary-subtitle">Jan '24 - Jan '25</p>
+                        </div>
+                        <p class="summary-price">$29.99 USD</p>
+                    </div>
+                    <div class="summary-row">
+                        <p class="summary-title">Taxes</p>
+                        <p class="summary-price">$0.00 USD</p>
+                    </div>
+                </div>
+
+                <!-- Pay Button -->
+                <button class="btn btn-primary" id="payButton">
+                    <span>Pay $29.99</span>
+                    <svg class="btn-icon" width="15" height="13" viewBox="0 0 15 13" fill="none">
+                        <path d="M8.5 1L14 6.5L8.5 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div id="loadingOverlay" class="loading-overlay hidden">
+        <div class="loading-container">
+            <div class="loading-spinner"></div>
+        </div>
+    </div>
+
+    <!-- Success Alert Overlay -->
+    <div id="successOverlay" class="alert-overlay hidden">
+        <div class="alert-container">
+            <div class="alert-icon success-icon">
+                <svg width="100" height="100" viewBox="0 0 100 100" fill="none">
+                    <circle cx="50" cy="50" r="48" stroke="#1c1c1c" stroke-width="4" />
+                    <path d="M30 50 L45 65 L70 35" stroke="#1c1c1c" stroke-width="4" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                </svg>
+            </div>
+            <h2 class="alert-title">Purchase Successful</h2>
+            <p class="alert-message" id="successMessage">Receipt sent to Email Address. Redirecting to Home Page in (5)
+                seconds</p>
+        </div>
+    </div>
+
+    <!-- Error Alert Overlay -->
+    <div id="errorOverlay" class="alert-overlay hidden">
+        <div class="alert-container">
+            <div class="alert-icon error-icon">
+                <svg width="100" height="100" viewBox="0 0 100 100" fill="none">
+                    <circle cx="50" cy="50" r="48" stroke="#1c1c1c" stroke-width="4" />
+                    <path d="M50 30 L50 55" stroke="#1c1c1c" stroke-width="4" stroke-linecap="round" />
+                    <circle cx="50" cy="68" r="3" fill="#1c1c1c" />
+                </svg>
+            </div>
+            <h2 class="alert-title">An error has occurred</h2>
+            <p class="alert-message">Please try again later...</p>
+        </div>
+    </div>
+</body>
+
+</html>

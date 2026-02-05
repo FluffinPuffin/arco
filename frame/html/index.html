@@ -1,0 +1,59 @@
+<div class="header">
+    <div class="header-left">
+        <a href="{{FRAME_PATH}}/../Home/html/index.html">
+            <img src="{{FRAME_PATH}}/images/arco.svg" alt="Logo" class="logo">
+        </a>
+    </div>
+
+    <div class="header-right">
+        <a href="{{FRAME_PATH}}/../Premier-Club/html/index.html"><img src="{{FRAME_PATH}}/images/diamondIcon.svg"
+                alt="Premier Club" class="premium-icon">
+            <strong>Premier Club</strong></a>
+        <p>|</p>
+        <a href="{{FRAME_PATH}}/../Setting/html/index.html"><img src="{{FRAME_PATH}}/images/settings.svg" alt="Settings"
+                class="settings-icon"> <strong>Settings</strong></a>
+        <a href="{{FRAME_PATH}}/../Setting/html/index.html"><img src="{{FRAME_PATH}}/images/profileTemp.svg"
+                alt="Profile Icon" class="profile-icon"></a>
+    </div>
+</div>
+
+<div class="frame">
+    <div class="buttons">
+        <!-- Should probably host the images on the web-->
+        <img src="{{FRAME_PATH}}/images/arrow.svg" alt="Back" class="arrow" onclick="goBack()" style="cursor: pointer;">
+        <div id="lesson-title"></div>
+        <a href="{{FRAME_PATH}}/../Home/html/index.html">
+            <img src="{{FRAME_PATH}}/images/home.svg" alt="home" class="home">
+        </a>
+    </div>
+    <div class="container">
+        <div class="rectangle" id="content"></div>
+    </div>
+
+
+    <div class="footer">
+        <div class="footer-left">
+            <a href="{{FRAME_PATH}}/../Footer/FAQ/html/index.html" class="footer-link" data-footer="faq">FAQ</a>
+            <a href="{{FRAME_PATH}}/../Footer/Legalpolicies/html/index.html" class="footer-link"
+                data-footer="legal">Policy</a>
+            <a href="{{FRAME_PATH}}/../Footer/Contactus/html/index.html" class="footer-link"
+                data-footer="contact">Contact us</a>
+        </div>
+
+        <div class="footer-right">
+            © 2025-2026
+        </div>
+    </div>
+
+    <!-- Logout Overlay -->
+    <div id="logoutOverlay" class="logout-overlay hidden">
+        <div class="logout-container">
+            <div class="logout-profile-picture">
+                <img src="{{FRAME_PATH}}/images/profileTemp.svg" alt="Profile" class="logout-avatar">
+            </div>
+            <div class="logout-name">First Name, Last Name</div>
+            <div class="logout-grade">Grade Level : 03</div>
+            <button class="logout-btn" onclick="signOut()">Sign Out</button>
+        </div>
+    </div>
+</div>

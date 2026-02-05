@@ -1,0 +1,23 @@
+<svg width="140" height="140" viewBox="0 0 140 140" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M0 5C0 2.23857 2.2227 0 4.96454 0H135.035C137.777 0 140 2.23858 140 5V135C140 137.761 137.777 140 135.035 140H4.96454C2.2227 140 0 137.761 0 135V5Z" fill="#1C1C1C" fill-opacity="0.6"/>
+<path d="M36 56.5386V35.0001" stroke="#FFFEFD" stroke-width="6" stroke-linecap="square"/>
+<path d="M106 104.102V83.4615" stroke="#FFFEFD" stroke-width="6" stroke-linecap="square"/>
+<path d="M84.462 35H105.103" stroke="#FFFEFD" stroke-width="6" stroke-linecap="square"/>
+<path d="M41.3845 35H57.5384" stroke="#FFFEFD" stroke-width="6" stroke-linecap="square"/>
+<path d="M57.6689 104.866H36.1422" stroke="#FFFEFD" stroke-width="6" stroke-linecap="square"/>
+<path d="M36.1074 99.5127V83.3676" stroke="#FFFEFD" stroke-width="6" stroke-linecap="square"/>
+<path d="M106 105H84.4615" stroke="#FFFEFD" stroke-width="6" stroke-linecap="square"/>
+<path d="M106 56.5386V35.0001" stroke="#FFFEFD" stroke-width="6" stroke-linecap="square"/>
+<rect x="51" y="50" width="16" height="16" stroke="#FFFEFD" stroke-width="4"/>
+<rect x="51" y="75" width="16" height="16" stroke="#FFFEFD" stroke-width="4"/>
+<rect x="76" y="74" width="2" height="2" fill="#FFFEFD" stroke="#FFFEFD" stroke-width="2"/>
+<rect x="76" y="78" width="2" height="2" fill="#FFFEFD" stroke="#FFFEFD" stroke-width="2"/>
+<rect x="84" y="78" width="2" height="2" fill="#FFFEFD" stroke="#FFFEFD" stroke-width="2"/>
+<rect x="80" y="82" width="2" height="2" fill="#FFFEFD" stroke="#FFFEFD" stroke-width="2"/>
+<rect x="84" y="82" width="2" height="2" fill="#FFFEFD" stroke="#FFFEFD" stroke-width="2"/>
+<rect x="88" y="74" width="2" height="2" fill="#FFFEFD" stroke="#FFFEFD" stroke-width="2"/>
+<rect x="88" y="86" width="2" height="2" fill="#FFFEFD" stroke="#FFFEFD" stroke-width="2"/>
+<rect x="88" y="82" width="2" height="2" fill="#FFFEFD" stroke="#FFFEFD" stroke-width="2"/>
+<rect x="76" y="86" width="2" height="2" fill="#FFFEFD" stroke="#FFFEFD" stroke-width="2"/>
+<rect x="77" y="50" width="16" height="16" stroke="#FFFEFD" stroke-width="4"/>
+</svg>

@@ -1,0 +1,121 @@
+<div class="lesson-content">
+    <div id="part1">
+        <div class="video-recap-container">
+            <div class="video-frame">
+                <div class="video-wrapper">
+                    <video class="lesson-video">
+                        <source src="../../video/test.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <button class="play-btn" aria-label="Play video"></button>
+                </div>
+                <div class="frame-bar">
+                    <img src="../../images/enlarge.svg" alt="Enlarge Video" id="sizeBtn" class="icon-btn">
+                </div>
+            </div>
+            <div class="recap">
+                <h3 class="recap-title">Recap</h3>
+                <ul class="recap-list">
+                    <li>Sharp (#) makes a note a half step higher</li>
+                    <li>Flat (♭) makes a note a half step lower</li>
+                    <li>A whole step would be a new note (B -> C)</li>
+                    <li>A half step adds a sharp or flat (B -> B#)</li>
+                </ul>
+            </div>
+        </div>
+        <div class="info-box">
+            <div class="info-content">
+                <div class="info-tabs">
+                    <button class="info-tab active" data-tab="description">
+                        <span>Description</span>
+                        <span class="info-icon"><img src="../../images/info.svg" alt="Info"></span>
+                    </button>
+                    <button class="info-tab" data-tab="transcript">
+                        <span>Transcript</span>
+                        <span class="info-icon"><img src="../../images/transcript.svg" alt="Transcript"></span>
+                    </button>
+                </div>
+                <div class="tab-panel active" data-panel="description">
+                    <p>Learn about sharps and flats - symbols that raise or lower notes by a half step.</p>
+                </div>
+                <div class="tab-panel" data-panel="transcript">
+                    <div class="transcript-entry">
+                        Each note can be sharp (#) or flat (♭). These symbols make the note a half step higher or lower.
+                        A whole step higher would be a new note, like B to C. However, a half step would be B to B#.
+                        [Image of a staff showing the difference between whole and half steps]
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="part2">
+        <div class="quiz" data-current="1" data-total="2">
+            <div class="quiz-question" data-question="1" data-answer="1">
+                <p class="quiz-subtitle">Question 01 of 02</p>
+                <p class="quiz-prompt">Fill in the blank with the correct answer:</p>
+                <p class="quiz-text">"A sharp (#) makes a note a ___ step higher."</p>
+                <hr class="quiz-divider">
+                <div class="quiz-options">
+                    <button class="quiz-option" data-option="1"><span class="option-number">1</span>Half</button>
+                    <button class="quiz-option" data-option="2"><span class="option-number">2</span>Whole</button>
+                    <button class="quiz-option" data-option="3"><span class="option-number">3</span>Quarter</button>
+                    <button class="quiz-option" data-option="4"><span class="option-number">4</span>Double</button>
+                </div>
+            </div>
+            <div class="quiz-question" data-question="2" data-answer="3" style="display: none;">
+                <p class="quiz-subtitle">Question 02 of 02</p>
+                <p class="quiz-prompt">Which note is the same as B#?</p>
+                <p class="quiz-text">Select the correct answer below.</p>
+                <hr class="quiz-divider">
+                <div class="quiz-options">
+                    <button class="quiz-option" data-option="1"><span class="option-number">1</span>A</button>
+                    <button class="quiz-option" data-option="2"><span class="option-number">2</span>B</button>
+                    <button class="quiz-option" data-option="3"><span class="option-number">3</span>C</button>
+                    <button class="quiz-option" data-option="4"><span class="option-number">4</span>D</button>
+                </div>
+            </div>
+            <div class="quiz-result" style="display: none;">
+                <p class="quiz-score"></p>
+                <button class="quiz-retry">Try Again</button>
+                <button class="quiz-continue">Continue</button>
+            </div>
+        </div>
+    </div>
+    <div id="part3">
+        <div class="finish-container">
+            <div class="finish-left">
+                <h2 class="finish-title">Lesson Complete</h2>
+                <div class="finish-illustration">
+                    <div class="illustration-placeholder">
+                        <span>♯</span>
+                    </div>
+                </div>
+                <div class="next-lesson-info">
+                    <p class="next-lesson-label">Next Lesson:</p>
+                    <p class="next-lesson-title">3.2 Keys</p>
+                </div>
+            </div>
+            <div class="finish-right">
+                <ul class="completion-list">
+                    <li class="completion-item completed">
+                        <span class="check-icon">✓</span>
+                        <span>Sharps and Flats</span>
+                    </li>
+                    <li class="completion-item completed">
+                        <span class="check-icon">✓</span>
+                        <span>Pop Quiz</span>
+                    </li>
+                </ul>
+                <div class="finish-actions">
+                    <button class="btn-exit">Exit <span class="btn-icon">↗</span></button>
+                    <button class="btn-next-lesson">Next Lesson <span class="btn-icon">▶</span></button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="part-nav">
+        <img src="../../images/videoButton.svg" alt="Part 1" class="nav-btn" data-part="0">
+        <img src="../../images/quizButton.svg" alt="Part 2" class="nav-btn" data-part="1">
+        <img src="../../images/finishButton.svg" alt="Part 3" class="nav-btn" data-part="2">
+    </div>
+</div>
