@@ -1,4 +1,4 @@
-# arco
-Project for DIG capstone.
-PLEASE PULL HERE. Never to main
-Use frame branch for the frame of all html
+## Project Arco
+#Project for DIG capstone.
+
+Welcome to project arco. Arco is a music learning website targeted towards K-8. Our main audience is violin users who want to learn. 
