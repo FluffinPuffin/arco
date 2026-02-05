@@ -1,14 +1,14 @@
 /* ============================= */
 /* fonts */
 /* ============================= */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Lexend:wght@400&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Lexend:wght@400;600;700&display=swap");
 
 
 /* ============================= */
 /* reusable variables */
 /* ============================= */
 :root {
-    --bg-main: #75390B;
+    --frame-color: #75390B;
     --white: #FFFEFD;
     --muted: #1C1C1C;
 
@@ -33,11 +33,11 @@
 /* ============================= */
 /* lexend default */
 /* ============================= */
-body {
+/* body {
     background-color: var(--bg-main);
     font-family: 'Lexend', sans-serif;
     font-size: 100%;
-}
+} */
 
 /* Awards */
 .title {
@@ -905,4 +905,8 @@ body {
     height: 20px;
     vertical-align: middle;
     margin-left: 10px;
+}
+
+.header * {
+    line-height: normal;
 }
