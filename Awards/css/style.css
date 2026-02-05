@@ -8,7 +8,7 @@
 /* reusable variables */
 /* ============================= */
 :root {
-    --bg-main: #8F4300;
+    --bg-main: #75390B;
     --white: #FFFEFD;
     --muted: #1C1C1C;
 
@@ -83,13 +83,13 @@ body {
 }
 
 .awardTypes button:hover {
-    border-color: #8F4300;
+    border-color: #75390B;
 }
 
 .awardTypes button.is-active {
-    background-color: #8F4300;
+    background-color: #75390B;
     color: #FFFEFD;
-    border-color: #8F4300;
+    border-color: #75390B;
 }
 
 
@@ -165,7 +165,7 @@ body {
 }
 
 .medalButton.selected {
-    box-shadow: 0 0 0 0.2rem #8F4300;
+    box-shadow: 0 0 0 0.2rem #75390B;
     border-radius: 1rem;
 }
 
@@ -237,8 +237,8 @@ body {
 
 .galleryNav:hover {
     color: #FFFEFD;
-    border-color: #8F4300;
-    background: #8F4300;
+    border-color: #75390B;
+    background: #75390B;
 }
 
 
@@ -311,7 +311,7 @@ body {
 }
 
 .stickerButton.selected img {
-    outline: 0.25rem solid #8F4300;
+    outline: 0.25rem solid #75390B;
     border-radius: 1rem;
 }
 
@@ -382,7 +382,7 @@ body {
 
 /* all stickers button */
 .allStickersButton {
-    background-color: #8F4300;
+    background-color: #75390B;
     color: #FFFEFD;
     border: none;
     padding: 0.6rem 1.2rem;
