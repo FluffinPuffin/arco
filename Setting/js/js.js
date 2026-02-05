@@ -165,6 +165,8 @@ function openEditModal(field, content) {
     // Show name fields, hide single field
     nameFields.hidden = false;
     singleField.hidden = true;
+    if (editValueInput) editValueInput.required = false;
+    if (editSelectInput) editSelectInput.required = false;
 
     // Parse current name value
     const currentName = valueEl?.textContent?.trim() || "";
