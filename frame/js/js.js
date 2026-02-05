@@ -34,3 +34,30 @@ document.addEventListener("DOMContentLoaded", () => {
 function goBack() {
   window.history.back();
 }
+
+// Logout overlay functionality
+document.addEventListener("frame:ready", () => {
+  const profileIcon = document.querySelector(".profile-icon");
+  const logoutOverlay = document.getElementById("logoutOverlay");
+
+  if (profileIcon && logoutOverlay) {
+    // Toggle logout overlay when clicking profile icon
+    profileIcon.addEventListener("click", (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      logoutOverlay.classList.toggle("hidden");
+    });
+
+    // Close overlay when clicking outside
+    document.addEventListener("click", (e) => {
+      if (!logoutOverlay.contains(e.target) && !profileIcon.contains(e.target)) {
+        logoutOverlay.classList.add("hidden");
+      }
+    });
+  }
+});
+
+function signOut() {
+  // Redirect to login/landing page
+  window.location.href = window.location.origin + "/Login/html/index.html";
+}
