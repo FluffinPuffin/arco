@@ -111,11 +111,13 @@ function initSettings() {
         const valueEl = content.querySelector(`[data-value="${field}"]`);
         if (valueEl) valueEl.textContent = value;
 
-        // Save to localStorage
+        // Save to localStorage and sync to server
         if (field === "name") {
           localStorage.setItem("arco-name", value);
+          if (typeof ArcoAPI !== 'undefined') ArcoAPI.updateProfile({ display_name: value });
         } else if (field === "grade") {
           localStorage.setItem("arco-grade", value);
+          if (typeof ArcoAPI !== 'undefined') ArcoAPI.updateProfile({ grade: value });
         }
 
         closeEditModal(modal);
@@ -141,6 +143,7 @@ function initSettings() {
 
         const path = src.startsWith("http") ? new URL(src).pathname : src;
         localStorage.setItem("arco-avatar", path);
+        if (typeof ArcoAPI !== 'undefined') ArcoAPI.updateProfile({ avatar: path });
       }
     });
   });

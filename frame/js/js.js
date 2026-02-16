@@ -1,3 +1,10 @@
+// Load the shared API helper
+(function() {
+  const s = document.createElement('script');
+  s.src = '/js/api.js';
+  document.head.appendChild(s);
+})();
+
 // Get the base path to the frame folder from this script's location
 const scriptSrc = document.currentScript.src;
 const framePath = scriptSrc.substring(0, scriptSrc.lastIndexOf('/js/'));
@@ -34,6 +41,13 @@ document.addEventListener("DOMContentLoaded", () => {
 function goBack() {
   window.history.back();
 }
+
+// On frame ready, sync profile data from server (if logged in)
+document.addEventListener("frame:ready", () => {
+  if (typeof ArcoAPI !== 'undefined') {
+    ArcoAPI.syncFromServer();
+  }
+});
 
 // Logout overlay functionality
 document.addEventListener("frame:ready", () => {
@@ -83,6 +97,12 @@ document.addEventListener("frame:ready", () => {
 });
 
 function signOut() {
-  // Redirect to login/landing page
-  window.location.href = window.location.origin + "/Login/html/index.html";
+  // Call backend logout, then redirect to login page
+  if (typeof ArcoAPI !== 'undefined') {
+    ArcoAPI.logout().finally(() => {
+      window.location.href = window.location.origin + "/Login/html/index.html";
+    });
+  } else {
+    window.location.href = window.location.origin + "/Login/html/index.html";
+  }
 }

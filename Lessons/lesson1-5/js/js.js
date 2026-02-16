@@ -37,6 +37,11 @@ function updateOverallProgress() {
     completed: completedCount === partCompleted.length
   };
   localStorage.setItem('arco_lessons_progress', JSON.stringify(allProgress));
+
+  // Sync progress to server
+  if (typeof ArcoAPI !== 'undefined') {
+    ArcoAPI.saveProgress(LESSON_ID, partCompleted, currentPartIndex, percentage, completedCount === partCompleted.length);
+  }
 }
 
 // Initialize progress on load
