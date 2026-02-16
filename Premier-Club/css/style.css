@@ -4,12 +4,12 @@
 
 /* Dark green content area (matches screenshot) */
 body:has(.premier-club-card) {
-    background-color: #1a4d3e;
+    background-color: #2C4A3B;
 }
 
 .rectangle:has(.premier-club-card) {
-    background-color: #1a4d3e;
-    border-color: #1a4d3e;
+    background-color: #2C4A3B;
+    border-color: #2C4A3B;
 }
 
 /* White rounded card */

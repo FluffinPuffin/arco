@@ -25,7 +25,7 @@ document.addEventListener("frame:ready", () => {
         .insertAdjacentHTML("beforeend", content);
       initInfoTabs();
       initGameControls();
-      initQuiz();
+      initGame();
     })
     .catch(err => console.error("CONTENT LOAD FAILED:", err));
 });
@@ -80,21 +80,21 @@ function initGameControls() {
   });
 }
 
-function initQuiz() {
-  const quiz = document.querySelector('.quiz');
-  if (!quiz) return;
+function initGame() {
+  const game = document.querySelector('.game');
+  if (!game) return;
 
-  const questions = quiz.querySelectorAll('.quiz-question');
-  const result = quiz.querySelector('.quiz-result');
-  const scoreDisplay = quiz.querySelector('.quiz-score');
-  const retryBtn = quiz.querySelector('.quiz-retry');
+  const questions = game.querySelectorAll('.game-question');
+  const result = game.querySelector('.game-result');
+  const scoreDisplay = game.querySelector('.game-score');
+  const retryBtn = game.querySelector('.game-retry');
 
   let currentQuestion = 1;
   let score = 0;
   const totalQuestions = questions.length;
 
   questions.forEach(question => {
-    const options = question.querySelectorAll('.quiz-option');
+    const options = question.querySelectorAll('.game-option');
     const correctAnswer = question.dataset.answer;
 
     options.forEach(option => {
@@ -107,18 +107,13 @@ function initQuiz() {
           score++;
         } else {
           option.classList.add('incorrect');
-          options.forEach(opt => {
-            if (opt.dataset.option === correctAnswer) {
-              opt.classList.add('correct');
-            }
-          });
         }
 
         setTimeout(() => {
           if (currentQuestion < totalQuestions) {
             question.style.display = 'none';
             currentQuestion++;
-            const nextQuestion = quiz.querySelector(`[data-question="${currentQuestion}"]`);
+            const nextQuestion = game.querySelector(`[data-question="${currentQuestion}"]`);
             if (nextQuestion) {
               nextQuestion.style.display = 'block';
             }
@@ -139,7 +134,7 @@ function initQuiz() {
       result.style.display = 'none';
 
       questions.forEach((question, index) => {
-        const options = question.querySelectorAll('.quiz-option');
+        const options = question.querySelectorAll('.game-option');
         options.forEach(opt => {
           opt.disabled = false;
           opt.classList.remove('correct', 'incorrect');

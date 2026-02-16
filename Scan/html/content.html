@@ -1,5 +1,65 @@
-<!-- Camera feed -->
-<div id="reader" style="width:300px;"></div>
+<!-- Scan Container -->
+<div class="scan-container">
 
-<!-- Scan result -->
-<p id="result"></p>
+    <!-- Scanning State -->
+    <div id="scanning-state" class="scan-state active">
+        <div class="scan-frame">
+            <!-- Camera Reader -->
+            <div id="reader"></div>
+
+            <!-- QR Code Icon - shown until camera starts -->
+            <div class="qr-icon" id="qr-placeholder">
+                <img src="../images/qr code.png" alt="QR Code" class="qr-base">
+                <img src="../images/scanLines.svg" alt="Scan Lines" class="scan-lines">
+            </div>
+        </div>
+
+        <!-- Controls -->
+        <button class="control-btn info-btn" aria-label="Info">
+            <img src="../images/information.svg" alt="Information">
+        </button>
+
+        <!-- Custom Slider -->
+        <div class="control-btn zoom-btn" aria-label="Zoom">
+            <button class="zoom-plus">+</button>
+            <div class="zoom-track">
+                <div class="zoom-thumb" id="zoom-thumb"></div>
+            </div>
+            <button class="zoom-minus">-</button>
+        </div>
+
+        <!-- Zoom Level Dots -->
+        <div class="camera-dots">
+            <span class="dot"></span>
+            <span class="dot active"></span>
+            <span class="dot outline"></span>
+        </div>
+    </div>
+
+    <!-- Success State -->
+    <div id="success-state" class="scan-state">
+        <h2 class="state-title">Success!</h2>
+        <div class="state-icon success-icon">
+            <img src="../images/success.svg" alt="Success">
+        </div>
+        <p class="state-message">Web access has been unlocked</p>
+        <div class="state-buttons">
+            <button class="btn btn-exit">Exit</button>
+            <button class="btn btn-scan">Scan</button>
+        </div>
+    </div>
+
+    <!-- Error State -->
+    <div id="error-state" class="scan-state">
+        <h2 class="state-title">Error!</h2>
+        <div class="state-icon error-icon">
+            <img src="../images/fail.svg" alt="Error">
+        </div>
+        <p class="state-message">Tip: Scan your code in bright lighting</p>
+        <div class="state-buttons">
+            <button class="btn btn-exit">Exit</button>
+            <button class="btn btn-scan">Scan</button>
+        </div>
+    </div>
+
+</div>

@@ -27,20 +27,9 @@ document.addEventListener("frame:ready", () => {
     .catch(err => console.error("Content load failed:", err));
 });
 
-// Load and display lesson progress from localStorage, then refresh from server
+// Load and display lesson progress from localStorage
 function loadLessonProgress() {
-  // First render from localStorage (instant)
-  renderProgress(JSON.parse(localStorage.getItem('arco_lessons_progress') || '{}'));
-
-  // Then refresh from server in background
-  if (typeof ArcoAPI !== 'undefined') {
-    ArcoAPI.syncFromServer().then(() => {
-      renderProgress(JSON.parse(localStorage.getItem('arco_lessons_progress') || '{}'));
-    });
-  }
-}
-
-function renderProgress(allProgress) {
+  const allProgress = JSON.parse(localStorage.getItem('arco_lessons_progress') || '{}');
 
   const lessonCards = document.querySelectorAll('.lesson-card');
   lessonCards.forEach(card => {

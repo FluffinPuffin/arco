@@ -3,45 +3,47 @@
         <div class="game-frame">
             <div class="game-wrapper">
                 <!-- Game content will be loaded here -->
-                <div class="quiz" id="gameArea">
+                <div class="game" id="gameArea">
                     <!-- Question 1 -->
-                    <div class="quiz-question" data-question="1" data-answer="g">
-                        <!-- Your string image goes here -->
-                        <div class="quiz-image-placeholder">String Image 1</div>
-                        <div class="quiz-options">
-                            <button class="quiz-option" data-option="g">G</button>
-                            <button class="quiz-option" data-option="d">D</button>
-                            <button class="quiz-option" data-option="a">A</button>
-                            <button class="quiz-option" data-option="e">E</button>
+                    <div class="game-question" data-question="1" data-answer="a">
+                        <div class="game-image-placeholder"><img src="../../images/lesson1.4/stringGuess1.svg"
+                                alt="Violin Part 1"></div>
+                        <div class="game-options">
+                            <button class="game-option" data-option="g">G</button>
+                            <button class="game-option" data-option="d">D</button>
+                            <button class="game-option" data-option="a">A</button>
+                            <button class="game-option" data-option="e">E</button>
                         </div>
                     </div>
 
                     <!-- Question 2 -->
-                    <div class="quiz-question" data-question="2" data-answer="a" style="display: none;">
-                        <div class="quiz-image-placeholder">String Image 2</div>
-                        <div class="quiz-options">
-                            <button class="quiz-option" data-option="g">G</button>
-                            <button class="quiz-option" data-option="d">D</button>
-                            <button class="quiz-option" data-option="a">A</button>
-                            <button class="quiz-option" data-option="e">E</button>
+                    <div class="game-question" data-question="2" data-answer="g" style="display: none;">
+                        <div class="game-image-placeholder"><img src="../../images/lesson1.4/stringGuess2.svg"
+                                alt="Violin Part 1"></div>
+                        <div class="game-options">
+                            <button class="game-option" data-option="g">G</button>
+                            <button class="game-option" data-option="d">D</button>
+                            <button class="game-option" data-option="a">A</button>
+                            <button class="game-option" data-option="e">E</button>
                         </div>
                     </div>
 
                     <!-- Question 3 -->
-                    <div class="quiz-question" data-question="3" data-answer="e" style="display: none;">
-                        <div class="quiz-image-placeholder">String Image 3</div>
-                        <div class="quiz-options">
-                            <button class="quiz-option" data-option="g">G</button>
-                            <button class="quiz-option" data-option="d">D</button>
-                            <button class="quiz-option" data-option="a">A</button>
-                            <button class="quiz-option" data-option="e">E</button>
+                    <div class="game-question" data-question="3" data-answer="e" style="display: none;">
+                        <div class="game-image-placeholder"><img src="../../images/lesson1.4/stringGuess3.svg"
+                                alt="Violin Part 1"></div>
+                        <div class="game-options">
+                            <button class="game-option" data-option="g">G</button>
+                            <button class="game-option" data-option="d">D</button>
+                            <button class="game-option" data-option="a">A</button>
+                            <button class="game-option" data-option="e">E</button>
                         </div>
                     </div>
 
                     <!-- Results -->
-                    <div class="quiz-result" style="display: none;">
-                        <p class="quiz-score"></p>
-                        <button class="quiz-retry">Try Again</button>
+                    <div class="game-result" style="display: none;">
+                        <p class="game-score"></p>
+                        <button class="game-retry">Try Again</button>
                     </div>
                 </div>
             </div>
@@ -52,7 +54,8 @@
         <div class="controls">
             <h3 class="controls-title">Controls</h3>
             <p class="controls-text">Tap or click to select your answer.</p>
-            <p class="controls-text">A string on the violin will be highlighted. Tap the letter name that matches the string!</p>
+            <p class="controls-text">A string on the violin will be highlighted. Tap the letter name that matches the
+                string!</p>
         </div>
     </div>
     <div class="info-box">
@@ -60,16 +63,17 @@
             <div class="info-tabs">
                 <button class="info-tab active" data-tab="description">
                     <span>Description</span>
-                    <span class="info-icon">&#9432;</span>
+                    <span class="info-icon"><img src="../../images/info.svg" alt="Info"></span>
                 </button>
                 <button class="info-tab" data-tab="accessibility">
                     <span>Accessibility</span>
-                    <span class="info-icon">&#9855;</span>
+                    <span class="info-icon"><img src="../../images/accessibility.svg" alt="Accessibility"></span>
                 </button>
             </div>
             <div class="tab-panel active" data-panel="description">
                 <p><strong>Topics:</strong> Violin strings, G string, D string, A string, E string</p>
-                <p>In this mini-game, let's test our knowledge of the violin strings. Remember! Does it sound grumpy, tired, sweet, or excited? Each string has a unique sound.</p>
+                <p>In this mini-game, let's test our knowledge of the violin strings. Remember! Does it sound grumpy,
+                    tired, sweet, or excited? Each string has a unique sound.</p>
             </div>
             <div class="tab-panel" data-panel="accessibility">
                 <p>Use keyboard arrows to navigate between options. Press Enter or Space to select your answer.</p>

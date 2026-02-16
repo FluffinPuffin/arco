@@ -1,0 +1,242 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Lexend:wght@400;600;700&display=swap");
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* Base Layout */
+html {
+    overflow-y: scroll;
+}
+
+html,
+body {
+    height: 100vh;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    padding-top: 65px;
+    font-family: 'Poppins', sans-serif;
+}
+
+#lesson-title {
+    flex-shrink: 0;
+}
+
+#content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+    min-height: 0;
+}
+
+/* Footer */
+.footer {
+    flex-shrink: 0;
+    width: 100%;
+    padding: 20px 40px;
+    box-sizing: border-box;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    background-color: #FFFEFD;
+    box-shadow: 0 -2px 4px #F0F0F0;
+}
+
+.footer-left {
+    display: flex;
+    gap: 40px;
+}
+
+.footer-left a {
+    color: #1C1C1C;
+    text-decoration: none;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400;
+}
+
+.footer-left a:hover {
+    text-decoration: underline;
+}
+
+.footer-right {
+    color: #1C1C1C;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400;
+}
+
+/* Header */
+
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 10px 40px;
+    box-sizing: border-box;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    background-color: #FFFEFD;
+    box-shadow: 0 2px 4px #F0F0F0;
+}
+
+.header-left {
+    flex: 1;
+    display: flex;
+    align-items: center;
+}
+
+.header-left .logo {
+    height: 30px;
+}
+
+.header-center {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.header-center a {
+    color: #1C1C1C;
+    text-decoration: none;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.header-center a:hover {
+    opacity: 0.8;
+    text-decoration: underline;
+}
+
+.header-right {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 30px;
+}
+
+.header-right a {
+    color: #1C1C1C;
+    text-decoration: none;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.header-right a:hover {
+    opacity: 0.8;
+    text-decoration: underline;
+}
+
+.premium-icon,
+.settings-icon {
+    width: 24px;
+    height: 24px;
+}
+
+.profile-icon {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+}
+
+
+/* Logout Overlay */
+.logout-overlay {
+    position: fixed;
+    top: 70px;
+    right: 40px;
+    z-index: 1001;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.logout-overlay.hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.logout-container {
+    background-color: #ffffff;
+    border-radius: 15px;
+    padding: 20px 30px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 180px;
+}
+
+.logout-profile-picture {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    border: 3px solid #FF8C00;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    margin-bottom: 12px;
+}
+
+.logout-avatar {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.logout-name {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: 18px;
+    color: #000000;
+    margin-bottom: 4px;
+}
+
+.logout-grade {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    color: #666666;
+    margin-bottom: 16px;
+}
+
+.logout-btn {
+    background-color: transparent;
+    color: #FF8C00;
+    border: 2px solid #FF8C00;
+    border-radius: 20px;
+    padding: 8px 24px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.logout-btn:hover {
+    background-color: #FF8C00;
+    color: #ffffff;
+}

@@ -28,11 +28,11 @@
                 <div class="info-tabs">
                     <button class="info-tab active" data-tab="description">
                         <span>Description</span>
-                        <span class="info-icon">&#9432;</span>
+                        <span class="info-icon"><img src="../../images/info.svg" alt="Info"></span>
                     </button>
                     <button class="info-tab" data-tab="transcript">
                         <span>Transcript</span>
-                        <span class="info-icon">&#128196;</span>
+                        <span class="info-icon"><img src="../../images/transcript.svg" alt="Transcript"></span>
                     </button>
                 </div>
                 <div class="tab-panel active" data-panel="description">
@@ -48,55 +48,6 @@
         </div>
     </div>
     <div id="part2">
-        <div class="video-recap-container">
-            <div class="video-frame">
-                <div class="video-wrapper">
-                    <video class="lesson-video">
-                        <source src="../../video/test.mp4" type="video/mp4">
-                        Your browser does not support the video tag.
-                    </video>
-                    <button class="play-btn" aria-label="Play video"></button>
-                </div>
-                <div class="frame-bar">
-                    <img src="../../images/enlarge.svg" alt="Enlarge Video" class="icon-btn size-btn">
-                </div>
-            </div>
-            <div class="recap">
-                <h3 class="recap-title">Recap</h3>
-                <ul class="recap-list">
-                    <li>G string: lowest, sounds "grumpy"</li>
-                    <li>D string: second lowest, sounds "tired"</li>
-                    <li>A string: second highest, sounds "sweet"</li>
-                    <li>E string: highest, sounds "excited"</li>
-                </ul>
-            </div>
-        </div>
-        <div class="info-box">
-            <div class="info-content">
-                <div class="info-tabs">
-                    <button class="info-tab active" data-tab="description">
-                        <span>Description</span>
-                        <span class="info-icon">&#9432;</span>
-                    </button>
-                    <button class="info-tab" data-tab="transcript">
-                        <span>Transcript</span>
-                        <span class="info-icon">&#128196;</span>
-                    </button>
-                </div>
-                <div class="tab-panel active" data-panel="description">
-                    <p>Explore the personality and sound of each string on the violin.</p>
-                </div>
-                <div class="tab-panel" data-panel="transcript">
-                    <div class="transcript-entry">
-                        The G string is the lowest string. It sounds grumpy! The D string is the second lowest string.
-                        It sounds tired. The A string is the second highest string. It sounds sweet. The E string is
-                        the highest string. It sounds excited!
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div id="part3">
         <div class="quiz" data-current="1" data-total="2">
             <div class="quiz-question" data-question="1" data-answer="4">
                 <p class="quiz-subtitle">Question 01 of 02</p>
@@ -129,12 +80,53 @@
             </div>
         </div>
     </div>
-    <div id="part4">
+    <div id="part3">
         <div class="game-container">
             <div class="game-frame">
                 <div class="game-wrapper">
-                    <div class="game-placeholder" id="gameArea">
-                        <p>Game Loading...</p>
+                    <div class="game" id="gameArea">
+                        <!-- Question 1 -->
+                        <div class="game-question" data-question="1" data-answer="a">
+                            <div class="game-image-placeholder"><img src="../../images/lesson1.4/stringGuess1.svg"
+                                    alt="Violin Part 1"></div>
+                            <div class="game-options">
+                                <button class="game-option" data-option="g">G</button>
+                                <button class="game-option" data-option="d">D</button>
+                                <button class="game-option" data-option="a">A</button>
+                                <button class="game-option" data-option="e">E</button>
+                            </div>
+                        </div>
+
+                        <!-- Question 2 -->
+                        <div class="game-question" data-question="2" data-answer="g" style="display: none;">
+                            <div class="game-image-placeholder"><img src="../../images/lesson1.4/stringGuess2.svg"
+                                    alt="Violin Part 1"></div>
+                            <div class="game-options">
+                                <button class="game-option" data-option="g">G</button>
+                                <button class="game-option" data-option="d">D</button>
+                                <button class="game-option" data-option="a">A</button>
+                                <button class="game-option" data-option="e">E</button>
+                            </div>
+                        </div>
+
+                        <!-- Question 3 -->
+                        <div class="game-question" data-question="3" data-answer="e" style="display: none;">
+                            <div class="game-image-placeholder"><img src="../../images/lesson1.4/stringGuess3.svg"
+                                    alt="Violin Part 1"></div>
+                            <div class="game-options">
+                                <button class="game-option" data-option="g">G</button>
+                                <button class="game-option" data-option="d">D</button>
+                                <button class="game-option" data-option="a">A</button>
+                                <button class="game-option" data-option="e">E</button>
+                            </div>
+                        </div>
+
+                        <!-- Results -->
+                        <div class="game-result" style="display: none;">
+                            <p class="game-score"></p>
+                            <button class="game-retry">Try Again</button>
+                            <button class="game-continue">Continue</button>
+                        </div>
                     </div>
                 </div>
                 <div class="frame-bar">
@@ -143,8 +135,8 @@
             </div>
             <div class="controls">
                 <h3 class="controls-title">Controls</h3>
-                <p class="controls-text">Listen to each string and identify them.</p>
-                <p class="controls-text">Click on the correct string when you hear it play.</p>
+                <p class="controls-text">Identify each string.</p>
+                <p class="controls-text">Click on the correct string.</p>
             </div>
         </div>
         <div class="info-box">
@@ -152,23 +144,23 @@
                 <div class="info-tabs">
                     <button class="info-tab active" data-tab="description">
                         <span>Description</span>
-                        <span class="info-icon">&#9432;</span>
+                        <span class="info-icon"><img src="../../images/info.svg" alt="Info"></span>
                     </button>
                     <button class="info-tab" data-tab="accessibility">
                         <span>Accessibility</span>
-                        <span class="info-icon">&#9855;</span>
+                        <span class="info-icon"><img src="../../images/accessibility.svg" alt="Accessibility"></span>
                     </button>
                 </div>
                 <div class="tab-panel active" data-panel="description">
                     <p>Practice identifying each violin string by its unique sound.</p>
                 </div>
                 <div class="tab-panel" data-panel="accessibility">
-                    <p>Use keyboard arrows to navigate between strings. Press Enter or Space to select.</p>
+                    <p>Use tab arrows to navigate between parts. Press Enter to select.</p>
                 </div>
             </div>
         </div>
     </div>
-    <div id="part5">
+    <div id="part4">
         <div class="finish-container">
             <div class="finish-left">
                 <h2 class="finish-title">Lesson Complete</h2>
@@ -190,15 +182,7 @@
                     </li>
                     <li class="completion-item completed">
                         <span class="check-icon">✓</span>
-                        <span>String Personalities</span>
-                    </li>
-                    <li class="completion-item completed">
-                        <span class="check-icon">✓</span>
                         <span>Pop Quiz</span>
-                    </li>
-                    <li class="completion-item completed">
-                        <span class="check-icon">✓</span>
-                        <span>String Sounds</span>
                     </li>
                 </ul>
                 <div class="finish-actions">
@@ -210,9 +194,8 @@
     </div>
     <div class="part-nav">
         <img src="../../images/videoButton.svg" alt="Part 1" class="nav-btn" data-part="0">
-        <img src="../../images/videoButton.svg" alt="Part 2" class="nav-btn" data-part="1">
-        <img src="../../images/quizButton.svg" alt="Part 3" class="nav-btn" data-part="2">
-        <img src="../../images/gameButton.svg" alt="Part 4" class="nav-btn" data-part="3">
-        <img src="../../images/finishButton.svg" alt="Part 5" class="nav-btn" data-part="4">
+        <img src="../../images/quizButton.svg" alt="Part 2" class="nav-btn" data-part="1">
+        <img src="../../images/gameButton.svg" alt="Part 3" class="nav-btn" data-part="2">
+        <img src="../../images/finishButton.svg" alt="Part 4" class="nav-btn" data-part="3">
     </div>
 </div>
