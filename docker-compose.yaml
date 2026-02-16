@@ -1,0 +1,51 @@
+services:
+  web:
+    image: nginx:alpine
+    ports:
+      - "8080:80"
+    volumes:
+      - .:/usr/share/nginx/html
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - php
+    networks:
+      - arco-net
+
+  php:
+    build: ./api
+    volumes:
+      - .:/usr/share/nginx/html
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      DB_HOST: db
+      DB_NAME: arco
+      DB_USER: arco_user
+      DB_PASS: arco_pass
+    networks:
+      - arco-net
+
+  db:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: root_pass
+      MYSQL_DATABASE: arco
+      MYSQL_USER: arco_user
+      MYSQL_PASSWORD: arco_pass
+    volumes:
+      - db_data:/var/lib/mysql
+      - ./api/init.sql:/docker-entrypoint-initdb.d/init.sql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+    networks:
+      - arco-net
+
+volumes:
+  db_data:
+
+networks:
+  arco-net:

@@ -56,6 +56,20 @@ function initSettings() {
     avatarImg.src = savedAvatar.startsWith("/") ? savedAvatar : "/" + savedAvatar;
   }
 
+  // Restore saved name
+  const savedName = localStorage.getItem("arco-name");
+  if (savedName) {
+    const nameEl = content.querySelector('[data-value="name"]');
+    if (nameEl) nameEl.textContent = savedName;
+  }
+
+  // Restore saved grade
+  const savedGrade = localStorage.getItem("arco-grade");
+  if (savedGrade) {
+    const gradeEl = content.querySelector('[data-value="grade"]');
+    if (gradeEl) gradeEl.textContent = savedGrade;
+  }
+
   // Edit buttons
   content.querySelectorAll(".settings-edit-btn").forEach((btn) => {
     btn.addEventListener("click", () => {
@@ -72,17 +86,40 @@ function initSettings() {
   const form = content.querySelector("#settings-edit-form");
   const editFieldInput = content.querySelector("#edit-field");
   const editValueInput = content.querySelector("#edit-value");
-  const cancelBtn = content.querySelector(".settings-modal-cancel");
-  const backdrop = content.querySelector(".settings-modal-backdrop");
+  const cancelBtn = modal?.querySelector(".settings-modal-cancel");
+  const backdrop = modal?.querySelector(".settings-modal-backdrop");
+
+  const editSelectInput = content.querySelector("#edit-select");
 
   if (form) {
     form.addEventListener("submit", (e) => {
       e.preventDefault();
       const field = editFieldInput?.value;
-      const value = editValueInput?.value;
+      let value;
+
+      if (field === "name") {
+        // Handle separate first and last name fields
+        const firstName = content.querySelector("#edit-first-name")?.value?.trim();
+        const lastName = content.querySelector("#edit-last-name")?.value?.trim();
+        value = `${firstName}, ${lastName}`;
+      } else {
+        const isSelectField = field === "plan" || field === "payment" || field === "grade";
+        value = isSelectField ? editSelectInput?.value : editValueInput?.value;
+      }
+
       if (field && value !== undefined) {
         const valueEl = content.querySelector(`[data-value="${field}"]`);
         if (valueEl) valueEl.textContent = value;
+
+        // Save to localStorage and sync to server
+        if (field === "name") {
+          localStorage.setItem("arco-name", value);
+          if (typeof ArcoAPI !== 'undefined') ArcoAPI.updateProfile({ display_name: value });
+        } else if (field === "grade") {
+          localStorage.setItem("arco-grade", value);
+          if (typeof ArcoAPI !== 'undefined') ArcoAPI.updateProfile({ grade: value });
+        }
+
         closeEditModal(modal);
       }
     });
@@ -104,19 +141,17 @@ function initSettings() {
         opt.classList.add("active");
         closeAvatarModal(avatarModal);
 
-        // Save avatar and update frame header (top right)
         const path = src.startsWith("http") ? new URL(src).pathname : src;
         localStorage.setItem("arco-avatar", path);
-        const profileIcon = document.querySelector(".profile-icon");
-        if (profileIcon) profileIcon.src = path.startsWith("/") ? path : "/" + path;
+        if (typeof ArcoAPI !== 'undefined') ArcoAPI.updateProfile({ avatar: path });
       }
     });
   });
   content.querySelector("[data-avatar-cancel]")?.addEventListener("click", () => closeAvatarModal(avatarModal));
   content.querySelector("[data-avatar-backdrop]")?.addEventListener("click", () => closeAvatarModal(avatarModal));
 
-  // Manage Account button
-  const manageBtn = content.querySelector(".settings-primary-btn");
+  // Manage Account button (only in the Account panel)
+  const manageBtn = content.querySelector('.settings-panel[data-sub="account"] .settings-primary-btn');
   if (manageBtn) {
     manageBtn.addEventListener("click", () => {
       manageBtn.textContent = "Account management coming soon.";
@@ -136,20 +171,99 @@ function openEditModal(field, content) {
   const modal = content.querySelector("#settings-edit-modal");
   const editFieldInput = content.querySelector("#edit-field");
   const editValueInput = content.querySelector("#edit-value");
+  const editSelectInput = content.querySelector("#edit-select");
+  const nameFields = content.querySelector("#name-fields");
+  const singleField = content.querySelector("#single-field");
   const valueEl = content.querySelector(`[data-value="${field}"]`);
   const labels = {
     name: "Edit Name",
     grade: "Edit Grade Level",
-    plan: "Edit Plan",
-    payment: "Edit Payment",
+    plan: "Edit Tier",
+    payment: "Edit Subscription",
   };
   const title = content.querySelector("#edit-modal-title");
   if (title) title.textContent = labels[field] || "Edit";
   if (editFieldInput) editFieldInput.value = field;
-  if (editValueInput) editValueInput.value = valueEl?.textContent ?? "";
+
+  // Handle name field with separate first/last name inputs
+  if (field === "name" && nameFields && singleField) {
+    // Show name fields, hide single field
+    nameFields.hidden = false;
+    singleField.hidden = true;
+    if (editValueInput) editValueInput.required = false;
+    if (editSelectInput) editSelectInput.required = false;
+
+    // Parse current name value
+    const currentName = valueEl?.textContent?.trim() || "";
+    const nameParts = currentName.split(",").map(part => part.trim());
+    const firstName = nameParts[0] || "";
+    const lastName = nameParts[1] || "";
+
+    const firstNameInput = content.querySelector("#edit-first-name");
+    const lastNameInput = content.querySelector("#edit-last-name");
+
+    if (firstNameInput) {
+      firstNameInput.value = firstName;
+      firstNameInput.required = true;
+      firstNameInput.focus();
+    }
+    if (lastNameInput) {
+      lastNameInput.value = lastName;
+      lastNameInput.required = true;
+    }
+  }
+  // Handle dropdown fields (plan, payment, and grade)
+  else if (field === "plan" || field === "payment" || field === "grade") {
+    if (nameFields && singleField) {
+      nameFields.hidden = true;
+      singleField.hidden = false;
+    }
+    if (editSelectInput && editValueInput) {
+      // Hide text input, show dropdown
+      editValueInput.hidden = true;
+      editSelectInput.hidden = false;
+      editSelectInput.required = true;
+      editValueInput.required = false;
+
+      // Populate dropdown options
+      const options = {
+        plan: ["Free", "Premium"],
+        payment: ["Monthly", "Annually"],
+        grade: ["Kindergarten", "1st", "2nd", "3rd", "4th", "5th", "6th", "7th", "8th", "9th", "10th", "11th", "12th"],
+      };
+
+      editSelectInput.innerHTML = "";
+      options[field].forEach((option) => {
+        const optionEl = document.createElement("option");
+        optionEl.value = option;
+        optionEl.textContent = option;
+        editSelectInput.appendChild(optionEl);
+      });
+
+      // Set current value
+      const currentValue = valueEl?.textContent?.trim();
+      editSelectInput.value = currentValue || options[field][0];
+      editSelectInput.focus();
+    }
+  } else {
+    // Show text input, hide dropdown and name fields
+    if (nameFields && singleField) {
+      nameFields.hidden = true;
+      singleField.hidden = false;
+    }
+    if (editValueInput && editSelectInput) {
+      editValueInput.hidden = false;
+      editSelectInput.hidden = true;
+      editSelectInput.required = false;
+      editValueInput.required = true;
+      editValueInput.value = valueEl?.textContent ?? "";
+      editValueInput.placeholder = "";
+      editValueInput.focus();
+    }
+  }
+
   if (modal) {
     modal.hidden = false;
-    editValueInput?.focus();
   }
 }
 

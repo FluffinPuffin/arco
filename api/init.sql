@@ -1,0 +1,22 @@
+CREATE TABLE IF NOT EXISTS users (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    email VARCHAR(255) NOT NULL UNIQUE,
+    password_hash VARCHAR(255) NOT NULL,
+    display_name VARCHAR(100) DEFAULT '',
+    avatar VARCHAR(255) DEFAULT '',
+    grade VARCHAR(20) DEFAULT '',
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS lesson_progress (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    lesson_id VARCHAR(20) NOT NULL,
+    part_completed JSON,
+    current_part_index INT DEFAULT 0,
+    percentage INT DEFAULT 0,
+    completed BOOLEAN DEFAULT FALSE,
+    last_updated TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    UNIQUE KEY unique_user_lesson (user_id, lesson_id),
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+);

@@ -45,7 +45,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const loginForm = document.getElementById('loginForm');
 
     if (loginForm) {
-        loginForm.addEventListener('submit', function(e) {
+        loginForm.addEventListener('submit', async function(e) {
             e.preventDefault();
 
             const email = document.getElementById('email').value;
@@ -64,21 +64,48 @@ document.addEventListener('DOMContentLoaded', function() {
                 return;
             }
 
-            // Here you would typically send the login request to your backend
-            console.log('Login attempt:', {
-                email: email,
-                password: password,
-                rememberMe: isRememberChecked
-            });
+            // Send login request to backend
+            try {
+                const result = await ArcoAPI.login(email, password);
 
-            // Placeholder success message
-            alert('Login functionality would be implemented here.\n\nEmail: ' + email + '\nRemember Me: ' + isRememberChecked);
+                // Store profile data in localStorage
+                const user = result.user;
+                if (user.display_name) localStorage.setItem('arco-name', user.display_name);
+                if (user.avatar) localStorage.setItem('arco-avatar', user.avatar);
+                if (user.grade) localStorage.setItem('arco-grade', user.grade);
 
-            // Optionally store remember me preference
-            if (isRememberChecked) {
-                localStorage.setItem('rememberedEmail', email);
-            } else {
-                localStorage.removeItem('rememberedEmail');
+                // Store lesson progress in localStorage
+                if (result.progress) {
+                    const aggregate = {};
+                    for (const [lessonId, data] of Object.entries(result.progress)) {
+                        localStorage.setItem(`arco_progress_${lessonId}`, JSON.stringify({
+                            partCompleted: data.partCompleted,
+                            currentPartIndex: data.currentPartIndex,
+                            lastUpdated: Date.now(),
+                        }));
+                        const completedCount = (data.partCompleted || []).filter(Boolean).length;
+                        const totalParts = (data.partCompleted || []).length;
+                        aggregate[lessonId] = {
+                            percentage: data.percentage,
+                            completedParts: completedCount,
+                            totalParts: totalParts,
+                            completed: data.completed,
+                        };
+                    }
+                    localStorage.setItem('arco_lessons_progress', JSON.stringify(aggregate));
+                }
+
+                // Remember me preference
+                if (isRememberChecked) {
+                    localStorage.setItem('rememberedEmail', email);
+                } else {
+                    localStorage.removeItem('rememberedEmail');
+                }
+
+                // Redirect to home
+                window.location.href = '/Home/html/index.html';
+            } catch (err) {
+                alert(err.message || 'Login failed. Please try again.');
             }
         });
     }
