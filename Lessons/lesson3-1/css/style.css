@@ -1,5 +1,24 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Lexend:wght@400;500;600&display=swap');
+
 :root {
     --frame-color: #3F39C2;
+}
+
+.lesson-content {
+    font-family: 'Lexend', sans-serif;
+}
+
+.lesson-content h1,
+.lesson-content h2,
+.lesson-content h3,
+.lesson-content h4,
+.lesson-content h5,
+.lesson-content h6,
+.recap-title,
+.controls-title,
+.quiz-subtitle,
+.finish-title {
+    font-family: 'Poppins', sans-serif;
 }
 
 .rectangle {
@@ -245,6 +264,19 @@
     font-size: 16px;
 }
 
+.info-icon img {
+    width: 20px;
+    height: 20px;
+    filter: brightness(0);
+    /* Makes icons black */
+    transition: filter 0.2s;
+}
+
+.info-tab.active .info-icon img {
+    filter: brightness(0) invert(1);
+    /* Makes icons white when tab is active */
+}
+
 .info-content p {
     margin: 0;
     font-size: 14px;
@@ -350,24 +382,43 @@
     cursor: not-allowed;
 }
 
+/* Correct answer - solid green */
 .quiz-option.correct {
-    border-color: #28a745;
-    background: #d4edda;
-    color: #155724;
+    border-color: #29613F;
+    background: #29613F;
+    color: #FFFEFD;
+    box-shadow: 0 4px 12px rgba(41, 97, 63, 0.3);
+    cursor: default;
 }
 
 .quiz-option.correct .option-number {
-    color: #155724;
+    color: #FFFEFD;
 }
 
+/* Wrong answer - solid red */
 .quiz-option.incorrect {
-    border-color: #dc3545;
-    background: #f8d7da;
-    color: #721c24;
+    border-color: #C13A3A;
+    background: #C13A3A;
+    color: #FFFEFD;
+    box-shadow: 0 4px 12px rgba(193, 58, 58, 0.3);
+    cursor: default;
 }
 
 .quiz-option.incorrect .option-number {
-    color: #721c24;
+    color: #FFFEFD;
+}
+
+/* Disabled/inactive quiz answers - grayed out */
+.quiz-option.disabled {
+    border-color: #E8E8E8;
+    background: #F5F5F5;
+    color: #BFBFBF;
+    box-shadow: none;
+    cursor: default;
+}
+
+.quiz-option.disabled .option-number {
+    color: #BFBFBF;
 }
 
 .quiz-result {

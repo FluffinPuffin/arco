@@ -1,7 +1,24 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Lexend:wght@400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Lexend:wght@400;500;600&display=swap');
 
 :root {
     --frame-color: #3F39C2;
+}
+
+.lesson-content {
+    font-family: 'Lexend', sans-serif;
+}
+
+.lesson-content h1,
+.lesson-content h2,
+.lesson-content h3,
+.lesson-content h4,
+.lesson-content h5,
+.lesson-content h6,
+.recap-title,
+.controls-title,
+.quiz-subtitle,
+.finish-title {
+    font-family: 'Poppins', sans-serif;
 }
 
 /* Override frame rectangle background for lesson pages */
@@ -176,6 +193,11 @@
     transition: transform 0.15s ease, opacity 0.2s ease;
 }
 
+/* Hover effect for unlocked buttons */
+.nav-btn:not(.locked):hover {
+    transform: scale(1.05);
+}
+
 /* Pressed animation */
 .nav-btn.pressed {
     transform: scale(0.9);
@@ -256,6 +278,19 @@
 
 .info-icon {
     font-size: 16px;
+}
+
+.info-icon img {
+    width: 20px;
+    height: 20px;
+    filter: brightness(0);
+    /* Makes icons black */
+    transition: filter 0.2s;
+}
+
+.info-tab.active .info-icon img {
+    filter: brightness(0) invert(1);
+    /* Makes icons white when tab is active */
 }
 
 .info-content p {
@@ -365,24 +400,43 @@
     cursor: not-allowed;
 }
 
+/* Correct answer - solid green */
 .quiz-option.correct {
-    border-color: #28a745;
-    background: #d4edda;
-    color: #155724;
+    border-color: #29613F;
+    background: #29613F;
+    color: #FFFEFD;
+    box-shadow: 0 4px 12px rgba(41, 97, 63, 0.3);
+    cursor: default;
 }
 
 .quiz-option.correct .option-number {
-    color: #155724;
+    color: #FFFEFD;
 }
 
+/* Wrong answer - solid red */
 .quiz-option.incorrect {
-    border-color: #dc3545;
-    background: #f8d7da;
-    color: #721c24;
+    border-color: #C13A3A;
+    background: #C13A3A;
+    color: #FFFEFD;
+    box-shadow: 0 4px 12px rgba(193, 58, 58, 0.3);
+    cursor: default;
 }
 
 .quiz-option.incorrect .option-number {
-    color: #721c24;
+    color: #FFFEFD;
+}
+
+/* Disabled/inactive quiz answers - grayed out */
+.quiz-option.disabled {
+    border-color: #E8E8E8;
+    background: #F5F5F5;
+    color: #BFBFBF;
+    box-shadow: none;
+    cursor: default;
+}
+
+.quiz-option.disabled .option-number {
+    color: #BFBFBF;
 }
 
 .quiz-result {
@@ -396,7 +450,9 @@
 }
 
 .quiz-retry,
-.quiz-continue {
+.quiz-continue,
+.game-retry,
+.game-continue {
     padding: 10px 24px;
     border: none;
     border-radius: 6px;
@@ -406,21 +462,25 @@
     transition: background 0.2s;
 }
 
-.quiz-retry {
+.quiz-retry,
+.game-retry {
     background: #e0e0e0;
     color: #333;
 }
 
-.quiz-retry:hover {
+.quiz-retry:hover,
+.game-retry:hover {
     background: #d0d0d0;
 }
 
-.quiz-continue {
+.quiz-continue,
+.game-continue {
     background: #3F39C2;
     color: white;
 }
 
-.quiz-continue:hover {
+.quiz-continue:hover,
+.game-continue:hover {
     background: #332ea0;
 }
 
@@ -659,4 +719,158 @@
 
 .btn-icon {
     font-size: 12px;
+}
+
+
+/* Game Styles */
+.game {
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.game-question {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    width: 100%;
+}
+
+.game-image-placeholder {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.game-image-placeholder img {
+    max-width: 100%;
+    max-height: 180px;
+    object-fit: contain;
+}
+
+.game-options {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.game-option {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 14px 20px;
+    border: 2px solid #e0e0e0;
+    border-radius: 12px;
+    background: linear-gradient(145deg, #ffffff, #f8f9fa);
+    cursor: pointer;
+    font-family: 'Lexend', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    color: #333;
+    text-align: center;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow: hidden;
+}
+
+.game-option::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(145deg, var(--frame-color), #2d6b4a);
+    opacity: 0;
+    transition: opacity 0.25s ease;
+    z-index: 0;
+}
+
+.game-option span,
+.game-option {
+    position: relative;
+    z-index: 1;
+}
+
+.game-option:hover:not(:disabled) {
+    border-color: var(--frame-color);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(52, 125, 88, 0.2);
+}
+
+.game-option:hover:not(:disabled)::before {
+    opacity: 0.08;
+}
+
+.game-option:active:not(:disabled) {
+    transform: translateY(0);
+    box-shadow: 0 2px 8px rgba(52, 125, 88, 0.15);
+}
+
+.game-option:disabled {
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+/* Correct answer - solid green */
+.game-option.correct {
+    border-color: #29613F;
+    background: #29613F;
+    color: #FFFEFD;
+    box-shadow: 0 4px 12px rgba(41, 97, 63, 0.3);
+    cursor: default;
+}
+
+.game-option.correct::before {
+    opacity: 0;
+}
+
+/* Wrong answer - solid red */
+.game-option.incorrect {
+    border-color: #C13A3A;
+    background: #C13A3A;
+    color: #FFFEFD;
+    box-shadow: 0 4px 12px rgba(193, 58, 58, 0.3);
+    cursor: default;
+}
+
+.game-option.incorrect::before {
+    opacity: 0;
+}
+
+/* Disabled/inactive game answers - grayed out */
+.game-option.disabled {
+    border-color: #E8E8E8;
+    background: #F5F5F5;
+    color: #BFBFBF;
+    box-shadow: none;
+    cursor: default;
+}
+
+.game-option.disabled::before {
+    opacity: 0;
+}
+
+/* Game Results */
+.game-result {
+    text-align: center;
+    padding: 30px;
+}
+
+.game-score {
+    font-size: 20px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 20px;
 }

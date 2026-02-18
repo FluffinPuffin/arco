@@ -4,8 +4,7 @@
 
 /* Dark red content area */
 .rectangle:has(.settings-panels) {
-    background-color: rgb(146, 21, 21);
-    border-color: rgb(146, 21, 21);
+    background-color: #4B4B4B;
 }
 
 /* Settings panels - sidebar + content */
@@ -20,7 +19,7 @@
 
 .settings-sidebar {
     flex: 0 0 240px;
-    background: #fff;
+    background: #FFFEFD;
     border-radius: 16px;
     padding: 1.25rem;
     display: flex;
@@ -47,7 +46,7 @@
 
 .settings-nav-divider {
     height: 1px;
-    background: #E5E5E5;
+    background: #F0F0F0;
     margin: 0.5rem 0;
 }
 
@@ -86,7 +85,7 @@
 
 .settings-content {
     flex: 1;
-    background: #fff;
+    background: #FFFEFD;
     border-radius: 16px;
     padding: 1.5rem;
     min-height: 400px;
@@ -138,14 +137,14 @@
 .settings-field-value {
     font-family: "Lexend", sans-serif;
     font-size: 0.9rem;
-    color: #6B6B6B;
+    color: #4B4B4B;
     margin: 0;
 }
 
 .settings-field-hint {
     font-family: "Lexend", sans-serif;
     font-size: 0.85rem;
-    color: #6B6B6B;
+    color: #4B4B4B;
     margin: 0.25rem 0 0 0;
 }
 
@@ -153,26 +152,21 @@
 .settings-edit-btn {
     display: inline-flex;
     align-items: center;
-    gap: 0.35rem;
-    padding: 0.35rem 0.75rem;
-    font-family: "Lexend", sans-serif;
-    font-size: 0.9rem;
-    font-weight: 600;
-    color: #1C1C1C;
+    justify-content: center;
+    padding: 0;
     background: transparent;
-    border: 1px solid #D0D0D0;
-    border-radius: 8px;
+    border: none;
     cursor: pointer;
-    transition: background-color 0.2s, border-color 0.2s;
+    transition: opacity 0.2s;
 }
 
 .settings-edit-btn:hover {
-    background-color: #F5F5F5;
-    border-color: #B0B0B0;
+    opacity: 0.8;
 }
 
-.settings-edit-btn svg {
-    flex-shrink: 0;
+.settings-edit-btn img {
+    display: block;
+    height: auto;
 }
 
 /* Avatar preview */
@@ -225,7 +219,7 @@
 }
 
 .settings-avatar-option.active {
-    border-color: rgb(146, 21, 21);
+    border-color: #4B4B4B;
 }
 
 .settings-avatar-option img {
@@ -247,7 +241,7 @@
     font-size: 0.9rem;
     font-weight: 600;
     color: #1C1C1C;
-    background: #F5F5F5;
+    background: #FFFEFD;
     border: 2px solid transparent;
     border-radius: 8px;
     cursor: pointer;
@@ -259,8 +253,8 @@
 }
 
 .settings-theme-option.active {
-    border-color: rgb(146, 21, 21);
-    background-color: #fff;
+    border-color: #4B4B4B;
+    background-color: #FFFEFD;
 }
 
 /* Toggle switch */
@@ -289,7 +283,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: #D0D0D0;
+    background-color: #F0F0F0;
     border-radius: 24px;
     transition: background-color 0.2s;
 }
@@ -304,19 +298,19 @@
     background-color: white;
     border-radius: 50%;
     transition: transform 0.2s;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
 }
 
-.settings-toggle-input:checked + .settings-toggle-slider {
-    background-color: rgb(146, 21, 21);
+.settings-toggle-input:checked+.settings-toggle-slider {
+    background-color: #4B4B4B;
 }
 
-.settings-toggle-input:checked + .settings-toggle-slider::before {
+.settings-toggle-input:checked+.settings-toggle-slider::before {
     transform: translateX(20px);
 }
 
-.settings-toggle-input:focus-visible + .settings-toggle-slider {
-    outline: 2px solid rgb(146, 21, 21);
+.settings-toggle-input:focus-visible+.settings-toggle-slider {
+    outline: 2px solid #4B4B4B;
     outline-offset: 2px;
 }
 
@@ -361,7 +355,7 @@
 .settings-stat-label {
     font-family: "Lexend", sans-serif;
     font-size: 0.85rem;
-    color: #6B6B6B;
+    color: #4B4B4B;
 }
 
 .settings-stat-value {
@@ -382,7 +376,7 @@
 .settings-stat-bar {
     flex: 1;
     min-width: 8px;
-    background: rgb(146, 21, 21);
+    background: #1C1C1C;
     border-radius: 4px 4px 0 0;
     opacity: 0.8;
 }
@@ -394,8 +388,8 @@
     font-family: "Lexend", sans-serif;
     font-size: 0.95rem;
     font-weight: 600;
-    color: #fff;
-    background: rgb(146, 21, 21);
+    color: #FFFEFD;
+    background: #4B4B4B;
     border: none;
     border-radius: 8px;
     cursor: pointer;
@@ -403,7 +397,7 @@
 }
 
 .settings-primary-btn:hover {
-    background: rgb(120, 18, 18);
+    background: #BFBFBF;
 }
 
 /* Edit modal */
@@ -424,17 +418,17 @@
 .settings-modal-backdrop {
     position: absolute;
     inset: 0;
-    background: rgba(0, 0, 0, 0.5);
+    background: #F0F0F0;
 }
 
 .settings-modal-content {
     position: relative;
-    background: #fff;
+    background: #FFFEFD;
     border-radius: 16px;
     padding: 1.5rem;
     width: 100%;
     max-width: 400px;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 8px 32px #F0F0F0;
 }
 
 .settings-modal-title {
@@ -454,14 +448,28 @@
     padding: 0.6rem 0.75rem;
     font-family: "Lexend", sans-serif;
     font-size: 1rem;
-    border: 1px solid #D0D0D0;
+    border: 1px solid #F0F0F0;
     border-radius: 8px;
     box-sizing: border-box;
 }
 
 .settings-modal-input:focus {
     outline: none;
-    border-color: rgb(146, 21, 21);
+    border-color: #4B4B4B;
+}
+
+.settings-modal-select {
+    background-color: #FFFEFD;
+    cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg width='16' height='16' viewBox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M4 6L8 10L12 6' stroke='%231C1C1C' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.75rem center;
+    padding-right: 2.5rem;
+}
+
+.settings-modal-select:hover {
+    border-color: #BFBFBF;
 }
 
 .settings-modal-actions {
@@ -483,20 +491,20 @@
 
 .settings-modal-cancel {
     background: transparent;
-    border: 1px solid #D0D0D0;
+    border: 1px solid #F0F0F0;
     color: #1C1C1C;
 }
 
 .settings-modal-cancel:hover {
-    background: #F5F5F5;
+    background: #FFFEFD;
 }
 
 .settings-modal-save {
-    background: rgb(146, 21, 21);
+    background: #4B4B4B;
     border: none;
-    color: #fff;
+    color: #FFFEFD;
 }
 
 .settings-modal-save:hover {
-    background: rgb(120, 18, 18);
+    background: #BFBFBF;
 }

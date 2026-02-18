@@ -1,5 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Lexend:wght@400;500;600&display=swap');
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
 html {
     min-height: 100%;
+    overflow-y: scroll;
 }
 
 body {
@@ -8,8 +19,17 @@ body {
     font-family: 'Poppins', sans-serif;
 }
 
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: 'Poppins', sans-serif;
+}
+
 body {
-    background-color: var(--frame-color, rgb(146, 21, 21));
+    background-color: var(--frame-color, #4B4B4B);
     display: flex;
     flex-direction: column;
     min-height: 100vh;
@@ -19,7 +39,6 @@ body {
 .rectangle {
     width: 80vw;
     background-color: #b4b4b4;
-    border: 2px solid #333;
     border-radius: 25px;
     padding: 24px;
     margin: 20px auto 40px auto;
@@ -27,10 +46,21 @@ body {
 
 .home {
     float: right;
+    transition: filter 0.2s ease;
+    cursor: pointer;
+}
+
+.home:hover {
+    filter: brightness(0.7);
 }
 
 .arrow {
     float: left;
+    transition: filter 0.2s ease;
+}
+
+.arrow:hover {
+    filter: brightness(0.7);
 }
 
 .frame {
@@ -101,6 +131,10 @@ body {
     text-decoration: underline;
 }
 
+.footer-link.footer-active {
+    font-weight: 600;
+}
+
 .footer-right {
     color: #000000;
     font-family: 'Poppins', sans-serif;
@@ -155,6 +189,7 @@ body {
 
 .header-center a:hover {
     opacity: 0.8;
+    text-decoration: underline;
 }
 
 .header-right {
@@ -178,6 +213,7 @@ body {
 
 .header-right a:hover {
     opacity: 0.8;
+    text-decoration: underline;
 }
 
 .premium-icon,
@@ -190,4 +226,84 @@ body {
     width: 45px;
     height: 45px;
     border-radius: 50%;
+    cursor: pointer;
+}
+
+/* Logout Overlay */
+.logout-overlay {
+    position: fixed;
+    top: 70px;
+    right: 40px;
+    z-index: 1001;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.logout-overlay.hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.logout-container {
+    background-color: #ffffff;
+    border-radius: 15px;
+    padding: 20px 30px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 180px;
+}
+
+.logout-profile-picture {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    border: 3px solid #FF8C00;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    margin-bottom: 12px;
+}
+
+.logout-avatar {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.logout-name {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: 18px;
+    color: #000000;
+    margin-bottom: 4px;
+}
+
+.logout-grade {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    color: #666666;
+    margin-bottom: 16px;
+}
+
+.logout-btn {
+    background-color: transparent;
+    color: #FF8C00;
+    border: 2px solid #FF8C00;
+    border-radius: 20px;
+    padding: 8px 24px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.logout-btn:hover {
+    background-color: #FF8C00;
+    color: #ffffff;
 }
