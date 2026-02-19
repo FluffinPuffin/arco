@@ -1,4 +1,3 @@
-version: '3.8'
 
 services:
   web:
@@ -25,6 +24,9 @@ services:
       DB_NAME: arco
       DB_USER: arco_user
       DB_PASS: arco_pass
+      PAYPAL_CLIENT_ID: AT_WUjnhmHXMp1H0lrnNun1G3NnWKIoUf_qNGBwZI9CPx24xp2YuckWyTSJCavlzqpXxrkzuDUxutAk8
+      PAYPAL_SECRET: ENwYLKBdevKIb31bm0EhDlYK850VepWq3Xb3D2D21H4wljlbaSEvrTea4Hc4cYZAJJkj3_Hd9Rqo1lD3
+      PAYPAL_ENV: sandbox
     networks:
       - arco-net
 
