@@ -20,3 +20,15 @@ CREATE TABLE IF NOT EXISTS lesson_progress (
     UNIQUE KEY unique_user_lesson (user_id, lesson_id),
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 );
+
+-- Seed data: test users
+-- Passwords are bcrypt hashes of 'password123'
+INSERT IGNORE INTO users (email, password_hash, display_name, grade) VALUES
+('alice@test.com', '$2y$10$YQ9Rj6M5ZjK0vGwE8mN2aeXJHsNqYfMvkFdBpVcSJzKmXrQp1Wemu', 'Alice', '10th'),
+('bob@test.com', '$2y$10$YQ9Rj6M5ZjK0vGwE8mN2aeXJHsNqYfMvkFdBpVcSJzKmXrQp1Wemu', 'Bob', '11th');
+
+-- Seed data: sample lesson progress
+INSERT IGNORE INTO lesson_progress (user_id, lesson_id, part_completed, current_part_index, percentage, completed) VALUES
+(1, 'lesson1-1', '[true, true, true]', 3, 100, TRUE),
+(1, 'lesson1-2', '[true, true]', 2, 60, FALSE),
+(2, 'lesson1-1', '[true]', 1, 30, FALSE);
