@@ -5,8 +5,12 @@ CREATE TABLE IF NOT EXISTS users (
     display_name VARCHAR(100) DEFAULT '',
     avatar VARCHAR(255) DEFAULT '',
     grade VARCHAR(20) DEFAULT '',
+    premium_until DATETIME DEFAULT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
+
+-- Add column to existing databases that were created before this migration
+ALTER TABLE users ADD COLUMN IF NOT EXISTS premium_until DATETIME DEFAULT NULL;
 
 CREATE TABLE IF NOT EXISTS lesson_progress (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -19,6 +23,16 @@ CREATE TABLE IF NOT EXISTS lesson_progress (
     last_updated TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     UNIQUE KEY unique_user_lesson (user_id, lesson_id),
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+);
+
+CREATE TABLE IF NOT EXISTS subscriptions (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT DEFAULT NULL,
+    paypal_order_id VARCHAR(50) NOT NULL,
+    plan VARCHAR(20) NOT NULL,
+    amount DECIMAL(10,2) NOT NULL,
+    status VARCHAR(20) DEFAULT 'COMPLETED',
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 -- Seed data: test users
