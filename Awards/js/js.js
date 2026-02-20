@@ -36,6 +36,17 @@ document.addEventListener("frame:ready", () => {
 function initializeAwards() {
 
   /* ==========================================
+     LESSON ID MAPPING
+  ========================================== */
+
+  // Maps medal/sticker index to lesson ID in the database
+  const LESSON_IDS = [
+    'lesson1-1', 'lesson1-2', 'lesson1-3', 'lesson1-4', 'lesson1-5',
+    'lesson2-1', 'lesson2-2', 'lesson2-3',
+    'lesson3-1', 'lesson3-2', 'lesson3-3', 'lesson3-4', 'lesson3-5',
+  ];
+
+  /* ==========================================
      TAB SWITCHING (Medals / Stickers / Events)
   ========================================== */
 
@@ -86,8 +97,8 @@ function initializeAwards() {
     lesson: "1.1",
     title: "Lesson 1.1 Medal",
     courseTitle: "Parts of a Violin and The Bow",
-    earned: true,
-    date: "11/23/2025",
+    earned: false,
+    date: "",
     imageUnlocked: "../../frame/images/medal11.svg",
     imageLocked: "../../frame/images/medalLocked.svg",
     unlockMessage: "Complete Lesson 1.1 to unlock this medal.",
@@ -341,13 +352,12 @@ function initializeAwards() {
   ========================================== */
 
   const stickers = [
-  // unlocked
   {
     id: 1,
     title: "Hello World",
     description: "Logged in for the first time!",
-    earned: true,
-    date: "01/10/2026",
+    earned: false,
+    date: "",
     placeholder: false,
     image: "../../frame/images/helloWorldSticker.svg",
   },
@@ -355,9 +365,9 @@ function initializeAwards() {
   {
     id: 2,
     title: "Violin Explorer",
-    description: "Earned by completing Parts of a Violin and The Bow in Arco Workbook",
-    earned: true,
-    date: "01/15/2026",
+    description: "Not earned yet.",
+    earned: false,
+    date: "",
     placeholder: false,
     image: "../../frame/images/sticker11.svg",
   },
@@ -885,15 +895,79 @@ function renderEventStars() {
 
 
   /* ==========================================
-    RENDER
+    LOAD PROGRESS FROM DB + RENDER
   ========================================== */
 
-  renderMedals();
-  renderStickers();
-  renderEventStars();
-  renderEvent(events[0]);
+  async function loadAndRender() {
+    let allProgress = {};
 
- //previews are empty at first
-  document.querySelector(".medalCover").style.display = "flex";
-  document.querySelector(".stickerCover").style.display = "flex";
+    // Try server first, fall back to localStorage
+    try {
+      if (typeof ArcoAPI !== 'undefined') {
+        const res = await ArcoAPI.getProgress();
+        allProgress = res.progress || {};
+      } else {
+        throw new Error('ArcoAPI not available');
+      }
+    } catch (e) {
+      // Fallback: build from localStorage
+      const cached = JSON.parse(localStorage.getItem('arco_lessons_progress') || '{}');
+      for (const [lessonId, data] of Object.entries(cached)) {
+        allProgress[lessonId] = { completed: data.completed, percentage: data.percentage };
+      }
+    }
+
+    // Update medal earned status from progress
+    medals.forEach((medal, index) => {
+      const lessonId = LESSON_IDS[index];
+      const progress = allProgress[lessonId];
+      medal.earned = !!(progress && (progress.completed || progress.percentage === 100));
+
+      if (medal.earned && progress && progress.lastUpdated) {
+        const d = new Date(progress.lastUpdated);
+        medal.date = `${String(d.getMonth() + 1).padStart(2, '0')}/${String(d.getDate()).padStart(2, '0')}/${d.getFullYear()}`;
+      } else if (!medal.earned) {
+        medal.date = '';
+      }
+    });
+
+    // Update sticker earned status from progress
+    // Sticker ID 1 ("Hello World") = always earned for logged-in users
+    // Sticker IDs 2-14 map to LESSON_IDS[0]-LESSON_IDS[12]
+    stickers.forEach((sticker) => {
+      if (sticker.placeholder) return;
+
+      if (sticker.id === 1) {
+        sticker.earned = true;
+        return;
+      }
+
+      const lessonIndex = sticker.id - 2;
+      const lessonId = LESSON_IDS[lessonIndex];
+      const progress = allProgress[lessonId];
+      sticker.earned = !!(progress && (progress.completed || progress.percentage === 100));
+
+      if (sticker.earned && progress && progress.lastUpdated) {
+        const d = new Date(progress.lastUpdated);
+        sticker.date = `${String(d.getMonth() + 1).padStart(2, '0')}/${String(d.getDate()).padStart(2, '0')}/${d.getFullYear()}`;
+      } else if (!sticker.earned) {
+        sticker.date = '';
+      }
+
+      if (sticker.earned) {
+        sticker.description = `Earned by completing ${medals[lessonIndex].courseTitle} in Arco Workbook`;
+      }
+    });
+
+    renderMedals();
+    renderStickers();
+    renderEventStars();
+    renderEvent(events[0]);
+
+    // Previews are empty at first
+    document.querySelector(".medalCover").style.display = "flex";
+    document.querySelector(".stickerCover").style.display = "flex";
+  }
+
+  loadAndRender();
 }

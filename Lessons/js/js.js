@@ -27,9 +27,38 @@ document.addEventListener("frame:ready", () => {
     .catch(err => console.error("Content load failed:", err));
 });
 
-// Load and display lesson progress from localStorage
-function loadLessonProgress() {
-  const allProgress = JSON.parse(localStorage.getItem('arco_lessons_progress') || '{}');
+// Load and display lesson progress from server (localStorage fallback)
+async function loadLessonProgress() {
+  let allProgress;
+
+  // Try server first, fall back to localStorage
+  try {
+    if (typeof ArcoAPI !== 'undefined') {
+      const res = await ArcoAPI.getProgress();
+      const serverProgress = res.progress;
+
+      // Convert server format to the aggregate format the UI expects
+      allProgress = {};
+      for (const [lessonId, data] of Object.entries(serverProgress)) {
+        const completedCount = (data.partCompleted || []).filter(Boolean).length;
+        const totalParts = (data.partCompleted || []).length;
+        allProgress[lessonId] = {
+          percentage: data.percentage,
+          completedParts: completedCount,
+          totalParts: totalParts,
+          completed: data.completed,
+        };
+      }
+
+      // Update localStorage cache
+      localStorage.setItem('arco_lessons_progress', JSON.stringify(allProgress));
+    } else {
+      throw new Error('ArcoAPI not available');
+    }
+  } catch (e) {
+    // Fallback to localStorage
+    allProgress = JSON.parse(localStorage.getItem('arco_lessons_progress') || '{}');
+  }
 
   const lessonCards = document.querySelectorAll('.lesson-card');
   lessonCards.forEach(card => {
