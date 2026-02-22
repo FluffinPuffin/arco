@@ -32,9 +32,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Remember Me toggle switch
     const rememberToggle = document.getElementById('rememberToggle');
-    let isRememberChecked = true; // Default to checked
+    let isRememberChecked = !!localStorage.getItem('rememberedEmail');
 
     if (rememberToggle) {
+        rememberToggle.setAttribute('aria-checked', isRememberChecked);
         rememberToggle.addEventListener('click', function() {
             isRememberChecked = !isRememberChecked;
             rememberToggle.setAttribute('aria-checked', isRememberChecked);
@@ -74,27 +75,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 if (user.avatar) localStorage.setItem('arco-avatar', user.avatar);
                 if (user.grade) localStorage.setItem('arco-grade', user.grade);
 
-                // Store lesson progress in localStorage
-                if (result.progress) {
-                    const aggregate = {};
-                    for (const [lessonId, data] of Object.entries(result.progress)) {
-                        localStorage.setItem(`arco_progress_${lessonId}`, JSON.stringify({
-                            partCompleted: data.partCompleted,
-                            currentPartIndex: data.currentPartIndex,
-                            lastUpdated: Date.now(),
-                        }));
-                        const completedCount = (data.partCompleted || []).filter(Boolean).length;
-                        const totalParts = (data.partCompleted || []).length;
-                        aggregate[lessonId] = {
-                            percentage: data.percentage,
-                            completedParts: completedCount,
-                            totalParts: totalParts,
-                            completed: data.completed,
-                        };
-                    }
-                    localStorage.setItem('arco_lessons_progress', JSON.stringify(aggregate));
-                }
-
                 // Remember me preference
                 if (isRememberChecked) {
                     localStorage.setItem('rememberedEmail', email);
@@ -102,8 +82,10 @@ document.addEventListener('DOMContentLoaded', function() {
                     localStorage.removeItem('rememberedEmail');
                 }
 
-                // Redirect to home
-                window.location.href = '/Home/html/index.html';
+                // Redirect to intended page or home
+                const params = new URLSearchParams(window.location.search);
+                const redirectTo = params.get('redirect');
+                window.location.href = redirectTo || '/Home/html/index.html';
             } catch (err) {
                 alert(err.message || 'Login failed. Please try again.');
             }
