@@ -3,49 +3,32 @@ const LESSON_ID = 'lesson2-1';
 let partCompleted = [false, false, false];
 let currentPartIndex = 0;
 
-// Load saved progress from localStorage
-function loadProgress() {
-  const saved = localStorage.getItem(`arco_progress_${LESSON_ID}`);
-  if (saved) {
-    const data = JSON.parse(saved);
-    partCompleted = data.partCompleted || [false, false, false];
-    currentPartIndex = data.currentPartIndex || 0;
+// Load progress from server (DB only) — redirects if not premium
+async function loadProgress() {
+  try {
+    const res = await ArcoAPI.getProgress();
+    if (!res.is_premium) {
+      window.location.href = '../../html/index.html';
+      return;
+    }
+    const lessonData = res.progress[LESSON_ID];
+    if (lessonData) {
+      partCompleted = lessonData.partCompleted || partCompleted;
+      currentPartIndex = lessonData.currentPartIndex || 0;
+    }
+  } catch (e) {
+    // Server unavailable — stay at defaults
   }
 }
 
-// Save progress to localStorage
+// Save progress to server (DB only)
 function saveProgress() {
-  const data = {
-    partCompleted: partCompleted,
-    currentPartIndex: currentPartIndex,
-    lastUpdated: Date.now()
-  };
-  localStorage.setItem(`arco_progress_${LESSON_ID}`, JSON.stringify(data));
-  updateOverallProgress();
-}
-
-// Update overall progress that the lessons page can read
-function updateOverallProgress() {
   const completedCount = partCompleted.filter(p => p).length;
   const percentage = Math.round((completedCount / partCompleted.length) * 100);
-
-  let allProgress = JSON.parse(localStorage.getItem('arco_lessons_progress') || '{}');
-  allProgress[LESSON_ID] = {
-    percentage: percentage,
-    completedParts: completedCount,
-    totalParts: partCompleted.length,
-    completed: completedCount === partCompleted.length
-  };
-  localStorage.setItem('arco_lessons_progress', JSON.stringify(allProgress));
-
-  // Sync progress to server
   if (typeof ArcoAPI !== 'undefined') {
     ArcoAPI.saveProgress(LESSON_ID, partCompleted, currentPartIndex, percentage, completedCount === partCompleted.length);
   }
 }
-
-// Initialize progress on load
-loadProgress();
 
 document.addEventListener("frame:ready", () => {
   // Inject title.html into the frame's title placeholder
@@ -72,9 +55,10 @@ document.addEventListener("frame:ready", () => {
       if (!res.ok) throw new Error("Not OK");
       return res.text();
     })
-    .then(content => {
+    .then(async content => {
       const contentEl = document.getElementById("content");
       contentEl.insertAdjacentHTML("beforeend", content);
+      await loadProgress();
       initLessonParts();
       initVideoControls();
       initInfoTabs();

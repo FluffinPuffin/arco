@@ -901,20 +901,13 @@ function renderEventStars() {
   async function loadAndRender() {
     let allProgress = {};
 
-    // Try server first, fall back to localStorage
     try {
       if (typeof ArcoAPI !== 'undefined') {
         const res = await ArcoAPI.getProgress();
         allProgress = res.progress || {};
-      } else {
-        throw new Error('ArcoAPI not available');
       }
     } catch (e) {
-      // Fallback: build from localStorage
-      const cached = JSON.parse(localStorage.getItem('arco_lessons_progress') || '{}');
-      for (const [lessonId, data] of Object.entries(cached)) {
-        allProgress[lessonId] = { completed: data.completed, percentage: data.percentage };
-      }
+      // Server unavailable — medals stay locked
     }
 
     // Update medal earned status from progress
@@ -931,9 +924,23 @@ function renderEventStars() {
       }
     });
 
-    // Update sticker earned status from progress
+    // Update sticker earned status from QR unlocks only
     // Sticker ID 1 ("Hello World") = always earned for logged-in users
-    // Sticker IDs 2-14 map to LESSON_IDS[0]-LESSON_IDS[12]
+    // Sticker IDs 2-14 unlock only via QR code scan
+    let qrUnlockedIds = new Set();
+    let qrUnlockDates = {};
+    try {
+      if (typeof ArcoAPI !== 'undefined') {
+        const qrStatus = await ArcoAPI.getQrStatus();
+        (qrStatus.sticker_unlocks || []).forEach((u) => {
+          qrUnlockedIds.add(u.sticker_id);
+          qrUnlockDates[u.sticker_id] = u.unlocked_at;
+        });
+      }
+    } catch (e) {
+      // QR status unavailable — stickers simply show as locked
+    }
+
     stickers.forEach((sticker) => {
       if (sticker.placeholder) return;
 
@@ -942,20 +949,14 @@ function renderEventStars() {
         return;
       }
 
-      const lessonIndex = sticker.id - 2;
-      const lessonId = LESSON_IDS[lessonIndex];
-      const progress = allProgress[lessonId];
-      sticker.earned = !!(progress && (progress.completed || progress.percentage === 100));
+      sticker.earned = qrUnlockedIds.has(sticker.id);
 
-      if (sticker.earned && progress && progress.lastUpdated) {
-        const d = new Date(progress.lastUpdated);
+      if (sticker.earned && qrUnlockDates[sticker.id]) {
+        const d = new Date(qrUnlockDates[sticker.id]);
         sticker.date = `${String(d.getMonth() + 1).padStart(2, '0')}/${String(d.getDate()).padStart(2, '0')}/${d.getFullYear()}`;
-      } else if (!sticker.earned) {
+        sticker.description = 'Unlocked via QR code scan';
+      } else {
         sticker.date = '';
-      }
-
-      if (sticker.earned) {
-        sticker.description = `Earned by completing ${medals[lessonIndex].courseTitle} in Arco Workbook`;
       }
     });
 

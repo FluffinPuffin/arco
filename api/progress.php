@@ -8,6 +8,11 @@ $userId = requireAuth();
 $db = getDB();
 
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+    $userStmt = $db->prepare('SELECT premium_until FROM users WHERE id = ?');
+    $userStmt->execute([$userId]);
+    $userRow = $userStmt->fetch();
+    $isPremium = $userRow && $userRow['premium_until'] && strtotime($userRow['premium_until']) > time();
+
     $stmt = $db->prepare(
         'SELECT lesson_id, part_completed, current_part_index, percentage, completed, last_updated FROM lesson_progress WHERE user_id = ?'
     );
@@ -25,7 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
         ];
     }
 
-    echo json_encode(['success' => true, 'progress' => $progress]);
+    echo json_encode(['success' => true, 'is_premium' => $isPremium, 'progress' => $progress]);
     exit;
 }
 

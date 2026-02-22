@@ -2,12 +2,15 @@
 
 document.addEventListener('DOMContentLoaded', async function () {
 
-    // Redirect to login if not authenticated
+    // Redirect to login only if not authenticated (401)
     try {
         await ArcoAPI.getProfile();
-    } catch {
-        window.location.href = '/Login/html/index.html';
-        return;
+    } catch (err) {
+        if (err.status === 401) {
+            window.location.href = '/Login/html/index.html?redirect=/Checkout/html/index.html';
+            return;
+        }
+        console.error('Profile check failed with status', err.status, err.message);
     }
 
     // -------------------------------------------------------------------------
@@ -168,9 +171,15 @@ document.addEventListener('DOMContentLoaded', async function () {
                 console.error('PayPal error', err);
                 showError();
             },
-        }).render('#paypal-button-container');
+        }).render('#paypal-button-container').catch(function (err) {
+            console.error('PayPal render failed:', err);
+            document.getElementById('paypal-button-container').innerHTML =
+                '<p style="color:red">Payment button failed to load. Please refresh or contact support.</p>';
+        });
     } else {
         console.error('PayPal SDK not loaded. Check the client-id in the script tag.');
+        document.getElementById('paypal-button-container').innerHTML =
+            '<p style="color:red">Payment button failed to load. Please refresh or contact support.</p>';
     }
 
 });

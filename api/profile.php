@@ -8,7 +8,7 @@ $userId = requireAuth();
 $db = getDB();
 
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-    $stmt = $db->prepare('SELECT id, email, display_name, avatar, grade FROM users WHERE id = ?');
+    $stmt = $db->prepare('SELECT id, email, display_name, avatar, grade, premium_until FROM users WHERE id = ?');
     $stmt->execute([$userId]);
     $user = $stmt->fetch();
 
@@ -17,6 +17,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
         echo json_encode(['error' => 'User not found']);
         exit;
     }
+
+    $user['is_premium'] = $user['premium_until'] && strtotime($user['premium_until']) > time();
 
     echo json_encode(['success' => true, 'user' => $user]);
     exit;
