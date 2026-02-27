@@ -67,19 +67,20 @@ h6,
 
 .streak-days {
     display: flex;
-    gap: 8px;
+    gap: 10px;
 }
 
 .day {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 36px;
-    height: 36px;
+    width: 45px;
+    height: 45px;
     border-radius: 50%;
     border: 2px solid #1C1C1C;
-    font-weight: bold;
-    font-size: 14px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    font-size: 24px;
     color: #1C1C1C;
     background-color: #FFFEFD;
 }
@@ -91,12 +92,13 @@ h6,
 
 .streak-divider {
     width: 2px;
-    height: 30px;
+    height: 60px;
     background-color: #1C1C1C;
 }
 
 .streak-count {
-    font-weight: bold;
-    font-size: 18px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    font-size: 24px;
     color: #1C1C1C;
 }

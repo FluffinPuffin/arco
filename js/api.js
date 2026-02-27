@@ -88,6 +88,17 @@ const ArcoAPI = {
     });
   },
 
+  // Streaks
+  getStreak() {
+    return this._fetch('/api/streak.php');
+  },
+
+  recordLogin() {
+    return this._fetch('/api/streak.php', {
+      method: 'POST'
+    });
+  },
+
   // Load user profile data from server into localStorage (called after login or on page load)
   async syncFromServer() {
     try {
