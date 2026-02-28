@@ -101,26 +101,6 @@ document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('email').value = rememberedEmail;
     }
 
-    // Google login button
-    const googleLogin = document.getElementById('googleLogin');
-    if (googleLogin) {
-        googleLogin.addEventListener('click', function() {
-            console.log('Google login clicked');
-            alert('Google login would be implemented here');
-            // Here you would typically redirect to Google OAuth or trigger Google Sign-In
-        });
-    }
-
-    // Apple login button
-    const appleLogin = document.getElementById('appleLogin');
-    if (appleLogin) {
-        appleLogin.addEventListener('click', function() {
-            console.log('Apple login clicked');
-            alert('Apple ID login would be implemented here');
-            // Here you would typically redirect to Apple Sign-In or trigger Apple authentication
-        });
-    }
-
     // Add input validation styling
     const inputs = document.querySelectorAll('.form-input');
     inputs.forEach(input => {
