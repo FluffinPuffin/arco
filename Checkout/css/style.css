@@ -129,6 +129,29 @@ body {
     gap: var(--spacing-xs);
 }
 
+/* Plan Divider (for update subscription page) */
+.plan-divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--spacing-sm) 0;
+}
+
+.divider-text {
+    font-family: var(--font-heading);
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--color-text-body-dark);
+    line-height: 24px;
+    text-align: center;
+}
+
+/* Current Plan Highlight */
+.current-plan-highlight {
+    color: var(--color-text-heading);
+    font-weight: 600;
+}
+
 /* Subscription Card */
 .subscription-card {
     position: relative;
