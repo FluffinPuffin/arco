@@ -71,9 +71,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
                 // Store profile data in localStorage
                 const user = result.user;
-                if (user.display_name) localStorage.setItem('arco-name', user.display_name);
-                if (user.avatar) localStorage.setItem('arco-avatar', user.avatar);
-                if (user.grade) localStorage.setItem('arco-grade', user.grade);
+                if (user) {
+                    if (user.display_name) localStorage.setItem('arco-name', user.display_name);
+                    if (user.avatar) localStorage.setItem('arco-avatar', user.avatar);
+                    if (user.grade) localStorage.setItem('arco-grade', user.grade);
+                    if (user.id) localStorage.setItem('arco-userId', user.id);
+                }
 
                 // Remember me preference
                 if (isRememberChecked) {
@@ -96,26 +99,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const rememberedEmail = localStorage.getItem('rememberedEmail');
     if (rememberedEmail && passwordInput) {
         document.getElementById('email').value = rememberedEmail;
-    }
-
-    // Google login button
-    const googleLogin = document.getElementById('googleLogin');
-    if (googleLogin) {
-        googleLogin.addEventListener('click', function() {
-            console.log('Google login clicked');
-            alert('Google login would be implemented here');
-            // Here you would typically redirect to Google OAuth or trigger Google Sign-In
-        });
-    }
-
-    // Apple login button
-    const appleLogin = document.getElementById('appleLogin');
-    if (appleLogin) {
-        appleLogin.addEventListener('click', function() {
-            console.log('Apple login clicked');
-            alert('Apple ID login would be implemented here');
-            // Here you would typically redirect to Apple Sign-In or trigger Apple authentication
-        });
     }
 
     // Add input validation styling

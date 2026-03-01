@@ -325,26 +325,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Google signup button
-    const googleSignup = document.getElementById('googleSignup');
-    if (googleSignup) {
-        googleSignup.addEventListener('click', function() {
-            console.log('Google signup clicked');
-            alert('Google signup would be implemented here');
-            // Here you would typically redirect to Google OAuth
-        });
-    }
-
-    // Apple signup button
-    const appleSignup = document.getElementById('appleSignup');
-    if (appleSignup) {
-        appleSignup.addEventListener('click', function() {
-            console.log('Apple signup clicked');
-            alert('Apple ID signup would be implemented here');
-            // Here you would typically redirect to Apple Sign-In
-        });
-    }
-
     // Add input validation styling
     const inputs = document.querySelectorAll('.form-input');
     inputs.forEach(input => {
