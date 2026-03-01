@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Arco Admin</title>
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+<aside>
+    <h1>Arco DB</h1>
+    <nav id="tableList"><p>Loading…</p></nav>
+    <footer><button id="migrateBtn">Run Migrations</button></footer>
+</aside>
+
+<main>
+    <div id="emptyState">Select a table</div>
+    <div id="tableView" class="hidden">
+        <div class="toolbar">
+            <div><strong id="tableName"></strong><span id="tableCount"></span></div>
+            <div class="pagination">
+                <button id="prevBtn" disabled>← Prev</button>
+                <span id="pageInfo"></span>
+                <button id="nextBtn" disabled>Next →</button>
+            </div>
+        </div>
+        <div class="table-scroll">
+            <table><thead id="tableHead"></thead><tbody id="tableBody"></tbody></table>
+        </div>
+    </div>
+</main>
+
+<script src="../js/js.js"></script>
+</body>
+</html>

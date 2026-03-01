@@ -9,7 +9,6 @@ CREATE TABLE IF NOT EXISTS users (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
--- Add column to existing databases that were created before this migration
 ALTER TABLE users ADD COLUMN IF NOT EXISTS premium_until DATETIME DEFAULT NULL;
 
 CREATE TABLE IF NOT EXISTS lesson_progress (
