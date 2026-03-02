@@ -181,10 +181,21 @@ function initializeAwards() {
     imageLocked: "../../frame/images/medalLocked.svg",
      unlockMessage: "Complete Lesson 2.3 to unlock this medal.",
   },
+  {
+    id: 9,
+    lesson: "2.4",
+    title: "Lesson 2.4 Medal",
+    courseTitle: "Time Signatures",
+    earned: false,
+    date: "",
+    imageUnlocked: "../../frame/images/medal24.svg",
+    imageLocked: "../../frame/images/medalLocked.svg",
+     unlockMessage: "Complete Lesson 2.4 to unlock this medal.",
+  },
 
   // ========== lesson 3 ==========
   {
-    id: 9,
+    id: 10,
     lesson: "3.1",
     title: "Lesson 3.1 Medal",
     courseTitle: "Sharps and Flats",
@@ -195,7 +206,7 @@ function initializeAwards() {
     unlockMessage: "Complete Lesson 3.1 to unlock this medal.",
   },
   {
-    id: 10,
+    id: 11,
     lesson: "3.2",
     title: "Lesson 3.2 Medal",
     courseTitle: "Keys",
@@ -206,7 +217,7 @@ function initializeAwards() {
     unlockMessage: "Complete Lesson 3.2 to unlock this medal.",
   },
   {
-    id: 11,
+    id: 12,
     lesson: "3.3",
     title: "Lesson 3.3 Medal",
     courseTitle: "Key Signatures",
@@ -217,7 +228,7 @@ function initializeAwards() {
     unlockMessage: "Complete Lesson 3.3 to unlock this medal.",
   },
   {
-    id: 12,
+    id: 13,
     lesson: "3.4",
     title: "Lesson 3.4 Medal",
     courseTitle: "What is a scale",
@@ -228,7 +239,7 @@ function initializeAwards() {
      unlockMessage: "Complete Lesson 3.4 to unlock this medal.",
   },
   {
-    id: 13,
+    id: 14,
     lesson: "3.5",
     title: "Lesson 3.5 Medal",
     courseTitle: "D Major Scale",
@@ -438,6 +449,15 @@ function initializeAwards() {
   },
   {
     id: 10,
+    title: "Time Teller",
+    description: "Not earned yet.",
+    earned: false,
+    date: "",
+    placeholder: false,
+    image: "../../frame/images/sticker24.svg",
+  },
+  {
+    id: 11,
     title: "Pitch Helper",
     description: "Not earned yet.",
     earned: false,
@@ -446,7 +466,7 @@ function initializeAwards() {
     image: "../../frame/images/sticker31.svg",
   },
   {
-    id: 11,
+    id: 12,
     title: "Key Keeper",
     description: "Not earned yet.",
     earned: false,
@@ -455,7 +475,7 @@ function initializeAwards() {
     image: "../../frame/images/sticker32.svg",
   },
   {
-    id: 12,
+    id: 13,
     title: "Signature Spotter",
     description: "Not earned yet.",
     earned: false,
@@ -465,7 +485,7 @@ function initializeAwards() {
   },
 
   {
-    id: 13,
+    id: 14,
     title: "Scale Climber",
     description: "Not earned yet.",
     earned: false,
@@ -474,7 +494,7 @@ function initializeAwards() {
     image: "../../frame/images/sticker34.svg",
   },
   {
-    id: 14,
+    id: 15,
     title: "You D Best",
     description: "Not earned yet.",
     earned: false,
