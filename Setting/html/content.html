@@ -19,6 +19,8 @@
                 data-sub="payment">Payment</a>
             <a href="#" class="settings-nav-item settings-nav-sub" data-section="grown-ups"
                 data-sub="account">Account</a>
+            <a href="#" class="settings-nav-item settings-nav-sub" data-section="grown-ups"
+                data-sub="parental-lock">Parental Lock</a>
         </div>
     </div>
     <div class="settings-content">
@@ -98,6 +100,23 @@
             </div>
             <div class="settings-field">
                 <a href="../../Checkout/html/updateSubscription.html" class="settings-primary-btn">Edit Subscription</a>
+            </div>
+        </div>
+
+        <!-- Grown-Ups > Parental Lock -->
+        <div class="settings-panel" data-section="grown-ups" data-sub="parental-lock">
+            <h2 class="settings-panel-title">Parental Lock PIN</h2>
+            <div class="settings-field">
+                <label class="settings-field-label">Change PIN</label>
+                <p class="settings-field-hint">Enter a new 4-digit PIN for Premier Club access.</p>
+                <div class="pin-inputs-sm">
+                    <input type="password" maxlength="1" class="pin-box-sm pin-box-sm-1" inputmode="numeric">
+                    <input type="password" maxlength="1" class="pin-box-sm pin-box-sm-2" inputmode="numeric">
+                    <input type="password" maxlength="1" class="pin-box-sm pin-box-sm-3" inputmode="numeric">
+                    <input type="password" maxlength="1" class="pin-box-sm pin-box-sm-4" inputmode="numeric">
+                </div>
+                <button type="button" id="save-pin-btn" class="settings-primary-btn" style="margin-top: 1rem;">Save PIN</button>
+                <span id="pin-save-status" class="pin-save-status"></span>
             </div>
         </div>
 
