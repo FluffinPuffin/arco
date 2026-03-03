@@ -68,30 +68,30 @@
 ## Feature Highlights
 
 ### Backend
-✅ Per-user streak tracking  
-✅ Cross-device synchronization  
-✅ Secure (session-based auth)  
-✅ Weekend-aware logic  
-✅ Longest streak tracking  
-✅ Race condition handling  
-✅ Foreign key constraints  
+✅ Per-user streak tracking
+✅ Cross-device synchronization
+✅ Secure (session-based auth)
+✅ Weekend-aware logic
+✅ Longest streak tracking
+✅ Race condition handling
+✅ Foreign key constraints
 
 ### Frontend
-✅ Simplified code (213 lines → 161 lines)  
-✅ Client-side caching (5s TTL)  
-✅ Error backoff protection  
-✅ Request deduplication  
-✅ Stale-while-error fallback  
-✅ Response validation  
-✅ Graceful degradation  
+✅ Simplified code (213 lines → 161 lines)
+✅ Client-side caching (5s TTL)
+✅ Error backoff protection
+✅ Request deduplication
+✅ Stale-while-error fallback
+✅ Response validation
+✅ Graceful degradation
 
 ### User Experience
-✅ Fast response times (<5ms cached)  
-✅ Works across devices  
-✅ No data loss  
-✅ Weekend-friendly  
-✅ Handles backend failures gracefully  
-✅ Shows stale data instead of errors  
+✅ Fast response times (<5ms cached)
+✅ Works across devices
+✅ No data loss
+✅ Weekend-friendly
+✅ Handles backend failures gracefully
+✅ Shows stale data instead of errors
 
 ---
 
