@@ -6,16 +6,6 @@
 
 require_once __DIR__ . '/db.php';
 
-$adminToken = getenv('ADMIN_TOKEN') ?: 'arco_admin';
-$provided   = $_GET['admin_token'] ?? $_POST['admin_token'] ?? '';
-
-if ($provided !== $adminToken) {
-    http_response_code(403);
-    header('Content-Type: application/json');
-    echo json_encode(['error' => 'Unauthorized']);
-    exit;
-}
-
 $count = max(1, min(100, (int) ($_GET['count'] ?? $_POST['count'] ?? 1)));
 
 $db   = getDB();

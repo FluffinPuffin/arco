@@ -9,8 +9,6 @@ CREATE TABLE IF NOT EXISTS users (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
-ALTER TABLE users ADD COLUMN IF NOT EXISTS premium_until DATETIME DEFAULT NULL;
-
 CREATE TABLE IF NOT EXISTS lesson_progress (
     id INT AUTO_INCREMENT PRIMARY KEY,
     user_id INT NOT NULL,
@@ -34,9 +32,27 @@ CREATE TABLE IF NOT EXISTS subscriptions (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
--- Seed data: test users
--- Passwords are bcrypt hashes of 'password123'
-INSERT IGNORE INTO users (email, password_hash, display_name, grade) VALUES
-('alice@test.com', '$2y$10$YQ9Rj6M5ZjK0vGwE8mN2aeXJHsNqYfMvkFdBpVcSJzKmXrQp1Wemu', 'Alice', '10th'),
-('bob@test.com', '$2y$10$YQ9Rj6M5ZjK0vGwE8mN2aeXJHsNqYfMvkFdBpVcSJzKmXrQp1Wemu', 'Bob', '11th');
+-- Streak System Database Schema
+
+-- Stores the current streak summary for each user
+CREATE TABLE user_streaks (
+    user_id INT PRIMARY KEY,
+    current_streak INT NOT NULL DEFAULT 0,
+    longest_streak INT NOT NULL DEFAULT 0,
+    last_login_date DATE,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+)
+
+-- Stores individual login records for detailed tracking
+CREATE TABLE daily_logins (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    login_date DATE NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    UNIQUE KEY unique_user_date (user_id, login_date),
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
+    INDEX idx_user_date (user_id, login_date)
+)
 
