@@ -7,6 +7,7 @@ CREATE TABLE IF NOT EXISTS users (
     grade VARCHAR(20) DEFAULT '',
     premium_until DATETIME DEFAULT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    childLock INT DEFAULT '1111'
 );
 
 CREATE TABLE IF NOT EXISTS lesson_progress (
@@ -24,7 +25,8 @@ CREATE TABLE IF NOT EXISTS lesson_progress (
 
 CREATE TABLE IF NOT EXISTS subscriptions (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    user_id INT DEFAULT NULL,
+    user_id INT NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
     paypal_order_id VARCHAR(50) NOT NULL,
     plan VARCHAR(20) NOT NULL,
     amount DECIMAL(10,2) NOT NULL,
@@ -36,7 +38,8 @@ CREATE TABLE IF NOT EXISTS subscriptions (
 
 -- Stores the current streak summary for each user
 CREATE TABLE user_streaks (
-    user_id INT PRIMARY KEY,
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
     current_streak INT NOT NULL DEFAULT 0,
     longest_streak INT NOT NULL DEFAULT 0,
     last_login_date DATE,
