@@ -10,6 +10,8 @@ body:has(.premier-club-card) {
 .rectangle:has(.premier-club-card) {
     background-color: #2C4A3B;
     border-color: #2C4A3B;
+    position: relative;
+    min-height: 65vh;
 }
 
 /* White rounded card */
@@ -95,13 +97,15 @@ body:has(.premier-club-card) {
 
 /* ── Parental Lock Overlay ── */
 .parental-overlay {
-    position: fixed;
+    position: absolute;
     inset: 0;
     background: #ffffff;
-    z-index: 1000;
+    border-radius: 25px;
+    z-index: 500;
     display: flex;
     align-items: center;
     justify-content: center;
+    min-height: 100%;
 }
 
 .parental-popup {
