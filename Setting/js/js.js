@@ -157,6 +157,58 @@ function initSettings() {
       manageBtn.textContent = "Account management coming soon.";
     });
   }
+
+  // Parental Lock PIN — auto-advance boxes and save
+  const pinBoxesSm = Array.from(content.querySelectorAll(".pin-box-sm"));
+  pinBoxesSm.forEach((box, i) => {
+    box.addEventListener("keydown", (e) => {
+      if (/^\d$/.test(e.key)) {
+        e.preventDefault();
+        box.value = e.key;
+        if (i < pinBoxesSm.length - 1) pinBoxesSm[i + 1].focus();
+      } else if (e.key === "Backspace") {
+        e.preventDefault();
+        box.value = "";
+        if (i > 0) pinBoxesSm[i - 1].focus();
+      }
+    });
+  });
+
+  const savePinBtn = content.querySelector("#save-pin-btn");
+  if (savePinBtn) {
+    savePinBtn.addEventListener("click", () => {
+      const pinStatus = document.querySelector("#pin-save-status");
+      const pin = pinBoxesSm.map((b) => b.value).join("");
+      if (pin.length < 4) {
+        if (pinStatus) pinStatus.textContent = "Please enter all 4 digits.";
+        return;
+      }
+      fetch("/api/childlock.php", {
+        method: "POST",
+        credentials: "include",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ action: "update", pin }),
+      })
+        .then((res) => {
+          pinBoxesSm.forEach((b) => (b.value = ""));
+          if (res.status === 401) {
+            if (pinStatus) pinStatus.textContent = "Please log in to change your PIN.";
+            return null;
+          }
+          return res.json();
+        })
+        .then((data) => {
+          if (!data) return;
+          if (pinStatus) {
+            pinStatus.textContent = data.success ? "PIN saved!" : "Failed to save PIN.";
+          }
+        })
+        .catch(() => {
+          pinBoxesSm.forEach((b) => (b.value = ""));
+          if (pinStatus) pinStatus.textContent = "Error saving PIN.";
+        });
+    });
+  }
 }
 
 function showPanel(section, sub) {

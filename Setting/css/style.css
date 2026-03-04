@@ -508,3 +508,38 @@
 .settings-modal-save:hover {
     background: #BFBFBF;
 }
+
+/* ── Parental Lock PIN (Settings) ── */
+.pin-inputs-sm {
+    display: flex;
+    gap: 10px;
+    margin-top: 0.75rem;
+}
+
+.pin-box-sm {
+    width: 52px;
+    height: 52px;
+    border: none;
+    outline: none;
+    background-color: transparent;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    font-size: 1.25rem;
+    font-weight: 600;
+    text-align: center;
+    color: #1C1C1C;
+    caret-color: transparent;
+}
+
+.pin-box-sm-1 { background-image: url('../../Premier-Club/images/Frame 125.png'); }
+.pin-box-sm-2 { background-image: url('../../Premier-Club/images/Frame 126.png'); }
+.pin-box-sm-3 { background-image: url('../../Premier-Club/images/Frame 127.png'); }
+.pin-box-sm-4 { background-image: url('../../Premier-Club/images/Frame 99.png'); }
+
+.pin-save-status {
+    display: block;
+    margin-top: 0.5rem;
+    font-size: 0.85rem;
+    color: #4B4B4B;
+}

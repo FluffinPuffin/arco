@@ -97,6 +97,7 @@ if ($action === 'run_migrations') {
         "ALTER TABLE users ADD COLUMN IF NOT EXISTS premium_until DATETIME DEFAULT NULL",
         "ALTER TABLE users ADD COLUMN IF NOT EXISTS qr_access_granted TINYINT(1) NOT NULL DEFAULT 0",
         "ALTER TABLE users ADD COLUMN IF NOT EXISTS qr_access_granted_at TIMESTAMP NULL",
+        "ALTER TABLE users ADD COLUMN IF NOT EXISTS childLock INT DEFAULT 1111",
         "CREATE TABLE IF NOT EXISTS lesson_progress (
             id INT AUTO_INCREMENT PRIMARY KEY,
             user_id INT NOT NULL,
