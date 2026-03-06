@@ -210,6 +210,6 @@ function updateStreakUI(streakData) {
     if (streakCountElement) {
         const count = streakData.currentStreak || 0;
         const plural = count === 1 ? 'day' : 'days';
-        streakCountElement.textContent = `${count.toString().padStart(2, '0')} ${plural} streak`;
+        streakCountElement.textContent = `${count} ${plural} streak`;
     }
 }
