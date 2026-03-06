@@ -20,6 +20,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 
     $user['is_premium'] = $user['premium_until'] && strtotime($user['premium_until']) > time();
 
+    $subStmt = $db->prepare('SELECT plan FROM subscriptions WHERE user_id = ? ORDER BY created_at DESC LIMIT 1');
+    $subStmt->execute([$userId]);
+    $sub = $subStmt->fetch();
+    $user['subscription_plan'] = $sub ? $sub['plan'] : null;
+
     echo json_encode(['success' => true, 'user' => $user]);
     exit;
 }

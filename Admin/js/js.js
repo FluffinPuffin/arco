@@ -26,13 +26,14 @@ async function loadTable(name, offset, btnEl) {
     currentTable = name;
     currentOffset = offset;
 
+    document.getElementById('emptyState').style.display = 'none';
+    document.getElementById('tableView').classList.remove('hidden');
+    document.getElementById('tableName').textContent = name;
+
     const res = await post({ action: 'get_table', table: name, limit: PAGE_SIZE, offset });
     totalRows = res.total;
     primaryKey = res.columns[0] ?? 'id';
 
-    document.getElementById('emptyState').style.display = 'none';
-    document.getElementById('tableView').classList.remove('hidden');
-    document.getElementById('tableName').textContent = name;
     document.getElementById('tableCount').textContent = ` (${totalRows.toLocaleString()} rows)`;
 
     const page = Math.floor(offset / PAGE_SIZE) + 1;
@@ -43,6 +44,91 @@ async function loadTable(name, offset, btnEl) {
 
     renderHead(res.columns);
     renderBody(res.rows, res.columns);
+}
+
+async function loadUserTimePivot() {
+    document.getElementById('tableCount').textContent = '';
+    document.getElementById('pageInfo').textContent = '';
+    document.getElementById('prevBtn').disabled = true;
+    document.getElementById('nextBtn').disabled = true;
+
+    const res = await post({ action: 'get_user_time_pivot' });
+
+    const thead = document.getElementById('tableHead');
+    const tbody = document.getElementById('tableBody');
+    thead.innerHTML = '';
+    tbody.innerHTML = '';
+
+    if (!res.weeks.length) {
+        tbody.innerHTML = '<tr><td style="text-align:center;padding:24px;color:#bbb">No data yet</td></tr>';
+        return;
+    }
+
+    // Fixed column headers: User ID + 7 day names (set from first week)
+    const dayNames = res.weeks[0].days.map(d => d.split(' ')[0]); // Mon, Tue, ...
+    const tr = document.createElement('tr');
+    ['User ID', ...dayNames].forEach(label => {
+        const th = document.createElement('th');
+        th.textContent = label;
+        tr.appendChild(th);
+    });
+    thead.appendChild(tr);
+
+    res.weeks.forEach(week => {
+        // Week range header row
+        const weekTr = document.createElement('tr');
+        const weekTh = document.createElement('td');
+        weekTh.colSpan = 8;
+        weekTh.textContent = week.range;
+        weekTh.style.cssText = 'background:#2a2a3a;color:#a78bfa;font-weight:bold;padding:6px 12px;font-size:0.85em;letter-spacing:0.05em;';
+        weekTr.appendChild(weekTh);
+        tbody.appendChild(weekTr);
+
+        // Day date sub-header (actual dates like "Mar 3")
+        const dateTr = document.createElement('tr');
+        const emptyTd = document.createElement('td');
+        emptyTd.style.cssText = 'background:#1e1e2e;';
+        dateTr.appendChild(emptyTd);
+        week.days.forEach(d => {
+            const td = document.createElement('td');
+            td.textContent = d.split(' ').slice(1).join(' '); // "Mar 3"
+            td.style.cssText = 'background:#1e1e2e;color:#888;font-size:0.8em;text-align:center;padding:2px 8px;';
+            dateTr.appendChild(td);
+        });
+        tbody.appendChild(dateTr);
+
+        if (!week.users.length) {
+            const emptyTr = document.createElement('tr');
+            const td = document.createElement('td');
+            td.colSpan = 8;
+            td.textContent = 'No users this week';
+            td.style.cssText = 'text-align:center;color:#bbb;padding:8px;';
+            emptyTr.appendChild(td);
+            tbody.appendChild(emptyTr);
+            return;
+        }
+
+        week.users.forEach(user => {
+            const row = document.createElement('tr');
+            const idTd = document.createElement('td');
+            idTd.textContent = user.user_id;
+            row.appendChild(idTd);
+            user.days.forEach(secs => {
+                const td = document.createElement('td');
+                td.textContent = secs > 0 ? fmtSecs(secs) : '—';
+                td.style.textAlign = 'center';
+                row.appendChild(td);
+            });
+            tbody.appendChild(row);
+        });
+    });
+}
+
+function fmtSecs(s) {
+    if (s < 60) return s + 's';
+    const m = Math.floor(s / 60);
+    const h = Math.floor(m / 60);
+    return h > 0 ? h + 'h ' + (m % 60) + 'm' : m + 'm';
 }
 
 function renderHead(columns) {

@@ -9,6 +9,15 @@ document.addEventListener("frame:ready", () => {
             })
             .then(titleContent => {
                 titleContainer.innerHTML = titleContent;
+                const nameSpan = document.getElementById('home-username');
+                if (nameSpan) {
+                    ArcoAPI.getProfile()
+                        .then(res => {
+                            const fullName = res.user?.display_name || '';
+                            nameSpan.textContent = fullName.split(' ')[0] || 'Friend';
+                        })
+                        .catch(() => { nameSpan.textContent = 'Friend'; });
+                }
             })
             .catch(err => console.error("Title load failed:", err));
     }

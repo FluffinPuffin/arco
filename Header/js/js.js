@@ -1,3 +1,36 @@
+// ---- Time Tracking ----
+(function () {
+  let sessionStart = Date.now();
+  let pendingSeconds = 0;
+
+  function flush() {
+    const elapsed = Math.floor((Date.now() - sessionStart) / 1000);
+    sessionStart = Date.now();
+    if (elapsed <= 0) return;
+    pendingSeconds += elapsed;
+    const toSend = pendingSeconds;
+    pendingSeconds = 0;
+    if (navigator.sendBeacon) {
+      navigator.sendBeacon("/api/time_tracking.php", JSON.stringify({ seconds: toSend }));
+    } else {
+      fetch("/api/time_tracking.php", {
+        method: "POST",
+        credentials: "include",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ seconds: toSend }),
+        keepalive: true,
+      }).catch(() => {});
+    }
+  }
+
+  setInterval(flush, 60000);
+  document.addEventListener("visibilitychange", () => {
+    if (document.hidden) flush();
+    else sessionStart = Date.now();
+  });
+  window.addEventListener("beforeunload", flush);
+})();
+
 // Get the base path to the frame folder from this script's location
 const scriptSrc = document.currentScript.src;
 const framePath = scriptSrc.substring(0, scriptSrc.lastIndexOf('/js/'));

@@ -70,6 +70,28 @@ function initSettings() {
     if (gradeEl) gradeEl.textContent = savedGrade;
   }
 
+  // Load statistics when panel becomes visible
+  loadTimeStats(content);
+
+  // Load subscription info from server
+  fetch("/api/profile.php", { credentials: "include" })
+    .then((res) => res.ok ? res.json() : null)
+    .then((data) => {
+      if (!data?.success) return;
+      const user = data.user;
+      const planEl = content.querySelector('[data-value="plan"]');
+      const paymentEl = content.querySelector('[data-value="payment"]');
+      const planLabels = { "1-month": "Monthly", "3-month": "3 Months", "12-month": "Annually" };
+
+      if (planEl) planEl.textContent = user.is_premium ? "Premium" : "Free";
+      if (paymentEl) {
+        paymentEl.textContent = user.is_premium && user.subscription_plan
+          ? (planLabels[user.subscription_plan] || user.subscription_plan)
+          : "—";
+      }
+    })
+    .catch(() => {});
+
   // Edit buttons
   content.querySelectorAll(".settings-edit-btn").forEach((btn) => {
     btn.addEventListener("click", () => {
@@ -209,6 +231,38 @@ function initSettings() {
         });
     });
   }
+}
+
+function formatSeconds(s) {
+  if (s < 60) return s + "s";
+  const m = Math.floor(s / 60);
+  const h = Math.floor(m / 60);
+  return h > 0 ? h + "h " + (m % 60) + "m" : m + "m";
+}
+
+function loadTimeStats(content) {
+  fetch("/api/time_tracking.php", { credentials: "include" })
+    .then((res) => res.ok ? res.json() : null)
+    .then((data) => {
+      if (!data?.success) return;
+
+      const todayEl = content.querySelector('[data-stat="today"]');
+      const weekEl = content.querySelector('[data-stat="week"]');
+      if (todayEl) todayEl.textContent = formatSeconds(data.today_seconds);
+      if (weekEl) weekEl.textContent = formatSeconds(data.week_seconds);
+
+      // Last 7 days — use last 5 for the bars
+      const daily = data.daily.slice(-5);
+      const max = Math.max(...daily, 1);
+
+      ["today", "week"].forEach((key) => {
+        daily.forEach((val, i) => {
+          const bar = content.querySelector(`#stat-bar-${key}-${i}`);
+          if (bar) bar.style.height = Math.round((val / max) * 100) + "%";
+        });
+      });
+    })
+    .catch(() => {});
 }
 
 function showPanel(section, sub) {
