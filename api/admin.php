@@ -152,6 +152,14 @@ if ($action === 'run_migrations') {
             FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
             INDEX idx_user_date (user_id, login_date)
         )",
+        "CREATE TABLE IF NOT EXISTS user_time (
+            id INT AUTO_INCREMENT PRIMARY KEY,
+            user_id INT NOT NULL,
+            date DATE NOT NULL,
+            seconds INT NOT NULL DEFAULT 0,
+            UNIQUE KEY unique_user_date (user_id, date),
+            FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+        )",
     ];
 
     foreach ($statements as $sql) {
@@ -160,6 +168,54 @@ if ($action === 'run_migrations') {
 
     $tables = $db->query('SHOW TABLES')->fetchAll(PDO::FETCH_COLUMN);
     echo json_encode(['success' => true, 'tables' => $tables]);
+    exit;
+}
+
+if ($action === 'get_user_time_pivot') {
+    $rows = $db->query(
+        'SELECT user_id, date, seconds FROM user_time ORDER BY date ASC'
+    )->fetchAll();
+
+    $weeks = [];
+    foreach ($rows as $row) {
+        $date = new DateTime($row['date']);
+        $weekKey = $date->format('o-W');
+        $day = (int)$date->format('N'); // 1=Mon, 7=Sun
+
+        if (!isset($weeks[$weekKey])) {
+            $mon = clone $date;
+            $mon->modify('monday this week');
+            $sun = clone $mon;
+            $sun->modify('+6 days');
+            $weeks[$weekKey] = [
+                'range' => $mon->format('M j') . ' – ' . $sun->format('M j, Y'),
+                'days'  => [],
+                'users' => [],
+            ];
+            for ($d = 0; $d < 7; $d++) {
+                $dayDate = clone $mon;
+                $dayDate->modify("+$d days");
+                $weeks[$weekKey]['days'][] = $dayDate->format('D M j');
+            }
+        }
+
+        $uid = $row['user_id'];
+        if (!isset($weeks[$weekKey]['users'][$uid])) {
+            $weeks[$weekKey]['users'][$uid] = array_fill(0, 7, 0);
+        }
+        $weeks[$weekKey]['users'][$uid][$day - 1] += (int)$row['seconds'];
+    }
+
+    $out = [];
+    foreach ($weeks as $w) {
+        $userRows = [];
+        foreach ($w['users'] as $uid => $daySecs) {
+            $userRows[] = ['user_id' => $uid, 'days' => $daySecs];
+        }
+        $out[] = ['range' => $w['range'], 'days' => $w['days'], 'users' => $userRows];
+    }
+
+    echo json_encode(['success' => true, 'weeks' => $out]);
     exit;
 }
 

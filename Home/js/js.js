@@ -9,6 +9,15 @@ document.addEventListener("frame:ready", () => {
             })
             .then(titleContent => {
                 titleContainer.innerHTML = titleContent;
+                const nameSpan = document.getElementById('home-username');
+                if (nameSpan) {
+                    ArcoAPI.getProfile()
+                        .then(res => {
+                            const fullName = res.user?.display_name || '';
+                            nameSpan.textContent = fullName.split(' ')[0] || 'Friend';
+                        })
+                        .catch(() => { nameSpan.textContent = 'Friend'; });
+                }
             })
             .catch(err => console.error("Title load failed:", err));
     }
@@ -201,6 +210,6 @@ function updateStreakUI(streakData) {
     if (streakCountElement) {
         const count = streakData.currentStreak || 0;
         const plural = count === 1 ? 'day' : 'days';
-        streakCountElement.textContent = `${count.toString().padStart(2, '0')} ${plural} streak`;
+        streakCountElement.textContent = `${count} ${plural} streak`;
     }
 }

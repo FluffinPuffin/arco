@@ -32,23 +32,45 @@ function initParentalLock() {
   const boxes = Array.from(document.querySelectorAll(".pin-box"));
   const continueBtn = document.getElementById("parental-continue");
   const errorEl = document.getElementById("parental-error");
+  const pinForm = document.getElementById("parental-pin-form");
+  const noPinEl = document.getElementById("parental-no-pin");
 
   if (!overlay || !boxes.length) return;
 
-  // Focus first box
-  boxes[0].focus();
+  // Track actual digits separately (inputs show "•" for visual masking)
+  const pinDigits = ["", "", "", ""];
 
-  // Auto-advance and backspace handling
+  // Check if user has a PIN set before showing the form
+  fetch("/api/childlock.php", { credentials: "include" })
+    .then((res) => res.json())
+    .then((data) => {
+      if (!data.has_pin) {
+        if (pinForm) pinForm.style.display = "none";
+        if (noPinEl) noPinEl.style.display = "flex";
+      } else {
+        boxes[0].focus();
+      }
+    })
+    .catch(() => {
+      // If check fails, just show the form normally
+      boxes[0].focus();
+    });
+
+  // Auto-advance and backspace handling with "•" visual masking
   boxes.forEach((box, i) => {
     box.addEventListener("keydown", (e) => {
       if (/^\d$/.test(e.key)) {
         e.preventDefault();
-        box.value = e.key;
+        pinDigits[i] = e.key;
+        box.value = "\u2022";
+        box.classList.add("pin-filled");
         if (errorEl) errorEl.textContent = "";
         if (i < boxes.length - 1) boxes[i + 1].focus();
       } else if (e.key === "Backspace") {
         e.preventDefault();
+        pinDigits[i] = "";
         box.value = "";
+        box.classList.remove("pin-filled");
         if (i > 0) boxes[i - 1].focus();
       }
     });
@@ -56,13 +78,14 @@ function initParentalLock() {
 
   function showError(msg) {
     if (errorEl) errorEl.textContent = msg;
-    boxes.forEach((b) => (b.value = ""));
+    boxes.forEach((b) => { b.value = ""; b.classList.remove("pin-filled"); });
+    pinDigits.fill("");
     boxes[0].focus();
   }
 
   // Continue button
   continueBtn.addEventListener("click", () => {
-    const pin = boxes.map((b) => b.value).join("");
+    const pin = pinDigits.join("");
     if (pin.length < 4) {
       showError("Please enter all 4 digits.");
       return;
@@ -79,6 +102,9 @@ function initParentalLock() {
         if (data.success) {
           overlay.style.display = "none";
           card.style.display = "";
+        } else if (data.no_pin_set) {
+          if (pinForm) pinForm.style.display = "none";
+          if (noPinEl) noPinEl.style.display = "flex";
         } else {
           showError("Incorrect PIN. Please try again.");
         }

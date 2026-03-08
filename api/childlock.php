@@ -9,7 +9,7 @@ $db = getDB();
 
 // Self-healing migration: add childLock column if it doesn't exist yet
 try {
-    $db->exec("ALTER TABLE users ADD COLUMN childLock INT DEFAULT 1111");
+    $db->exec("ALTER TABLE users ADD COLUMN childLock INT DEFAULT NULL");
 } catch (\PDOException $e) {
     // Column already exists — ignore
 }
@@ -19,7 +19,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     $stmt->execute([$userId]);
     $row = $stmt->fetch();
 
-    echo json_encode(['success' => true, 'childLock' => (string) $row['childLock']]);
+    $hasPin = $row['childLock'] !== null;
+    echo json_encode(['success' => true, 'childLock' => $hasPin ? (string) $row['childLock'] : null, 'has_pin' => $hasPin]);
     exit;
 }
 
@@ -39,13 +40,41 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt->execute([$userId]);
         $row = $stmt->fetch();
 
-        $storedPin = $row['childLock'] !== null ? (string) $row['childLock'] : '1111';
-        $match = $storedPin === $pin;
+        if ($row['childLock'] === null) {
+            echo json_encode(['success' => false, 'no_pin_set' => true]);
+            exit;
+        }
+
+        $match = (string) $row['childLock'] === $pin;
         echo json_encode(['success' => $match]);
         exit;
     }
 
     if ($action === 'update') {
+        $stmt = $db->prepare('UPDATE users SET childLock = ? WHERE id = ?');
+        $stmt->execute([$pin, $userId]);
+        echo json_encode(['success' => true]);
+        exit;
+    }
+
+    if ($action === 'reset') {
+        $accountPassword = $data['account_password'] ?? '';
+        if (!$accountPassword) {
+            http_response_code(400);
+            echo json_encode(['error' => 'Account password is required']);
+            exit;
+        }
+
+        $stmt = $db->prepare('SELECT password_hash FROM users WHERE id = ?');
+        $stmt->execute([$userId]);
+        $user = $stmt->fetch();
+
+        if (!$user || !password_verify($accountPassword, $user['password_hash'])) {
+            http_response_code(401);
+            echo json_encode(['error' => 'Incorrect account password']);
+            exit;
+        }
+
         $stmt = $db->prepare('UPDATE users SET childLock = ? WHERE id = ?');
         $stmt->execute([$pin, $userId]);
         echo json_encode(['success' => true]);
