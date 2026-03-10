@@ -504,7 +504,7 @@ function initializeAwards() {
     },
 
     //placeholder dots
-    ...Array.from({ length: 6 }, (_, i) => ({
+    ...Array.from({ length: 7 }, (_, i) => ({
       id: i + 15,
       earned: false,
       placeholder: true,
@@ -806,7 +806,7 @@ function initializeAwards() {
       title: "WcDonald's Partnership",
       description:
         "In this limited time collaboration, WcDonald's is partnering with Arco to bring you exclusive foodBig Wacs, Chicken WcNuggets, & Egg WcWuffins, all for your consumption. Do you have what it takes to collect everything before January 31st?",
-      image: "../images/eventBurger.svg",
+      image: "/Awards/images/eventBurger.svg",
     },
 
     { id: 2, comingSoon: true },
@@ -838,6 +838,16 @@ function initializeAwards() {
   const eventTitleEl = document.getElementById("eventTitle");
   const eventDescriptionEl = document.getElementById("eventDescription");
   const eventRewardsGrid = document.getElementById("eventRewardsGrid");
+
+  /* ==========================================
+   EMPTY EVENT STATE WHEN CLICKED ON
+========================================== */
+
+function clearEventDisplay() {
+  eventTitleEl.textContent = "Select an Event";
+  eventDescriptionEl.textContent = "Click a star to view event details.";
+  eventImageEl.style.display = "none";
+}
 
   /* ==========================================
      SHOW EVENT DETAILS
@@ -983,7 +993,8 @@ function initializeAwards() {
     renderMedals();
     renderStickers();
     renderEventStars();
-    renderEvent(events[0]);
+    renderEventStars();
+    clearEventDisplay();
 
     // Previews are empty at first
     document.querySelector(".medalCover").style.display = "flex";
