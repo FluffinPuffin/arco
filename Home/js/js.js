@@ -163,7 +163,7 @@ async function initializeStreakTracker() {
         console.error('Failed to load streak data:', err);
         
         // Check if it's a weekend error
-        if (err.status === 400 || (err.message && err.message.includes('weekend'))) {
+        if (err.status === 400 || (err.message && err.message.toLowerCase().includes('weekend'))) {
             console.log('Weekend detected - streaks do not count');
             // Still try to fetch current streak data (will use cache if available)
             try {
