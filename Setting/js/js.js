@@ -70,6 +70,28 @@ function initSettings() {
     if (gradeEl) gradeEl.textContent = savedGrade;
   }
 
+  // Load statistics when panel becomes visible
+  loadTimeStats(content);
+
+  // Load subscription info from server
+  fetch("/api/profile.php", { credentials: "include" })
+    .then((res) => res.ok ? res.json() : null)
+    .then((data) => {
+      if (!data?.success) return;
+      const user = data.user;
+      const planEl = content.querySelector('[data-value="plan"]');
+      const paymentEl = content.querySelector('[data-value="payment"]');
+      const planLabels = { "1-month": "Monthly", "3-month": "3 Months", "12-month": "Annually" };
+
+      if (planEl) planEl.textContent = user.is_premium ? "Premium" : "Free";
+      if (paymentEl) {
+        paymentEl.textContent = user.is_premium && user.subscription_plan
+          ? (planLabels[user.subscription_plan] || user.subscription_plan)
+          : "—";
+      }
+    })
+    .catch(() => {});
+
   // Edit buttons
   content.querySelectorAll(".settings-edit-btn").forEach((btn) => {
     btn.addEventListener("click", () => {
@@ -150,65 +172,279 @@ function initSettings() {
   content.querySelector("[data-avatar-cancel]")?.addEventListener("click", () => closeAvatarModal(avatarModal));
   content.querySelector("[data-avatar-backdrop]")?.addEventListener("click", () => closeAvatarModal(avatarModal));
 
-  // Manage Account button (only in the Account panel)
-  const manageBtn = content.querySelector('.settings-panel[data-sub="account"] .settings-primary-btn');
-  if (manageBtn) {
-    manageBtn.addEventListener("click", () => {
-      manageBtn.textContent = "Account management coming soon.";
+  // Change Password
+  const changePasswordBtn = content.querySelector("#change-password-btn");
+  if (changePasswordBtn) {
+    changePasswordBtn.addEventListener("click", () => {
+      const current = content.querySelector("#pw-current")?.value ?? "";
+      const newPw = content.querySelector("#pw-new")?.value ?? "";
+      const confirm = content.querySelector("#pw-confirm")?.value ?? "";
+      const status = content.querySelector("#pw-save-status");
+
+      if (!current || !newPw || !confirm) {
+        if (status) status.textContent = "Please fill in all fields.";
+        return;
+      }
+      if (newPw !== confirm) {
+        if (status) status.textContent = "Passwords do not match.";
+        return;
+      }
+      if (newPw.length < 8) {
+        if (status) status.textContent = "Password must be at least 8 characters.";
+        return;
+      }
+      if (!/[!@#$%^&*(),.?":{}|<>]/.test(newPw)) {
+        if (status) status.textContent = "Password must contain at least one special character.";
+        return;
+      }
+
+      changePasswordBtn.disabled = true;
+      fetch("/api/change-password.php", {
+        method: "POST",
+        credentials: "include",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ current_password: current, new_password: newPw }),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          if (status) status.textContent = data.success ? "Password saved!" : (data.error || "Failed to save password.");
+          if (data.success) {
+            content.querySelector("#pw-current").value = "";
+            content.querySelector("#pw-new").value = "";
+            content.querySelector("#pw-confirm").value = "";
+          }
+        })
+        .catch(() => {
+          if (status) status.textContent = "Error saving password.";
+        })
+        .finally(() => {
+          changePasswordBtn.disabled = false;
+        });
     });
   }
 
-  // Parental Lock PIN — auto-advance boxes and save
-  const pinBoxesSm = Array.from(content.querySelectorAll(".pin-box-sm"));
-  pinBoxesSm.forEach((box, i) => {
-    box.addEventListener("keydown", (e) => {
-      if (/^\d$/.test(e.key)) {
-        e.preventDefault();
-        box.value = e.key;
-        if (i < pinBoxesSm.length - 1) pinBoxesSm[i + 1].focus();
-      } else if (e.key === "Backspace") {
-        e.preventDefault();
-        box.value = "";
-        if (i > 0) pinBoxesSm[i - 1].focus();
-      }
+  // Parental Lock PIN
+  let hasPinSet = false;
+
+  function makePinGroup(boxes) {
+    const digits = ["", "", "", ""];
+    boxes.forEach((box, i) => {
+      box.addEventListener("keydown", (e) => {
+        if (/^\d$/.test(e.key)) {
+          e.preventDefault();
+          digits[i] = e.key;
+          box.value = "\u2022";
+          box.classList.add("pin-filled");
+          if (i < boxes.length - 1) boxes[i + 1].focus();
+        } else if (e.key === "Backspace") {
+          e.preventDefault();
+          digits[i] = "";
+          box.value = "";
+          box.classList.remove("pin-filled");
+          if (i > 0) boxes[i - 1].focus();
+        }
+      });
     });
-  });
+    return {
+      getPin: () => digits.join(""),
+      clear: () => {
+        digits.fill("");
+        boxes.forEach((b) => { b.value = ""; b.classList.remove("pin-filled"); });
+      },
+      focus: () => boxes[0]?.focus(),
+    };
+  }
+
+  const currentPinGroup = makePinGroup(Array.from(content.querySelectorAll('[data-pin-group="current"]')));
+  const newPinGroup = makePinGroup(Array.from(content.querySelectorAll('[data-pin-group="new"]')));
+  const recoveryPinGroup = makePinGroup(Array.from(content.querySelectorAll('[data-pin-group="recovery"]')));
+
+  const pinCurrentGroup = content.querySelector("#pin-current-group");
+  const pinFormHint = content.querySelector("#pin-form-hint");
+  const pinChangeForm = content.querySelector("#pin-change-form");
+  const pinRecoveryForm = content.querySelector("#pin-recovery-form");
+
+  // Check if user has a PIN set — hide current PIN row if not
+  fetch("/api/childlock.php", { credentials: "include" })
+    .then((res) => res.json())
+    .then((data) => {
+      hasPinSet = !!data.has_pin;
+      if (!hasPinSet) {
+        if (pinCurrentGroup) pinCurrentGroup.hidden = true;
+        if (pinFormHint) pinFormHint.textContent = "Set a 4-digit PIN for Premier Club access.";
+      }
+    })
+    .catch(() => {});
 
   const savePinBtn = content.querySelector("#save-pin-btn");
   if (savePinBtn) {
     savePinBtn.addEventListener("click", () => {
-      const pinStatus = document.querySelector("#pin-save-status");
-      const pin = pinBoxesSm.map((b) => b.value).join("");
-      if (pin.length < 4) {
-        if (pinStatus) pinStatus.textContent = "Please enter all 4 digits.";
+      const pinStatus = content.querySelector("#pin-save-status");
+      const currentPin = currentPinGroup.getPin();
+      const newPin = newPinGroup.getPin();
+
+      if (hasPinSet && currentPin.length < 4) {
+        if (pinStatus) pinStatus.textContent = "Please enter your current PIN.";
         return;
       }
+      if (newPin.length < 4) {
+        if (pinStatus) pinStatus.textContent = "Please enter a new 4-digit PIN.";
+        return;
+      }
+
+      savePinBtn.disabled = true;
+
+      const doUpdate = () => {
+        fetch("/api/childlock.php", {
+          method: "POST",
+          credentials: "include",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ action: "update", pin: newPin }),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            if (data.success) {
+              hasPinSet = true;
+              currentPinGroup.clear();
+              newPinGroup.clear();
+              if (pinCurrentGroup) pinCurrentGroup.hidden = false;
+              if (pinFormHint) pinFormHint.textContent = "Enter your current PIN, then set a new one.";
+              if (pinStatus) pinStatus.textContent = "PIN saved!";
+            } else {
+              if (pinStatus) pinStatus.textContent = data.error || "Failed to save PIN.";
+            }
+          })
+          .catch(() => {
+            if (pinStatus) pinStatus.textContent = "Error saving PIN.";
+          })
+          .finally(() => { savePinBtn.disabled = false; });
+      };
+
+      if (!hasPinSet) { doUpdate(); return; }
+
       fetch("/api/childlock.php", {
         method: "POST",
         credentials: "include",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ action: "update", pin }),
+        body: JSON.stringify({ action: "verify", pin: currentPin }),
       })
-        .then((res) => {
-          pinBoxesSm.forEach((b) => (b.value = ""));
-          if (res.status === 401) {
-            if (pinStatus) pinStatus.textContent = "Please log in to change your PIN.";
-            return null;
-          }
-          return res.json();
-        })
+        .then((res) => res.json())
         .then((data) => {
-          if (!data) return;
-          if (pinStatus) {
-            pinStatus.textContent = data.success ? "PIN saved!" : "Failed to save PIN.";
+          if (data.success) {
+            doUpdate();
+          } else {
+            currentPinGroup.clear();
+            if (pinStatus) pinStatus.textContent = "Current PIN is incorrect.";
+            savePinBtn.disabled = false;
           }
         })
         .catch(() => {
-          pinBoxesSm.forEach((b) => (b.value = ""));
-          if (pinStatus) pinStatus.textContent = "Error saving PIN.";
+          if (pinStatus) pinStatus.textContent = "Error verifying PIN.";
+          savePinBtn.disabled = false;
         });
     });
   }
+
+  // Forgot PIN
+  const forgotPinBtn = content.querySelector("#forgot-pin-btn");
+  if (forgotPinBtn) {
+    forgotPinBtn.addEventListener("click", () => {
+      if (pinChangeForm) pinChangeForm.hidden = true;
+      if (pinRecoveryForm) pinRecoveryForm.hidden = false;
+      recoveryPinGroup.clear();
+      const pwInput = content.querySelector("#pin-recovery-password");
+      if (pwInput) pwInput.value = "";
+      const recStatus = content.querySelector("#pin-recovery-status");
+      if (recStatus) recStatus.textContent = "";
+    });
+  }
+
+  const recoveryCancelBtn = content.querySelector("#pin-recovery-cancel-btn");
+  if (recoveryCancelBtn) {
+    recoveryCancelBtn.addEventListener("click", () => {
+      if (pinChangeForm) pinChangeForm.hidden = false;
+      if (pinRecoveryForm) pinRecoveryForm.hidden = true;
+    });
+  }
+
+  const recoverySaveBtn = content.querySelector("#pin-recovery-save-btn");
+  if (recoverySaveBtn) {
+    recoverySaveBtn.addEventListener("click", () => {
+      const recoveryStatus = content.querySelector("#pin-recovery-status");
+      const accountPassword = content.querySelector("#pin-recovery-password")?.value ?? "";
+      const newPin = recoveryPinGroup.getPin();
+
+      if (!accountPassword) {
+        if (recoveryStatus) recoveryStatus.textContent = "Please enter your account password.";
+        return;
+      }
+      if (newPin.length < 4) {
+        if (recoveryStatus) recoveryStatus.textContent = "Please enter a new 4-digit PIN.";
+        return;
+      }
+
+      recoverySaveBtn.disabled = true;
+      fetch("/api/childlock.php", {
+        method: "POST",
+        credentials: "include",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ action: "reset", pin: newPin, account_password: accountPassword }),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.success) {
+            hasPinSet = true;
+            recoveryPinGroup.clear();
+            content.querySelector("#pin-recovery-password").value = "";
+            if (recoveryStatus) recoveryStatus.textContent = "PIN reset!";
+            setTimeout(() => {
+              if (pinChangeForm) pinChangeForm.hidden = false;
+              if (pinRecoveryForm) pinRecoveryForm.hidden = true;
+              if (pinCurrentGroup) pinCurrentGroup.hidden = false;
+              if (pinFormHint) pinFormHint.textContent = "Enter your current PIN, then set a new one.";
+            }, 1500);
+          } else {
+            if (recoveryStatus) recoveryStatus.textContent = data.error || "Failed to reset PIN.";
+          }
+        })
+        .catch(() => {
+          if (recoveryStatus) recoveryStatus.textContent = "Error resetting PIN.";
+        })
+        .finally(() => { recoverySaveBtn.disabled = false; });
+    });
+  }
+}
+
+function formatSeconds(s) {
+  if (s < 60) return s + "s";
+  const m = Math.floor(s / 60);
+  const h = Math.floor(m / 60);
+  return h > 0 ? h + "h " + (m % 60) + "m" : m + "m";
+}
+
+function loadTimeStats(content) {
+  fetch("/api/time_tracking.php", { credentials: "include" })
+    .then((res) => res.ok ? res.json() : null)
+    .then((data) => {
+      if (!data?.success) return;
+
+      const todayEl = content.querySelector('[data-stat="today"]');
+      const weekEl = content.querySelector('[data-stat="week"]');
+      if (todayEl) todayEl.textContent = formatSeconds(data.today_seconds);
+      if (weekEl) weekEl.textContent = formatSeconds(data.week_seconds);
+
+      // Last 7 days — use last 5 for the bars
+      const daily = data.daily.slice(-5);
+      const max = Math.max(...daily, 1);
+
+      ["today", "week"].forEach((key) => {
+        daily.forEach((val, i) => {
+          const bar = content.querySelector(`#stat-bar-${key}-${i}`);
+          if (bar) bar.style.height = Math.round((val / max) * 100) + "%";
+        });
+      });
+    })
+    .catch(() => {});
 }
 
 function showPanel(section, sub) {

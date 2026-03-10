@@ -19,8 +19,6 @@
                 data-sub="payment">Payment</a>
             <a href="#" class="settings-nav-item settings-nav-sub" data-section="grown-ups"
                 data-sub="account">Account</a>
-            <a href="#" class="settings-nav-item settings-nav-sub" data-section="grown-ups"
-                data-sub="parental-lock">Parental Lock</a>
         </div>
     </div>
     <div class="settings-content">
@@ -67,23 +65,18 @@
                 <div class="settings-stat-card">
                     <span class="settings-stat-label">Today</span>
                     <span class="settings-stat-value" data-stat="today"></span>
-                    <div class="settings-stat-chart">
-                        <span class="settings-stat-bar" style="height: 40%"></span>
-                        <span class="settings-stat-bar" style="height: 70%"></span>
-                        <span class="settings-stat-bar" style="height: 55%"></span>
-                        <span class="settings-stat-bar" style="height: 55%"></span>
-                        <span class="settings-stat-bar" style="height: 55%"></span>
-                    </div>
                 </div>
                 <div class="settings-stat-card">
                     <span class="settings-stat-label">This week</span>
                     <span class="settings-stat-value" data-stat="week"></span>
                     <div class="settings-stat-chart">
-                        <span class="settings-stat-bar" style="height: 50%"></span>
-                        <span class="settings-stat-bar" style="height: 80%"></span>
-                        <span class="settings-stat-bar" style="height: 65%"></span>
-                        <span class="settings-stat-bar" style="height: 90%"></span>
-                        <span class="settings-stat-bar" style="height: 75%"></span>
+                        <span class="settings-stat-bar" id="stat-bar-week-0" style="height: 0%"></span>
+                        <span class="settings-stat-bar" id="stat-bar-week-1" style="height: 0%"></span>
+                        <span class="settings-stat-bar" id="stat-bar-week-2" style="height: 0%"></span>
+                        <span class="settings-stat-bar" id="stat-bar-week-3" style="height: 0%"></span>
+                        <span class="settings-stat-bar" id="stat-bar-week-4" style="height: 0%"></span>
+                        <span class="settings-stat-bar" id="stat-bar-week-5" style="height: 0%"></span>
+                        <span class="settings-stat-bar" id="stat-bar-week-6" style="height: 0%"></span>
                     </div>
                 </div>
             </div>
@@ -105,30 +98,68 @@
             </div>
         </div>
 
-        <!-- Grown-Ups > Parental Lock -->
-        <div class="settings-panel" data-section="grown-ups" data-sub="parental-lock">
-            <h2 class="settings-panel-title">Parental Lock PIN</h2>
-            <div class="settings-field">
-                <label class="settings-field-label">Change PIN</label>
-                <p class="settings-field-hint">Enter a new 4-digit PIN for Premier Club access.</p>
-                <div class="pin-inputs-sm">
-                    <input type="password" maxlength="1" class="pin-box-sm pin-box-sm-1" inputmode="numeric">
-                    <input type="password" maxlength="1" class="pin-box-sm pin-box-sm-2" inputmode="numeric">
-                    <input type="password" maxlength="1" class="pin-box-sm pin-box-sm-3" inputmode="numeric">
-                    <input type="password" maxlength="1" class="pin-box-sm pin-box-sm-4" inputmode="numeric">
-                </div>
-                <button type="button" id="save-pin-btn" class="settings-primary-btn" style="margin-top: 1rem;">Save PIN</button>
-                <span id="pin-save-status" class="pin-save-status"></span>
-            </div>
-        </div>
-
         <!-- Grown-Ups > Account -->
         <div class="settings-panel" data-section="grown-ups" data-sub="account">
             <h2 class="settings-panel-title">Account</h2>
             <div class="settings-field">
-                <label class="settings-field-label">Account Management</label>
-                <p class="settings-field-hint">Manage your account settings, password, and security.</p>
-                <button type="button" class="settings-primary-btn">Manage Account</button>
+                <label class="settings-field-label">Change Password</label>
+                <p class="settings-field-hint">At least 8 characters with one special character.</p>
+                <span id="pw-save-status" class="pin-save-status"></span>
+                <div class="settings-pw-inputs">
+                    <input type="password" id="pw-current" class="settings-modal-input" placeholder="Current password" autocomplete="current-password">
+                    <input type="password" id="pw-new" class="settings-modal-input" placeholder="New password" autocomplete="new-password">
+                    <input type="password" id="pw-confirm" class="settings-modal-input" placeholder="Confirm new password" autocomplete="new-password">
+                    <button type="button" class="settings-primary-btn" id="change-password-btn">Save Password</button>
+                </div>
+            </div>
+            <div class="settings-field">
+                <label class="settings-field-label">Parental Lock PIN</label>
+
+                <!-- Normal change view -->
+                <div id="pin-change-form">
+                    <p class="settings-field-hint" id="pin-form-hint">Enter your current PIN, then set a new one.</p>
+                    <span id="pin-save-status" class="pin-save-status"></span>
+                    <div id="pin-current-group">
+                        <p class="pin-group-label">Current PIN</p>
+                        <div class="pin-inputs-sm">
+                            <input type="text" maxlength="1" class="pin-box-sm pin-box-sm-1" data-pin-group="current" inputmode="numeric" autocomplete="off">
+                            <input type="text" maxlength="1" class="pin-box-sm pin-box-sm-2" data-pin-group="current" inputmode="numeric" autocomplete="off">
+                            <input type="text" maxlength="1" class="pin-box-sm pin-box-sm-3" data-pin-group="current" inputmode="numeric" autocomplete="off">
+                            <input type="text" maxlength="1" class="pin-box-sm pin-box-sm-4" data-pin-group="current" inputmode="numeric" autocomplete="off">
+                        </div>
+                    </div>
+                    <p class="pin-group-label">New PIN</p>
+                    <div class="pin-inputs-sm">
+                        <input type="text" maxlength="1" class="pin-box-sm pin-box-sm-1" data-pin-group="new" inputmode="numeric" autocomplete="off">
+                        <input type="text" maxlength="1" class="pin-box-sm pin-box-sm-2" data-pin-group="new" inputmode="numeric" autocomplete="off">
+                        <input type="text" maxlength="1" class="pin-box-sm pin-box-sm-3" data-pin-group="new" inputmode="numeric" autocomplete="off">
+                        <input type="text" maxlength="1" class="pin-box-sm pin-box-sm-4" data-pin-group="new" inputmode="numeric" autocomplete="off">
+                    </div>
+                    <div class="pin-actions">
+                        <button type="button" id="save-pin-btn" class="settings-primary-btn">Save PIN</button>
+                        <button type="button" id="forgot-pin-btn" class="settings-link-btn">Forgot PIN?</button>
+                    </div>
+                </div>
+
+                <!-- Recovery view -->
+                <div id="pin-recovery-form" hidden>
+                    <p class="settings-field-hint">Enter your account password to reset your PIN.</p>
+                    <span id="pin-recovery-status" class="pin-save-status"></span>
+                    <div class="settings-pw-inputs">
+                        <input type="password" id="pin-recovery-password" class="settings-modal-input" placeholder="Account password" autocomplete="current-password">
+                    </div>
+                    <p class="pin-group-label">New PIN</p>
+                    <div class="pin-inputs-sm">
+                        <input type="text" maxlength="1" class="pin-box-sm pin-box-sm-1" data-pin-group="recovery" inputmode="numeric" autocomplete="off">
+                        <input type="text" maxlength="1" class="pin-box-sm pin-box-sm-2" data-pin-group="recovery" inputmode="numeric" autocomplete="off">
+                        <input type="text" maxlength="1" class="pin-box-sm pin-box-sm-3" data-pin-group="recovery" inputmode="numeric" autocomplete="off">
+                        <input type="text" maxlength="1" class="pin-box-sm pin-box-sm-4" data-pin-group="recovery" inputmode="numeric" autocomplete="off">
+                    </div>
+                    <div class="pin-actions">
+                        <button type="button" id="pin-recovery-save-btn" class="settings-primary-btn">Reset PIN</button>
+                        <button type="button" id="pin-recovery-cancel-btn" class="settings-link-btn">Cancel</button>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

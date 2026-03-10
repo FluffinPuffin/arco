@@ -385,7 +385,7 @@
 .overlay-diamond {
     width: 64px;
     height: 64px;
-    filter: brightness(1.2);
+    filter: brightness(1.2) invert(1);
 }
 
 .overlay-text {
