@@ -806,7 +806,7 @@ function initializeAwards() {
       title: "WcDonald's Partnership",
       description:
         "In this limited time collaboration, WcDonald's is partnering with Arco to bring you exclusive foodBig Wacs, Chicken WcNuggets, & Egg WcWuffins, all for your consumption. Do you have what it takes to collect everything before January 31st?",
-      image: "../../frame/images/eventBurger.svg",
+      image: "../images/eventBurger.svg",
     },
 
     { id: 2, comingSoon: true },

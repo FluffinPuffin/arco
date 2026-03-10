@@ -12,7 +12,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     $streakStmt = $db->prepare('SELECT current_streak, longest_streak, last_login_date FROM user_streaks WHERE user_id = ?');
     $streakStmt->execute([$userId]);
     $streak = $streakStmt->fetch();
-    
+
     if (!$streak) {
         // Initialize streak record for new users (handle race condition)
         try {
@@ -30,28 +30,32 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
             $streak = ['current_streak' => 0, 'longest_streak' => 0, 'last_login_date' => null];
         }
     }
-    
+
+    // Use client-supplied date so the user's local timezone determines the current day
+    $clientDate = isset($_GET['client_date']) && preg_match('/^\d{4}-\d{2}-\d{2}$/', $_GET['client_date'])
+        ? $_GET['client_date']
+        : date('Y-m-d');
+
     // Get this week's login days (Monday-Friday)
-    // Use explicit day calculation to avoid timezone/locale issues
-    $today = new DateTime();
+    $today = new DateTime($clientDate);
     $dayOfWeek = (int) $today->format('N'); // 1=Mon, 7=Sun
-    
+
     // Calculate Monday of current week
     $daysFromMonday = $dayOfWeek - 1;
     $monday = (clone $today)->modify("-{$daysFromMonday} days")->format('Y-m-d');
-    
+
     // Calculate Friday of current week
     $daysToFriday = 5 - $dayOfWeek;
     $friday = (clone $today)->modify("+{$daysToFriday} days")->format('Y-m-d');
-    
+
     $loginsStmt = $db->prepare(
-        'SELECT login_date FROM daily_logins 
+        'SELECT login_date FROM daily_logins
          WHERE user_id = ? AND login_date BETWEEN ? AND ?
          ORDER BY login_date'
     );
     $loginsStmt->execute([$userId, $monday, $friday]);
     $loginDates = $loginsStmt->fetchAll(PDO::FETCH_COLUMN);
-    
+
     // Convert to weekday array [M, T, W, T, F]
     $weekDays = [false, false, false, false, false];
     foreach ($loginDates as $dateStr) {
@@ -61,7 +65,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
             $weekDays[$dayOfWeek - 1] = true;
         }
     }
-    
+
     echo json_encode([
         'success' => true,
         'streak' => [
@@ -76,9 +80,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Record today's login and update streak
-    $today = date('Y-m-d');
-    $todayDayOfWeek = (int) date('N'); // 1=Mon, ..., 7=Sun
-    
+    $data = json_decode(file_get_contents('php://input'), true);
+
+    // Use client-supplied date so the user's local timezone determines the current day
+    $today = isset($data['client_date']) && preg_match('/^\d{4}-\d{2}-\d{2}$/', $data['client_date'])
+        ? $data['client_date']
+        : date('Y-m-d');
+
+    $todayDate = new DateTime($today);
+    $todayDayOfWeek = (int) $todayDate->format('N'); // 1=Mon, ..., 7=Sun
+
     // Skip weekends
     if ($todayDayOfWeek === 6 || $todayDayOfWeek === 7) {
         http_response_code(400);
@@ -88,23 +99,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         ]);
         exit;
     }
-    
+
     // Check if already logged in today
     $checkStmt = $db->prepare('SELECT id FROM daily_logins WHERE user_id = ? AND login_date = ?');
     $checkStmt->execute([$userId, $today]);
     $alreadyLogged = $checkStmt->fetch();
-    
+
     if ($alreadyLogged) {
         // Already logged today, just return current data
         $streakStmt = $db->prepare('SELECT current_streak, longest_streak, last_login_date FROM user_streaks WHERE user_id = ?');
         $streakStmt->execute([$userId]);
         $streak = $streakStmt->fetch();
-        
+
         // Ensure streak record exists (edge case for brand new users)
         if (!$streak) {
             $streak = ['current_streak' => 1, 'longest_streak' => 1, 'last_login_date' => $today];
         }
-        
+
         echo json_encode([
             'success' => true,
             'alreadyRecorded' => true,
@@ -116,7 +127,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         ]);
         exit;
     }
-    
+
     // Record today's login
     try {
         $db->prepare('INSERT INTO daily_logins (user_id, login_date) VALUES (?, ?)')
@@ -130,12 +141,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
         throw $e;
     }
-    
+
     // Calculate streak - ensure user_streaks record exists
     $streakStmt = $db->prepare('SELECT current_streak, longest_streak, last_login_date FROM user_streaks WHERE user_id = ?');
     $streakStmt->execute([$userId]);
     $streak = $streakStmt->fetch();
-    
+
     // If no streak record exists, initialize it (new user edge case)
     if (!$streak) {
         try {
@@ -152,18 +163,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             }
         }
     }
-    
+
     $newStreak = 1;
     $lastLoginDate = $streak['last_login_date'] ?? null;
-    
+
     if ($lastLoginDate) {
         $lastLogin = new DateTime($lastLoginDate);
         $todayDate = new DateTime($today);
         $interval = $lastLogin->diff($todayDate);
         $daysDiff = (int) $interval->days;
-        
+
         $lastDayOfWeek = (int) $lastLogin->format('N');
-        
+
         // Check if consecutive (handles Friday->Monday as 3 days)
         $isConsecutive = false;
         if ($lastDayOfWeek === 5 && $todayDayOfWeek === 1 && $daysDiff === 3) {
@@ -173,25 +184,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // Normal consecutive weekday
             $isConsecutive = true;
         }
-        
+
         if ($isConsecutive) {
             $newStreak = (int) $streak['current_streak'] + 1;
         }
     }
-    
+
     $longestStreak = max((int) ($streak['longest_streak'] ?? 0), $newStreak);
-    
+
     // Update streak record
     $updateStmt = $db->prepare(
         'INSERT INTO user_streaks (user_id, current_streak, longest_streak, last_login_date)
          VALUES (?, ?, ?, ?)
          ON DUPLICATE KEY UPDATE
-            current_streak = VALUES(current_streak),
-            longest_streak = VALUES(longest_streak),
-            last_login_date = VALUES(last_login_date)'
+            current_streak = ?,
+            longest_streak = ?,
+            last_login_date = ?'
     );
-    $updateStmt->execute([$userId, $newStreak, $longestStreak, $today]);
-    
+    $updateStmt->execute([$userId, $newStreak, $longestStreak, $today, $newStreak, $longestStreak, $today]);
+
     echo json_encode([
         'success' => true,
         'streak' => [
