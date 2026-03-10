@@ -89,13 +89,22 @@ const ArcoAPI = {
   },
 
   // Streaks
+  _getClientDate() {
+    const now = new Date();
+    const y = now.getFullYear();
+    const m = String(now.getMonth() + 1).padStart(2, '0');
+    const d = String(now.getDate()).padStart(2, '0');
+    return `${y}-${m}-${d}`;
+  },
+
   getStreak() {
-    return this._fetch('/api/streak.php');
+    return this._fetch(`/api/streak.php?client_date=${this._getClientDate()}`);
   },
 
   recordLogin() {
     return this._fetch('/api/streak.php', {
-      method: 'POST'
+      method: 'POST',
+      body: JSON.stringify({ client_date: this._getClientDate() }),
     });
   },
 
