@@ -157,20 +157,35 @@ document.addEventListener('DOMContentLoaded', function() {
                 return;
             }
 
-            // Here you would typically send the signup request to your backend
-            console.log('Sign up attempt:', {
-                email: email,
-                password: password
-            });
-
             // Store user data
             const userData = {
                 email: email,
                 password: password
             };
 
-            // Show verification screen
-            showVerificationScreen(userData);
+            // Send real OTP email, then show verification screen
+            const submitButton = signupForm.querySelector('.btn-primary');
+            const originalText = submitButton.textContent;
+            submitButton.textContent = 'Sending code…';
+            submitButton.disabled = true;
+
+            fetch('/api/send-otp.php', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email })
+            })
+                .then(r => r.json())
+                .then(data => {
+                    submitButton.textContent = originalText;
+                    submitButton.disabled = false;
+                    if (data.error) { alert(data.error); return; }
+                    showVerificationScreen(userData);
+                })
+                .catch(() => {
+                    submitButton.textContent = originalText;
+                    submitButton.disabled = false;
+                    alert('Network error. Please try again.');
+                });
         });
     }
 
@@ -284,32 +299,60 @@ document.addEventListener('DOMContentLoaded', function() {
         verifyBtn.addEventListener('click', function() {
             const otp = Array.from(otpInputs).map(input => input.value).join('');
 
-            console.log('Verification attempt:', {
-                email: userData.email,
-                otp: otp
-            });
+            verifyBtn.textContent = 'Verifying…';
+            verifyBtn.disabled = true;
 
-            // Here you would typically verify the OTP with your backend
-            // For now, we'll assume verification is successful
-
-            // Store user data in sessionStorage for the next step
-            sessionStorage.setItem('userData', JSON.stringify(userData));
-
-            // Redirect to account creation page
-            window.location.href = 'account-creation.html';
+            fetch('/api/verify-otp.php', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email: userData.email, otp })
+            })
+                .then(r => r.json())
+                .then(data => {
+                    verifyBtn.textContent = 'Verify';
+                    verifyBtn.disabled = false;
+                    if (data.error) {
+                        otpInputs.forEach(i => i.classList.add('error'));
+                        alert(data.error);
+                        return;
+                    }
+                    // OTP verified — proceed to account creation
+                    sessionStorage.setItem('userData', JSON.stringify(userData));
+                    window.location.href = 'account-creation.html';
+                })
+                .catch(() => {
+                    verifyBtn.textContent = 'Verify';
+                    verifyBtn.disabled = false;
+                    alert('Network error. Please try again.');
+                });
         });
 
         // Resend code link
         resendLink.addEventListener('click', function(e) {
             e.preventDefault();
-            console.log('Resend code requested for:', userData.email);
+            resendLink.textContent = 'Sending…';
+            resendLink.style.pointerEvents = 'none';
 
-            // Clear OTP inputs
-            otpInputs.forEach(input => input.value = '');
-            otpInputs[0].focus();
-            verifyBtn.disabled = true;
-
-            alert('A new verification code has been sent to ' + userData.email);
+            fetch('/api/send-otp.php', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email: userData.email })
+            })
+                .then(r => r.json())
+                .then(data => {
+                    resendLink.textContent = 'Resend Code';
+                    resendLink.style.pointerEvents = 'auto';
+                    if (data.error) { alert(data.error); return; }
+                    otpInputs.forEach(i => { i.value = ''; i.classList.remove('error'); });
+                    otpInputs[0].focus();
+                    verifyBtn.disabled = true;
+                    alert('A new verification code has been sent to ' + userData.email);
+                })
+                .catch(() => {
+                    resendLink.textContent = 'Resend Code';
+                    resendLink.style.pointerEvents = 'auto';
+                    alert('Network error. Please try again.');
+                });
         });
 
         // Return to sign up link

@@ -60,11 +60,26 @@ document.addEventListener('DOMContentLoaded', function () {
         })
             .then(r => r.json())
             .then(data => {
-                submitButton.textContent = originalText;
-                submitButton.disabled = false;
-                if (data.error) { showError(data.error); return; }
-                currentEmail = email;
-                showVerificationScreen(email);
+                if (data.error) {
+                    submitButton.textContent = originalText;
+                    submitButton.disabled = false;
+                    showError(data.error);
+                    return;
+                }
+                // Email exists — send the OTP
+                return fetch('/api/send-otp.php', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email })
+                })
+                    .then(r => r.json())
+                    .then(otpData => {
+                        submitButton.textContent = originalText;
+                        submitButton.disabled = false;
+                        if (otpData.error) { showError(otpData.error); return; }
+                        currentEmail = email;
+                        showVerificationScreen(email);
+                    });
             })
             .catch(() => {
                 submitButton.textContent = originalText;
@@ -233,49 +248,60 @@ document.addEventListener('DOMContentLoaded', function () {
         // Clear any errors
         otpInputs.forEach(input => input.classList.remove('error'));
 
-        // Disable button and show loading state
         const verifyButton = document.getElementById('verifyButton');
-        const originalText = verifyButton.textContent;
         verifyButton.textContent = 'Verifying...';
         verifyButton.disabled = true;
 
-        // Simulate API verification
-        setTimeout(function () {
-            verifyButton.textContent = originalText;
-            verifyButton.disabled = false;
-
-            // Here you would verify the code with your backend
-            console.log('Verifying code:', code);
-
-            // For now, simulate success
-            const isValid = true; // This would come from your backend
-
-            if (isValid) {
-                // Success - show password reset screen
+        fetch('/api/verify-otp.php', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email: currentEmail, otp: code })
+        })
+            .then(r => r.json())
+            .then(data => {
+                verifyButton.textContent = 'Verify';
+                verifyButton.disabled = false;
+                if (data.error) {
+                    otpInputs.forEach(input => input.classList.add('error'));
+                    alert(data.error);
+                    return;
+                }
                 showPasswordResetScreen();
-            } else {
-                // Invalid code
-                otpInputs.forEach(input => input.classList.add('error'));
-                alert('Invalid verification code. Please try again.');
-            }
-        }, 1500);
+            })
+            .catch(() => {
+                verifyButton.textContent = 'Verify';
+                verifyButton.disabled = false;
+                alert('Network error. Please try again.');
+            });
     }
 
     // Handle resend code
     function handleResendCode(email) {
         const resendLink = document.getElementById('resendCode');
-        const originalText = resendLink.textContent;
 
         resendLink.textContent = 'Sending...';
         resendLink.style.pointerEvents = 'none';
 
-        // Simulate resending code
-        setTimeout(function () {
-            resendLink.textContent = originalText;
-            resendLink.style.pointerEvents = 'auto';
-
-            alert('A new verification code has been sent to ' + email);
-        }, 1500);
+        fetch('/api/send-otp.php', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email })
+        })
+            .then(r => r.json())
+            .then(data => {
+                resendLink.textContent = 'Resend Code';
+                resendLink.style.pointerEvents = 'auto';
+                if (data.error) { alert(data.error); return; }
+                const otpInputs = document.querySelectorAll('.otp-input');
+                otpInputs.forEach(i => { i.value = ''; i.classList.remove('error'); });
+                if (otpInputs[0]) otpInputs[0].focus();
+                alert('A new verification code has been sent to ' + email);
+            })
+            .catch(() => {
+                resendLink.textContent = 'Resend Code';
+                resendLink.style.pointerEvents = 'auto';
+                alert('Network error. Please try again.');
+            });
     }
 
     // Show password reset screen
