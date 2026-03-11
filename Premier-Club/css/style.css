@@ -10,6 +10,8 @@ body:has(.premier-club-card) {
 .rectangle:has(.premier-club-card) {
     background-color: #2C4A3B;
     border-color: #2C4A3B;
+    position: relative;
+    min-height: 65vh;
 }
 
 /* White rounded card */
@@ -91,4 +93,115 @@ body:has(.premier-club-card) {
 
 .sign-up-btn:hover img {
     opacity: 0.9;
+}
+
+/* ── Parental Lock Overlay ── */
+.parental-overlay {
+    position: absolute;
+    inset: 0;
+    background: #ffffff;
+    border-radius: 25px;
+    z-index: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100%;
+}
+
+.parental-popup {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.25rem;
+    padding: 2rem 1.5rem;
+    max-width: 380px;
+    width: 100%;
+    text-align: center;
+}
+
+.parental-icon {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+}
+
+.parental-title {
+    font-family: "Lexend", sans-serif;
+    font-weight: 700;
+    font-size: 1.75rem;
+    color: #111111;
+    margin: 0;
+}
+
+.parental-desc {
+    font-family: "Lexend", sans-serif;
+    font-size: 0.9rem;
+    color: #444444;
+    line-height: 1.5;
+    margin: 0;
+    max-width: 300px;
+}
+
+/* PIN input boxes — Frame PNGs are the visual container */
+.pin-inputs {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+}
+
+.pin-box {
+    width: 64px;
+    height: 64px;
+    border: none;
+    outline: none;
+    background-color: transparent;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    font-family: "Lexend", sans-serif;
+    font-size: 1.5rem;
+    font-weight: 600;
+    text-align: center;
+    color: #111111;
+    caret-color: transparent;
+    border-radius: 12px;
+    transition: box-shadow 0.15s ease, transform 0.1s ease;
+}
+
+.pin-box:focus {
+    box-shadow: 0 0 0 2.5px #111111;
+}
+
+.pin-box.pin-filled {
+    transform: scale(1.08);
+}
+
+.pin-box-1 { background-image: url('../images/Frame 125.png'); }
+.pin-box-2 { background-image: url('../images/Frame 126.png'); }
+.pin-box-3 { background-image: url('../images/Frame 127.png'); }
+.pin-box-4 { background-image: url('../images/Frame 99.png'); }
+
+.parental-continue-btn {
+    background: #111111;
+    color: #ffffff;
+    font-family: "Lexend", sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    border: none;
+    border-radius: 999px;
+    padding: 0.75rem 3rem;
+    cursor: pointer;
+    min-width: 200px;
+}
+
+.parental-continue-btn:hover {
+    background: #333333;
+}
+
+.parental-error {
+    font-family: "Lexend", sans-serif;
+    font-size: 0.85rem;
+    color: #cc0000;
+    margin: 0;
+    min-height: 1.2em;
 }

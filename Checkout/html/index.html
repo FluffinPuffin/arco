@@ -6,6 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Checkout - Premier Club</title>
     <link rel="stylesheet" href="../css/style.css">
+    <script src="../../Home/js/api.js"></script>
+    <script
+        src="https://www.paypal.com/sdk/js?client-id=AT_WUjnhmHXMp1H0lrnNun1G3NnWKIoUf_qNGBwZI9CPx24xp2YuckWyTSJCavlzqpXxrkzuDUxutAk8&currency=USD"></script>
     <script src="../js/js.js" defer></script>
 </head>
 
@@ -118,37 +121,6 @@
                         <input type="email" id="email" name="email" class="form-input" placeholder="you@example.com"
                             required>
                     </div>
-
-                    <!-- Card Details -->
-                    <div class="form-section">
-                        <p class="subsection-title">Card Details</p>
-                        <div class="card-inputs">
-                            <input type="text" name="cardName" class="form-input" placeholder="Name on Card" required>
-
-                            <div class="card-row">
-                                <input type="text" name="cardNumber" class="form-input card-number"
-                                    placeholder="Card Number" maxlength="19" required>
-                                <input type="text" name="expiry" class="form-input expiry" placeholder="MM/YY"
-                                    maxlength="5" required>
-                                <input type="text" name="cvc" class="form-input cvc" placeholder="CVC" maxlength="3"
-                                    required>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Billing Address -->
-                    <div class="form-section">
-                        <p class="subsection-title">Billing Address</p>
-                        <div class="address-inputs">
-                            <input type="text" name="address" class="form-input address-street"
-                                placeholder="Street Address, (Optional Apt. #)" required>
-                            <div class="address-row">
-                                <input type="text" name="state" class="form-input state" placeholder="State" required>
-                                <input type="text" name="zipCode" class="form-input zip" placeholder="Zip Code"
-                                    required>
-                            </div>
-                        </div>
-                    </div>
                 </form>
 
                 <!-- Order Summary -->
@@ -166,14 +138,8 @@
                     </div>
                 </div>
 
-                <!-- Pay Button -->
-                <button class="btn btn-primary" id="payButton">
-                    <span>Pay $29.99</span>
-                    <svg class="btn-icon" width="15" height="13" viewBox="0 0 15 13" fill="none">
-                        <path d="M8.5 1L14 6.5L8.5 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                            stroke-linejoin="round" />
-                    </svg>
-                </button>
+                <!-- PayPal Button -->
+                <div id="paypal-button-container"></div>
             </div>
         </div>
     </div>

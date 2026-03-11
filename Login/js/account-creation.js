@@ -6,18 +6,18 @@ const totalScreens = 4;
 
 // Profile pictures available
 const profilePictures = [
-    '../images/profile/alvaro-montoro-9NGHFQSR1MI-unsplash.jpg',
-    '../images/profile/alvaro-montoro-BKgnt9N3Xo4-unsplash.jpg',
-    '../images/profile/alvaro-montoro-e40RPcyQS2U-unsplash.jpg',
-    '../images/profile/alvaro-montoro-xnTbQQZ9UrQ-unsplash.jpg',
-    '../images/profile/alvaro-montoro-ZK0y1lw71T4-unsplash.jpg',
-    '../images/profile/mila-okta-safitri-dUAjHkGeUjA-unsplash.jpg',
-    '../images/profile/mila-okta-safitri-msQuvch9JsM-unsplash.jpg',
-    '../images/profile/mila-okta-safitri-Rx7oHe_pt-U-unsplash.jpg',
-    '../images/profile/mila-okta-safitri-XdBnwaAXCgU-unsplash.jpg',
-    '../images/profile/ogie-GdcZelJrPkI-unsplash.jpg',
-    '../images/profile/pauline-loroy-4rw_bw5oUNQ-unsplash.jpg',
-    '../images/profile/william-drakus-m9QHsUrysVg-unsplash.jpg'
+    '/Login/images/profile/alvaro-montoro-9NGHFQSR1MI-unsplash.jpg',
+    '/Login/images/profile/alvaro-montoro-BKgnt9N3Xo4-unsplash.jpg',
+    '/Login/images/profile/alvaro-montoro-e40RPcyQS2U-unsplash.jpg',
+    '/Login/images/profile/alvaro-montoro-xnTbQQZ9UrQ-unsplash.jpg',
+    '/Login/images/profile/alvaro-montoro-ZK0y1lw71T4-unsplash.jpg',
+    '/Login/images/profile/mila-okta-safitri-dUAjHkGeUjA-unsplash.jpg',
+    '/Login/images/profile/mila-okta-safitri-msQuvch9JsM-unsplash.jpg',
+    '/Login/images/profile/mila-okta-safitri-Rx7oHe_pt-U-unsplash.jpg',
+    '/Login/images/profile/mila-okta-safitri-XdBnwaAXCgU-unsplash.jpg',
+    '/Login/images/profile/ogie-GdcZelJrPkI-unsplash.jpg',
+    '/Login/images/profile/pauline-loroy-4rw_bw5oUNQ-unsplash.jpg',
+    '/Login/images/profile/william-drakus-m9QHsUrysVg-unsplash.jpg'
 ];
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -281,20 +281,32 @@ function initScreen4() {
     }
 
     // Confirm button handler
-    confirmBtn.addEventListener('click', function() {
+    confirmBtn.addEventListener('click', async function() {
         const userData = JSON.parse(sessionStorage.getItem('userData') || '{}');
 
-        console.log('Account creation confirmed!', userData);
+        try {
+            const result = await ArcoAPI.register(
+                userData.email,
+                userData.password,
+                userData.displayName || '',
+                userData.profilePicture || '',
+                String(userData.gradeLevel || '')
+            );
 
-        // Here you would submit the data to your backend
-        alert('Account created successfully!\n\n' +
-              'Display Name: ' + userData.displayName + '\n' +
-              'Profile Picture: ' + userData.profilePicture + '\n' +
-              'Grade Level: ' + userData.gradeLevel + '\n\n' +
-              'Redirecting to main application...');
+            // Store profile in localStorage
+            const user = result.user;
+            if (user.display_name) localStorage.setItem('arco-name', user.display_name);
+            if (user.avatar) localStorage.setItem('arco-avatar', user.avatar);
+            if (user.grade) localStorage.setItem('arco-grade', user.grade);
 
-        // Redirect to main application or dashboard
-        window.location.href = '/arco/Home/html/index.html';
+            // Clean up sessionStorage
+            sessionStorage.removeItem('userData');
+
+            // Redirect to home
+            window.location.href = '/Home/html/index.html';
+        } catch (err) {
+            alert(err.message || 'Account creation failed. Please try again.');
+        }
     });
 
     // Previous page link handler

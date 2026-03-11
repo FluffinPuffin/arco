@@ -12,9 +12,10 @@
     display: flex;
     gap: 1.5rem;
     width: 100%;
-    min-height: 400px;
+    min-height: 620px;
     padding: 1.5rem;
     box-sizing: border-box;
+    align-items: stretch;
 }
 
 .settings-sidebar {
@@ -88,7 +89,6 @@
     background: #FFFEFD;
     border-radius: 16px;
     padding: 1.5rem;
-    min-height: 400px;
     position: relative;
 }
 
@@ -145,7 +145,20 @@
     font-family: "Lexend", sans-serif;
     font-size: 0.85rem;
     color: #4B4B4B;
-    margin: 0.25rem 0 0 0;
+    margin: 0.25rem 0 0.75rem 0;
+}
+
+.settings-pw-inputs {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 100%;
+    max-width: 360px;
+}
+
+.settings-pw-inputs .settings-primary-btn {
+    margin-top: 0;
+    align-self: flex-start;
 }
 
 /* Edit button */
@@ -507,4 +520,89 @@
 
 .settings-modal-save:hover {
     background: #BFBFBF;
+}
+
+/* ── Parental Lock PIN (Settings) ── */
+.pin-inputs-sm {
+    display: flex;
+    gap: 10px;
+}
+
+.pin-box-sm {
+    width: 52px;
+    height: 52px;
+    border: none;
+    outline: none;
+    background-color: transparent;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    font-size: 1.25rem;
+    font-weight: 600;
+    text-align: center;
+    color: #1C1C1C;
+    caret-color: transparent;
+    transition: box-shadow 0.15s ease, transform 0.1s ease;
+}
+
+.pin-box-sm:focus {
+    box-shadow: 0 0 0 2px #1C1C1C;
+    border-radius: 6px;
+}
+
+.pin-box-sm.pin-filled {
+    transform: scale(1.08);
+}
+
+.pin-box-sm-1 { background-image: url('../../Premier-Club/images/Frame 125.png'); }
+.pin-box-sm-2 { background-image: url('../../Premier-Club/images/Frame 126.png'); }
+.pin-box-sm-3 { background-image: url('../../Premier-Club/images/Frame 127.png'); }
+.pin-box-sm-4 { background-image: url('../../Premier-Club/images/Frame 99.png'); }
+
+.pin-group-label {
+    font-family: "Lexend", sans-serif;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #1C1C1C;
+    margin: 0.75rem 0 0.5rem 0;
+}
+
+.pin-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+    margin-top: 1.25rem;
+}
+
+.pin-actions .settings-primary-btn {
+    margin-top: 0;
+}
+
+.settings-link-btn {
+    font-family: "Lexend", sans-serif;
+    font-size: 0.85rem;
+    font-weight: 400;
+    color: #6B6B6B;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.35rem 0;
+    text-decoration: none;
+    border-bottom: 1px solid #BFBFBF;
+    transition: color 0.2s, border-color 0.2s;
+}
+
+.settings-link-btn:hover {
+    color: #1C1C1C;
+    border-bottom-color: #1C1C1C;
+}
+
+.pin-save-status {
+    display: block;
+    margin: 0 0 0.5rem 0;
+    font-size: 0.85rem;
+    line-height: 1.4;
+    min-height: 1.4em;
+    color: #4B4B4B;
 }

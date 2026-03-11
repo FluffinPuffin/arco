@@ -1,13 +1,15 @@
 // Forgot Password Page Functionality
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
+    let currentEmail = '';
+
     // Form submission
     const forgotPasswordForm = document.getElementById('forgotPasswordForm');
     const emailInput = document.getElementById('email');
     const errorMessage = document.getElementById('errorMessage');
 
     if (forgotPasswordForm) {
-        forgotPasswordForm.addEventListener('submit', function(e) {
+        forgotPasswordForm.addEventListener('submit', function (e) {
             e.preventDefault();
 
             const email = emailInput.value.trim();
@@ -51,29 +53,44 @@ document.addEventListener('DOMContentLoaded', function() {
         submitButton.textContent = 'Sending...';
         submitButton.disabled = true;
 
-        // Simulate API call with timeout
-        setTimeout(function() {
-            // Reset button state
-            submitButton.textContent = originalText;
-            submitButton.disabled = false;
-
-            // Check if email exists (this would be handled by your backend)
-            // For now, we'll simulate a successful response
-            const emailExists = true; // This would come from your backend
-
-            if (emailExists) {
-                // Success - show verification screen
-                showVerificationScreen(email);
-            } else {
-                // Email not found
-                showError('*No account associated with that email exists.');
-            }
-        }, 1500);
+        fetch('/api/reset-password.php', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ action: 'check', email })
+        })
+            .then(r => r.json())
+            .then(data => {
+                if (data.error) {
+                    submitButton.textContent = originalText;
+                    submitButton.disabled = false;
+                    showError(data.error);
+                    return;
+                }
+                // Email exists — send the OTP
+                return fetch('/api/send-otp.php', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email })
+                })
+                    .then(r => r.json())
+                    .then(otpData => {
+                        submitButton.textContent = originalText;
+                        submitButton.disabled = false;
+                        if (otpData.error) { showError(otpData.error); return; }
+                        currentEmail = email;
+                        showVerificationScreen(email);
+                    });
+            })
+            .catch(() => {
+                submitButton.textContent = originalText;
+                submitButton.disabled = false;
+                showError('Network error. Please try again.');
+            });
     }
 
     // Add input validation styling
     if (emailInput) {
-        emailInput.addEventListener('input', function() {
+        emailInput.addEventListener('input', function () {
             // Clear error when user starts typing
             if (errorMessage.textContent) {
                 errorMessage.textContent = '';
@@ -81,7 +98,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
 
-        emailInput.addEventListener('blur', function() {
+        emailInput.addEventListener('blur', function () {
             if (this.value.trim() !== '') {
                 this.style.borderColor = '#1c1c1c';
             } else {
@@ -89,7 +106,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
 
-        emailInput.addEventListener('focus', function() {
+        emailInput.addEventListener('focus', function () {
             if (!this.classList.contains('error')) {
                 this.style.borderColor = '#1c1c1c';
             }
@@ -160,7 +177,7 @@ document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('verifyButton').addEventListener('click', handleVerification);
 
         // Add resend code handler
-        document.getElementById('resendCode').addEventListener('click', function(e) {
+        document.getElementById('resendCode').addEventListener('click', function (e) {
             e.preventDefault();
             handleResendCode(email);
         });
@@ -172,7 +189,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         otpInputs.forEach((input, index) => {
             // Auto-focus next input
-            input.addEventListener('input', function(e) {
+            input.addEventListener('input', function (e) {
                 const value = this.value;
 
                 // Only allow numbers
@@ -185,14 +202,14 @@ document.addEventListener('DOMContentLoaded', function() {
             });
 
             // Handle backspace to move to previous input
-            input.addEventListener('keydown', function(e) {
+            input.addEventListener('keydown', function (e) {
                 if (e.key === 'Backspace' && !this.value && index > 0) {
                     otpInputs[index - 1].focus();
                 }
             });
 
             // Handle paste
-            input.addEventListener('paste', function(e) {
+            input.addEventListener('paste', function (e) {
                 e.preventDefault();
                 const pasteData = e.clipboardData.getData('text').replace(/[^0-9]/g, '');
 
@@ -231,49 +248,60 @@ document.addEventListener('DOMContentLoaded', function() {
         // Clear any errors
         otpInputs.forEach(input => input.classList.remove('error'));
 
-        // Disable button and show loading state
         const verifyButton = document.getElementById('verifyButton');
-        const originalText = verifyButton.textContent;
         verifyButton.textContent = 'Verifying...';
         verifyButton.disabled = true;
 
-        // Simulate API verification
-        setTimeout(function() {
-            verifyButton.textContent = originalText;
-            verifyButton.disabled = false;
-
-            // Here you would verify the code with your backend
-            console.log('Verifying code:', code);
-
-            // For now, simulate success
-            const isValid = true; // This would come from your backend
-
-            if (isValid) {
-                // Success - show password reset screen
+        fetch('/api/verify-otp.php', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email: currentEmail, otp: code })
+        })
+            .then(r => r.json())
+            .then(data => {
+                verifyButton.textContent = 'Verify';
+                verifyButton.disabled = false;
+                if (data.error) {
+                    otpInputs.forEach(input => input.classList.add('error'));
+                    alert(data.error);
+                    return;
+                }
                 showPasswordResetScreen();
-            } else {
-                // Invalid code
-                otpInputs.forEach(input => input.classList.add('error'));
-                alert('Invalid verification code. Please try again.');
-            }
-        }, 1500);
+            })
+            .catch(() => {
+                verifyButton.textContent = 'Verify';
+                verifyButton.disabled = false;
+                alert('Network error. Please try again.');
+            });
     }
 
     // Handle resend code
     function handleResendCode(email) {
         const resendLink = document.getElementById('resendCode');
-        const originalText = resendLink.textContent;
 
         resendLink.textContent = 'Sending...';
         resendLink.style.pointerEvents = 'none';
 
-        // Simulate resending code
-        setTimeout(function() {
-            resendLink.textContent = originalText;
-            resendLink.style.pointerEvents = 'auto';
-
-            alert('A new verification code has been sent to ' + email);
-        }, 1500);
+        fetch('/api/send-otp.php', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email })
+        })
+            .then(r => r.json())
+            .then(data => {
+                resendLink.textContent = 'Resend Code';
+                resendLink.style.pointerEvents = 'auto';
+                if (data.error) { alert(data.error); return; }
+                const otpInputs = document.querySelectorAll('.otp-input');
+                otpInputs.forEach(i => { i.value = ''; i.classList.remove('error'); });
+                if (otpInputs[0]) otpInputs[0].focus();
+                alert('A new verification code has been sent to ' + email);
+            })
+            .catch(() => {
+                resendLink.textContent = 'Resend Code';
+                resendLink.style.pointerEvents = 'auto';
+                alert('Network error. Please try again.');
+            });
     }
 
     // Show password reset screen
@@ -369,7 +397,7 @@ document.addEventListener('DOMContentLoaded', function() {
         // Password visibility toggle for new password field
         const newPasswordToggle = document.querySelector('.toggle-password[data-target="newPassword"]');
         if (newPasswordToggle && newPasswordInput) {
-            newPasswordToggle.addEventListener('click', function() {
+            newPasswordToggle.addEventListener('click', function () {
                 togglePasswordVisibility(newPasswordInput, newPasswordToggle);
             });
         }
@@ -377,7 +405,7 @@ document.addEventListener('DOMContentLoaded', function() {
         // Password visibility toggle for confirm password field
         const confirmPasswordToggle = document.querySelector('.toggle-password[data-target="confirmPassword"]');
         if (confirmPasswordToggle && confirmPasswordInput) {
-            confirmPasswordToggle.addEventListener('click', function() {
+            confirmPasswordToggle.addEventListener('click', function () {
                 togglePasswordVisibility(confirmPasswordInput, confirmPasswordToggle);
             });
         }
@@ -406,7 +434,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         // Real-time password validation
-        newPasswordInput.addEventListener('input', function() {
+        newPasswordInput.addEventListener('input', function () {
             passwordError.textContent = '';
             this.classList.remove('error');
 
@@ -417,13 +445,13 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
 
-        confirmPasswordInput.addEventListener('input', function() {
+        confirmPasswordInput.addEventListener('input', function () {
             confirmPasswordError.textContent = '';
             this.classList.remove('error');
         });
 
         // Form submission
-        passwordResetForm.addEventListener('submit', function(e) {
+        passwordResetForm.addEventListener('submit', function (e) {
             e.preventDefault();
 
             const newPassword = newPasswordInput.value;
@@ -465,17 +493,27 @@ document.addEventListener('DOMContentLoaded', function() {
             submitButton.textContent = 'Resetting...';
             submitButton.disabled = true;
 
-            // Simulate API call
-            setTimeout(function() {
-                submitButton.textContent = originalText;
-                submitButton.disabled = false;
-
-                // Here you would send the new password to your backend
-                console.log('Password reset successful');
-
-                // Show success screen
-                showSuccessScreen();
-            }, 1500);
+            fetch('/api/reset-password.php', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email: currentEmail, new_password: newPassword })
+            })
+                .then(r => r.json())
+                .then(data => {
+                    submitButton.textContent = originalText;
+                    submitButton.disabled = false;
+                    if (data.error) {
+                        passwordError.textContent = data.error;
+                        newPasswordInput.classList.add('error');
+                        return;
+                    }
+                    showSuccessScreen();
+                })
+                .catch(() => {
+                    submitButton.textContent = originalText;
+                    submitButton.disabled = false;
+                    passwordError.textContent = 'Network error. Please try again.';
+                });
         });
     }
 
@@ -495,7 +533,7 @@ document.addEventListener('DOMContentLoaded', function() {
             <!-- Home Page Button -->
             <div class="success-actions">
                 <button type="button" class="btn-primary btn-home" id="homePageButton">
-                    <span>Home Page</span>
+                    <span>Go to Login</span>
                     <svg class="arrow-right" width="15" height="12.26" viewBox="0 0 15 12.2576" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M8.65384 9.20519H0V3.05135H8.65384V9.20519Z" fill="#FFFEFD"/>
                         <path d="M15 6.12879L8.07692 12.2576V0L15 6.12879Z" fill="#FFFEFD"/>
@@ -511,9 +549,9 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         // Add home page button handler
-        document.getElementById('homePageButton').addEventListener('click', function() {
+        document.getElementById('homePageButton').addEventListener('click', function () {
             // Redirect to home page or login
-            window.location.href = '/arco/Home/html/index.html';
+            window.location.href = '../html/index.html';
         });
     }
 });

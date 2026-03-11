@@ -1,4 +1,31 @@
-<div class="premier-club-card">
+<div id="parental-lock-overlay" class="parental-overlay">
+    <div class="parental-popup">
+        <img src="../images/Union.png" alt="Parental Lock" class="parental-icon">
+        <h2 class="parental-title">Parental Lock</h2>
+        <p class="parental-desc">
+            The following content is restricted by Parental Controls.
+            Please enter your PIN to use this feature.
+        </p>
+        <div id="parental-pin-form">
+            <div class="pin-inputs">
+                <input type="text" maxlength="1" class="pin-box pin-box-1" inputmode="numeric" autocomplete="off">
+                <input type="text" maxlength="1" class="pin-box pin-box-2" inputmode="numeric" autocomplete="off">
+                <input type="text" maxlength="1" class="pin-box pin-box-3" inputmode="numeric" autocomplete="off">
+                <input type="text" maxlength="1" class="pin-box pin-box-4" inputmode="numeric" autocomplete="off">
+            </div>
+            <p id="parental-error" class="parental-error"></p>
+            <button id="parental-continue" class="parental-continue-btn">Continue</button>
+        </div>
+        <div id="parental-no-pin" style="display:none; flex-direction:column; align-items:center; gap:1rem;">
+            <p class="parental-desc">You haven't set a parental PIN yet. Please set one in Settings before using this
+                feature.</p>
+            <a href="../../Setting/html/index.html" class="parental-continue-btn"
+                style="text-decoration:none; text-align:center;">Go to Settings</a>
+        </div>
+    </div>
+</div>
+
+<div class="premier-club-card" id="premier-club-content" style="display:none;">
     <div class="card-header">
         <img src="../images/plant-right.svg" alt="" class="plant plant-left">
         <img src="../images/diamond.png" alt="Premier Club" class="diamond-icon">

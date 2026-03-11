@@ -364,9 +364,84 @@ function showState(state) {
   }
 }
 
-function showSuccess(decodedText) {
-  showState('success');
-  console.log("Success! Decoded:", decodedText);
+// Maps lesson ID (e.g. "1.1") to sticker ID and display name
+const STICKER_MAP = {
+  '1.1': { id: 2,  name: 'Violin Explorer' },
+  '1.2': { id: 3,  name: 'Perfect Posture' },
+  '1.3': { id: 4,  name: 'Bow Hero' },
+  '1.4': { id: 5,  name: 'String Superstar' },
+  '1.5': { id: 6,  name: 'Map Master' },
+  '2.1': { id: 7,  name: 'Staff Spotter' },
+  '2.2': { id: 8,  name: 'Counting Champ' },
+  '2.3': { id: 9,  name: 'Restfull' },
+  '2.4': { id: 10, name: 'Time Teller' },
+  '3.1': { id: 11, name: 'Pitch Helper' },
+  '3.2': { id: 12, name: 'Key Keeper' },
+  '3.3': { id: 13, name: 'Signature Spotter' },
+  '3.4': { id: 14, name: 'Scale Climber' },
+  '3.5': { id: 15, name: 'You D Best' },
+};
+
+function setSuccessMessage(text) {
+  const el = document.querySelector('#success-state .state-message');
+  if (el) el.textContent = text;
+}
+
+function setErrorMessage(text) {
+  const el = document.querySelector('#error-state .state-message');
+  if (el) el.textContent = text;
+}
+
+async function showSuccess(decodedText) {
+  console.log("QR scanned:", decodedText);
+
+  // ── Master key ──────────────────────────────────────────────────
+  if (decodedText.startsWith('ARCO-KEY-')) {
+    const token = decodedText.slice('ARCO-KEY-'.length);
+    try {
+      const res = await ArcoAPI.validateQrKey(token);
+      setSuccessMessage(res.message || 'Book access unlocked! You can now scan sticker codes.');
+      showState('success');
+    } catch (err) {
+      setErrorMessage(err.message || 'This key is invalid or has already been used.');
+      showState('error');
+    }
+    return;
+  }
+
+  // ── Sticker code ─────────────────────────────────────────────────
+  if (decodedText.startsWith('ARCO-STICKER-')) {
+    const lesson = decodedText.slice('ARCO-STICKER-'.length);
+    const sticker = STICKER_MAP[lesson];
+
+    if (!sticker) {
+      setErrorMessage('Unknown sticker code.');
+      showState('error');
+      return;
+    }
+
+    try {
+      const res = await ArcoAPI.unlockStickerByQr(lesson, sticker.id);
+      if (res.already_unlocked) {
+        setSuccessMessage(`You already have the ${sticker.name} sticker!`);
+      } else {
+        setSuccessMessage(`${sticker.name} sticker unlocked!`);
+      }
+      showState('success');
+    } catch (err) {
+      if (err.message === 'no_access') {
+        setErrorMessage('Scan the book\'s QR code first to unlock sticker scanning.');
+      } else {
+        setErrorMessage(err.message || 'Something went wrong. Please try again.');
+      }
+      showState('error');
+    }
+    return;
+  }
+
+  // ── Unrecognized ──────────────────────────────────────────────────
+  setErrorMessage('Unrecognized QR code.');
+  showState('error');
 }
 
 function showError() {
