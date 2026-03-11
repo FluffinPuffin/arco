@@ -1,6 +1,6 @@
 // Track which parts have been completed
 const LESSON_ID = 'lesson2-4';
-let partCompleted = [false, false, false];
+let partCompleted = [false, false];
 let currentPartIndex = 0;
 
 // Load progress from server (DB only) — redirects if not premium

@@ -523,6 +523,11 @@ function initializeAwards() {
   //left page *binder* right page
   const stickersLeft = document.querySelector(".stickersLeft");
   const stickersRight = document.querySelector(".stickersRight");
+  const galleryNavPrev = document.querySelector(".galleryNavPrev");
+  const galleryNavNext = document.querySelector(".galleryNavNext");
+
+  let currentStickerPage = 0;
+  const STICKERS_PER_PAGE = 8;
 
   function renderStickers() {
     //clear for no duplicates
@@ -531,8 +536,19 @@ function initializeAwards() {
 
     //only include earned or placeholders, not locked
     const binderStickers = stickers.filter((s) => s.earned || s.placeholder);
+    const totalPages = Math.ceil(binderStickers.length / STICKERS_PER_PAGE);
+
+    // clamp page
+    if (currentStickerPage >= totalPages) currentStickerPage = totalPages - 1;
+    if (currentStickerPage < 0) currentStickerPage = 0;
+
+    // update arrow visibility
+    galleryNavPrev.disabled = currentStickerPage === 0;
+    galleryNavNext.disabled = currentStickerPage >= totalPages - 1;
+
+    const start = currentStickerPage * STICKERS_PER_PAGE;
     //only shows 8 per page
-    const visible = binderStickers.slice(0, 8);
+    const visible = binderStickers.slice(start, start + STICKERS_PER_PAGE);
 
     //loop through each real sticker
     visible.forEach((sticker, index) => {
@@ -581,6 +597,22 @@ function initializeAwards() {
     });
   }
 
+
+  galleryNavPrev.addEventListener("click", () => {
+    if (currentStickerPage > 0) {
+      currentStickerPage--;
+      renderStickers();
+    }
+  });
+
+  galleryNavNext.addEventListener("click", () => {
+    const binderStickers = stickers.filter((s) => s.earned || s.placeholder);
+    const totalPages = Math.ceil(binderStickers.length / STICKERS_PER_PAGE);
+    if (currentStickerPage < totalPages - 1) {
+      currentStickerPage++;
+      renderStickers();
+    }
+  });
 
   // PREVIEW CARD
   function showStickerPreview(sticker) {
