@@ -163,7 +163,7 @@ async function initializeStreakTracker() {
         console.error('Failed to load streak data:', err);
         
         // Check if it's a weekend error
-        if (err.status === 400 || (err.message && err.message.includes('weekend'))) {
+        if (err.status === 400 || (err.message && err.message.toLowerCase().includes('weekend'))) {
             console.log('Weekend detected - streaks do not count');
             // Still try to fetch current streak data (will use cache if available)
             try {
@@ -210,6 +210,6 @@ function updateStreakUI(streakData) {
     if (streakCountElement) {
         const count = streakData.currentStreak || 0;
         const plural = count === 1 ? 'day' : 'days';
-        streakCountElement.textContent = `${count.toString().padStart(2, '0')} ${plural} streak`;
+        streakCountElement.textContent = `${count} ${plural} streak`;
     }
 }

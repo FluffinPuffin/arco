@@ -6,8 +6,10 @@ CREATE TABLE IF NOT EXISTS users (
     avatar VARCHAR(255) DEFAULT '',
     grade VARCHAR(20) DEFAULT '',
     premium_until DATETIME DEFAULT NULL,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-    childLock INT DEFAULT '1111'
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    childLock INT DEFAULT NULL,
+    qr_access_granted TINYINT(1) NOT NULL DEFAULT 0,
+    qr_access_granted_at TIMESTAMP NULL
 );
 
 CREATE TABLE IF NOT EXISTS lesson_progress (
@@ -37,7 +39,7 @@ CREATE TABLE IF NOT EXISTS subscriptions (
 -- Streak System Database Schema
 
 -- Stores the current streak summary for each user
-CREATE TABLE user_streaks (
+CREATE TABLE IF NOT EXISTS user_streaks (
     id INT AUTO_INCREMENT PRIMARY KEY,
     user_id INT NOT NULL,
     current_streak INT NOT NULL DEFAULT 0,
@@ -45,8 +47,9 @@ CREATE TABLE user_streaks (
     last_login_date DATE,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    UNIQUE KEY unique_user_id (user_id),
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
-)
+);
 
 -- Stores individual login records for detailed tracking
 CREATE TABLE daily_logins (
@@ -87,10 +90,6 @@ CREATE TABLE IF NOT EXISTS qr_sticker_unlocks (
     unlocked_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     UNIQUE KEY uq_user_sticker (user_id, sticker_id)
 );
-
--- QR access columns on users table
-ALTER TABLE users ADD COLUMN IF NOT EXISTS qr_access_granted TINYINT(1) NOT NULL DEFAULT 0;
-ALTER TABLE users ADD COLUMN IF NOT EXISTS qr_access_granted_at TIMESTAMP NULL;
 
 -- Seed master QR key tokens (matches physical QR codes in qrCodes/master_qr_output/)
 INSERT IGNORE INTO qr_master_keys (token) VALUES

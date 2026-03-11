@@ -6,15 +6,22 @@
             The following content is restricted by Parental Controls.
             Please enter your PIN to use this feature.
         </p>
-        <div class="pin-inputs">
-            <input type="password" maxlength="1" class="pin-box pin-box-1" inputmode="numeric">
-            <input type="password" maxlength="1" class="pin-box pin-box-2" inputmode="numeric">
-            <input type="password" maxlength="1" class="pin-box pin-box-3" inputmode="numeric">
-            <input type="password" maxlength="1" class="pin-box pin-box-4" inputmode="numeric">
+        <div id="parental-pin-form">
+            <div class="pin-inputs">
+                <input type="text" maxlength="1" class="pin-box pin-box-1" inputmode="numeric" autocomplete="off">
+                <input type="text" maxlength="1" class="pin-box pin-box-2" inputmode="numeric" autocomplete="off">
+                <input type="text" maxlength="1" class="pin-box pin-box-3" inputmode="numeric" autocomplete="off">
+                <input type="text" maxlength="1" class="pin-box pin-box-4" inputmode="numeric" autocomplete="off">
+            </div>
+            <p id="parental-error" class="parental-error"></p>
+            <button id="parental-continue" class="parental-continue-btn">Continue</button>
         </div>
-        <p id="parental-error" class="parental-error"></p>
-        <button id="parental-continue" class="parental-continue-btn">Continue</button>
-        <a href="javascript:history.back()" class="parental-back">&#8592; Previous Page</a>
+        <div id="parental-no-pin" style="display:none; flex-direction:column; align-items:center; gap:1rem;">
+            <p class="parental-desc">You haven't set a parental PIN yet. Please set one in Settings before using this
+                feature.</p>
+            <a href="../../Setting/html/index.html" class="parental-continue-btn"
+                style="text-decoration:none; text-align:center;">Go to Settings</a>
+        </div>
     </div>
 </div>
 
