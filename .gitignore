@@ -20,6 +20,3 @@ desktop.ini
 # Logs
 *.log
 logs/
-
-# Node (if ever used)
-node_modules/
