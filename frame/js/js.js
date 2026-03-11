@@ -1,7 +1,9 @@
 // Load the shared API helper
 (function () {
+  const scriptSrc = document.currentScript.src;
+  const frameDir = scriptSrc.substring(0, scriptSrc.lastIndexOf('/js/'));
   const s = document.createElement('script');
-  s.src = '../../Home/js/api.js';
+  s.src = frameDir + '/../Home/js/api.js';
   document.head.appendChild(s);
 })();
 

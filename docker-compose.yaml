@@ -27,6 +27,7 @@ services:
       PAYPAL_CLIENT_ID: ${PAYPAL_CLIENT_ID}
       PAYPAL_SECRET: ${PAYPAL_SECRET}
       PAYPAL_ENV: ${PAYPAL_ENV}
+      ARCO_GMAIL_APP_PASSWORD: ${ARCO_GMAIL_APP_PASSWORD}
     networks:
       - arco-net
 
