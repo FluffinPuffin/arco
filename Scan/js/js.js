@@ -374,11 +374,12 @@ const STICKER_MAP = {
   '2.1': { id: 7,  name: 'Staff Spotter' },
   '2.2': { id: 8,  name: 'Counting Champ' },
   '2.3': { id: 9,  name: 'Restfull' },
-  '3.1': { id: 10, name: 'Pitch Helper' },
-  '3.2': { id: 11, name: 'Key Keeper' },
-  '3.3': { id: 12, name: 'Signature Spotter' },
-  '3.4': { id: 13, name: 'Scale Climber' },
-  '3.5': { id: 14, name: 'You D Best' },
+  '2.4': { id: 10, name: 'Time Teller' },
+  '3.1': { id: 11, name: 'Pitch Helper' },
+  '3.2': { id: 12, name: 'Key Keeper' },
+  '3.3': { id: 13, name: 'Signature Spotter' },
+  '3.4': { id: 14, name: 'Scale Climber' },
+  '3.5': { id: 15, name: 'You D Best' },
 };
 
 function setSuccessMessage(text) {
