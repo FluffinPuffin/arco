@@ -42,7 +42,7 @@ function initializeAwards() {
   // Maps medal/sticker index to lesson ID in the database
   const LESSON_IDS = [
     'lesson1-1', 'lesson1-2', 'lesson1-3', 'lesson1-4', 'lesson1-5',
-    'lesson2-1', 'lesson2-2', 'lesson2-3',
+    'lesson2-1', 'lesson2-2', 'lesson2-3', 'lesson2-4',
     'lesson3-1', 'lesson3-2', 'lesson3-3', 'lesson3-4', 'lesson3-5',
   ];
 
