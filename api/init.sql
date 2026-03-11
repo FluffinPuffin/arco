@@ -109,11 +109,11 @@ INSERT IGNORE INTO qr_master_keys (token) VALUES
 -- Hash: $2y$10$6KcxvNw7eq6NOxnpNQ2rbuw7H/mzgWO0cvuuEZeS.X0YFJ/mbZ8pG
 INSERT IGNORE INTO users (email, password_hash, display_name, grade, qr_access_granted, qr_access_granted_at, premium_until) VALUES
     -- No premium, no QR access
-    ('test.basic@arco.com',   '$2y$10$6KcxvNw7eq6NOxnpNQ2rbuw7H/mzgWO0cvuuEZeS.X0YFJ/mbZ8pG', 'Test Basic',   'Grade 1', 0, NULL,    NULL),
+    ('test.basic@arco.com', '$2y$10$6KcxvNw7eq6NOxnpNQ2rbuw7H/mzgWO0cvuuEZeS.X0YFJ/mbZ8pG', 'Test Basic', 'Grade 1', 0, NULL, NULL),
     -- Premium only
-    ('test.premium@arco.com', '$2y$10$6KcxvNw7eq6NOxnpNQ2rbuw7H/mzgWO0cvuuEZeS.X0YFJ/mbZ8pG', 'Test Premium', 'Grade 1', 0, NULL,    '2099-12-31 23:59:59'),
+    ('test.premium@arco.com', '$2y$10$6KcxvNw7eq6NOxnpNQ2rbuw7H/mzgWO0cvuuEZeS.X0YFJ/mbZ8pG', 'Test Premium', 'Grade 1', 0, NULL, '2099-12-31 23:59:59'),
     -- QR access only
-    ('test.qr@arco.com',      '$2y$10$6KcxvNw7eq6NOxnpNQ2rbuw7H/mzgWO0cvuuEZeS.X0YFJ/mbZ8pG', 'Test QR',      'Grade 1', 1, NOW(),   NULL),
+    ('test.qr@arco.com', '$2y$10$6KcxvNw7eq6NOxnpNQ2rbuw7H/mzgWO0cvuuEZeS.X0YFJ/mbZ8pG', 'Test QR', 'Grade 1', 1, NOW(), NULL),
     -- Premium + QR access
-    ('test.both@arco.com',    '$2y$10$6KcxvNw7eq6NOxnpNQ2rbuw7H/mzgWO0cvuuEZeS.X0YFJ/mbZ8pG', 'Test Both',    'Grade 1', 1, NOW(),   '2099-12-31 23:59:59');
+    ('test.both@arco.com', '$2y$10$6KcxvNw7eq6NOxnpNQ2rbuw7H/mzgWO0cvuuEZeS.X0YFJ/mbZ8pG', 'Test Both', 'Grade 1', 1, NOW(), '2099-12-31 23:59:59');
 
