@@ -1,6 +1,3 @@
-# Docker
-docker-compose.override.yml
-
 # Database
 *.sql.bak
 
@@ -23,6 +20,3 @@ desktop.ini
 # Logs
 *.log
 logs/
-
-# Node (if ever used)
-node_modules/
