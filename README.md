@@ -32,5 +32,5 @@ docker compose down
 | QR access only | test.qr@arco.com | Password1234% |
 | Premium + QR | test.both@arco.com | Password1234% |
 
-## You need in the .env file. 
+## You need the .env file. 
 Place it in the SAME directory with this README.md and docker-compose.yaml
