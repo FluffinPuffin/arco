@@ -31,3 +31,6 @@ docker compose down
 | Premium | test.premium@arco.com | Password1234% |
 | QR access only | test.qr@arco.com | Password1234% |
 | Premium + QR | test.both@arco.com | Password1234% |
+
+## You need in the .env file. 
+Place it in the directory
