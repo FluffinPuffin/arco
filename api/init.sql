@@ -114,5 +114,24 @@ INSERT IGNORE INTO users (email, password_hash, display_name, grade, qr_access_g
     -- QR access only
     ('test.qr@arco.com', '$2y$10$6KcxvNw7eq6NOxnpNQ2rbuw7H/mzgWO0cvuuEZeS.X0YFJ/mbZ8pG', 'Test QR', 'Grade 1', 1, NOW(), NULL),
     -- Premium + QR access
-    ('test.both@arco.com', '$2y$10$6KcxvNw7eq6NOxnpNQ2rbuw7H/mzgWO0cvuuEZeS.X0YFJ/mbZ8pG', 'Test Both', 'Grade 1', 1, NOW(), '2099-12-31 23:59:59');
+    ('test.both@arco.com', '$2y$10$6KcxvNw7eq6NOxnpNQ2rbuw7H/mzgWO0cvuuEZeS.X0YFJ/mbZ8pG', 'Test Both', 'Grade 1', 1, NOW(), '2099-12-31 23:59:59'),
+    -- Grade 2, no premium, no QR
+    ('test.grade2@arco.com', '$2y$10$6KcxvNw7eq6NOxnpNQ2rbuw7H/mzgWO0cvuuEZeS.X0YFJ/mbZ8pG', 'Test Grade2', 'Grade 2', 0, NULL, NULL),
+    -- Grade 3, premium only
+    ('test.grade3@arco.com', '$2y$10$6KcxvNw7eq6NOxnpNQ2rbuw7H/mzgWO0cvuuEZeS.X0YFJ/mbZ8pG', 'Test Grade3', 'Grade 3', 0, NULL, '2099-12-31 23:59:59'),
+    -- Grade 4, QR access only
+    ('test.grade4@arco.com', '$2y$10$6KcxvNw7eq6NOxnpNQ2rbuw7H/mzgWO0cvuuEZeS.X0YFJ/mbZ8pG', 'Test Grade4', 'Grade 4', 1, NOW(), NULL),
+    -- Grade 5, premium + QR
+    ('test.grade5@arco.com', '$2y$10$6KcxvNw7eq6NOxnpNQ2rbuw7H/mzgWO0cvuuEZeS.X0YFJ/mbZ8pG', 'Test Grade5', 'Grade 5', 1, NOW(), '2099-12-31 23:59:59'),
+    -- Grade 6, no premium, no QR
+    ('test.grade6@arco.com', '$2y$10$6KcxvNw7eq6NOxnpNQ2rbuw7H/mzgWO0cvuuEZeS.X0YFJ/mbZ8pG', 'Test Grade6', 'Grade 6', 0, NULL, NULL),
+    -- Expired premium
+    ('test.expired@arco.com', '$2y$10$6KcxvNw7eq6NOxnpNQ2rbuw7H/mzgWO0cvuuEZeS.X0YFJ/mbZ8pG', 'Test Expired', 'Grade 1', 0, NULL, '2020-01-01 00:00:00'),
+    -- Child lock enabled
+    ('test.childlock@arco.com', '$2y$10$6KcxvNw7eq6NOxnpNQ2rbuw7H/mzgWO0cvuuEZeS.X0YFJ/mbZ8pG', 'Test ChildLock', 'Grade 2', 0, NULL, NULL),
+        -- No display name set
+    ('test.nodisplay@arco.com', '$2y$10$6KcxvNw7eq6NOxnpNQ2rbuw7H/mzgWO0cvuuEZeS.X0YFJ/mbZ8pG', '', 'Grade 1', 0, NULL, NULL);
+
+-- Set child lock on the childlock test account
+UPDATE users SET childLock = 1234 WHERE email = 'test.childlock@arco.com';
 
