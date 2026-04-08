@@ -37,14 +37,29 @@
   var overlay = document.createElement('div');
   overlay.id = 'arco-orientation-overlay';
   overlay.setAttribute('role', 'alert');
-  overlay.innerHTML =
-    '<img class="orient-graphic" src="' + frameDir + '/images/rotate.svg" alt="">' +
-    '<p class="orient-text">Please go to a tablet or computer</p>';
+
+  var graphic = document.createElement('img');
+  graphic.className = 'orient-graphic';
+  graphic.alt = '';
+
+  var message = document.createElement('p');
+  message.className = 'orient-text';
+
+  overlay.appendChild(graphic);
+  overlay.appendChild(message);
 
   // ── Logic ────────────────────────────────────────────────────────────────
   function checkOrientation() {
-    var shouldShow = window.innerWidth < 768 || window.innerHeight < 600;
-    overlay.classList.toggle('visible', shouldShow);
+    var tooSmall = window.innerWidth < 768 || window.innerHeight < 600;
+    var isPortrait = !tooSmall && window.innerHeight > window.innerWidth;
+    overlay.classList.toggle('visible', tooSmall || isPortrait);
+    if (isPortrait) {
+      graphic.src = frameDir + '/images/rotateText.svg';
+      message.textContent = '';
+    } else {
+      graphic.src = frameDir + '/images/rotate.svg';
+      message.textContent = 'Please go to a tablet or computer';
+    }
   }
 
   window.addEventListener('resize', checkOrientation);
