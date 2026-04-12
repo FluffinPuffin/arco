@@ -13,7 +13,7 @@ document.addEventListener("frame:ready", () => {
       .catch((err) => console.error("TITLE LOAD FAILED:", err));
   }
 
-  // Load content.html into #content, then init parental lock
+  // Load content.html into #content, then check premium status and init parental lock
   fetch("./content.html")
     .then((res) => {
       if (!res.ok) throw new Error("Not OK");
@@ -21,12 +21,26 @@ document.addEventListener("frame:ready", () => {
     })
     .then((content) => {
       document.getElementById("content").insertAdjacentHTML("beforeend", content);
-      initParentalLock();
+      return fetch("/api/profile.php", { credentials: "include" })
+        .then((r) => r.ok ? r.json() : null)
+        .then((data) => data?.user?.is_premium ?? false)
+        .catch(() => false);
+    })
+    .then((isPremium) => {
+      initParentalLock(isPremium);
     })
     .catch((err) => console.error("CONTENT LOAD FAILED:", err));
 });
 
-function initParentalLock() {
+function applyPremiumState(isPremium, card) {
+  if (!isPremium) return;
+  const desc = card.querySelector(".card-description");
+  if (desc) desc.textContent = "You're already a Premier Club member! Enjoy exclusive access to all games, lessons & events.";
+  const btn = card.querySelector(".sign-up-btn");
+  if (btn) btn.remove();
+}
+
+function initParentalLock(isPremium = false) {
   const overlay = document.getElementById("parental-lock-overlay");
   const card = document.getElementById("premier-club-content");
   const boxes = Array.from(document.querySelectorAll(".pin-box"));
@@ -102,6 +116,7 @@ function initParentalLock() {
         if (data.success) {
           overlay.style.display = "none";
           card.style.display = "";
+          applyPremiumState(isPremium, card);
         } else if (data.no_pin_set) {
           if (pinForm) pinForm.style.display = "none";
           if (noPinEl) noPinEl.style.display = "flex";

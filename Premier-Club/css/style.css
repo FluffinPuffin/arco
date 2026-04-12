@@ -145,41 +145,31 @@ body:has(.premier-club-card) {
 /* PIN input boxes — Frame PNGs are the visual container */
 .pin-inputs {
     display: flex;
-    gap: 12px;
+    gap: 20px;
     justify-content: center;
 }
 
 .pin-box {
-    width: 64px;
-    height: 64px;
-    border: none;
-    outline: none;
-    background-color: transparent;
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-    font-family: "Lexend", sans-serif;
-    font-size: 1.5rem;
-    font-weight: 600;
+    width: 80px;
+    height: 80px;
+    background-color: #fffefd;
+    border: 2px solid #dddcdb;
+    border-radius: 15px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 800;
+    font-size: 48px;
+    line-height: 72px;
+    color: #1c1c1c;
     text-align: center;
-    color: #111111;
-    caret-color: transparent;
-    border-radius: 12px;
-    transition: box-shadow 0.15s ease, transform 0.1s ease;
+    transition: border-color 0.2s ease;
+    padding: 6px 24px;
 }
 
 .pin-box:focus {
-    box-shadow: 0 0 0 2.5px #111111;
+    outline: none;
+    border-color: #1c1c1c;
 }
 
-.pin-box.pin-filled {
-    transform: scale(1.08);
-}
-
-.pin-box-1 { background-image: url('../images/Frame 125.png'); }
-.pin-box-2 { background-image: url('../images/Frame 126.png'); }
-.pin-box-3 { background-image: url('../images/Frame 127.png'); }
-.pin-box-4 { background-image: url('../images/Frame 99.png'); }
 
 .parental-continue-btn {
     background: #111111;
