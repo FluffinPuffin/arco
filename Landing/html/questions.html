@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Help</title>
+    <link rel="stylesheet" href="../css/questions.css">
+    <script src="../js/questions.js" defer></script>
+</head>
+
+<body>
+    <a href="../../Login/html/index.html" class="back-btn">← Back to Login</a>
+    <div class="legal-panels">
+        <div class="legal-sidebar">
+            <a href="#" class="legal-nav-item active" data-policy="faq">FAQ</a>
+            <a href="#" class="legal-nav-item" data-policy="contact">Contact</a>
+            <a href="#" class="legal-nav-item" data-policy="policy">Policy</a>
+        </div>
+        <div class="legal-content">
+
+            <!-- FAQ Tab -->
+            <div class="legal-policy-content" data-policy="faq">
+                <div class="faq-search-wrapper">
+                    <input type="text" class="faq-search" placeholder="Search" aria-label="Search FAQ">
+                    <svg class="faq-search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2">
+                        <circle cx="11" cy="11" r="8" />
+                        <path d="m21 21-4.35-4.35" />
+                    </svg>
+                </div>
+                <h3 class="legal-policy-title">General</h3>
+                <div class="faq-accordion">
+                    <div class="faq-item" data-question="login">
+                        <button type="button" class="faq-question" aria-expanded="false"
+                            aria-controls="faq-answer-login" id="faq-question-login">
+                            <span class="faq-icon faq-icon-plus">+</span>
+                            <span class="faq-icon faq-icon-minus">−</span>
+                            How to login?
+                        </button>
+                        <div class="faq-answer" id="faq-answer-login" role="region"
+                            aria-labelledby="faq-question-login" hidden>
+                            <p>To login, click on the "Settings" tab in the header, or use the login option from the
+                                home screen. Enter your email and password to access your account.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item" data-question="payment">
+                        <button type="button" class="faq-question" aria-expanded="false"
+                            aria-controls="faq-answer-payment" id="faq-question-payment">
+                            <span class="faq-icon faq-icon-plus">+</span>
+                            <span class="faq-icon faq-icon-minus">−</span>
+                            How to change payment?
+                        </button>
+                        <div class="faq-answer" id="faq-answer-payment" role="region"
+                            aria-labelledby="faq-question-payment" hidden>
+                            <p>To change your payment method, go to Settings and navigate to the Grown-Ups section.
+                                Click on "Payment" and select "Edit" to update your payment information.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item" data-question="username">
+                        <button type="button" class="faq-question" aria-expanded="false"
+                            aria-controls="faq-answer-username" id="faq-question-username">
+                            <span class="faq-icon faq-icon-plus">+</span>
+                            <span class="faq-icon faq-icon-minus">−</span>
+                            How to change my username?
+                        </button>
+                        <div class="faq-answer" id="faq-answer-username" role="region"
+                            aria-labelledby="faq-question-username" hidden>
+                            <p>To change your username, first click on the 'Settings' tab located inside the header.
+                                Next, navigate to the 'Profile' section and click on the 'Edit' button that corresponds
+                                with 'Name'.</p>
+                        </div>
+                    </div>
+                </div>
+                <h3 class="legal-policy-title faq-section-title">Privacy</h3>
+                <div class="faq-accordion">
+                    <div class="faq-item" data-question="data">
+                        <button type="button" class="faq-question" aria-expanded="false"
+                            aria-controls="faq-answer-data" id="faq-question-data">
+                            <span class="faq-icon faq-icon-plus">+</span>
+                            <span class="faq-icon faq-icon-minus">−</span>
+                            How is my data protected?
+                        </button>
+                        <div class="faq-answer" id="faq-answer-data" role="region" aria-labelledby="faq-question-data"
+                            hidden>
+                            <p>We use industry-standard encryption to protect your personal data. Your information is
+                                never shared with third parties without your consent.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item" data-question="delete">
+                        <button type="button" class="faq-question" aria-expanded="false"
+                            aria-controls="faq-answer-delete" id="faq-question-delete">
+                            <span class="faq-icon faq-icon-plus">+</span>
+                            <span class="faq-icon faq-icon-minus">−</span>
+                            How do I delete my account?
+                        </button>
+                        <div class="faq-answer" id="faq-answer-delete" role="region"
+                            aria-labelledby="faq-question-delete" hidden>
+                            <p>Send us an email at support@arco.com with your account details and request for account
+                                deletion.</p>
+                        </div>
+                    </div>
+                </div>
+                <h3 class="legal-policy-title faq-section-title">Troubleshooting</h3>
+                <div class="faq-accordion">
+                    <div class="faq-item" data-question="loading">
+                        <button type="button" class="faq-question" aria-expanded="false"
+                            aria-controls="faq-answer-loading" id="faq-question-loading">
+                            <span class="faq-icon faq-icon-plus">+</span>
+                            <span class="faq-icon faq-icon-minus">−</span>
+                            The page won't load. What should I do?
+                        </button>
+                        <div class="faq-answer" id="faq-answer-loading" role="region"
+                            aria-labelledby="faq-question-loading" hidden>
+                            <p>Ensure you have an internet connection and try refreshing the page. If the issue
+                                persists, try clearing your browser cache or contact support.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item" data-question="scan">
+                        <button type="button" class="faq-question" aria-expanded="false"
+                            aria-controls="faq-answer-scan" id="faq-question-scan">
+                            <span class="faq-icon faq-icon-plus">+</span>
+                            <span class="faq-icon faq-icon-minus">−</span>
+                            QR code scan not working?
+                        </button>
+                        <div class="faq-answer" id="faq-answer-scan" role="region" aria-labelledby="faq-question-scan"
+                            hidden>
+                            <p>Grant camera permissions when prompted. Ensure adequate lighting and hold the QR code
+                                steady in front of the camera. If it still fails, try a different browser.</p>
+                        </div>
+                    </div>
+                </div>
+                <h3 class="legal-policy-title faq-section-title">Accessibility</h3>
+                <div class="faq-accordion">
+                    <div class="faq-item" data-question="screenreader">
+                        <button type="button" class="faq-question" aria-expanded="false"
+                            aria-controls="faq-answer-screenreader" id="faq-question-screenreader">
+                            <span class="faq-icon faq-icon-plus">+</span>
+                            <span class="faq-icon faq-icon-minus">−</span>
+                            Is the app compatible with screen readers?
+                        </button>
+                        <div class="faq-answer" id="faq-answer-screenreader" role="region"
+                            aria-labelledby="faq-question-screenreader" hidden>
+                            <p>Yes, we strive to ensure our app works well with major screen readers. If you encounter
+                                issues, please contact us so we can improve.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item" data-question="fontsize">
+                        <button type="button" class="faq-question" aria-expanded="false"
+                            aria-controls="faq-answer-fontsize" id="faq-question-fontsize">
+                            <span class="faq-icon faq-icon-plus">+</span>
+                            <span class="faq-icon faq-icon-minus">−</span>
+                            Can I change the font size?
+                        </button>
+                        <div class="faq-answer" id="faq-answer-fontsize" role="region"
+                            aria-labelledby="faq-question-fontsize" hidden>
+                            <p>You can adjust text size through your device or browser settings. We are working on
+                                built-in accessibility controls for future updates.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contact Tab -->
+            <div class="legal-policy-content" data-policy="contact" hidden>
+                <div class="contact-panel">
+                    <div class="contact-form-section">
+                        <form class="contact-form" id="contact-form">
+                            <div class="contact-field">
+                                <label for="contact-name" class="contact-label">Name</label>
+                                <input type="text" id="contact-name" name="name" class="contact-input"
+                                    placeholder="John Doe">
+                            </div>
+                            <div class="contact-field">
+                                <label for="contact-email" class="contact-label">Email</label>
+                                <input type="email" id="contact-email" name="email" class="contact-input"
+                                    placeholder="defaultemail@gmail.com">
+                            </div>
+                            <div class="contact-field">
+                                <label for="contact-message" class="contact-label">Your Message</label>
+                                <textarea id="contact-message" name="message" class="contact-textarea" rows="5"
+                                    placeholder="Type your message here..."></textarea>
+                            </div>
+                            <button type="submit" class="contact-submit">Submit Message</button>
+                        </form>
+                    </div>
+                    <div class="contact-info-section">
+                        <div class="contact-details">
+                            <a href="mailto:arcoLearningTeam@gmail.com" class="contact-detail">
+                                ✉ arcoLearningTeam@gmail.com
+                            </a>
+                            <a href="https://linkedin.com/company/ArcoOfficial" target="_blank"
+                                rel="noopener noreferrer" class="contact-detail">
+                                in @ArcoOfficial
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Policy Tab -->
+            <div class="legal-policy-content" data-policy="policy" hidden>
+                <h3 class="legal-policy-title">Terms of Service</h3>
+                <p class="legal-policy-date">(as of February 5, 2026)</p>
+                <div class="legal-policy-body">
+                    <p>Welcome to Arco. By accessing or using our platform, you agree to be bound by these Terms of
+                        Service. Please read them carefully before using our services.</p>
+                    <h4>1. Account Registration</h4>
+                    <p>To access certain features, you must create an account. You are responsible for maintaining the
+                        confidentiality of your account credentials and for all activities that occur under your account.
+                        You must be at least 13 years old to create an account.</p>
+                    <h4>2. User Conduct</h4>
+                    <p>You agree not to use the platform for any unlawful purpose or in any way that could damage,
+                        disable, or impair our services. You must not attempt to gain unauthorized access to any part of
+                        the platform, other accounts, or computer systems.</p>
+                    <h4>3. Intellectual Property</h4>
+                    <p>All content on Arco, including games, graphics, logos, and text, is the property of Arco or its
+                        licensors and is protected by copyright and trademark laws. You may not reproduce, distribute, or
+                        create derivative works without our express written permission.</p>
+                    <h4>4. Termination</h4>
+                    <p>We reserve the right to suspend or terminate your account at any time for violations of these
+                        terms or for any other reason at our discretion. Upon termination, your right to use the platform
+                        will immediately cease.</p>
+                    <div class="legal-clarification-box">
+                        <h4 class="legal-clarification-title">
+                            <span class="legal-clarification-icon" aria-hidden="true">ℹ</span>
+                            Important Information Clarification
+                        </h4>
+                        <p>By continuing to use Arco, you acknowledge that you have read, understood, and agree to be
+                            bound by these Terms of Service. We may update these terms periodically, and continued use of
+                            the platform constitutes acceptance of any changes.</p>
+                    </div>
+                </div>
+                <h3 class="legal-policy-title faq-section-title">Privacy Policy</h3>
+                <p class="legal-policy-date">(as of February 5, 2026)</p>
+                <div class="legal-policy-body">
+                    <p>At Arco, we are committed to protecting your privacy. This policy explains how we collect, use,
+                        and safeguard your personal information when you use our platform.</p>
+                    <h4>Information We Collect</h4>
+                    <p>We collect information you provide directly, such as your username, email address, and profile
+                        details when you create an account. We also automatically collect usage data, including game
+                        activity, session duration, and device information.</p>
+                    <h4>How We Use Your Information</h4>
+                    <p>We use your information to provide and improve our services, personalize your experience, track
+                        game progress and achievements, communicate with you about updates and promotions, and ensure the
+                        security of our platform.</p>
+                    <h4>Information Sharing</h4>
+                    <p>We do not sell your personal information to third parties. We may share data with service
+                        providers who assist in operating our platform, or when required by law. Your game statistics may
+                        be displayed publicly on leaderboards if you opt in to this feature.</p>
+                    <h4>Data Security</h4>
+                    <p>We implement industry-standard security measures to protect your information, including encryption
+                        and secure server infrastructure. However, no method of transmission over the internet is 100%
+                        secure.</p>
+                    <h4>Your Rights</h4>
+                    <p>You may access, update, or delete your personal information through your account settings. You can
+                        also contact us to request a copy of your data or to exercise other privacy rights available
+                        under applicable law.</p>
+                </div>
+                <h3 class="legal-policy-title faq-section-title">Cookie Policy</h3>
+                <p class="legal-policy-date">(as of February 5, 2026)</p>
+                <div class="legal-policy-body">
+                    <p>Arco uses cookies and similar technologies to enhance your experience on our platform. This policy
+                        explains what cookies are and how we use them.</p>
+                    <h4>What Are Cookies?</h4>
+                    <p>Cookies are small text files stored on your device when you visit a website. They help websites
+                        remember your preferences and understand how you interact with content.</p>
+                    <h4>Types of Cookies We Use</h4>
+                    <p><strong>Essential Cookies:</strong> These are necessary for the platform to function properly.
+                        They enable core features like user authentication, session management, and security. You cannot
+                        opt out of these cookies.</p>
+                    <p><strong>Functional Cookies:</strong> These remember your preferences, such as language settings,
+                        display options, and game configurations, to provide a personalized experience.</p>
+                    <p><strong>Analytics Cookies:</strong> These help us understand how users interact with our platform,
+                        which pages are visited most, and where users encounter issues. This data helps us improve our
+                        services.</p>
+                    <h4>Managing Cookies</h4>
+                    <p>Most web browsers allow you to control cookies through their settings. You can choose to block or
+                        delete cookies, but this may affect your ability to use certain features of our platform.</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</body>
+
+</html>
