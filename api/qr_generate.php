@@ -2,7 +2,6 @@
 // Admin script: generate master QR key tokens
 // Usage: GET /api/qr_generate.php?count=10&admin_token=YOUR_TOKEN
 // Each output line is the full string to encode into a QR code.
-// IMPORTANT: Restrict or delete this file after generating your keys.
 
 require_once __DIR__ . '/db.php';
 
