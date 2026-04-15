@@ -115,6 +115,70 @@ if ($action === 'capture_order') {
     exit;
 }
 
+if ($action === 'update_subscription') {
+    $userId = requireAuth();
+
+    $body    = json_decode(file_get_contents('php://input'), true);
+    $orderId = $body['orderID'] ?? '';
+
+    if (!$orderId) {
+        http_response_code(400);
+        echo json_encode(['error' => 'Missing orderID']);
+        exit;
+    }
+
+    $token = getAccessToken($baseUrl, $clientId, $secret);
+
+    if (!$token) {
+        http_response_code(502);
+        echo json_encode(['error' => 'Could not authenticate with PayPal']);
+        exit;
+    }
+
+    $capture = captureOrder($baseUrl, $token, $orderId);
+
+    if (!$capture || ($capture['status'] ?? '') !== 'COMPLETED') {
+        http_response_code(502);
+        echo json_encode(['success' => false, 'error' => 'Payment capture failed']);
+        exit;
+    }
+
+    // Record subscription and extend premium_until from current expiry (not today)
+    try {
+        $unit   = $capture['purchase_units'][0] ?? [];
+        $amount = $unit['payments']['captures'][0]['amount']['value'] ?? '0.00';
+        $plan   = $body['plan'] ?? 'unknown';
+
+        $planMonths = ['1-month' => 1, '3-month' => 3, '12-month' => 12];
+        $months     = $planMonths[$plan] ?? 1;
+
+        $pdo = getDB();
+
+        // Extend from current expiry — if already expired (or no subscription), start from now
+        $stmt = $pdo->prepare('SELECT premium_until FROM users WHERE id = ?');
+        $stmt->execute([$userId]);
+        $row          = $stmt->fetch();
+        $currentUntil = ($row && $row['premium_until']) ? strtotime($row['premium_until']) : time();
+        $startFrom    = max($currentUntil, time());
+        $until        = (new DateTime())->setTimestamp($startFrom)
+                            ->modify("+$months months")
+                            ->format('Y-m-d H:i:s');
+
+        $pdo->prepare(
+            'INSERT INTO subscriptions (user_id, paypal_order_id, plan, amount, status) VALUES (?, ?, ?, ?, ?)'
+        )->execute([$userId, $orderId, $plan, $amount, 'COMPLETED']);
+
+        $pdo->prepare(
+            'UPDATE users SET premium_until = ? WHERE id = ?'
+        )->execute([$until, $userId]);
+    } catch (Exception $e) {
+        error_log('Subscription update DB write failed: ' . $e->getMessage());
+    }
+
+    echo json_encode(['success' => true]);
+    exit;
+}
+
 http_response_code(400);
 echo json_encode(['error' => 'Unknown action']);
 

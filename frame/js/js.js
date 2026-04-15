@@ -11,6 +11,11 @@
 const scriptSrc = document.currentScript.src;
 const framePath = scriptSrc.substring(0, scriptSrc.lastIndexOf('/js/'));
 
+// Load the orientation overlay guard
+const orientScript = document.createElement('script');
+orientScript.src = framePath + '/js/orientation.js';
+document.head.appendChild(orientScript);
+
 document.addEventListener("DOMContentLoaded", () => {
   fetch(framePath + "/html/index.html")
     .then(response => {

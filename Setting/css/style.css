@@ -525,39 +525,29 @@
 /* ── Parental Lock PIN (Settings) ── */
 .pin-inputs-sm {
     display: flex;
-    gap: 10px;
+    gap: 20px;
 }
 
 .pin-box-sm {
-    width: 52px;
-    height: 52px;
-    border: none;
-    outline: none;
-    background-color: transparent;
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-    font-size: 1.25rem;
-    font-weight: 600;
+    width: 80px;
+    height: 80px;
+    background-color: #fffefd;
+    border: 2px solid #dddcdb;
+    border-radius: 15px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 800;
+    font-size: 48px;
+    line-height: 72px;
+    color: #1c1c1c;
     text-align: center;
-    color: #1C1C1C;
-    caret-color: transparent;
-    transition: box-shadow 0.15s ease, transform 0.1s ease;
+    transition: border-color 0.2s ease;
+    padding: 6px 24px;
 }
 
 .pin-box-sm:focus {
-    box-shadow: 0 0 0 2px #1C1C1C;
-    border-radius: 6px;
+    outline: none;
+    border-color: #1c1c1c;
 }
-
-.pin-box-sm.pin-filled {
-    transform: scale(1.08);
-}
-
-.pin-box-sm-1 { background-image: url('../../Premier-Club/images/Frame 125.png'); }
-.pin-box-sm-2 { background-image: url('../../Premier-Club/images/Frame 126.png'); }
-.pin-box-sm-3 { background-image: url('../../Premier-Club/images/Frame 127.png'); }
-.pin-box-sm-4 { background-image: url('../../Premier-Club/images/Frame 99.png'); }
 
 .pin-group-label {
     font-family: "Lexend", sans-serif;

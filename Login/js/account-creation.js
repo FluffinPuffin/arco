@@ -225,8 +225,8 @@ function initScreen3() {
         }
 
         const gradeNum = parseInt(grade);
-        if (gradeNum < 1 || gradeNum > 5) {
-            alert('Please enter a valid grade level (1-5)');
+        if (gradeNum < 1 || gradeNum > 12) {
+            alert('Please enter a valid grade level (1-12)');
             return;
         }
 
@@ -394,7 +394,7 @@ function loadScreen(screenNumber) {
             </div>
             <div class="grade-input-container">
                 <p class="grade-label">Grade</p>
-                <input type="text" id="gradeLevel" class="grade-input" maxlength="1" inputmode="numeric" pattern="[1-5]*">
+                <input type="text" id="gradeLevel" class="grade-input" maxlength="2" inputmode="numeric" pattern="[0-9]*">
             </div>
         `;
 
