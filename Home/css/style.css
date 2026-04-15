@@ -102,3 +102,130 @@ h6,
     font-size: 24px;
     color: #1C1C1C;
 }
+
+/* Workbook floating action button */
+@keyframes workbook-bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+}
+
+.workbook-fab {
+    position: fixed;
+    bottom: 80px;
+    right: 24px;
+    background: #fff;
+    border: 3px solid #3F39C2;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 100;
+    width: 64px;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+}
+
+.workbook-fab:hover {
+    animation: workbook-bounce 0.6s ease-in-out infinite;
+}
+
+.workbook-fab img {
+    width: 32px;
+    height: auto;
+    display: block;
+}
+
+/* Popup backdrop — dark overlay */
+.workbook-popup-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.55);
+    z-index: 200;
+}
+
+.workbook-popup-backdrop[hidden] { display: none; }
+
+/* Popup card — centered */
+.workbook-popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 560px;
+    max-width: calc(100vw - 48px);
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.28);
+    z-index: 300;
+    overflow: hidden;
+}
+
+.workbook-popup[hidden] { display: none; }
+
+.workbook-popup-inner {
+    position: relative;
+    padding: 24px;
+}
+
+.workbook-popup-close {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: #1C1C1C;
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    font-size: 14px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.workbook-popup-body {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.workbook-popup-cover {
+    width: 160px;
+    flex-shrink: 0;
+    border-radius: 8px;
+}
+
+.workbook-popup-text h3 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    margin: 0 0 4px;
+}
+
+.workbook-popup-price {
+    font-weight: 600;
+    margin: 0 0 12px;
+}
+
+.workbook-popup-text p {
+    font-size: 13px;
+    color: #444;
+    margin: 0 0 8px;
+}
+
+.workbook-popup-link {
+    display: inline-block;
+    margin-top: 8px;
+}
+
+.workbook-popup-link img {
+    display: block;
+    height: 44px;
+    width: auto;
+}
+
+.workbook-popup-link:hover img {
+    opacity: 0.9;
+}

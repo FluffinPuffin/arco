@@ -48,6 +48,27 @@ document.addEventListener("frame:ready", () => {
 
             // Initialize streak tracker
             initializeStreakTracker();
+
+            // Workbook popup
+            const fab = document.getElementById('workbook-fab');
+            const popup = document.getElementById('workbook-popup');
+            const backdrop = document.getElementById('workbook-popup-backdrop');
+            const closeBtn = document.getElementById('workbook-popup-close');
+
+            if (fab && popup && backdrop && closeBtn) {
+                fab.addEventListener('click', () => {
+                    popup.hidden = false;
+                    backdrop.hidden = false;
+                });
+                closeBtn.addEventListener('click', () => {
+                    popup.hidden = true;
+                    backdrop.hidden = true;
+                });
+                backdrop.addEventListener('click', () => {
+                    popup.hidden = true;
+                    backdrop.hidden = true;
+                });
+            }
         })
         .catch(err => console.error("Content load failed:", err));
 })
