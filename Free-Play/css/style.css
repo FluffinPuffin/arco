@@ -287,6 +287,82 @@ body {
     margin-right: auto;
 }
 
+.volume-control {
+    position: relative;
+    width: 150px;
+    height: 50px;
+    margin: 0 auto 1rem auto;
+}
+
+.volume-btn {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 50px;
+    height: 150px;
+    transform: translate(-50%, -50%) rotate(90deg);
+    border-radius: 25px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 8px;
+    gap: 8px;
+    background: white;
+    border: 2px solid #333;
+}
+
+.volume-plus,
+.volume-minus {
+    background: none;
+    border: none;
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    color: #1C1C1C;
+    padding: 0;
+    width: 100%;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s ease;
+}
+
+.volume-plus:hover,
+.volume-minus:hover {
+    transform: scale(1.2);
+}
+
+.volume-track {
+    flex: 1;
+    width: 4px;
+    background: #1C1C1C;
+    border-radius: 2px;
+    position: relative;
+    margin: 0 auto;
+    cursor: pointer;
+}
+
+.volume-thumb {
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    background: #FFFEFD;
+    border: 2px solid #1C1C1C;
+    border-radius: 50%;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 0%;
+    cursor: grab;
+    transition: transform 0.1s ease;
+}
+
+.volume-thumb:active {
+    cursor: grabbing;
+    transform: translateX(-50%) scale(1.2);
+}
+
 
 /* Logout Overlay */
 .logout-overlay {
