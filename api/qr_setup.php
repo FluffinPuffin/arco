@@ -1,6 +1,6 @@
 <?php
 // QR System Database Migration
-// Run this ONCE to create the required tables, then delete or restrict access to this file.
+// Run this ONCE to create the required tables.
 
 require_once __DIR__ . '/db.php';
 

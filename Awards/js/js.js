@@ -503,13 +503,6 @@ function initializeAwards() {
       image: "../images/sticker35.svg",
     },
 
-    //placeholder dots
-    ...Array.from({ length: 7 }, (_, i) => ({
-      id: i + 15,
-      earned: false,
-      placeholder: true,
-      image: "",
-    })),
   ];
 
   // go through stickers filter out the ones that are not placeholders and put them in realStickers
@@ -534,9 +527,9 @@ function initializeAwards() {
     stickersLeft.innerHTML = "";
     stickersRight.innerHTML = "";
 
-    //only include earned or placeholders, not locked
-    const binderStickers = stickers.filter((s) => s.earned || s.placeholder);
-    const totalPages = Math.ceil(binderStickers.length / STICKERS_PER_PAGE);
+    // only paginate earned stickers; dots fill remaining slots dynamically
+    const earnedStickers = stickers.filter((s) => s.earned);
+    const totalPages = Math.max(1, Math.ceil(earnedStickers.length / STICKERS_PER_PAGE));
 
     // clamp page
     if (currentStickerPage >= totalPages) currentStickerPage = totalPages - 1;
@@ -547,10 +540,16 @@ function initializeAwards() {
     galleryNavNext.disabled = currentStickerPage >= totalPages - 1;
 
     const start = currentStickerPage * STICKERS_PER_PAGE;
-    //only shows 8 per page
-    const visible = binderStickers.slice(start, start + STICKERS_PER_PAGE);
+    const pageStickers = earnedStickers.slice(start, start + STICKERS_PER_PAGE);
 
-    //loop through each real sticker
+    // pad with placeholder dots so the page always has 8 slots
+    const placeholdersNeeded = STICKERS_PER_PAGE - pageStickers.length;
+    const visible = [
+      ...pageStickers,
+      ...Array.from({ length: placeholdersNeeded }, () => ({ placeholder: true, earned: false, image: "" })),
+    ];
+
+    //loop through each sticker slot
     visible.forEach((sticker, index) => {
       //lets each sticker become a button in a list
       const li = document.createElement("li");
@@ -606,8 +605,8 @@ function initializeAwards() {
   });
 
   galleryNavNext.addEventListener("click", () => {
-    const binderStickers = stickers.filter((s) => s.earned || s.placeholder);
-    const totalPages = Math.ceil(binderStickers.length / STICKERS_PER_PAGE);
+    const earnedStickers = stickers.filter((s) => s.earned);
+    const totalPages = Math.max(1, Math.ceil(earnedStickers.length / STICKERS_PER_PAGE));
     if (currentStickerPage < totalPages - 1) {
       currentStickerPage++;
       renderStickers();

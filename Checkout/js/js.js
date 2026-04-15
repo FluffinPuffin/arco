@@ -17,7 +17,35 @@ document.addEventListener('DOMContentLoaded', async function () {
     // Plan selection
     // -------------------------------------------------------------------------
 
+    // -------------------------------------------------------------------------
+    // Date helper — builds "Mon 'YY - Mon 'YY" from today + N months
+    // -------------------------------------------------------------------------
+
+    const MONTH_NAMES = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+
+    function buildSubtitle(months) {
+        const now = new Date();
+        const end = new Date(now.getFullYear(), now.getMonth() + months, 1);
+        const fmt = (d) => `${MONTH_NAMES[d.getMonth()]} '${String(d.getFullYear()).slice(2)}`;
+        return `${fmt(now)} - ${fmt(end)}`;
+    }
+
+    const planDetails = {
+        '1-month':  { title: '1 Month',   subtitle: buildSubtitle(1),  price: '$4.99 USD' },
+        '3-month':  { title: '3 Months',  subtitle: buildSubtitle(3),  price: '$11.25 USD' },
+        '12-month': { title: '12 Months', subtitle: buildSubtitle(12), price: '$29.99 USD' },
+    };
+
     const radioButtons = document.querySelectorAll('.radio-button');
+
+    // Update card subtitles to reflect current dates
+    radioButtons.forEach(btn => {
+        const card = btn.closest('.subscription-card');
+        const subtitle = card && card.querySelector('.card-subtitle');
+        if (subtitle && planDetails[btn.dataset.plan]) {
+            subtitle.textContent = 'From ' + planDetails[btn.dataset.plan].subtitle;
+        }
+    });
 
     radioButtons.forEach(button => {
         button.addEventListener('click', function () {
@@ -27,16 +55,13 @@ document.addEventListener('DOMContentLoaded', async function () {
         });
     });
 
+    // Initialize order summary with the default selected plan
+    updateOrderSummary(getSelectedPlan());
+
     function updateOrderSummary(plan) {
         const summaryTitle    = document.querySelector('.summary-title');
         const summarySubtitle = document.querySelector('.summary-subtitle');
         const summaryPrice    = document.querySelector('.summary-price');
-
-        const planDetails = {
-            '1-month':  { title: '1 Month',   subtitle: "Jan '25 - Feb '25", price: '$4.99 USD' },
-            '3-month':  { title: '3 Months',  subtitle: "Jan '25 - Apr '25", price: '$11.25 USD' },
-            '12-month': { title: '12 Months', subtitle: "Jan '25 - Jan '26", price: '$29.99 USD' },
-        };
 
         if (planDetails[plan]) {
             summaryTitle.textContent    = planDetails[plan].title;

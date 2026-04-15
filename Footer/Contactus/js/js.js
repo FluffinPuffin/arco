@@ -39,16 +39,35 @@ function initContact() {
       return;
     }
 
-    // Placeholder: show confirmation (no backend)
     const submitBtn = form.querySelector(".contact-submit");
     const originalText = submitBtn.textContent;
-    submitBtn.textContent = "Message sent!";
+    submitBtn.textContent = "Sending...";
     submitBtn.disabled = true;
 
-    setTimeout(() => {
+    fetch("https://formspree.io/f/mlgarpen", {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "Accept": "application/json" },
+      body: JSON.stringify({ name, email, message })
+    })
+    .then(res => res.json())
+    .then(data => {
+      if (data.ok) {
+        submitBtn.textContent = "Message sent!";
+        setTimeout(() => {
+          submitBtn.textContent = originalText;
+          submitBtn.disabled = false;
+          form.reset();
+        }, 2000);
+      } else {
+        alert("Failed to send. Please try again.");
+        submitBtn.textContent = originalText;
+        submitBtn.disabled = false;
+      }
+    })
+    .catch(() => {
+      alert("Failed to send. Please try again.");
       submitBtn.textContent = originalText;
       submitBtn.disabled = false;
-      form.reset();
-    }, 2000);
+    });
   });
 }
