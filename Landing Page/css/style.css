@@ -708,13 +708,19 @@ section {
 
 .footer-legal {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
     align-items: center;
     padding-bottom: var(--spacing-md);
     border-bottom: 1px solid #d0d0d0;
     margin-bottom: var(--spacing-md);
     flex-wrap: wrap;
     gap: var(--spacing-sm);
+    text-align: right
+}
+
+.copyright {
+    margin-left: auto;
+    text-align: right;
 }
 
 .legal-links {
