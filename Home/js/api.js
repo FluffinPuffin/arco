@@ -108,20 +108,4 @@ const ArcoAPI = {
     });
   },
 
-  // Load user profile data from server into localStorage (called after login or on page load)
-  async syncFromServer() {
-    try {
-      const profileRes = await this.getProfile();
-      const user = profileRes.user;
-
-      if (user.display_name) localStorage.setItem('arco-name', user.display_name);
-      if (user.avatar) localStorage.setItem('arco-avatar', user.avatar);
-      if (user.grade) localStorage.setItem('arco-grade', user.grade);
-
-      return true;
-    } catch {
-      // Not logged in or server unreachable — that's ok
-      return false;
-    }
-  },
 };

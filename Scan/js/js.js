@@ -10,7 +10,7 @@ document.addEventListener("frame:ready", () => {
       .then(titleContent => {
         titleContainer.innerHTML = titleContent;
       })
-      .catch(err => console.error("Title load failed:", err));
+      .catch(() => {});
   }
 
   // Load content
@@ -23,7 +23,7 @@ document.addEventListener("frame:ready", () => {
       document.getElementById("content").insertAdjacentHTML("beforeend", content);
       initializeScanPage();
     })
-    .catch(err => console.error("Content load failed:", err));
+    .catch(() => {});
 });
 
 let html5QrCode = null;
@@ -73,7 +73,6 @@ function initializeScanPage() {
       updateZoomThumbPosition();
       applyZoom();
 
-      console.log('Zoom level set to:', currentZoom + 'x');
     });
   });
 }
@@ -201,10 +200,8 @@ function applyZoom() {
 
     videoTrack.applyConstraints(constraints)
       .then(() => {
-        console.log('Zoom applied:', currentZoom);
       })
       .catch(err => {
-        console.warn('Zoom not supported or failed:', err);
       });
   } else {
     // Fallback: use CSS transform (less ideal but works)
@@ -223,7 +220,6 @@ function startQrScanner() {
   const qrPlaceholder = document.getElementById("qr-placeholder");
 
   if (!readerElement) {
-    console.error("Missing #reader element");
     showError();
     return;
   }
@@ -270,7 +266,6 @@ function startScannerInternal(readerElement, qrPlaceholder) {
     },
     (decodedText) => {
       scanAttempts++;
-      console.log("QR Code scanned:", decodedText);
 
       // Clear timeout
       if (scanTimeout) {
@@ -286,12 +281,10 @@ function startScannerInternal(readerElement, qrPlaceholder) {
     (error) => {
       // Silent error handling
       if (!error.includes("NotFoundException")) {
-        console.warn("Scan error:", error);
       }
     }
   ).then(() => {
     // Camera started successfully
-    console.log("Scanner started");
 
     // Hide QR placeholder
     if (qrPlaceholder) {
@@ -311,7 +304,6 @@ function startScannerInternal(readerElement, qrPlaceholder) {
       updateZoomThumbPosition();
     }
   }).catch(err => {
-    console.error("Failed to start scanner:", err);
     // Clear timeout since scanner failed to start
     if (scanTimeout) {
       clearTimeout(scanTimeout);
@@ -325,7 +317,6 @@ function stopScanning() {
   if (html5QrCode && html5QrCode.isScanning) {
     html5QrCode.stop()
       .then(() => {
-        console.log("Scanner stopped");
         videoTrack = null;
 
         // Show QR placeholder again
@@ -341,7 +332,6 @@ function stopScanning() {
         }
       })
       .catch(err => {
-        console.error("Error stopping scanner:", err);
       });
   }
 }
@@ -393,7 +383,6 @@ function setErrorMessage(text) {
 }
 
 async function showSuccess(decodedText) {
-  console.log("QR scanned:", decodedText);
 
   // ── Master key ──────────────────────────────────────────────────
   if (decodedText.startsWith('ARCO-KEY-')) {

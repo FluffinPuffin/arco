@@ -10,13 +10,12 @@ document.addEventListener("frame:ready", () => {
       .then(titleContent => {
         titleContainer.innerHTML = titleContent;
       })
-      .catch(err => console.error("Title load failed:", err));
+      .catch(() => {});
   }
 
   // Load content
   fetch("./content.html")
     .then(res => {
-      console.log("Fetch response:", res);
       if (!res.ok) throw new Error("Not OK");
       return res.text();
     })
@@ -26,7 +25,7 @@ document.addEventListener("frame:ready", () => {
         .insertAdjacentHTML("beforeend", content);
       loadGamePremium();
     })
-    .catch(err => console.error("CONTENT LOAD FAILED:", err));
+    .catch(() => {});
 });
 
 async function loadGamePremium() {

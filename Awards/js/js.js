@@ -3,7 +3,6 @@
 // ==========================================
 
 document.addEventListener("frame:ready", () => {
-  console.log("Frame is ready. Loading Awards page...");
 
   // load title
   fetch("../html/title.html")

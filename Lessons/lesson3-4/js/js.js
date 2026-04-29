@@ -44,9 +44,8 @@ document.addEventListener("frame:ready", () => {
                 // Hide all titles except the first one
                 initTitles();
             })
-            .catch(err => console.error("TITLE LOAD FAILED:", err));
+            .catch(() => {});
     } else {
-        console.warn("lesson-title element not found");
     }
 
     // Then load content.html normally
@@ -67,7 +66,7 @@ document.addEventListener("frame:ready", () => {
             initFinishButtons();
             initButtonEffects();
         })
-        .catch(err => console.error("CONTENT LOAD FAILED:", err));
+        .catch(() => {});
 });
 
 function initTitles() {
@@ -151,7 +150,6 @@ function initLessonParts() {
     const navBtns = document.querySelectorAll('.part-nav .nav-btn');
 
     if (!parts.length || !navBtns.length) {
-        console.warn("Lesson parts or navigation buttons not found");
         return;
     }
 

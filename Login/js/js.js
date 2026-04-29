@@ -69,15 +69,6 @@ document.addEventListener('DOMContentLoaded', function() {
             try {
                 const result = await ArcoAPI.login(email, password);
 
-                // Store profile data in localStorage
-                const user = result.user;
-                if (user) {
-                    if (user.display_name) localStorage.setItem('arco-name', user.display_name);
-                    if (user.avatar) localStorage.setItem('arco-avatar', user.avatar);
-                    if (user.grade) localStorage.setItem('arco-grade', user.grade);
-                    if (user.id) localStorage.setItem('arco-userId', user.id);
-                }
-
                 // Remember me preference
                 if (isRememberChecked) {
                     localStorage.setItem('rememberedEmail', email);

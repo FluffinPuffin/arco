@@ -51,47 +51,46 @@ document.addEventListener("DOMContentLoaded", () => {
             document.dispatchEvent(new Event("frame:ready"));
             toggleLogoutOverlay();
         })
-        .catch(err => console.error("Frame load failed:", err));
+        .catch(() => {});
 });
 
-function toggleLogoutOverlay() {
-    const profileIcon = document.querySelector(".profile-icon");
+async function toggleLogoutOverlay() {
+    const profileIcon   = document.querySelector(".profile-icon");
+    const logoutAvatar  = document.querySelector(".logout-avatar");
+    const logoutName    = document.querySelector(".logout-name");
+    const logoutGrade   = document.querySelector(".logout-grade");
     const logoutOverlay = document.getElementById("logoutOverlay");
 
-    // Load profile data from localStorage
-    const savedAvatar = localStorage.getItem("arco-avatar");
-    const savedName = localStorage.getItem("arco-name");
-    const savedGrade = localStorage.getItem("arco-grade");
+    // Apply cached avatar immediately to prevent flicker
+    const cachedSrc = localStorage.getItem('arco_avatar');
+    if (cachedSrc && profileIcon)  profileIcon.src  = cachedSrc;
+    if (cachedSrc && logoutAvatar) logoutAvatar.src = cachedSrc;
 
-    // Update header profile icon
-    if (savedAvatar && profileIcon) {
-        profileIcon.src = savedAvatar.startsWith("/") ? savedAvatar : "/" + savedAvatar;
-    }
-
-    // Update logout overlay
-    const logoutAvatar = document.querySelector(".logout-avatar");
-    const logoutName = document.querySelector(".logout-name");
-    const logoutGrade = document.querySelector(".logout-grade");
-
-    if (savedAvatar && logoutAvatar) {
-        logoutAvatar.src = savedAvatar.startsWith("/") ? savedAvatar : "/" + savedAvatar;
-    }
-    if (savedName && logoutName) {
-        logoutName.textContent = savedName;
-    }
-    if (savedGrade && logoutGrade) {
-        logoutGrade.textContent = "Grade Level : " + savedGrade;
-    }
+    try {
+        const res  = await fetch('/api/profile.php', { credentials: 'include' });
+        const data = await res.json();
+        if (data?.success) {
+            const { avatar, display_name, grade } = data.user;
+            const src = avatar ? (avatar.startsWith('/') ? avatar : '/' + avatar) : null;
+            if (src) {
+                if (profileIcon)  profileIcon.src  = src;
+                if (logoutAvatar) logoutAvatar.src = src;
+                localStorage.setItem('arco_avatar', src);
+            } else {
+                localStorage.removeItem('arco_avatar');
+            }
+            if (display_name && logoutName)  logoutName.textContent  = display_name;
+            if (grade        && logoutGrade) logoutGrade.textContent = 'Grade Level : ' + grade;
+        }
+    } catch { /* not logged in or server down — leave default placeholder */ }
 
     if (profileIcon && logoutOverlay) {
-        // Toggle logout overlay when clicking profile icon
         profileIcon.addEventListener("click", (e) => {
             e.preventDefault();
             e.stopPropagation();
             logoutOverlay.classList.toggle("hidden");
         });
 
-        // Close overlay when clicking outside
         document.addEventListener("click", (e) => {
             if (!logoutOverlay.contains(e.target) && !profileIcon.contains(e.target)) {
                 logoutOverlay.classList.add("hidden");

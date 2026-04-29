@@ -19,7 +19,7 @@ document.addEventListener("frame:ready", () => {
                         .catch(() => { nameSpan.textContent = 'Friend'; });
                 }
             })
-            .catch(err => console.error("Title load failed:", err));
+            .catch(() => {});
     }
 
     // Load content
@@ -70,7 +70,7 @@ document.addEventListener("frame:ready", () => {
                 });
             }
         })
-        .catch(err => console.error("Content load failed:", err));
+        .catch(() => {});
 })
 
 // Streak Tracker Functionality with Client-Side Caching
@@ -129,7 +129,6 @@ async function getCachedStreak() {
             
             // If we have stale cache, return it as fallback
             if (streakCache.data) {
-                console.warn('API error, returning stale cache:', error.message);
                 return streakCache.data;
             }
             
@@ -153,7 +152,6 @@ async function initializeStreakTracker() {
     try {
         // Check if ArcoAPI is available
         if (typeof ArcoAPI === 'undefined') {
-            console.error('ArcoAPI not loaded');
             updateStreakUI({
                 currentStreak: 0,
                 weekDays: [false, false, false, false, false]
@@ -181,11 +179,9 @@ async function initializeStreakTracker() {
             }
         }
     } catch (err) {
-        console.error('Failed to load streak data:', err);
         
         // Check if it's a weekend error
         if (err.status === 400 || (err.message && err.message.toLowerCase().includes('weekend'))) {
-            console.log('Weekend detected - streaks do not count');
             // Still try to fetch current streak data (will use cache if available)
             try {
                 const streakData = await getCachedStreak();
@@ -194,7 +190,6 @@ async function initializeStreakTracker() {
                     return;
                 }
             } catch (fetchErr) {
-                console.error('Failed to fetch streak on weekend:', fetchErr);
             }
         }
         
@@ -212,7 +207,6 @@ function updateStreakUI(streakData) {
     
     // Validate input
     if (!streakData || typeof streakData !== 'object') {
-        console.error('Invalid streak data provided to updateStreakUI');
         return;
     }
     

@@ -27,7 +27,6 @@ document.addEventListener('DOMContentLoaded', function() {
     // Retrieve and display stored user data (for debugging)
     const storedUserData = sessionStorage.getItem('userData');
     if (storedUserData) {
-        console.log('Stored user data:', JSON.parse(storedUserData));
     }
 });
 
@@ -74,7 +73,6 @@ function initScreen1() {
             userData.displayName = displayName;
             sessionStorage.setItem('userData', JSON.stringify(userData));
 
-            console.log('Display name saved:', displayName);
 
             // Load next screen
             loadScreen(2);
@@ -158,7 +156,6 @@ function initScreen2() {
         userData.profilePicture = selectedPicture;
         sessionStorage.setItem('userData', JSON.stringify(userData));
 
-        console.log('Profile picture saved:', selectedPicture);
 
         // Load next screen
         loadScreen(3);
@@ -235,7 +232,6 @@ function initScreen3() {
         userData.gradeLevel = gradeNum;
         sessionStorage.setItem('userData', JSON.stringify(userData));
 
-        console.log('Grade level saved:', gradeNum);
 
         // Load next screen
         loadScreen(4);
@@ -292,12 +288,6 @@ function initScreen4() {
                 userData.profilePicture || '',
                 String(userData.gradeLevel || '')
             );
-
-            // Store profile in localStorage
-            const user = result.user;
-            if (user.display_name) localStorage.setItem('arco-name', user.display_name);
-            if (user.avatar) localStorage.setItem('arco-avatar', user.avatar);
-            if (user.grade) localStorage.setItem('arco-grade', user.grade);
 
             // Clean up sessionStorage
             sessionStorage.removeItem('userData');

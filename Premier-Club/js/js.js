@@ -10,7 +10,7 @@ document.addEventListener("frame:ready", () => {
       .then((titleContent) => {
         titleContainer.innerHTML = titleContent;
       })
-      .catch((err) => console.error("TITLE LOAD FAILED:", err));
+      .catch(() => {});
   }
 
   // Load content.html into #content, then check premium status and init parental lock
@@ -29,7 +29,7 @@ document.addEventListener("frame:ready", () => {
     .then((isPremium) => {
       initParentalLock(isPremium);
     })
-    .catch((err) => console.error("CONTENT LOAD FAILED:", err));
+    .catch(() => {});
 });
 
 function applyPremiumState(isPremium, card) {

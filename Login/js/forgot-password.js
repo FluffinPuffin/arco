@@ -32,7 +32,6 @@ document.addEventListener('DOMContentLoaded', function () {
             }
 
             // Here you would typically send the reset request to your backend
-            console.log('Password reset request for:', email);
 
             // Simulate API call
             sendPasswordResetEmail(email);

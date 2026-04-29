@@ -10,7 +10,7 @@ document.addEventListener("frame:ready", () => {
       .then((titleContent) => {
         titleContainer.innerHTML = titleContent;
       })
-      .catch((err) => console.error("TITLE LOAD FAILED:", err));
+      .catch(() => {});
   }
 
   // Load content.html into #content
@@ -23,7 +23,7 @@ document.addEventListener("frame:ready", () => {
       document.getElementById("content").insertAdjacentHTML("beforeend", content);
       initSettings();
     })
-    .catch((err) => console.error("CONTENT LOAD FAILED:", err));
+    .catch(() => {});
 });
 
 function initSettings() {
@@ -49,36 +49,26 @@ function initSettings() {
     showPanel(firstNav.dataset.section, firstNav.dataset.sub);
   }
 
-  // Restore saved avatar in General preview
-  const savedAvatar = localStorage.getItem("arco-avatar");
-  const avatarImg = content.querySelector("[data-avatar-img]");
-  if (savedAvatar && avatarImg) {
-    avatarImg.src = savedAvatar.startsWith("/") ? savedAvatar : "/" + savedAvatar;
-  }
-
-  // Restore saved name
-  const savedName = localStorage.getItem("arco-name");
-  if (savedName) {
-    const nameEl = content.querySelector('[data-value="name"]');
-    if (nameEl) nameEl.textContent = savedName;
-  }
-
-  // Restore saved grade
-  const savedGrade = localStorage.getItem("arco-grade");
-  if (savedGrade) {
-    const gradeEl = content.querySelector('[data-value="grade"]');
-    if (gradeEl) gradeEl.textContent = savedGrade;
-  }
-
   // Load statistics when panel becomes visible
   loadTimeStats(content);
 
-  // Load subscription info from server
+  // Load profile and subscription info from server
   fetch("/api/profile.php", { credentials: "include" })
     .then((res) => res.ok ? res.json() : null)
     .then((data) => {
       if (!data?.success) return;
       const user = data.user;
+
+      // Populate profile preview
+      const avatarImg = content.querySelector("[data-avatar-img]");
+      if (user.avatar && avatarImg)
+        avatarImg.src = user.avatar.startsWith("/") ? user.avatar : "/" + user.avatar;
+      const nameEl = content.querySelector('[data-value="name"]');
+      if (user.display_name && nameEl) nameEl.textContent = user.display_name;
+      const gradeEl = content.querySelector('[data-value="grade"]');
+      if (user.grade && gradeEl) gradeEl.textContent = user.grade;
+
+      // Subscription fields
       const planEl = content.querySelector('[data-value="plan"]');
       const paymentEl = content.querySelector('[data-value="payment"]');
       const planLabels = { "1-month": "Monthly", "3-month": "3 Months", "12-month": "Annually" };
@@ -133,12 +123,10 @@ function initSettings() {
         const valueEl = content.querySelector(`[data-value="${field}"]`);
         if (valueEl) valueEl.textContent = value;
 
-        // Save to localStorage and sync to server
+        // Sync to server
         if (field === "name") {
-          localStorage.setItem("arco-name", value);
           if (typeof ArcoAPI !== 'undefined') ArcoAPI.updateProfile({ display_name: value });
         } else if (field === "grade") {
-          localStorage.setItem("arco-grade", value);
           if (typeof ArcoAPI !== 'undefined') ArcoAPI.updateProfile({ grade: value });
         }
 
@@ -164,7 +152,6 @@ function initSettings() {
         closeAvatarModal(avatarModal);
 
         const path = src.startsWith("http") ? new URL(src).pathname : src;
-        localStorage.setItem("arco-avatar", path);
         if (typeof ArcoAPI !== 'undefined') ArcoAPI.updateProfile({ avatar: path });
       }
     });

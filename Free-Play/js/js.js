@@ -10,15 +10,13 @@ document.addEventListener("frame:ready", () => {
             .then(titleContent => {
                 titleContainer.innerHTML = titleContent;
             })
-            .catch(err => console.error("TITLE LOAD FAILED:", err));
+            .catch(() => {});
     } else {
-        console.warn("lesson-title element not found");
     }
 
     // Load content.html
     fetch("../html/content.html")
         .then(res => {
-            console.log("Fetch response:", res);
             if (!res.ok) throw new Error("Not OK");
             return res.text();
         })
@@ -28,7 +26,7 @@ document.addEventListener("frame:ready", () => {
                 .insertAdjacentHTML("beforeend", content);
             notesFunction();
         })
-        .catch(err => console.error("CONTENT LOAD FAILED:", err));
+        .catch(() => {});
 });
 var currentVolume = 1;
 

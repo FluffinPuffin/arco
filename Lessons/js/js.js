@@ -10,7 +10,7 @@ document.addEventListener("frame:ready", () => {
       .then(titleContent => {
         titleContainer.innerHTML = titleContent;
       })
-      .catch(err => console.error("Title load failed:", err));
+      .catch(() => {});
   }
 
   // Load content
@@ -24,7 +24,7 @@ document.addEventListener("frame:ready", () => {
       initCarousels();
       loadLessonProgress();
     })
-    .catch(err => console.error("Content load failed:", err));
+    .catch(() => {});
 });
 
 // Load and display lesson progress from server (DB only)

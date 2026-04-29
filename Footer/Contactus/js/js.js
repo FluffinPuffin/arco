@@ -9,7 +9,7 @@ document.addEventListener("frame:ready", () => {
       .then((titleContent) => {
         titleContainer.innerHTML = titleContent;
       })
-      .catch((err) => console.error("TITLE LOAD FAILED:", err));
+      .catch(() => {});
   }
 
   fetch("./content.html")
@@ -21,7 +21,7 @@ document.addEventListener("frame:ready", () => {
       document.getElementById("content").insertAdjacentHTML("beforeend", content);
       initContact();
     })
-    .catch((err) => console.error("CONTENT LOAD FAILED:", err));
+    .catch(() => {});
 });
 
 function initContact() {

@@ -10,7 +10,7 @@ document.addEventListener("frame:ready", () => {
       .then(titleContent => {
         titleContainer.innerHTML = titleContent;
       })
-      .catch(err => console.error("TITLE LOAD FAILED:", err));
+      .catch(() => {});
   }
 
   // Load content.html
@@ -27,7 +27,7 @@ document.addEventListener("frame:ready", () => {
       initGameControls();
       initGame();
     })
-    .catch(err => console.error("CONTENT LOAD FAILED:", err));
+    .catch(() => {});
 });
 
 function initInfoTabs() {
